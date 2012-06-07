@@ -82,6 +82,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_DISPLAY_COLOR = "color_calibration";
     private static final String KEY_DISPLAY_GAMMA = "gamma_tuning";
     private static final String KEY_SCREEN_GESTURE_SETTINGS = "touch_screen_gesture_settings";
+    private static final String KEY_ADVANCED_SETTINGS = "oppo_advanced_settings";
     private static final String KEY_ENABLE_NAVIGATION_BAR = "enable_nav_bar";
     private static final String KEY_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
     private static final String NAVIGATION_BAR_CATEGORY = "navigation_bar";
@@ -136,6 +137,8 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
 
         Utils.updatePreferenceToSpecificActivityFromMetaDataOrRemove(getActivity(),
                 getPreferenceScreen(), KEY_SCREEN_GESTURE_SETTINGS);
+        Utils.updatePreferenceToSpecificActivityFromMetaDataOrRemove(getActivity(),
+                getPreferenceScreen(), KEY_ADVANCED_SETTINGS);
 
         boolean hasNavBarByDefault = getResources().getBoolean(
                 com.android.internal.R.bool.config_showNavigationBar);

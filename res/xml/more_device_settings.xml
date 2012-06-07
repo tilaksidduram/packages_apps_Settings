@@ -215,4 +215,14 @@
 
    </PreferenceCategory>
 
+    <!-- Oppo Touchscreen gestures -->
+    <Preference
+        android:id="@+id/advanced_settings"
+        android:key="oppo_advanced_settings">
+        <intent
+                android:action="android.intent.action.MAIN"
+                android:targetClass="org.omnirom.device.DeviceSettings"
+                android:targetPackage="org.omnirom.device" />
+    </Preference>
+
 </PreferenceScreen>
