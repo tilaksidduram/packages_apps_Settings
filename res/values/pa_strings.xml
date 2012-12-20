@@ -21,8 +21,12 @@
     <string name="help">Help</string>
     <string name="reset_message">Reset all entries to default?</string>
 
-     <!-- Viper Equalizer -->
-     <string name="equalizer_settings_title">Equalizer</string>
+    <!-- About device screen, CPU and RAM info. -->
+    <string name="cpu_info">CPU</string>
+    <string name="mem_info">Memory</string>
+
+    <!-- Viper Equalizer -->
+    <string name="equalizer_settings_title">Equalizer</string>
 
     <!-- Unaccounted and overcounted battery stats -->
     <string name="show_unac_and_overcounted_stats_title">Show unaccounted/overcounted stats</string>
