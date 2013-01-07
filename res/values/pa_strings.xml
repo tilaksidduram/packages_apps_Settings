@@ -157,4 +157,8 @@
     <string name="profiles_add">Add</string>
     <string name="profile_choose_app">Choose app</string>
 
+    <!-- Launch music player when headset is connected -->
+    <string name="headset_connect_player_title">Launch music app</string>
+    <string name="headset_connect_player_summary">Launch the default music app when headset is connected</string>
+
 </resources>
