@@ -69,6 +69,13 @@
                 android:title="@string/vibrate_when_ringing_title"
                 android:persistent="false" />
 
+        <!-- Headset -->
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+                android:key="headset_connect_player"
+                android:title="@string/headset_connect_player_title"
+                android:summary="@string/headset_connect_player_summary"
+                android:defaultValue="false" />
+
         <!-- Interruptions -->
         <PreferenceScreen
                 android:key="zen_mode"
