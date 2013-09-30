@@ -51,6 +51,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private static final String CATEGORY_MENU = "menu_key";
     private static final String CATEGORY_ASSIST = "assist_key";
     private static final String CATEGORY_APPSWITCH = "app_switch_key";
+    private static final String CATEGORY_CAMERA = "camera_key";
     private static final String CATEGORY_VOLUME = "volume_keys";
     private static final String CATEGORY_BACKLIGHT = "key_backlight";
 
@@ -63,6 +64,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private static final int ACTION_SEARCH = 3;
     private static final int ACTION_VOICE_SEARCH = 4;
     private static final int ACTION_IN_APP_SEARCH = 5;
+    private static final int ACTION_LAUNCH_CAMERA = 6;
 
     // Masks for checking presence of hardware keys.
     // Must match values in frameworks/base/core/res/res/values/config.xml
@@ -71,6 +73,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     public static final int KEY_MASK_MENU = 0x04;
     public static final int KEY_MASK_ASSIST = 0x08;
     public static final int KEY_MASK_APP_SWITCH = 0x10;
+    public static final int KEY_MASK_CAMERA = 0x20;
 
     private ListPreference mHomeLongPressAction;
     private ListPreference mHomeDoubleTapAction;
@@ -80,6 +83,9 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private ListPreference mAssistLongPressAction;
     private ListPreference mAppSwitchPressAction;
     private ListPreference mAppSwitchLongPressAction;
+    private CheckBoxPreference mCameraWake;
+    private CheckBoxPreference mCameraSleepOnRelease;
+    private CheckBoxPreference mCameraMusicControls;
     private ListPreference mVolumeKeyCursorControl;
     private CheckBoxPreference mSwapVolumeButtons;
     private CheckBoxPreference mHeadsetHookLaunchVoice;
@@ -100,6 +106,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         final boolean hasMenuKey = (deviceKeys & KEY_MASK_MENU) != 0;
         final boolean hasAssistKey = (deviceKeys & KEY_MASK_ASSIST) != 0;
         final boolean hasAppSwitchKey = (deviceKeys & KEY_MASK_APP_SWITCH) != 0;
+        final boolean hasCameraKey = (deviceKeys & KEY_MASK_CAMERA) != 0;
 
         boolean hasAnyBindableKey = false;
         final PreferenceCategory homeCategory =
@@ -110,6 +117,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                 (PreferenceCategory) prefScreen.findPreference(CATEGORY_ASSIST);
         final PreferenceCategory appSwitchCategory =
                 (PreferenceCategory) prefScreen.findPreference(CATEGORY_APPSWITCH);
+        final PreferenceCategory cameraCategory =
+                (PreferenceCategory) prefScreen.findPreference(CATEGORY_CAMERA);
         final PreferenceCategory volumeCategory =
                 (PreferenceCategory) prefScreen.findPreference(CATEGORY_VOLUME);
 
@@ -188,6 +197,24 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             hasAnyBindableKey = true;
         } else {
             prefScreen.removePreference(appSwitchCategory);
+        }
+
+        if (hasCameraKey) {
+            mCameraWake = (CheckBoxPreference)
+                prefScreen.findPreference(Settings.System.CAMERA_WAKE_SCREEN);
+            mCameraSleepOnRelease = (CheckBoxPreference)
+                prefScreen.findPreference(Settings.System.CAMERA_SLEEP_ON_RELEASE);
+            mCameraMusicControls = (CheckBoxPreference)
+                prefScreen.findPreference(Settings.System.CAMERA_MUSIC_CONTROLS);
+            boolean value = mCameraWake.isChecked();
+            mCameraMusicControls.setEnabled(!value);
+            mCameraSleepOnRelease.setEnabled(value);
+            if (getResources().getBoolean(
+                com.android.internal.R.bool.config_singleStageCameraKey)) {
+                cameraCategory.removePreference(mCameraSleepOnRelease);
+            }
+        } else {
+            prefScreen.removePreference(cameraCategory);
         }
 
         if (!hasAnyBindableKey) {
@@ -294,13 +321,16 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                     ? (Utils.isTablet(getActivity()) ? 2 : 1) : 0;
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.SWAP_VOLUME_KEYS_ON_ROTATION, value);
-           return true; 
-       }
-        else if (preference == mHeadsetHookLaunchVoice) {
+        } else if (preference == mCameraWake) {
+            // Disable camera music controls if camera wake is enabled
+            boolean isCameraWakeEnabled = mCameraWake.isChecked();
+            mCameraMusicControls.setEnabled(!isCameraWakeEnabled);
+            mCameraSleepOnRelease.setEnabled(isCameraWakeEnabled);
+            return true; 
+        } else if (preference == mHeadsetHookLaunchVoice) {
             boolean checked = ((CheckBoxPreference)preference).isChecked();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.HEADSETHOOK_LAUNCH_VOICE, checked ? 1:0);
-
             return true;
         }
 
