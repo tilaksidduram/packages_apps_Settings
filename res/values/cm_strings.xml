@@ -1134,4 +1134,10 @@
     <string name="battery_info_status_charging_dock_ac">Charging on dock AC</string>
     <!-- [CHAR_LIMIT=20] Battery use screen. Battery status shown in chart label when charging over Dock USB. -->
     <string name="battery_info_status_charging_dock_usb">Charging over dock USB</string>
+
+    <!-- LTO download data over wi-fi only -->
+    <string name="lto_download_data_wifi_only">GPS assisted data download</string>
+    <string name="lto_download_data_wifi_only_on">Over any networks</string>
+    <string name="lto_download_data_wifi_only_off">Only over Wi\u2011Fi networks</string>
+
 </resources>
