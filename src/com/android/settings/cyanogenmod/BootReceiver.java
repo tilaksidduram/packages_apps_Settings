@@ -28,6 +28,7 @@ import com.android.settings.DisplaySettings;
 import com.android.settings.R;
 import com.android.settings.Utils;
 import com.android.settings.ButtonSettings;
+import com.android.settings.hardware.VibratorIntensity;
 import com.android.settings.location.LocationSettings;
 import com.android.settings.paranoid.GestureSettings;
 
@@ -44,5 +45,6 @@ public class BootReceiver extends BroadcastReceiver {
         DisplaySettings.restore(ctx);
         ButtonSettings.restoreKeyDisabler(ctx);
         GestureSettings.restore(ctx);
+        VibratorIntensity.restore(ctx);
     }
 }
