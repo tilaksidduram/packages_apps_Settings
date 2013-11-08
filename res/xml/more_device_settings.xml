@@ -63,6 +63,12 @@
         android:summary="@string/app_circle_bar_included_apps_summary"
         android:dependency="enable_app_circle_bar" />
 
+    <PreferenceScreen
+        android:key="@+id/app_sidebar"
+        android:fragment="com.android.settings.pac.AppSidebar"
+        android:title="@string/app_sidebar_title"
+        android:icon="@drawable/ic_settings_appsidebar" />
+
      <CheckBoxPreference
 	android:key="ram_usage_bar"
 	android:icon="@drawable/ic_pa_recents"

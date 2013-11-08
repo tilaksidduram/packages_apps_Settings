@@ -1850,6 +1850,10 @@
         <!-- Others -->
         <activity android:name=".slim.NotificationDrawerStyle" />
 
+        <!-- PAC-Rom activities Starts -->
+        <activity android:name=".pac.AppSidebar" />
+        <!-- PAC-Rom activities End -->
+
         <!-- CyanogenMod activities Start -->
 
         <activity android:name=".headsup.HeadsUpSettings" />
