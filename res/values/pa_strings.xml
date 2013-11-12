@@ -217,6 +217,9 @@
     <string name="app_halo_label_black">Blacklist from HALO</string>
     <string name="app_halo_label_white">Whitelist from HALO</string>
 
+    <!-- Lockscreen widgets -->
+    <string name="security_maximize_widgets_title">Maximize lockscreen widgets</string>
+
     <!--PA version-->
     <string name="pa_version">ParanoidAndroid version</string>
     <string name="pa_version_default">Unknown</string>
