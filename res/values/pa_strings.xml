@@ -246,6 +246,9 @@
     <!-- Minimum Vibration Duration -->
     <string name="minimum_vibration_duration">Minimum vibration duration</string>
 
+    <!-- Screen off animation -->
+    <string name="screen_off_animation">Screen-off animation</string>
+
     <!-- Screen recorder -->
     <string name="power_menu_screenrecord_title">Enable Screen record</string>
     <string name="screen_recorder_title">Screen recorder</string>
