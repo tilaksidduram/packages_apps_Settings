@@ -1587,6 +1587,8 @@
             android:theme="@style/CryptKeeperBlankTheme"
         />
 
+        <activity android:name=".paranoid.Halo" />
+
         <!-- CyanogenMod activities Start -->
 
         <activity android:name=".cyanogenmod.AutoBrightnessSetup"
