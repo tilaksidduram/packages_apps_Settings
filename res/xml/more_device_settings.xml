@@ -165,6 +165,19 @@
             android:icon="@drawable/ic_pa_notification"
             android:persistent="false" />
 
+    <Preference
+        android:fragment="com.android.settings.slim.NotificationDrawerStyle"
+        android:key="notification_style"
+        android:title="@string/notification_style_title"
+        android:summary="@string/notification_style_summary" />
+
+    <CheckBoxPreference
+            android:key="custom_status_bar_header"
+            android:title="@string/custom_statusbar_header_title"
+            android:summary="@string/custom_statusbar_header_summary"
+            android:icon="@drawable/ic_pa_statusbar"
+            android:defaultValue="false" />
+
     <com.android.settings.AOSPAL.CustomCarrier
             android:key="notification_custom_carrier_label"
             android:title="@string/notification_custom_carrier_label_title"
@@ -175,13 +188,6 @@
             android:imeOptions="actionDone"
             android:inputType="textNoSuggestions"
             android:persistent="false" />
-
-    <CheckBoxPreference
-            android:key="custom_status_bar_header"
-            android:title="@string/custom_statusbar_header_title"
-            android:summary="@string/custom_statusbar_header_summary"
-            android:icon="@drawable/ic_pa_statusbar"
-            android:defaultValue="false" />
 
    </PreferenceCategory>
 
