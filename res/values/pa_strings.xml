@@ -413,4 +413,9 @@
     <string name="pa_pie_mode_quick">Quick</string>
     <string name="pa_pie_mode_default">Default</string>
     <string name="pa_pie_mode_slow">Slow</string>
+
+    <!-- Development shortcut -->
+    <string name="development_shortcut_title">Development shortcut</string>
+    <string name="development_shortcut_summary">Enable application management shortcuts in notification area and recent apps list</string>
+
 </resources>
