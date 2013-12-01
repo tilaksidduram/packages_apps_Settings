@@ -106,6 +106,13 @@
                 android:targetPackage="com.cyanogenmod.settings.device"
                 android:targetClass="com.cyanogenmod.settings.device.GesturePadSettings" />
         </Preference> -->
+
+        <CheckBoxPreference android:key="stylus_icon_enabled"
+                android:title="@string/stylus_icon_enabled_title"
+                android:summary="@string/stylus_icon_enabled_summary"
+                android:defaultValue="false"
+                android:persistent="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory android:key="game_controller_settings_category"
