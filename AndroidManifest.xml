@@ -1636,6 +1636,9 @@
         <activity android:name=".util.ShowBuildProp" />
         <activity android:name=".cyanogenmod.PropModder" />
 
+        <!-- Others -->
+        <activity android:name=".slim.NotificationDrawerStyle" />
+
         <!-- CyanogenMod activities Start -->
 
         <activity android:name=".cyanogenmod.AutoBrightnessSetup"
