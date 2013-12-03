@@ -33,6 +33,12 @@
     <PreferenceCategory
 	android:title="@string/lockscreen_wallpaper_category_title">
 
+    <PreferenceScreen
+        android:key="keyguard_style"
+        android:fragment="com.android.settings.AOSPAL.LockscreenStyle"
+	android:icon="@drawable/ic_pa_lockscreen"
+        android:title="@string/lockscreen_style_title"/>
+
     <CheckBoxPreference
         android:key="lockscreen_wallpaper"
 	android:icon="@drawable/ic_pa_lockscreen"
