@@ -92,6 +92,7 @@ public class SecuritySettings extends RestrictedSettingsFragment
     private static final String KEY_NOTIFICATION_ACCESS = "manage_notification_access";
     private static final String PACKAGE_MIME_TYPE = "application/vnd.android.package-archive";
     private static final String LOCKSCREEN_MAXIMIZE_WIDGETS = "lockscreen_maximize_widgets";
+    private static final String MENU_UNLOCK_PREF = "menu_unlock";
 
     private PackageManager mPM;
     private DevicePolicyManager mDPM;
@@ -116,6 +117,7 @@ public class SecuritySettings extends RestrictedSettingsFragment
     private CheckBoxPreference mSeeThrough;
     private SeekBarPreference mBlurRadius;
     private CheckBoxPreference mMaximizeKeyguardWidgets;
+    private CheckBoxPreference mMenuUnlock;
 
     private Preference mNotificationAccess;
 
@@ -221,6 +223,15 @@ public class SecuritySettings extends RestrictedSettingsFragment
                         Settings.System.LOCKSCREEN_BLUR_RADIUS, 12));
         mBlurRadius.setOnPreferenceChangeListener(this);
         mBlurRadius.setEnabled(mSeeThrough.isChecked() && mSeeThrough.isEnabled());
+
+        // Menu Unlock
+        mMenuUnlock = (CheckBoxPreference) root.findPreference(MENU_UNLOCK_PREF);
+        if (mMenuUnlock != null) {
+            final boolean configDisabled = getResources().getBoolean
+                    (com.android.internal.R.bool.config_disableMenuKeyInLockScreen);
+            mMenuUnlock.setChecked(Settings.System.getInt(getContentResolver(),
+                    Settings.System.MENU_UNLOCK_SCREEN, configDisabled ? 0 : 1) == 1);
+        }
 
         // biometric weak liveliness
         mBiometricWeakLiveliness =
@@ -612,6 +623,9 @@ public class SecuritySettings extends RestrictedSettingsFragment
         } else if (preference == mMaximizeKeyguardWidgets) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.LOCKSCREEN_MAXIMIZE_WIDGETS, isToggled(preference) ? 1 : 0);
+        } else if (preference == mMenuUnlock) {
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.MENU_UNLOCK_SCREEN, isToggled(preference) ? 1 : 0);
         } else if (preference == mShowPassword) {
             Settings.System.putInt(getContentResolver(), Settings.System.TEXT_SHOW_PASSWORD,
                     mShowPassword.isChecked() ? 1 : 0);
