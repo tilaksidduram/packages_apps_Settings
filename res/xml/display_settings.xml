@@ -53,9 +53,14 @@
                 android:dialogTitle="@string/dialog_title_font_size" />
 
         <PreferenceScreen
-                android:fragment="com.android.settings.notificationlight.NotificationLightSettings"
                 android:key="notification_led"
-                android:title="@string/notification_led_category_title" />
+                android:title="@string/notification_led_category_title"
+                android:fragment="com.android.settings.notificationlight.NotificationLightSettings" />
+        
+        <PreferenceScreen
+                android:key="battery_light"
+                android:title="@string/battery_light_title"
+                android:fragment="com.android.settings.notificationlight.BatteryLightSettings" />
 
         <PreferenceScreen
                 android:key="wifi_display"
@@ -67,15 +72,5 @@
                 android:title="@string/adaptive_backlight_title"
                 android:summary="@string/adaptive_backlight_summary"
                 android:defaultValue="true" />
-
-        <!-- DeviceParts Device Specific Display settings -->
-        <Preference
-            android:key="advanced_display_settings"
-            android:title="@string/advanced_settings_title">
-            <intent
-                android:action="com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS"
-                android:targetPackage="com.cyanogenmod.settings.device"
-                android:targetClass="com.cyanogenmod.settings.device.DisplaySettings" />
-        </Preference>
 
 </PreferenceScreen>

@@ -28,6 +28,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.os.UserHandle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -57,6 +58,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_ACCELEROMETER = "accelerometer";
     private static final String KEY_FONT_SIZE = "font_size";
     private static final String KEY_NOTIFICATION_LED = "notification_led";
+    private static final String KEY_BATTERY_LIGHT = "battery_light";
     private static final String KEY_SCREEN_SAVER = "screensaver";
     private static final String KEY_ADAPTIVE_BACKLIGHT = "adaptive_backlight";
     private static final String KEY_ADVANCED_DISPLAY_SETTINGS = "advanced_display_settings";
@@ -69,6 +71,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private final Configuration mCurConfig = new Configuration();
 
     private PreferenceScreen mNotificationLed;
+    private PreferenceScreen mBatteryPulse;
 
     private ListPreference mScreenTimeoutPreference;
     private Preference mScreenSaverPreference;
@@ -89,6 +92,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         ContentResolver resolver = getActivity().getContentResolver();
 
         addPreferencesFromResource(R.xml.display_settings);
+        
+        Resources res = getResources();
 
         mAccelerometer = (CheckBoxPreference) findPreference(KEY_ACCELEROMETER);
         mAccelerometer.setPersistent(false);
@@ -102,7 +107,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         mScreenSaverPreference = findPreference(KEY_SCREEN_SAVER);
         if (mScreenSaverPreference != null
-                && getResources().getBoolean(
+                && res.getBoolean(
                         com.android.internal.R.bool.config_dreamsSupported) == false) {
             getPreferenceScreen().removePreference(mScreenSaverPreference);
         }
@@ -119,11 +124,20 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         mFontSizePref.setOnPreferenceChangeListener(this);
         mFontSizePref.setOnPreferenceClickListener(this);
 
-        boolean hasNotificationLed = getResources().getBoolean(
+        boolean hasNotificationLed = res.getBoolean(
                 com.android.internal.R.bool.config_intrusiveNotificationLed);
+        boolean hasBatteryLed = res.getBoolean(
+                com.android.internal.R.bool.config_intrusiveBatteryLed);
         mNotificationLed = (PreferenceScreen) findPreference(KEY_NOTIFICATION_LED);
+        mBatteryPulse = (PreferenceScreen) findPreference(KEY_BATTERY_LIGHT);
+        if (UserHandle.myUserId() != UserHandle.USER_OWNER 
+            || !hasBatteryLed) {
+                getPreferenceScreen().removePreference(mBatteryPulse);
+                mBatteryPulse = null;
+            }
         if (!hasNotificationLed) {
             getPreferenceScreen().removePreference(mNotificationLed);
+            mNotificationLed = null;
         }
 
         mAdaptiveBacklight = (CheckBoxPreference) findPreference(KEY_ADAPTIVE_BACKLIGHT);
