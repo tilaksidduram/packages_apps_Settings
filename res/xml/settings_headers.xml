@@ -36,6 +36,13 @@
         android:title="@string/bluetooth_settings_title"
         android:icon="@drawable/ic_settings_bluetooth2" />
 
+    <!-- Location -->
+    <header
+        android:fragment="com.android.settings.location.LocationSettings"
+        android:icon="@drawable/ic_settings_location"
+        android:title="@string/location_settings_title"
+        android:id="@+id/location_settings" />
+
     <!-- TeloRadio -->
     <header
         android:id="@+id/telo_radio_settings"
@@ -168,13 +175,6 @@
             android:targetPackage="com.tmobile.themechooser"
             android:targetClass="com.tmobile.themechooser.ThemeChooser" />
     </header>
-
-    <!-- Location -->
-    <header
-        android:fragment="com.android.settings.location.LocationSettings"
-        android:icon="@drawable/ic_settings_location"
-        android:title="@string/location_settings_title"
-        android:id="@+id/location_settings" />
 
     <!-- Security -->
     <header
