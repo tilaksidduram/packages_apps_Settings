@@ -89,6 +89,5 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment {
          return super.onPreferenceTreeClick(preferenceScreen, preference);
        }
          return true;
-
     }
 }
