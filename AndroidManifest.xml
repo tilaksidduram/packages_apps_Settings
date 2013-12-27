@@ -1625,6 +1625,8 @@
         />
 
         <activity android:name=".paranoid.Halo" />
+        <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereBuilderActivity" />
+        <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereCreateGestureActivity" />
 
         <!-- CyanogenMod activities Start -->
 
