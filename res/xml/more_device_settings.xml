@@ -20,6 +20,17 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceCategory
+	android:title="@string/animation_title">
+
+    <PreferenceScreen
+        android:fragment="com.android.settings.AOSPAL.AnimationSettings"
+        android:key="animation_settings"
+	android:icon="@drawable/ic_pa_animations"
+        android:title="@string/interface_animation_title"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
 	 android:title="@string/propmodder_title">
 
      <Preference
