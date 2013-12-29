@@ -32,6 +32,7 @@ public class LockscreenNotifications extends SettingsPreferenceFragment implemen
     private static final String KEY_WAKE_ON_NOTIFICATION = "wake_on_notification";
     private static final String KEY_NOTIFICATIONS_HEIGHT = "notifications_height";
 
+    private Context mContext;
     private CheckBoxPreference mLockscreenNotifications;
     private CheckBoxPreference mPocketMode;
     private CheckBoxPreference mShowAlways;
