@@ -42,8 +42,10 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment {
     private static final String KEY_DISPLAY_GAMMA = "gamma_tuning";
     private static final String KEY_SCREEN_GESTURE_SETTINGS = "touch_screen_gesture_settings";
     private static final String KEY_DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
+    private static final String KEY_STATUS_BAR_CUSTOM_HEADER = "custom_status_bar_header";
 
     private CheckBoxPreference mDTS;
+    private CheckBoxPreference mStatusBarCustomHeader;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,7 +78,12 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment {
 
         mDTS = (CheckBoxPreference) findPreference(KEY_DOUBLE_TAP_SLEEP_GESTURE);
         mDTS.setChecked(Settings.System.getInt(getContentResolver(),
-                              Settings.System.DOUBLE_TAP_SLEEP_GESTURE, 0) == 1); 
+                              Settings.System.DOUBLE_TAP_SLEEP_GESTURE, 0) == 1);
+
+        mStatusBarCustomHeader = (CheckBoxPreference) findPreference(STATUS_BAR_CUSTOM_HEADER);
+        mStatusBarCustomHeader.setChecked(Settings.System.getInt(getContentResolver(),
+            		      Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1);
+        mStatusBarCustomHeader.setOnPreferenceChangeListener(this); 
     }
 
     @Override
@@ -89,5 +96,18 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment {
          return super.onPreferenceTreeClick(preferenceScreen, preference);
        }
          return true;
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mStatusBarCustomHeader) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(resolver,
+                Settings.System.STATUS_BAR_CUSTOM_HEADER, value ? 1 : 0);
+        } else {
+            return false;
+        }
+
+        return true;
     }
 }
