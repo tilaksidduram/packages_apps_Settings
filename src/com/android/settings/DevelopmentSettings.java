@@ -133,7 +133,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private static final String DEBUG_DEBUGGING_CATEGORY_KEY = "debug_debugging_category";
     private static final String DEBUG_APPLICATIONS_CATEGORY_KEY = "debug_applications_category";
     private static final String WIFI_DISPLAY_CERTIFICATION_KEY = "wifi_display_certification";
-    private static final String ADB_TILE_KEY = "adb_tile";
 
     private static final String OPENGL_TRACES_KEY = "enable_opengl_traces";
 
@@ -167,7 +166,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private CheckBoxPreference mEnableTerminal;
     private Preference mBugreport;
     private CheckBoxPreference mBugreportInPower;
-    private CheckBoxPreference mAdbTile;
     private CheckBoxPreference mKeepScreenOn;
     private CheckBoxPreference mBtHciSnoopLog;
     private CheckBoxPreference mAllowMockLocation;
@@ -259,9 +257,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
 
         mBugreport = findPreference(BUGREPORT);
         mBugreportInPower = findAndInitCheckboxPref(BUGREPORT_IN_POWER_KEY);
-        mAdbTile = findAndInitCheckboxPref(ADB_TILE_KEY);
-        updateCheckBox(mAdbTile, Settings.System.getInt(getActivity().getContentResolver(),
-                    Settings.System.QUICK_SETTINGS_ADB_TILE, 0) == 1);
         mKeepScreenOn = findAndInitCheckboxPref(KEEP_SCREEN_ON);
         mBtHciSnoopLog = findAndInitCheckboxPref(BT_HCI_SNOOP_LOG);
         mAllowMockLocation = findAndInitCheckboxPref(ALLOW_MOCK_LOCATION);
@@ -1206,9 +1201,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                 mVerifyAppsOverUsb.setChecked(false);
                 updateBugreportOptions();
             }
-        } else if (preference == mAdbTile) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.QUICK_SETTINGS_ADB_TILE, mAdbTile.isChecked() ? 1 : 0);
         } else if (preference == mClearAdbKeys) {
             if (mAdbKeysDialog != null) dismissDialogs();
             mAdbKeysDialog = new AlertDialog.Builder(getActivity())

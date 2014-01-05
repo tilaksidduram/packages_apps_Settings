@@ -72,10 +72,6 @@
     <string name="battery_light_medium_color_title">Charging</string>
     <string name="battery_light_full_color_title">Fully charged</string>
 
-    <!-- ADB over network tile -->
-    <string name="adb_tile">ADB over network tile</string>
-    <string name="adb_tile_summary">Adds an adb over network tile to quicksettings.</string>
-
     <!-- Volume adjust sounds -->
     <string name="volume_adjust_sounds_enable_summary">Play sound when adjusting ringtone with volume buttons</string>
 
