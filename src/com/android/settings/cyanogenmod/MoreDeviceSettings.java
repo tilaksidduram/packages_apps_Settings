@@ -33,7 +33,9 @@ import com.android.settings.hardware.DisplayColor;
 import com.android.settings.hardware.DisplayGamma;
 import com.android.settings.hardware.VibratorIntensity;
 
-public class MoreDeviceSettings extends SettingsPreferenceFragment {
+public class MoreDeviceSettings extends SettingsPreferenceFragment implements
+        Preference.OnPreferenceChangeListener {
+
     private static final String TAG = "MoreDeviceSettings";
 
     private static final String KEY_SENORS_MOTORS_CATEGORY = "sensors_motors_category";
@@ -43,9 +45,11 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment {
     private static final String KEY_SCREEN_GESTURE_SETTINGS = "touch_screen_gesture_settings";
     private static final String KEY_DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
     private static final String KEY_STATUS_BAR_CUSTOM_HEADER = "custom_status_bar_header";
+    private static final String KEY_ENABLE_NAVIGATION_BAR = "enable_nav_bar";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
+    private CheckBoxPreference mEnableNavigationBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,22 +88,33 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment {
         mStatusBarCustomHeader.setChecked(Settings.System.getInt(getContentResolver(),
               Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1);
 	mStatusBarCustomHeader.setOnPreferenceChangeListener(this);
+
+        boolean hasNavBarByDefault = getResources().getBoolean(
+                com.android.internal.R.bool.config_showNavigationBar);
+        boolean enableNavigationBar = Settings.System.getInt(getContentResolver(),
+                Settings.System.NAVIGATION_BAR_SHOW, hasNavBarByDefault ? 1 : 0) == 1;
+        mEnableNavigationBar = (CheckBoxPreference) findPreference(KEY_ENABLE_NAVIGATION_BAR);
+        mEnableNavigationBar.setChecked(enableNavigationBar);
+        mEnableNavigationBar.setOnPreferenceChangeListener(this);
     }
 
-    @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mStatusBarCustomHeader) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver,
                 Settings.System.STATUS_BAR_CUSTOM_HEADER, value ? 1 : 0);
-        } else {
+        } else if (preference == mEnableNavigationBar) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_SHOW,
+                    ((Boolean) objValue) ? 1 : 0);
+	} else {
             return false;
         }
-
         return true;
     }
 
+    @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
          ContentResolver cr = getActivity().getContentResolver();
          if (preference == mDTS) {

@@ -208,4 +208,9 @@
     <!-- USB Mass Storage -->
     <string name="storage_rescan_media">Rescan media for the storage volume</string>
     <string name="storage_rescan_media_complete">Scan completed</string>
+
+    <!-- Navigation bar settings -->
+    <string name="navigation_bar">Navigation Bar</string>
+    <string name="navigation_ring_title">Shortcuts</string>
+    <string name="navigation_bar_summary">Enable or Disable the Navigation Bar. Please reboot to apply the change</string>
 </resources>
