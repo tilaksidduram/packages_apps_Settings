@@ -90,7 +90,11 @@ public abstract class LocationSettingsBase extends SettingsPreferenceFragment
             }
             return;
         }
-        sendModeChangingIntent(getActivity(), mCurrentMode, mode);
+        if (mode != Settings.Secure.LOCATION_MODE_OFF) {
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.LOCATION_LAST_MODE, mode);
+        }
+	sendModeChangingIntent(getActivity(), mCurrentMode, mode);
         refreshLocationMode();
     }
 
@@ -99,8 +103,8 @@ public abstract class LocationSettingsBase extends SettingsPreferenceFragment
         intent.putExtra(CURRENT_MODE_KEY, oldState);
         intent.putExtra(NEW_MODE_KEY, newState);
         context.sendBroadcast(intent, android.Manifest.permission.WRITE_SECURE_SETTINGS);
-        Settings.Secure.putInt(context.getContentResolver(),
-                Settings.Secure.LOCATION_MODE, newState);
+        Settings.Secure.putInt(context.getContentResolver(), 
+		Settings.Secure.LOCATION_MODE, newState);
     }
 
     public void refreshLocationMode() {
