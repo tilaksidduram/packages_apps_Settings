@@ -78,26 +78,15 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment {
 
         mDTS = (CheckBoxPreference) findPreference(KEY_DOUBLE_TAP_SLEEP_GESTURE);
         mDTS.setChecked(Settings.System.getInt(getContentResolver(),
-                              Settings.System.DOUBLE_TAP_SLEEP_GESTURE, 0) == 1);
+              Settings.System.DOUBLE_TAP_SLEEP_GESTURE, 0) == 1);
 
-        mStatusBarCustomHeader = (CheckBoxPreference) findPreference(STATUS_BAR_CUSTOM_HEADER);
+        mStatusBarCustomHeader = (CheckBoxPreference) findPreference(KEY_STATUS_BAR_CUSTOM_HEADER);
         mStatusBarCustomHeader.setChecked(Settings.System.getInt(getContentResolver(),
-            		      Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1);
-        mStatusBarCustomHeader.setOnPreferenceChangeListener(this); 
+              Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1);
+	mStatusBarCustomHeader.setOnPreferenceChangeListener(this);
     }
 
     @Override
-     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-         ContentResolver cr = getActivity().getContentResolver();
-         if (preference == mDTS) {
-              Settings.System.putInt(cr, Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
-                     mDTS.isChecked() ? 1 : 0);
-       } else {
-         return super.onPreferenceTreeClick(preferenceScreen, preference);
-       }
-         return true;
-    }
-
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mStatusBarCustomHeader) {
@@ -109,5 +98,16 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment {
         }
 
         return true;
+    }
+
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+         ContentResolver cr = getActivity().getContentResolver();
+         if (preference == mDTS) {
+              Settings.System.putInt(cr, Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
+                     mDTS.isChecked() ? 1 : 0);
+       } else {
+         return super.onPreferenceTreeClick(preferenceScreen, preference);
+       }
+         return true;
     }
 }
