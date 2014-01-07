@@ -46,10 +46,12 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
     private static final String KEY_STATUS_BAR_CUSTOM_HEADER = "custom_status_bar_header";
     private static final String KEY_ENABLE_NAVIGATION_BAR = "enable_nav_bar";
+    private static final String KEY_QUICK_SWIPE = "quick_swipe";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
     private CheckBoxPreference mEnableNavigationBar;
+    private CheckBoxPreference mQuickSwipe;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,11 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
               Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1);
 	mStatusBarCustomHeader.setOnPreferenceChangeListener(this);
 
+        mQuickSwipe = (CheckBoxPreference) prefSet.findPreference(KEY_QUICK_SWIPE);
+        mQuickSwipe.setChecked(Settings.System.getInt(resolver,
+            Settings.System.QUICK_SWIPE, 0) == 1);
+        mQuickSwipe.setOnPreferenceChangeListener(this);
+
         boolean hasNavBarByDefault = getResources().getBoolean(
                 com.android.internal.R.bool.config_showNavigationBar);
         boolean enableNavigationBar = Settings.System.getInt(getContentResolver(),
@@ -108,6 +115,10 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_SHOW,
                     ((Boolean) objValue) ? 1 : 0);
+        } else if (preference == mQuickSwipe) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.QUICK_SWIPE, value ? 1 : 0);
 	} else {
             return false;
         }

@@ -213,4 +213,8 @@
     <string name="navigation_bar">Navigation Bar</string>
     <string name="navigation_ring_title">Shortcuts</string>
     <string name="navigation_bar_summary">Enable or Disable the Navigation Bar. Please reboot to apply the change</string>
+
+    <!-- Quick Swipe -->
+    <string name="quick_swipe_title">Quick swipe</string>
+    <string name="quick_swipe_summary">Quickly swipe between quick settings and notification drawer</string>
 </resources>
