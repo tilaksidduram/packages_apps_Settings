@@ -46,12 +46,10 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_SCREEN_GESTURE_SETTINGS = "touch_screen_gesture_settings";
     private static final String KEY_DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
     private static final String KEY_STATUS_BAR_CUSTOM_HEADER = "custom_status_bar_header";
-    private static final String KEY_ENABLE_NAVIGATION_BAR = "enable_nav_bar";
     private static final String KEY_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
-    private CheckBoxPreference mEnableNavigationBar;
     private SeekBarPreference mNavigationBarHeight;
 
     @Override
@@ -92,33 +90,20 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
               Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1);
 	mStatusBarCustomHeader.setOnPreferenceChangeListener(this);
 
-        boolean hasNavBarByDefault = getResources().getBoolean(
-                com.android.internal.R.bool.config_showNavigationBar);
-        boolean enableNavigationBar = Settings.System.getInt(getContentResolver(),
-                Settings.System.NAVIGATION_BAR_SHOW, hasNavBarByDefault ? 1 : 0) == 1;
-        mEnableNavigationBar = (CheckBoxPreference) findPreference(KEY_ENABLE_NAVIGATION_BAR);
-        mEnableNavigationBar.setChecked(enableNavigationBar);
-        mEnableNavigationBar.setOnPreferenceChangeListener(this);
-
         mNavigationBarHeight = (SeekBarPreference) findPreference(KEY_NAVIGATION_BAR_HEIGHT);
         mNavigationBarHeight.setProgress((int)(Settings.System.getFloat(getContentResolver(),
                     Settings.System.NAVIGATION_BAR_HEIGHT, 1f) * 100));
-        mNavigationBarHeight.setEnabled(mEnableNavigationBar.isChecked());
         mNavigationBarHeight.setTitle(getResources().getText(R.string.navigation_bar_height) + " " + mNavigationBarHeight.getProgress() + "%");
         mNavigationBarHeight.setOnPreferenceChangeListener(this);
     }
 
+    @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mStatusBarCustomHeader) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver,
                 Settings.System.STATUS_BAR_CUSTOM_HEADER, value ? 1 : 0);
-        } else if (preference == mEnableNavigationBar) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_SHOW,
-                    ((Boolean) objValue) ? 1 : 0);
-            mNavigationBarHeight.setEnabled((Boolean)newValue);
         } else if (preference == mNavigationBarHeight) {
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_HEIGHT, (Integer)newValue / 100f);
@@ -129,7 +114,6 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         return true;
     }
 
-    @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
          ContentResolver cr = getActivity().getContentResolver();
          if (preference == mDTS) {
