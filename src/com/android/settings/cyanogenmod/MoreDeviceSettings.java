@@ -25,6 +25,7 @@ import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.preference.CheckBoxPreference;
+import android.preference.SeekBarPreference;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -46,10 +47,12 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
     private static final String KEY_STATUS_BAR_CUSTOM_HEADER = "custom_status_bar_header";
     private static final String KEY_ENABLE_NAVIGATION_BAR = "enable_nav_bar";
+    private static final String KEY_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
     private CheckBoxPreference mEnableNavigationBar;
+    private SeekBarPreference mNavigationBarHeight;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,6 +99,13 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         mEnableNavigationBar = (CheckBoxPreference) findPreference(KEY_ENABLE_NAVIGATION_BAR);
         mEnableNavigationBar.setChecked(enableNavigationBar);
         mEnableNavigationBar.setOnPreferenceChangeListener(this);
+
+        mNavigationBarHeight = (SeekBarPreference) findPreference(KEY_NAVIGATION_BAR_HEIGHT);
+        mNavigationBarHeight.setProgress((int)(Settings.System.getFloat(getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_HEIGHT, 1f) * 100));
+        mNavigationBarHeight.setEnabled(mEnableNavigationBar.isChecked());
+        mNavigationBarHeight.setTitle(getResources().getText(R.string.navigation_bar_height) + " " + mNavigationBarHeight.getProgress() + "%");
+        mNavigationBarHeight.setOnPreferenceChangeListener(this);
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -108,6 +118,11 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_SHOW,
                     ((Boolean) objValue) ? 1 : 0);
+            mNavigationBarHeight.setEnabled((Boolean)newValue);
+        } else if (preference == mNavigationBarHeight) {
+            Settings.System.putFloat(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_HEIGHT, (Integer)newValue / 100f);
+            mNavigationBarHeight.setTitle(getResources().getText(R.string.navigation_bar_height) + " " + (Integer)newValue + "%");
 	} else {
             return false;
         }
