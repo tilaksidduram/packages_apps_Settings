@@ -118,7 +118,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_SHOW,
                     ((Boolean) objValue) ? 1 : 0);
-            mNavigationBarHeight.setEnabled((Boolean)newValue);
+            mNavigationBarHeight.setEnabled((Boolean)objValue);
         } else if (preference == mNavigationBarHeight) {
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_HEIGHT, (Integer)objValue / 100f);
