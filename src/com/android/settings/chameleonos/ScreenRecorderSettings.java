@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.text.TextUtils;
 import com.android.settings.R;
@@ -30,10 +31,12 @@ import com.android.settings.SettingsPreferenceFragment;
 public class ScreenRecorderSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
+    private static final String KEY_SCREENRECORD = "power_menu_screenrecord";
     private static final String KEY_VIDEO_SIZE = "screen_recorder_size";
     private static final String KEY_VIDEO_BITRATE = "screen_recorder_bitrate";
     private static final String KEY_RECORD_AUDIO = "screen_recorder_record_audio";
 
+    private CheckBoxPreference mScreenrecordPref;    
     private ListPreference mVideoSizePref;
     private ListPreference mVideoBitratePref;
     private CheckBoxPreference mRecordAudioPref;
@@ -56,6 +59,10 @@ public class ScreenRecorderSettings extends SettingsPreferenceFragment implement
                 Settings.System.SCREEN_RECORDER_BITRATE);
         updateVideoBitratePreference(rate);
 
+        mScreenrecordPref = (CheckBoxPreference) findPreference(KEY_SCREENRECORD);
+        mScreenrecordPref.setChecked((Settings.System.getInt(getContentResolver(),
+                Settings.System.POWER_MENU_SCREENRECORD_ENABLED, 0) == 1));
+
         mRecordAudioPref = (CheckBoxPreference) findPreference(KEY_RECORD_AUDIO);
         mRecordAudioPref.setChecked(Settings.System.getInt(resolver,
                 Settings.System.SCREEN_RECORDER_RECORD_AUDIO, 0) == 1);
@@ -63,7 +70,6 @@ public class ScreenRecorderSettings extends SettingsPreferenceFragment implement
         if (!hasMicrophone()) getPreferenceScreen().removePreference(mRecordAudioPref);
     }
 
-    @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
         if (preference == mVideoSizePref) {
             updateVideoSizePreference((String) o);
@@ -78,6 +84,21 @@ public class ScreenRecorderSettings extends SettingsPreferenceFragment implement
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        boolean value;
+	if (preference == mScreenrecordPref) {
+            value = mScreenrecordPref.isChecked();
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.POWER_MENU_SCREENRECORD_ENABLED,
+                    value ? 1 : 0);
+        } else {
+            return super.onPreferenceTreeClick(preferenceScreen, preference);
+        }
+
+        return true;
     }
 
     private void updateVideoSizePreference(String value) {

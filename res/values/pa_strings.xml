@@ -240,6 +240,7 @@
     <string name="navigation_bar_height">Navigation bar height:</string>
 
     <!-- Screen recorder -->
+    <string name="power_menu_screenrecord_title">Enable Screen record</string>
     <string name="screen_recorder_title">Screen recorder</string>
     <string name="screen_recorder_summary">Adjust screen recorder settings</string>
     <string name="screen_recorder_video_dimensions_title">Video size</string>
