@@ -218,7 +218,7 @@
     <string name="app_halo_label_white">Whitelist from HALO</string>
 
     <!-- Lockscreen widgets -->
-    <string name="security_maximize_widgets_title">Maximize lockscreen widgets</string>
+    <string name="security_maximize_widgets_title">Maximize widgets</string>
 
     <!--PA version-->
     <string name="pa_version">ParanoidAndroid version</string>
@@ -314,21 +314,6 @@
 
     <!-- Header on first screen of choose encryption password [CHAR LIMIT=30] -->
     <string name="encryptionpassword_choose_your_password_header">Set encryption password</string>
-
-    <string name="increasing_ring_title">Ascending ringtone</string>
-    <!-- Sound settings screen, the caption of the checkbox for making incoming calls increase in volume -->
-    <string name="checkbox_increasing_ring">Enable</string>
-    <!-- Sound settings screen, the title of the volume bar to adjust the minimum increasing ring volume -->
-    <string name="increasing_ring_min_volume_title">Ringing start volume</string>
-    <string name="increasing_ring_volume_notice">Notice:\nAs the start volume is set higher than the ringer volume, the ring tone will be played using the ringer volume.</string>
-    <string name="increasing_ring_interval_title">Increase interval</string>
-    <string name="increasing_ring_interval_eachring">On each ring</string>
-    <string name="increasing_ring_interval_half_second">0.5 seconds</string>
-    <string name="increasing_ring_interval_1second">1 second</string>
-    <string name="increasing_ring_interval_2seconds">2 seconds</string>
-    <string name="increasing_ring_interval_3seconds">3 seconds</string>
-    <string name="increasing_ring_interval_5seconds">5 seconds</string>
-    <string name="increasing_ring_interval_10seconds">10 seconds</string>
 
     <!-- Themes settings  -->
     <string name="themes_settings_title">Themes</string>
