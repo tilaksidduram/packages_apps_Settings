@@ -75,6 +75,12 @@
             android:defaultValue="true"
             android:persistent="false" />
 
+    <CheckBoxPreference
+            android:key="fullscreen_keyboard"
+            android:title="@string/disable_fullscreen_keyboard_title"
+            android:summary="@string/disable_fullscreen_keyboard_summary"
+            android:defaultValue="false" />
+
     <PreferenceCategory android:key="voice_category"
             android:title="@string/voice_category" >
 
