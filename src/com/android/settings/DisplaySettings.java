@@ -47,6 +47,7 @@ import com.android.settings.DreamSettings;
 import com.android.settings.Utils;
 
 import org.cyanogenmod.hardware.AdaptiveBacklight;
+import org.cyanogenmod.hardware.TapToWake;
 
 import com.android.settings.cyanogenmod.DisplayRotation;
 
@@ -67,6 +68,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_ADAPTIVE_BACKLIGHT = "adaptive_backlight";
     private static final String KEY_ADVANCED_DISPLAY_SETTINGS = "advanced_display_settings";
     private static final String KEY_WAKE_WHEN_PLUGGED_OR_UNPLUGGED = "wake_when_plugged_or_unplugged";
+    private static final String KEY_TAP_TO_WAKE = "double_tap_wake_gesture";
     private static final String KEY_DISPLAY_ROTATION = "display_rotation";
     private static final String KEY_SCREEN_OFF_ANIMATION = "screen_off_animation";
 
@@ -86,6 +88,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private Preference mScreenSaverPreference;
 
     private CheckBoxPreference mAdaptiveBacklight;
+    private CheckBoxPreference mTapToWake;
 
     private ContentObserver mAccelerometerRotationObserver =
             new ContentObserver(new Handler()) {
@@ -164,6 +167,13 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             getPreferenceScreen().removePreference(mAdaptiveBacklight);
             mAdaptiveBacklight = null;
         }
+
+        mTapToWake = (CheckBoxPreference) findPreference(KEY_TAP_TO_WAKE);
+        if (!isTapToWakeSupported()) {
+            getPreferenceScreen().removePreference(mTapToWake);
+            mTapToWake = null;
+        }
+
 
         Utils.updatePreferenceToSpecificActivityFromMetaDataOrRemove(getActivity(),
                 getPreferenceScreen(), KEY_ADVANCED_DISPLAY_SETTINGS);
@@ -319,6 +329,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             mAdaptiveBacklight.setChecked(AdaptiveBacklight.isEnabled());
         }
 
+        if (mTapToWake != null) {
+            mTapToWake.setChecked(TapToWake.isEnabled());
+        }
+
         // Display rotation observer
         resolver.registerContentObserver(
                 Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), true,
@@ -407,6 +421,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                     Settings.Global.WAKE_WHEN_PLUGGED_OR_UNPLUGGED,
                     mWakeWhenPluggedOrUnplugged.isChecked() ? 1 : 0);
             return true;
+        } else if (preference == mTapToWake) {
+            return TapToWake.setEnabled(mTapToWake.isChecked());
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -466,11 +482,29 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 Log.d(TAG, "Adaptive backlight settings restored.");
             }
         }
+        if (isTapToWakeSupported()) {
+            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+            final boolean enabled = prefs.getBoolean(KEY_TAP_TO_WAKE, true);
+            if (!TapToWake.setEnabled(enabled)) {
+                Log.e(TAG, "Failed to restore tap-to-wake settings.");
+            } else {
+                Log.d(TAG, "Tap-to-wake settings restored.");
+            }
+        }
     }
 
     private static boolean isAdaptiveBacklightSupported() {
         try {
             return AdaptiveBacklight.isSupported();
+        } catch (NoClassDefFoundError e) {
+            // Hardware abstraction framework not installed
+            return false;
+        }
+    }
+
+    private static boolean isTapToWakeSupported() {
+        try {
+            return TapToWake.isSupported();
         } catch (NoClassDefFoundError e) {
             // Hardware abstraction framework not installed
             return false;
