@@ -82,6 +82,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_DOCK_AUDIO_SETTINGS = "dock_audio";
     private static final String KEY_DOCK_SOUNDS = "dock_sounds";
     private static final String KEY_DOCK_AUDIO_MEDIA_ENABLED = "dock_audio_media_enabled";
+    private static final String KEY_SAFE_HEADSET_VOLUME_WARNING = "safe_headset_volume_warning";
 
     private static final String KEY_POWER_NOTIFICATIONS = "power_notifications";
     private static final String KEY_POWER_NOTIFICATIONS_VIBRATE = "power_notifications_vibrate";
@@ -101,6 +102,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     // Used for power notification uri string if set to silent
     private static final String POWER_NOTIFICATIONS_SILENT_URI = "silent";
 
+    private CheckBoxPreference mVolumeWarning;
     private CheckBoxPreference mVibrateWhenRinging;
     private CheckBoxPreference mDtmfTone;
     private CheckBoxPreference mSoundEffects;
@@ -176,9 +178,16 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             findPreference(KEY_RING_VOLUME).setDependency(null);
         }
 
+        mVolumeWarning = (CheckBoxPreference) findPreference(KEY_SAFE_HEADSET_VOLUME_WARNING);
+
         if (getResources().getBoolean(com.android.internal.R.bool.config_useFixedVolume)) {
             // device with fixed volume policy, do not display volumes submenu
             getPreferenceScreen().removePreference(findPreference(KEY_RING_VOLUME));
+            getPreferenceScreen().removePreference(findPreference(KEY_SAFE_HEADSET_VOLUME_WARNING));
+        } else {
+            mVolumeWarning.setChecked(Settings.System.getInt(resolver,
+                    Settings.System.MANUAL_SAFE_MEDIA_VOLUME, 1) == 1);
+            mVolumeWarning.setOnPreferenceChangeListener(this);
         }
 
         mVibrateWhenRinging = (CheckBoxPreference) findPreference(KEY_VIBRATE);
@@ -441,8 +450,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist emergency tone setting", e);
             }
-        }
-        if (preference == mVibrationDuration) {
+        } else if (preference == mVibrationDuration) {
             int value = Integer.parseInt((String) objValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.MINIMUM_VIBRATION_DURATION, value);
@@ -450,6 +458,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
                 mVib.vibrate(1);
             }
             mFirstVibration = true;
+        } else if (preference == mVolumeWarning) {
+            int volumeWarning = (Boolean) objValue ? 1 : 0;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.MANUAL_SAFE_MEDIA_VOLUME, volumeWarning);
         }
         return true;
     }
