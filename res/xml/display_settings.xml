@@ -59,9 +59,9 @@
                 android:dialogTitle="@string/dialog_title_font_size" />
 
         <PreferenceScreen
-                android:key="notification_led"
-                android:title="@string/notification_led_category_title"
-                android:fragment="com.android.settings.notificationlight.NotificationLightSettings" />
+                android:fragment="com.android.settings.notificationlight.NotificationLightSettings"
+                android:key="notification_pulse"
+                android:title="@string/notification_led_category_title" />
         
         <PreferenceScreen
                 android:key="battery_light"
