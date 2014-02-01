@@ -16,10 +16,15 @@
 
 package com.android.settings.cyanogenmod;
 
+import android.app.ActivityManager;
+import android.database.ContentObserver;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.os.Vibrator;
+import android.os.Handler;
 import android.preference.PreferenceGroup;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
@@ -33,6 +38,8 @@ import com.android.settings.Utils;
 import com.android.settings.hardware.DisplayColor;
 import com.android.settings.hardware.DisplayGamma;
 import com.android.settings.hardware.VibratorIntensity;
+import com.android.internal.util.paranoid.DeviceUtils;
+import android.provider.Settings.SettingNotFoundException;
 
 public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -48,11 +55,13 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_STATUS_BAR_CUSTOM_HEADER = "custom_status_bar_header";
     private static final String KEY_ENABLE_NAVIGATION_BAR = "enable_nav_bar";
     private static final String KEY_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
+    private static final String KEY_STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
     private CheckBoxPreference mEnableNavigationBar;
     private SeekBarPreference mNavigationBarHeight;
+    private CheckBoxPreference mStatusBarBrightnessControl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +69,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.more_device_settings);
         ContentResolver resolver = getContentResolver();
+	PreferenceScreen prefSet = getPreferenceScreen();
 
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (!VibratorIntensity.isSupported() || vibrator == null || !vibrator.hasVibrator()) {
@@ -106,6 +116,25 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         mNavigationBarHeight.setEnabled(mEnableNavigationBar.isChecked());
         mNavigationBarHeight.setTitle(getResources().getText(R.string.navigation_bar_height) + " " + mNavigationBarHeight.getProgress() + "%");
         mNavigationBarHeight.setOnPreferenceChangeListener(this);
+
+        // Status bar brightness control
+
+        // Start observing for changes on auto brightness
+        StatusBarBrightnessChangedObserver statusBarBrightnessChangedObserver =
+            new StatusBarBrightnessChangedObserver(new Handler());
+        statusBarBrightnessChangedObserver.startObserving();
+
+        mStatusBarBrightnessControl =
+            (CheckBoxPreference) prefSet.findPreference(KEY_STATUS_BAR_BRIGHTNESS_CONTROL);
+        mStatusBarBrightnessControl.setChecked((Settings.System.getInt(getContentResolver(),
+                            Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1));
+        mStatusBarBrightnessControl.setOnPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateStatusBarBrightnessControl();
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -119,6 +148,11 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
                     Settings.System.NAVIGATION_BAR_SHOW,
                     ((Boolean) objValue) ? 1 : 0);
             mNavigationBarHeight.setEnabled((Boolean)objValue);
+        } else if (preference == mStatusBarBrightnessControl) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
+                    (Boolean) objValue ? 1 : 0);
+             return true;
         } else if (preference == mNavigationBarHeight) {
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_HEIGHT, (Integer)objValue / 100f);
@@ -139,5 +173,41 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
          return super.onPreferenceTreeClick(preferenceScreen, preference);
        }
          return true;
+    }
+
+    private void updateStatusBarBrightnessControl() {
+        try {
+            if (mStatusBarBrightnessControl != null) {
+                int mode = Settings.System.getIntForUser(getContentResolver(),
+                    Settings.System.SCREEN_BRIGHTNESS_MODE,
+                    Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
+
+                if (mode == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC) {
+                    mStatusBarBrightnessControl.setEnabled(false);
+                    mStatusBarBrightnessControl.setSummary(R.string.status_bar_toggle_info);
+                } else {
+                    mStatusBarBrightnessControl.setEnabled(true);
+                    mStatusBarBrightnessControl.setSummary(
+                        R.string.status_bar_toggle_brightness_summary);
+                }
+            }
+        } catch (SettingNotFoundException e) {
+        }
+    }
+
+    private class StatusBarBrightnessChangedObserver extends ContentObserver {
+        public StatusBarBrightnessChangedObserver(Handler handler) {
+            super(handler);
+        }
+
+        public void onChange(boolean selfChange) {
+            updateStatusBarBrightnessControl();
+        }
+
+        public void startObserving() {
+            getContentResolver().registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.SCREEN_BRIGHTNESS_MODE),
+                    false, this);
+        }
     }
 }
