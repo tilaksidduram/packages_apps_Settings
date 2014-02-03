@@ -16,12 +16,28 @@
 
 package com.android.settings.cyanogenmod;
 
+import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.database.ContentObserver;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.ContentObserver;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.os.UserHandle;
 import android.os.Vibrator;
 import android.os.Handler;
@@ -29,22 +45,33 @@ import android.preference.PreferenceGroup;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
 import android.preference.CheckBoxPreference;
 import android.preference.SeekBarPreference;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.Display;
+import android.view.Window;
+import android.widget.Toast;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
+import com.android.internal.policy.IKeyguardService;
 import com.android.settings.hardware.DisplayColor;
 import com.android.settings.hardware.DisplayGamma;
 import com.android.settings.hardware.VibratorIntensity;
 import com.android.internal.util.paranoid.DeviceUtils;
-import android.provider.Settings.SettingNotFoundException;
+
+import java.io.File;
+import java.io.IOException;
 
 public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     private static final String TAG = "MoreDeviceSettings";
+
+    private static final int REQUEST_CODE_BG_WALLPAPER = 1024;
 
     private static final String KEY_SENSORS_MOTORS_CATEGORY = "sensors_motors_category";
     private static final String KEY_DISPLAY_CALIBRATION_CATEGORY = "display_calibration_category";
@@ -56,20 +83,47 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_ENABLE_NAVIGATION_BAR = "enable_nav_bar";
     private static final String KEY_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
     private static final String KEY_STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
+    private static final String KEY_LOCKSCREEN_WALLPAPER = "lockscreen_wallpaper";
+    private static final String KEY_SELECT_LOCKSCREEN_WALLPAPER = "select_lockscreen_wallpaper";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
     private CheckBoxPreference mEnableNavigationBar;
     private SeekBarPreference mNavigationBarHeight;
     private CheckBoxPreference mStatusBarBrightnessControl;
+    private CheckBoxPreference mLockscreenWallpaper;
+    private Preference mSelectLockscreenWallpaper;
+
+    private File mWallpaperTemporary;
+
+    private IKeyguardService mKeyguardService;
+
+    private final ServiceConnection mKeyguardConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mKeyguardService = IKeyguardService.Stub.asInterface(service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mKeyguardService = null;
+        }
+
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent intent = new Intent();
+        intent.setClassName("com.android.keyguard", "com.android.keyguard.KeyguardService");
+        if (!mContext.bindServiceAsUser(intent, mKeyguardConnection,
+                Context.BIND_AUTO_CREATE, UserHandle.OWNER)) {
+            Log.e(TAG, "*** Keyguard: can't bind to keyguard");
+        }
+
         addPreferencesFromResource(R.xml.more_device_settings);
         ContentResolver resolver = getContentResolver();
-	PreferenceScreen prefSet = getPreferenceScreen();
 
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (!VibratorIntensity.isSupported() || vibrator == null || !vibrator.hasVibrator()) {
@@ -125,10 +179,18 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         statusBarBrightnessChangedObserver.startObserving();
 
         mStatusBarBrightnessControl =
-            (CheckBoxPreference) prefSet.findPreference(KEY_STATUS_BAR_BRIGHTNESS_CONTROL);
+            (CheckBoxPreference) findPreference(KEY_STATUS_BAR_BRIGHTNESS_CONTROL);
         mStatusBarBrightnessControl.setChecked((Settings.System.getInt(getContentResolver(),
                             Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1));
         mStatusBarBrightnessControl.setOnPreferenceChangeListener(this);
+
+        // Custom Lockscreen wallpaper
+        mLockscreenWallpaper = (CheckBoxPreference) findPreference(KEY_LOCKSCREEN_WALLPAPER);
+        mLockscreenWallpaper.setChecked(Settings.System.getInt(getContentResolver(), Settings.System.LOCKSCREEN_WALLPAPER, 0) == 1);
+
+        mSelectLockscreenWallpaper = findPreference(KEY_SELECT_LOCKSCREEN_WALLPAPER);
+        mSelectLockscreenWallpaper.setEnabled(mLockscreenWallpaper.isChecked());
+        mWallpaperTemporary = new File(getActivity().getCacheDir() + "/lockwallpaper.tmp");
     }
 
     @Override
@@ -163,16 +225,80 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         return true;
     }
 
+    public void onActivityResult(int requestCode, int resultCode,
+            Intent imageReturnedIntent) {
+        if (requestCode == REQUEST_CODE_BG_WALLPAPER) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (mWallpaperTemporary.length() == 0 || !mWallpaperTemporary.exists()) {
+                    Toast.makeText(getActivity(),
+                            getResources().getString(R.string.shortcut_image_not_valid),
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Bitmap bmp = BitmapFactory.decodeFile(mWallpaperTemporary.getAbsolutePath());
+                try {
+                    mKeyguardService.setWallpaper(bmp);
+                    Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SEE_THROUGH, 0);
+                } catch (Exception ex) {
+                    Log.e(TAG, "Failed to set wallpaper: " + ex);
+                }
+            }
+        }
+	if (mWallpaperTemporary.exists()) mWallpaperTemporary.delete();
+    }
+
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
          ContentResolver cr = getActivity().getContentResolver();
          if (preference == mDTS) {
               Settings.System.putInt(cr, Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
                      mDTS.isChecked() ? 1 : 0);
-       } else {
+        } else if (preference == mLockscreenWallpaper) {
+            if (!mLockscreenWallpaper.isChecked()) setWallpaper(null);
+            else Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_WALLPAPER, 1);
+            mSelectLockscreenWallpaper.setEnabled(mLockscreenWallpaper.isChecked());
+        } else if (preference == mSelectLockscreenWallpaper) {
+            final Intent intent = new Intent(Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            intent.putExtra("crop", "true");
+            intent.putExtra("scale", true);
+            intent.putExtra("scaleUpIfNeeded", false);
+            intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+
+            final Display display = getActivity().getWindowManager().getDefaultDisplay();
+
+            boolean isPortrait = getResources().getConfiguration().orientation ==
+                    Configuration.ORIENTATION_PORTRAIT;
+
+            Point size = new Point();
+            display.getSize(size);
+
+            intent.putExtra("aspectX", isPortrait ? size.x : size.y);
+            intent.putExtra("aspectY", isPortrait ? size.y : size.x);
+
+            try {
+                mWallpaperTemporary.createNewFile();
+                mWallpaperTemporary.setWritable(true, false);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mWallpaperTemporary));
+                getActivity().startActivityFromFragment(this, intent, REQUEST_CODE_BG_WALLPAPER);
+            } catch (IOException e) {
+                // Do nothing here
+            } catch (ActivityNotFoundException e) {
+                // Do nothing here
+            }
+        }else {
          return super.onPreferenceTreeClick(preferenceScreen, preference);
        }
          return true;
+    }
+
+    private void setWallpaper(Bitmap bmp) {
+        try {
+            mKeyguardService.setWallpaper(bmp);
+        } catch (RemoteException ex) {
+            Log.e(TAG, "Unable to set wallpaper!");
+        }
     }
 
     private void updateStatusBarBrightnessControl() {

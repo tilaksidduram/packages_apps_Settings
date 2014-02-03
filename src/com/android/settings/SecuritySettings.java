@@ -220,7 +220,7 @@ public class SecuritySettings extends RestrictedSettingsFragment
         mSeeThrough = (CheckBoxPreference) root.findPreference(KEY_SEE_THROUGH);
         mBlurRadius = (SeekBarPreference) root.findPreference(KEY_BLUR_RADIUS);
         mBlurRadius.setProgress(Settings.System.getInt(getContentResolver(), 
-                        Settings.System.LOCKSCREEN_BLUR_RADIUS, 12));
+                Settings.System.LOCKSCREEN_BLUR_RADIUS, 12));
         mBlurRadius.setOnPreferenceChangeListener(this);
         mBlurRadius.setEnabled(mSeeThrough.isChecked() && mSeeThrough.isEnabled());
 
@@ -639,6 +639,8 @@ public class SecuritySettings extends RestrictedSettingsFragment
         } else if (preference == mSeeThrough) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SEE_THROUGH,
                     mSeeThrough.isChecked() ? 1 : 0);
+            if (mSeeThrough.isChecked())
+                Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_WALLPAPER, 0);
 	    mBlurRadius.setEnabled(mSeeThrough.isChecked());
         } else if (KEY_TOGGLE_VERIFY_APPLICATIONS.equals(key)) {
             Settings.Global.putInt(getContentResolver(), Settings.Global.PACKAGE_VERIFIER_ENABLE,
@@ -689,7 +691,7 @@ public class SecuritySettings extends RestrictedSettingsFragment
             }
             updateLockAfterPreferenceSummary();
         } else if (preference == mBlurRadius) {
-                Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_BLUR_RADIUS, (Integer)value);
+            Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_BLUR_RADIUS, (Integer)value);
         }
         return true;
     }
