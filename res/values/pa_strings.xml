@@ -42,6 +42,10 @@
     <string name="profile_choose_app">Choose app</string>
     <string name="profiles_add">Add</string>
 
+    <!-- Screen-On Notification Light -->
+    <string name="screen_on_notification_led_title">Screen-On Notification Light</string>
+    <string name="screen_on_notification_led_summary">Enable Notification Light even when screen is on</string>
+
     <!--Lights settings screen, notification light settings-->
     <string name="display_lights_settings_title">Display &amp; lights</string>
     <string name="lights_category_title">Lights</string>
