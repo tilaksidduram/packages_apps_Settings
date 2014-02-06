@@ -85,6 +85,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
     private static final String KEY_LOCKSCREEN_WALLPAPER = "lockscreen_wallpaper";
     private static final String KEY_SELECT_LOCKSCREEN_WALLPAPER = "select_lockscreen_wallpaper";
+    private static final String FORCE_EXPANDED_NOTIFICATIONS = "force_expanded_notifications";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
@@ -93,6 +94,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mStatusBarBrightnessControl;
     private CheckBoxPreference mLockscreenWallpaper;
     private Preference mSelectLockscreenWallpaper;
+    private CheckBoxPreference mForceExpanded;
 
     private File mWallpaperTemporary;
 
@@ -124,6 +126,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.more_device_settings);
         ContentResolver resolver = getContentResolver();
+	PreferenceScreen prefSet = getPreferenceScreen();
 
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (!VibratorIntensity.isSupported() || vibrator == null || !vibrator.hasVibrator()) {
@@ -170,6 +173,10 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         mNavigationBarHeight.setEnabled(mEnableNavigationBar.isChecked());
         mNavigationBarHeight.setTitle(getResources().getText(R.string.navigation_bar_height) + " " + mNavigationBarHeight.getProgress() + "%");
         mNavigationBarHeight.setOnPreferenceChangeListener(this);
+
+        mForceExpanded = (CheckBoxPreference) prefSet.findPreference(FORCE_EXPANDED_NOTIFICATIONS);
+        mForceExpanded.setChecked((Settings.System.getInt(getContentResolver(),
+                Settings.System.FORCE_EXPANDED_NOTIFICATIONS, 0) == 1));
 
         // Status bar brightness control
 
@@ -253,6 +260,9 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
          if (preference == mDTS) {
               Settings.System.putInt(cr, Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
                      mDTS.isChecked() ? 1 : 0);
+	} else if (preference == mForceExpanded) {
+            boolean checked = ((CheckBoxPreference)preference).isChecked();
+            Settings.System.putInt(cr, Settings.System.FORCE_EXPANDED_NOTIFICATIONS, checked ? 1:0);
         } else if (preference == mLockscreenWallpaper) {
             if (!mLockscreenWallpaper.isChecked()) setWallpaper(null);
             else Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_WALLPAPER, 1);

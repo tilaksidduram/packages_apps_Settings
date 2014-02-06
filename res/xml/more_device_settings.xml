@@ -107,10 +107,16 @@
             android:title="@string/notification_drawer_category_title"/>
 
     <CheckBoxPreference
-               android:title="@string/notification_count_title"
-               android:summary="@string/notification_count_summary"
-               android:key="status_bar_notif_count"
-               android:defaultValue="true" />
+            android:title="@string/notification_count_title"
+            android:summary="@string/notification_count_summary"
+            android:key="status_bar_notif_count"
+            android:defaultValue="true" />
+
+    <CheckBoxPreference
+            android:key="force_expanded_notifications"
+            android:title="@string/force_expanded_notifications_title"
+            android:summary="@string/force_expanded_notifications_summary"
+            android:persistent="false" />
 
     <CheckBoxPreference
             android:key="custom_status_bar_header"
