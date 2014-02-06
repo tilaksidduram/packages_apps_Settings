@@ -30,11 +30,18 @@
          android:fragment="com.android.settings.cyanogenmod.PropModder"/>
 
      <Preference
-         android:key="initD"
-         android:icon="@drawable/ic_dt_initd"
-         android:title="@string/init_d_title"
+	 android:key="initD"
+	 android:icon="@drawable/ic_dt_initd"
+	 android:title="@string/init_d_title"
 	 android:layout="@layout/preference_initd"
 	 android:fragment="com.android.settings.InitD"/>
+
+     <PreferenceScreen
+	 android:id="@+id/system_app_remover"
+         android:icon="@drawable/ic_settings_slim_sizer"
+	 android:title="@string/system_app_remover"
+	 android:layout="@layout/preference_systemappremover"
+	 android:fragment="com.android.settings.du.SystemappRemover" />
 
     </PreferenceCategory>
 
