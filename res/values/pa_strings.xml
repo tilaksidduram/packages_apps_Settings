@@ -353,6 +353,8 @@
     <!-- Status bar -->
     <string name="status_bar_title">Status bar clock</string>
 
+    <!-- Status bar Brightness -->
+    <string name="status_bar_category_title">Status Bar Tweaks</string>
     <string name="status_bar_toggle_brightness">Brightness control</string>
     <string name="status_bar_toggle_brightness_summary">Adjust brightness by sliding across status bar</string>
     <string name="status_bar_toggle_info">Automatic brightness is enabled</string>
@@ -399,6 +401,7 @@
     <string name="unlock_menu_unlock_summary">Pressing the menu button unlocks the device</string>
 
     <!-- Lockscreen wallpaper -->
+    <string name="lockscreen_wallpaper_category_title">Lockscreen Wallpaper</string>
     <string name="lockscreen_wallpaper">Custom wallpaper</string>
     <string name="select_wallpaper">Select wallpaper</string>
     <string name="shortcut_image_not_valid">The chosen app did not return a valid icon or does not support image cropping. Use another app</string>
@@ -712,7 +715,6 @@
     <string name="lock_pattern_size_6">6x6</string>
 
     <!-- Performance Settings | Warning dialog -->
-    <string name="performance_settings_warning_title">Proceed with Caution</string>
     <string name="performance_settings_warning_header">Warning</string>
 
     <!-- PropModder -->

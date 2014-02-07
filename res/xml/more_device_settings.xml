@@ -28,20 +28,32 @@
 	 android:icon="@drawable/ic_dt_buildprop"
          android:fragment="com.android.settings.cyanogenmod.PropModder"/>
 
-   </PreferenceCategory>
+    </PreferenceCategory>
 
-     <CheckBoxPreference
+    <PreferenceCategory
+	android:title="@string/lockscreen_wallpaper_category_title">
+
+    <CheckBoxPreference
         android:key="lockscreen_wallpaper"
+	android:icon="@drawable/ic_pa_lockscreen"
         android:title="@string/lockscreen_wallpaper" />
 
-     <Preference
+    <Preference
         android:key="select_lockscreen_wallpaper"
         android:title="@string/select_wallpaper" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+	android:title="@string/voice_tts_title">
 
     <PreferenceScreen
         android:key="interface_voice_tts"
         android:fragment="com.android.settings.cyanogenmod.TtsNotification"
+	android:icon="@drawable/ic_pa_drivingmode"
         android:title="@string/voice_tts_title" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="display_calibration_category"
@@ -81,6 +93,7 @@
         <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
             android:key="headset_connect_player"
             android:title="@string/headset_connect_player_title"
+            android:icon="@drawable/ic_pa_headset"
             android:summary="@string/headset_connect_player_summary"
             android:defaultValue="false" />
 
@@ -101,6 +114,7 @@
         <CheckBoxPreference
             android:key="double_tap_sleep_gesture"
             android:title="@string/double_tap_to_sleep_title"
+            android:icon="@drawable/ic_pa_powermenu"
             android:summary="@string/double_tap_to_sleep_summary"
             android:defaultValue="false" />
 
@@ -115,11 +129,12 @@
     <!-- Notification drawer -->
     <PreferenceCategory
             android:key="category_notification_drawer"
-            android:title="@string/notification_drawer_category_title"/>
+            android:title="@string/notification_drawer_category_title">
 
     <CheckBoxPreference
             android:title="@string/notification_count_title"
             android:summary="@string/notification_count_summary"
+            android:icon="@drawable/ic_pa_notification"
             android:key="status_bar_notif_count"
             android:defaultValue="true" />
 
@@ -127,24 +142,8 @@
             android:key="force_expanded_notifications"
             android:title="@string/force_expanded_notifications_title"
             android:summary="@string/force_expanded_notifications_summary"
+            android:icon="@drawable/ic_pa_notification"
             android:persistent="false" />
-
-    <CheckBoxPreference
-            android:key="custom_status_bar_header"
-            android:title="@string/custom_statusbar_header_title"
-            android:summary="@string/custom_statusbar_header_summary"
-            android:defaultValue="false" />
-
-    <CheckBoxPreference
-            android:key="status_bar_brightness_control"
-            android:title="@string/status_bar_toggle_brightness"
-            android:summary="@string/status_bar_toggle_brightness_summary"
-            android:defaultValue="false" />
-
-    <PreferenceScreen
-            android:fragment="com.android.settings.slim.StatusBarClockStyle"
-            android:key="clock_style_pref"
-            android:title="@string/status_bar_clock" />
 
     <com.android.settings.AOSPAL.CustomCarrier
             android:key="notification_custom_carrier_label"
@@ -157,18 +156,47 @@
             android:inputType="textNoSuggestions"
             android:persistent="false" />
 
+    <CheckBoxPreference
+            android:key="custom_status_bar_header"
+            android:title="@string/custom_statusbar_header_title"
+            android:summary="@string/custom_statusbar_header_summary"
+            android:icon="@drawable/ic_pa_statusbar"
+            android:defaultValue="false" />
+
+   </PreferenceCategory>
+
+   <PreferenceCategory
+	android:title="@string/status_bar_category_title">
+
+    <CheckBoxPreference
+            android:key="status_bar_brightness_control"
+            android:title="@string/status_bar_toggle_brightness"
+            android:icon="@drawable/ic_pa_brightness"
+            android:summary="@string/status_bar_toggle_brightness_summary"
+            android:defaultValue="false" />
+
+    <PreferenceScreen
+            android:fragment="com.android.settings.slim.StatusBarClockStyle"
+            android:key="clock_style_pref"
+            android:icon="@drawable/ic_pa_date_time"
+            android:title="@string/status_bar_clock" />
+
+   </PreferenceCategory>
+
     <PreferenceCategory
          android:title="@string/navigation_bar">
 
          <CheckBoxPreference
             android:key="enable_nav_bar"
             android:title="@string/navigation_bar"
+            android:icon="@drawable/ic_pa_navbar"
             android:summary="@string/navigation_bar_summary"
             android:defaultValue="true" />
 
          <SeekBarPreference
              android:key="navigation_bar_height"
              android:title="@string/navigation_bar_height"
+            android:icon="@drawable/ic_pa_navbar_dimen"
              android:max="100"
              android:defaultValue="100" /> 
 
