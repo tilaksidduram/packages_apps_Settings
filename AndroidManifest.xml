@@ -1633,6 +1633,8 @@
         <activity android:name=".paranoid.Halo" />
         <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereBuilderActivity" />
         <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereCreateGestureActivity" />
+        <activity android:name=".util.ShowBuildProp" />
+        <activity android:name=".cyanogenmod.PropModder" />
 
         <!-- CyanogenMod activities Start -->
 
