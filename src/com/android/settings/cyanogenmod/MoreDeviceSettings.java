@@ -44,6 +44,7 @@ import android.os.Handler;
 import android.preference.PreferenceGroup;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.preference.PreferenceCategory;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.preference.CheckBoxPreference;
