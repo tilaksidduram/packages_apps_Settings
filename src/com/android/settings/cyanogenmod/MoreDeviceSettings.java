@@ -86,6 +86,8 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_LOCKSCREEN_WALLPAPER = "lockscreen_wallpaper";
     private static final String KEY_SELECT_LOCKSCREEN_WALLPAPER = "select_lockscreen_wallpaper";
     private static final String FORCE_EXPANDED_NOTIFICATIONS = "force_expanded_notifications";
+    private static final String NAVIGATION_BAR_CATEGORY = "navigation_bar";
+    private static final String NAVIGATION_BAR_LEFT = "navigation_bar_left";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
@@ -177,6 +179,13 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         mForceExpanded = (CheckBoxPreference) prefSet.findPreference(FORCE_EXPANDED_NOTIFICATIONS);
         mForceExpanded.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.FORCE_EXPANDED_NOTIFICATIONS, 0) == 1));
+
+        PreferenceCategory navbarCategory =
+            (PreferenceCategory) findPreference(NAVIGATION_BAR_CATEGORY);
+
+        if (!DeviceUtils.isPhone(getActivity())) {
+            navbarCategory.removePreference(findPreference(NAVIGATION_BAR_LEFT));
+        }
 
         // Status bar brightness control
 

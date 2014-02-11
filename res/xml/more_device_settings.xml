@@ -184,7 +184,8 @@
    </PreferenceCategory>
 
     <PreferenceCategory
-         android:title="@string/navigation_bar">
+         android:title="@string/navigation_bar"
+         android:key="navigation_bar">
 
          <CheckBoxPreference
             android:key="enable_nav_bar"
