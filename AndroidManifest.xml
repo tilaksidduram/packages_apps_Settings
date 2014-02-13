@@ -1635,7 +1635,6 @@
         <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereCreateGestureActivity" />
         <activity android:name=".util.ShowBuildProp" />
         <activity android:name=".cyanogenmod.PropModder" />
-        <activity android:name=".InitD" />
 
         <!-- CyanogenMod activities Start -->
 
