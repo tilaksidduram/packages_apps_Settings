@@ -96,6 +96,7 @@
     </declare-styleable>
 
     <declare-styleable name="IntervalSeekBar">
+	<attr name="mini" format="float" />
         <attr name="max" format="float" />
         <attr name="defaultValue" format="float" />
         <attr name="digits" format="integer" />
