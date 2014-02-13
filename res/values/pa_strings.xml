@@ -80,6 +80,11 @@
     <string name="battery_light_medium_color_title">Charging</string>
     <string name="battery_light_full_color_title">Fully charged</string>
 
+    <!-- button settings -->
+    <string name="button_headsethook_title">Headset</string>
+    <string name="button_headsethook_launch_voice_title">Headset launches voice</string>
+    <string name="button_headsethook_launch_voice_summary">Pressing the headset button will launch voice controls</string>
+
     <!-- Volume adjust sounds -->
     <string name="volume_adjust_sounds_enable_summary">Play sound when adjusting ringtone with volume buttons</string>
 
