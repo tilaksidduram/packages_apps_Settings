@@ -50,6 +50,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.VolumePanel;
 
 import com.android.settings.widget.SeekBarPreference;
 
@@ -83,6 +84,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_DOCK_SOUNDS = "dock_sounds";
     private static final String KEY_DOCK_AUDIO_MEDIA_ENABLED = "dock_audio_media_enabled";
     private static final String KEY_SAFE_HEADSET_VOLUME_WARNING = "safe_headset_volume_warning";
+    private static final String KEY_VOLUME_OVERLAY = "volume_overlay";
 
     private static final String KEY_POWER_NOTIFICATIONS = "power_notifications";
     private static final String KEY_POWER_NOTIFICATIONS_VIBRATE = "power_notifications_vibrate";
@@ -121,6 +123,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mDockSounds;
     private Intent mDockIntent;
     private CheckBoxPreference mDockAudioMediaEnabled;
+    private ListPreference mVolumeOverlay;
 
     private CheckBoxPreference mPowerSounds;
     private CheckBoxPreference mPowerSoundsVibrate;
@@ -239,7 +242,15 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             emergencyTonePreference.setOnPreferenceChangeListener(this);
         }
 
+        // Expandable volume panel
         mSoundSettings = (PreferenceGroup) findPreference(KEY_SOUND_SETTINGS);
+        mVolumeOverlay = (ListPreference) findPreference(KEY_VOLUME_OVERLAY);
+        mVolumeOverlay.setOnPreferenceChangeListener(this);
+        int volumeOverlay = Settings.System.getInt(getContentResolver(),
+                Settings.System.MODE_VOLUME_OVERLAY,
+                VolumePanel.VOLUME_OVERLAY_EXPANDABLE);
+        mVolumeOverlay.setValue(Integer.toString(volumeOverlay));
+        mVolumeOverlay.setSummary(mVolumeOverlay.getEntry());
 
         mMusicFx = mSoundSettings.findPreference(KEY_MUSICFX);
         Intent i = new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL);
@@ -450,6 +461,12 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist emergency tone setting", e);
             }
+        } else if (preference == mVolumeOverlay) {
+            final int value = Integer.valueOf((String) objValue);
+            final int index = mVolumeOverlay.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.MODE_VOLUME_OVERLAY, value);
+            mVolumeOverlay.setSummary(mVolumeOverlay.getEntries()[index]);
         } else if (preference == mVibrationDuration) {
             int value = Integer.parseInt((String) objValue);
             Settings.System.putInt(getContentResolver(),
