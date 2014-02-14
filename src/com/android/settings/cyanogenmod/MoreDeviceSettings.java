@@ -226,7 +226,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_SHOW,
                     ((Boolean) objValue) ? 1 : 0);
-            mNavigationBarHeight.setEnabled((Boolean)objValue);
+             return true;
         } else if (preference == mStatusBarBrightnessControl) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
