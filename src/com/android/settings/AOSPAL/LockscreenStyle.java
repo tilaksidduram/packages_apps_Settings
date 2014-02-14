@@ -282,16 +282,16 @@ public class LockscreenStyle extends SettingsPreferenceFragment
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
         int px = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+                TypedValue.COMPLEX_UNIT_DIP, 144, getResources().getDisplayMetrics());
 
         intent.setType("image/*");
         intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
+        intent.putExtra("aspectX", px);
+        intent.putExtra("aspectY", px);
         intent.putExtra("outputX", px);
         intent.putExtra("outputY", px);
         intent.putExtra("scale", true);
-        intent.putExtra("scaleUpIfNeeded", true);
+        intent.putExtra("scaleUpIfNeeded", false);
         intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
 
         try {
