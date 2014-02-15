@@ -89,6 +89,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String FORCE_EXPANDED_NOTIFICATIONS = "force_expanded_notifications";
     private static final String NAVIGATION_BAR_CATEGORY = "navigation_bar";
     private static final String NAVIGATION_BAR_LEFT = "navigation_bar_left";
+    private static final String STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
@@ -98,6 +99,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mLockscreenWallpaper;
     private Preference mSelectLockscreenWallpaper;
     private CheckBoxPreference mForceExpanded;
+    private CheckBoxPreference mStatusBarNotifCount;
 
     private File mWallpaperTemporary;
 
@@ -208,6 +210,12 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         mSelectLockscreenWallpaper = findPreference(KEY_SELECT_LOCKSCREEN_WALLPAPER);
         mSelectLockscreenWallpaper.setEnabled(mLockscreenWallpaper.isChecked());
         mWallpaperTemporary = new File(getActivity().getCacheDir() + "/lockwallpaper.tmp");
+
+        mStatusBarNotifCount = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_NOTIF_COUNT);
+        mStatusBarNotifCount.setChecked(Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_NOTIF_COUNT, 0) == 1);
+        mStatusBarNotifCount.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -236,6 +244,9 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_HEIGHT, (Integer)objValue / 100f);
             mNavigationBarHeight.setTitle(getResources().getText(R.string.navigation_bar_height) + " " + (Integer)objValue + "%");
+        } else if (preference == mStatusBarNotifCount) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(resolver, Settings.System.STATUS_BAR_NOTIF_COUNT, value ? 1 : 0);
 	} else {
             return false;
         }
