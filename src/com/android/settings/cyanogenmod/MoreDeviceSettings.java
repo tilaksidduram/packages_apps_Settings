@@ -16,6 +16,7 @@
 
 package com.android.settings.cyanogenmod;
 
+import android.app.AlertDialog;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ActivityNotFoundException;
@@ -24,6 +25,9 @@ import android.database.ContentObserver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -91,6 +95,15 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String NAVIGATION_BAR_LEFT = "navigation_bar_left";
     private static final String STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
 
+    private static final String RECENTS_USE_OMNISWITCH = "recents_use_omniswitch";
+    private static final String OMNISWITCH_START_SETTINGS = "omniswitch_start_settings";
+
+    // Package name of the omnniswitch app
+    public static final String OMNISWITCH_PACKAGE_NAME = "org.omnirom.omniswitch";
+    // Intent for launching the omniswitch settings actvity
+    public static Intent INTENT_OMNISWITCH_SETTINGS = new Intent(Intent.ACTION_MAIN)
+            .setClassName(OMNISWITCH_PACKAGE_NAME, OMNISWITCH_PACKAGE_NAME + ".SettingsActivity");
+
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
     private CheckBoxPreference mEnableNavigationBar;
@@ -100,6 +113,9 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private Preference mSelectLockscreenWallpaper;
     private CheckBoxPreference mForceExpanded;
     private CheckBoxPreference mStatusBarNotifCount;
+    private CheckBoxPreference mRecentsUseOmniSwitch;
+    private Preference mOmniSwitchSettings;
+    private boolean mOmniSwitchInitCalled;
 
     private File mWallpaperTemporary;
 
@@ -216,6 +232,22 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
                 Settings.System.STATUS_BAR_NOTIF_COUNT, 0) == 1);
         mStatusBarNotifCount.setOnPreferenceChangeListener(this);
 
+        // OmniSwitch for Recents
+        mRecentsUseOmniSwitch = (CheckBoxPreference)
+                prefSet.findPreference(RECENTS_USE_OMNISWITCH);
+
+        try {
+            mRecentsUseOmniSwitch.setChecked(Settings.System.getInt(resolver,
+                    Settings.System.RECENTS_USE_OMNISWITCH) == 1);
+            mOmniSwitchInitCalled = true;
+        } catch(SettingNotFoundException e){
+            // if the settings value is unset
+        }
+        mRecentsUseOmniSwitch.setOnPreferenceChangeListener(this);
+
+        mOmniSwitchSettings = (Preference)
+                prefSet.findPreference(OMNISWITCH_START_SETTINGS);
+        mOmniSwitchSettings.setEnabled(mRecentsUseOmniSwitch.isChecked());
     }
 
     @Override
@@ -247,6 +279,25 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         } else if (preference == mStatusBarNotifCount) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver, Settings.System.STATUS_BAR_NOTIF_COUNT, value ? 1 : 0);
+        } else if (preference == mRecentsUseOmniSwitch) {
+            boolean value = (Boolean) objValue;
+            if (value && !isOmniSwitchInstalled()){
+                openOmniSwitchNotInstalledWarning();
+                return false;
+            }
+
+            // if value has never been set before
+            if (value && !mOmniSwitchInitCalled){
+                openOmniSwitchFirstTimeWarning();
+                mOmniSwitchInitCalled = true;
+            }
+
+            Settings.System.putInt(
+                    resolver, Settings.System.RECENTS_USE_OMNISWITCH, value ? 1 : 0);
+            mOmniSwitchSettings.setEnabled(value && isOmniSwitchInstalled());
+            mOmniSwitchSettings.setSummary(isOmniSwitchInstalled() ?
+                    getResources().getString(R.string.omniswitch_start_settings_summary) :
+                    getResources().getString(R.string.omniswitch_not_installed_summary));
 	} else {
             return false;
         }
@@ -275,6 +326,36 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
 	if (mWallpaperTemporary.exists()) mWallpaperTemporary.delete();
     }
 
+    private void openOmniSwitchNotInstalledWarning() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(getResources().getString(R.string.omniswitch_not_installed_title))
+                .setMessage(getResources().getString(R.string.omniswitch_not_installed_message))
+                .setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                        }
+                }).show();
+    }
+
+    private void openOmniSwitchFirstTimeWarning() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(getResources().getString(R.string.omniswitch_first_time_title))
+                .setMessage(getResources().getString(R.string.omniswitch_first_time_message))
+                .setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                        }
+                }).show();
+    }
+
+    private boolean isOmniSwitchInstalled() {
+        final PackageManager pm = getPackageManager();
+        try {
+            pm.getPackageInfo(OMNISWITCH_PACKAGE_NAME, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (NameNotFoundException e) {
+            return false;
+        }
+    }
+
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
          ContentResolver cr = getActivity().getContentResolver();
@@ -284,6 +365,8 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
 	} else if (preference == mForceExpanded) {
             boolean checked = ((CheckBoxPreference)preference).isChecked();
             Settings.System.putInt(cr, Settings.System.FORCE_EXPANDED_NOTIFICATIONS, checked ? 1:0);
+	} else if (preference == mOmniSwitchSettings){
+            startActivity(INTENT_OMNISWITCH_SETTINGS);
         } else if (preference == mLockscreenWallpaper) {
             if (!mLockscreenWallpaper.isChecked()) setWallpaper(null);
             else Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_WALLPAPER, 1);
