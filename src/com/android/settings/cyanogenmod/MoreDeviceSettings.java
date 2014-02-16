@@ -70,6 +70,7 @@ import com.android.internal.util.paranoid.DeviceUtils;
 
 import java.io.File;
 import java.io.IOException;
+import com.android.settings.util.Helpers;
 
 public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -262,6 +263,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver,
                 Settings.System.STATUS_BAR_CUSTOM_HEADER, value ? 1 : 0);
+            Helpers.restartSystemUI();
         } else if (preference == mEnableNavigationBar) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_SHOW,
