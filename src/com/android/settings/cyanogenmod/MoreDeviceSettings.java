@@ -210,8 +210,9 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
 
 	// Status bar traffic
         mStatusBarTraffic = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_TRAFFIC);
-        mStatusBarTraffic.setChecked(Settings.System.getInt(resolver,
-            Settings.System.STATUS_BAR_TRAFFIC, 0) == 1);
+        int intState = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_TRAFFIC, 0);
+        intState = setStatusBarTrafficSummary(intState);
+        mStatusBarTraffic.setChecked(intState > 0);
         mStatusBarTraffic.setOnPreferenceChangeListener(this);
 
         // Custom Lockscreen wallpaper
@@ -270,8 +271,13 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver, Settings.System.STATUS_BAR_NOTIF_COUNT, value ? 1 : 0);
         } else if (preference == mStatusBarTraffic) {
-            boolean value = (Boolean) objValue;
-            Settings.System.putInt(resolver, Settings.System.STATUS_BAR_TRAFFIC, value ? 1 : 0);
+
+            // Increment the state and then update the label
+            int intState = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_TRAFFIC, 0);
+            intState++;
+            intState = setStatusBarTrafficSummary(intState);
+            Settings.System.putInt(resolver, Settings.System.STATUS_BAR_TRAFFIC, intState);
+            if (intState > 1) {return false;}
 	} else {
             return false;
         }
@@ -391,5 +397,18 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
                     Settings.System.getUriFor(Settings.System.SCREEN_BRIGHTNESS_MODE),
                     false, this);
         }
+    }
+
+    private int setStatusBarTrafficSummary(int intState) {
+        // These states must match com.android.systemui.statusbar.policy.Traffic
+        if (intState == 1) {
+            mStatusBarTraffic.setSummary(R.string.show_network_speed_bits);
+        } else if (intState == 2) {
+            mStatusBarTraffic.setSummary(R.string.show_network_speed_bytes);
+        } else {
+            mStatusBarTraffic.setSummary(R.string.show_network_speed_summary);
+            return 0;
+        }
+        return intState;
     }
 }
