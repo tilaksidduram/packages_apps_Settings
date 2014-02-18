@@ -994,4 +994,9 @@
     <!--- Lock clock -->
     <string name="lock_clock_title">Clock widget</string>
     <string name="lock_clock_summary">View or change how the \'cLock\' Home and Lock screen widgets will display</string>
+
+    <!-- RAM Bar -->
+    <string name="system_ui_recent_panel_title">Recents menu</string>
+    <string name="ram_bar_title">Recents RAM bar</string>
+    <string name="ram_bar_summary">Shows RAM usage in the recent apps window</string>
 </resources>

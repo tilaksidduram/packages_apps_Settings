@@ -91,6 +91,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String NAVIGATION_BAR_CATEGORY = "navigation_bar";
     private static final String NAVIGATION_BAR_LEFT = "navigation_bar_left";
     private static final String STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
+    private static final String RAM_USAGE_BAR = "ram_usage_bar";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
@@ -101,6 +102,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private Preference mSelectLockscreenWallpaper;
     private CheckBoxPreference mForceExpanded;
     private CheckBoxPreference mStatusBarNotifCount;
+    private CheckBoxPreference mRamUsageBar;
 
     private File mWallpaperTemporary;
 
@@ -217,6 +219,11 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
                 Settings.System.STATUS_BAR_NOTIF_COUNT, 0) == 1);
         mStatusBarNotifCount.setOnPreferenceChangeListener(this);
 
+        mRamUsageBar = (CheckBoxPreference) findPreference(RAM_USAGE_BAR);
+        mRamUsageBar.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.RAM_USAGE_BAR, 1) == 1);
+        mRamUsageBar.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -246,6 +253,11 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_HEIGHT, (Integer)objValue / 100f);
             mNavigationBarHeight.setTitle(getResources().getText(R.string.navigation_bar_height) + " " + (Integer)objValue + "%");
+	} else if (preference == mRamUsageBar) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.RAM_USAGE_BAR, value ? 1 : 0);
+            return true;
         } else if (preference == mStatusBarNotifCount) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver, Settings.System.STATUS_BAR_NOTIF_COUNT, value ? 1 : 0);

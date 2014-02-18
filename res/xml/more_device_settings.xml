@@ -236,4 +236,16 @@
 
    </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="@string/system_ui_recent_panel_title">
+
+     <CheckBoxPreference
+            android:key="ram_usage_bar"
+            android:icon="@drawable/ic_pa_recents"
+            android:title="@string/ram_bar_title"
+            android:summary="@string/ram_bar_summary"
+            android:defaultValue="true" />
+
+   </PreferenceCategory>
+
 </PreferenceScreen>
