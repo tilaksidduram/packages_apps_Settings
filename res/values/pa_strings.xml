@@ -999,4 +999,8 @@
     <string name="system_ui_recent_panel_title">Recents menu</string>
     <string name="ram_bar_title">Recents RAM bar</string>
     <string name="ram_bar_summary">Shows RAM usage in the recent apps window</string>
+
+    <!-- Network speed -->
+    <string name="show_network_speed">Network speed indicator</string>
+    <string name="show_network_speed_summary">Show network speed in statusbar</string>
 </resources>

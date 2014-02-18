@@ -207,6 +207,13 @@
             android:icon="@drawable/ic_pa_date_time"
             android:title="@string/status_bar_clock" />
 
+    <CheckBoxPreference
+            android:key="status_bar_traffic"
+            android:icon="@drawable/ic_pa_traffic"
+            android:title="@string/show_network_speed"
+            android:summary="@string/show_network_speed_summary"
+            android:defaultValue="false" />
+
    </PreferenceCategory>
 
     <PreferenceCategory

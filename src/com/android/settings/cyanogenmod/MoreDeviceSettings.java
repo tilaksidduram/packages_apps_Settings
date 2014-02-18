@@ -92,6 +92,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String NAVIGATION_BAR_LEFT = "navigation_bar_left";
     private static final String STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
     private static final String RAM_USAGE_BAR = "ram_usage_bar";
+    private static final String STATUS_BAR_TRAFFIC = "status_bar_traffic";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
@@ -103,6 +104,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mForceExpanded;
     private CheckBoxPreference mStatusBarNotifCount;
     private CheckBoxPreference mRamUsageBar;
+    private CheckBoxPreference mStatusBarTraffic;
 
     private File mWallpaperTemporary;
 
@@ -206,6 +208,12 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
                             Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1));
         mStatusBarBrightnessControl.setOnPreferenceChangeListener(this);
 
+	// Status bar traffic
+        mStatusBarTraffic = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_TRAFFIC);
+        mStatusBarTraffic.setChecked(Settings.System.getInt(resolver,
+            Settings.System.STATUS_BAR_TRAFFIC, 0) == 1);
+        mStatusBarTraffic.setOnPreferenceChangeListener(this);
+
         // Custom Lockscreen wallpaper
         mLockscreenWallpaper = (CheckBoxPreference) findPreference(KEY_LOCKSCREEN_WALLPAPER);
         mLockscreenWallpaper.setChecked(Settings.System.getInt(getContentResolver(), Settings.System.LOCKSCREEN_WALLPAPER, 0) == 1);
@@ -261,6 +269,9 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         } else if (preference == mStatusBarNotifCount) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver, Settings.System.STATUS_BAR_NOTIF_COUNT, value ? 1 : 0);
+        } else if (preference == mStatusBarTraffic) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(resolver, Settings.System.STATUS_BAR_TRAFFIC, value ? 1 : 0);
 	} else {
             return false;
         }
