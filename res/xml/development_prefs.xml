@@ -37,6 +37,11 @@
         android:title="@string/keep_screen_on" 
         android:summary="@string/keep_screen_on_summary"/>
 
+    <CheckBoxPreference
+        android:key="pref_force_highend_gfx"
+        android:title="@string/pref_force_highend_gfx_title"
+        android:summary="@string/pref_force_highend_gfx_summary" />
+
     <ListPreference
         android:key="select_runtime"
         android:title="@string/select_runtime_title"
