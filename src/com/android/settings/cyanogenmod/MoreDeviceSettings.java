@@ -33,6 +33,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.net.TrafficStats;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -48,6 +49,8 @@ import android.preference.PreferenceCategory;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
+import android.preference.ListPreference;
 import android.preference.SeekBarPreference;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -92,7 +95,9 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String NAVIGATION_BAR_LEFT = "navigation_bar_left";
     private static final String STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
     private static final String RAM_USAGE_BAR = "ram_usage_bar";
-    private static final String STATUS_BAR_TRAFFIC = "status_bar_traffic";
+    private static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
+    private static final String NETWORK_TRAFFIC_UNIT = "network_traffic_unit";
+    private static final String NETWORK_TRAFFIC_PERIOD = "network_traffic_period";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mStatusBarCustomHeader;
@@ -104,11 +109,19 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mForceExpanded;
     private CheckBoxPreference mStatusBarNotifCount;
     private CheckBoxPreference mRamUsageBar;
-    private CheckBoxPreference mStatusBarTraffic;
+    private ListPreference mNetTrafficState;
+    private ListPreference mNetTrafficUnit;
+    private ListPreference mNetTrafficPeriod;
 
     private File mWallpaperTemporary;
 
     private IKeyguardService mKeyguardService;
+
+    private int mNetTrafficVal;
+    private int MASK_UP;
+    private int MASK_DOWN;
+    private int MASK_UNIT;
+    private int MASK_PERIOD;
 
     private final ServiceConnection mKeyguardConnection = new ServiceConnection() {
         @Override
@@ -135,6 +148,9 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         }
 
         addPreferencesFromResource(R.xml.more_device_settings);
+
+        loadResources();
+
         ContentResolver resolver = getContentResolver();
 	PreferenceScreen prefSet = getPreferenceScreen();
 
@@ -208,12 +224,38 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
                             Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1));
         mStatusBarBrightnessControl.setOnPreferenceChangeListener(this);
 
-	// Status bar traffic
-        mStatusBarTraffic = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_TRAFFIC);
-        int intState = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_TRAFFIC, 0);
-        intState = setStatusBarTrafficSummary(intState);
-        mStatusBarTraffic.setChecked(intState > 0);
-        mStatusBarTraffic.setOnPreferenceChangeListener(this);
+        mNetTrafficState = (ListPreference) prefSet.findPreference(NETWORK_TRAFFIC_STATE);
+        mNetTrafficUnit = (ListPreference) prefSet.findPreference(NETWORK_TRAFFIC_UNIT);
+        mNetTrafficPeriod = (ListPreference) prefSet.findPreference(NETWORK_TRAFFIC_PERIOD);
+
+        // TrafficStats will return UNSUPPORTED if the device does not support it.
+        if (TrafficStats.getTotalTxBytes() != TrafficStats.UNSUPPORTED &&
+                TrafficStats.getTotalRxBytes() != TrafficStats.UNSUPPORTED) {
+            mNetTrafficVal = Settings.System.getInt(resolver, Settings.System.NETWORK_TRAFFIC_STATE, 0);
+            int intIndex = mNetTrafficVal & (MASK_UP + MASK_DOWN);
+            intIndex = mNetTrafficState.findIndexOfValue(String.valueOf(intIndex));
+            if (intIndex <= 0) {
+                mNetTrafficUnit.setEnabled(false);
+                mNetTrafficPeriod.setEnabled(false);
+            }
+            mNetTrafficState.setValueIndex(intIndex >= 0 ? intIndex : 0);
+            mNetTrafficState.setSummary(mNetTrafficState.getEntry());
+            mNetTrafficState.setOnPreferenceChangeListener(this);
+
+            mNetTrafficUnit.setValueIndex(getBit(mNetTrafficVal, MASK_UNIT) ? 1 : 0);
+            mNetTrafficUnit.setSummary(mNetTrafficUnit.getEntry());
+            mNetTrafficUnit.setOnPreferenceChangeListener(this);
+
+            intIndex = (mNetTrafficVal & MASK_PERIOD) >>> 16;
+            intIndex = mNetTrafficPeriod.findIndexOfValue(String.valueOf(intIndex));
+            mNetTrafficPeriod.setValueIndex(intIndex >= 0 ? intIndex : 1);
+            mNetTrafficPeriod.setSummary(mNetTrafficPeriod.getEntry());
+            mNetTrafficPeriod.setOnPreferenceChangeListener(this);
+        } else {
+            prefSet.removePreference(findPreference(NETWORK_TRAFFIC_STATE));
+            prefSet.removePreference(findPreference(NETWORK_TRAFFIC_UNIT));
+            prefSet.removePreference(findPreference(NETWORK_TRAFFIC_PERIOD));
+        }
 
         // Custom Lockscreen wallpaper
         mLockscreenWallpaper = (CheckBoxPreference) findPreference(KEY_LOCKSCREEN_WALLPAPER);
@@ -270,14 +312,32 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         } else if (preference == mStatusBarNotifCount) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver, Settings.System.STATUS_BAR_NOTIF_COUNT, value ? 1 : 0);
-        } else if (preference == mStatusBarTraffic) {
-
-            // Increment the state and then update the label
-            int intState = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_TRAFFIC, 0);
-            intState++;
-            intState = setStatusBarTrafficSummary(intState);
-            Settings.System.putInt(resolver, Settings.System.STATUS_BAR_TRAFFIC, intState);
-            if (intState > 1) {return false;}
+        } else if (preference == mNetTrafficState) {
+            int intState = Integer.valueOf((String)objValue);
+            mNetTrafficVal = setBit(mNetTrafficVal, MASK_UP, getBit(intState, MASK_UP));
+            mNetTrafficVal = setBit(mNetTrafficVal, MASK_DOWN, getBit(intState, MASK_DOWN));
+            Settings.System.putInt(resolver, Settings.System.NETWORK_TRAFFIC_STATE, mNetTrafficVal);
+            int index = mNetTrafficState.findIndexOfValue((String) objValue);
+            mNetTrafficState.setSummary(mNetTrafficState.getEntries()[index]);
+            if (intState == 0) {
+                mNetTrafficUnit.setEnabled(false);
+                mNetTrafficPeriod.setEnabled(false);
+            } else {
+                mNetTrafficUnit.setEnabled(true);
+                mNetTrafficPeriod.setEnabled(true);
+            }
+        } else if (preference == mNetTrafficUnit) {
+            // 1 = Display as Byte/s; default is bit/s
+            mNetTrafficVal = setBit(mNetTrafficVal, MASK_UNIT, ((String)objValue).equals("1"));
+            Settings.System.putInt(resolver, Settings.System.NETWORK_TRAFFIC_STATE, mNetTrafficVal);
+            int index = mNetTrafficUnit.findIndexOfValue((String) objValue);
+            mNetTrafficUnit.setSummary(mNetTrafficUnit.getEntries()[index]);
+        } else if (preference == mNetTrafficPeriod) {
+            int intState = Integer.valueOf((String)objValue);
+            mNetTrafficVal = setBit(mNetTrafficVal, MASK_PERIOD, false) + (intState << 16);
+            Settings.System.putInt(resolver, Settings.System.NETWORK_TRAFFIC_STATE, mNetTrafficVal);
+            int index = mNetTrafficPeriod.findIndexOfValue((String) objValue);
+            mNetTrafficPeriod.setSummary(mNetTrafficPeriod.getEntries()[index]);
 	} else {
             return false;
         }
@@ -399,16 +459,23 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         }
     }
 
-    private int setStatusBarTrafficSummary(int intState) {
-        // These states must match com.android.systemui.statusbar.policy.Traffic
-        if (intState == 1) {
-            mStatusBarTraffic.setSummary(R.string.show_network_speed_bits);
-        } else if (intState == 2) {
-            mStatusBarTraffic.setSummary(R.string.show_network_speed_bytes);
-        } else {
-            mStatusBarTraffic.setSummary(R.string.show_network_speed_summary);
-            return 0;
+    private void loadResources() {
+        Resources resources = getActivity().getResources();
+        MASK_UP = resources.getInteger(R.integer.maskUp);
+        MASK_DOWN = resources.getInteger(R.integer.maskDown);
+        MASK_UNIT = resources.getInteger(R.integer.maskUnit);
+        MASK_PERIOD = resources.getInteger(R.integer.maskPeriod);
+    }
+
+    // intMask should only have the desired bit(s) set
+    private int setBit(int intNumber, int intMask, boolean blnState) {
+        if (blnState) {
+            return (intNumber | intMask);
         }
-        return intState;
+        return (intNumber & ~intMask);
+    }
+
+    private boolean getBit(int intNumber, int intMask) {
+        return (intNumber & intMask) == intMask;
     }
 }
