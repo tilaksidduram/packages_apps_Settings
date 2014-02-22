@@ -378,7 +378,6 @@
     <string name="status_bar_title">Status bar clock</string>
 
     <!-- Status bar Brightness -->
-    <string name="status_bar_category_title">Status Bar Tweaks</string>
     <string name="status_bar_toggle_brightness">Brightness control</string>
     <string name="status_bar_toggle_brightness_summary">Adjust brightness by sliding across status bar</string>
     <string name="status_bar_toggle_info">Automatic brightness is enabled</string>
@@ -1021,4 +1020,17 @@
     <string name="show_network_traffic_1000">1000 ms</string>
     <string name="show_network_traffic_1500">1500 ms</string>
     <string name="show_network_traffic_2000">2000 ms</string>
+
+    <!-- PA More -->
+    <string name="generalUI_title">User Interface</string>
+    <string name="statusbar_title">Status Bar</string>
+    <string name="status_bar_category_title">Status Bar Tweaks</string>
+    <string name="system_title">System</string>
+    <string name="misc_title">Misc. Tweaks</string>
+    <string name="lockscreen_category">Lockscreen</string>
+    <string name="status_bar_misc">Misc Tweaks</string>
+    <string name="powermenu_settings">Power Menu</string>
+    <string name="recents_view">Clear-All button</string>
+    <string name="misc_traffic">Traffic Indicators</string>
+    <string name="lockscreen_screen_options">Lockscreen</string>
 </resources>
