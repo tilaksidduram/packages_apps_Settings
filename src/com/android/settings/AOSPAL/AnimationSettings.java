@@ -16,16 +16,25 @@
 
 package com.android.settings.AOSPAL;
 
+import android.app.Activity;
 import android.app.ActivityManagerNative;
 import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.ContentObserver;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.preference.CheckBoxPreference;
@@ -34,8 +43,15 @@ import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.preference.PreferenceCategory;
 import android.preference.SeekBarPreference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Display;
+import android.view.Window;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 import android.view.WindowManagerGlobal;
 import android.view.IWindowManager;
 import java.util.regex.Matcher;
@@ -49,11 +65,23 @@ public class AnimationSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "AnimationSettings";
 
+    private static final String KEY_TOAST_ANIMATION = "toast_animation";
+
+    private ListPreference mToastAnimation;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.animation_settings);
+        PreferenceScreen prefs = getPreferenceScreen();
+
+	mToastAnimation = (ListPreference) findPreference(KEY_TOAST_ANIMATION);
+	mToastAnimation.setSummary(mToastAnimation.getEntry());
+	int CurrentToastAnimation = Settings.System.getInt(getContentResolver(), Settings.System.ACTIVITY_ANIMATION_CONTROLS[10], 1);
+	mToastAnimation.setValueIndex(CurrentToastAnimation); //set to index of default value
+	mToastAnimation.setSummary(mToastAnimation.getEntries()[CurrentToastAnimation]);
+	mToastAnimation.setOnPreferenceChangeListener(this);
     }
     
     @Override
@@ -62,18 +90,19 @@ public class AnimationSettings extends SettingsPreferenceFragment implements
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        final String key = preference.getKey();
-        return true;
+	if (preference == mToastAnimation) {
+            int index = mToastAnimation.findIndexOfValue((String) objValue);
+            Settings.System.putString(getContentResolver(), Settings.System.ACTIVITY_ANIMATION_CONTROLS[10], (String) objValue);
+            mToastAnimation.setSummary(mToastAnimation.getEntries()[index]);
+            Toast.makeText(mContext, "Toast Test", Toast.LENGTH_SHORT).show();
+            return true;
+	}
+        return false;
     }
 
     private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
