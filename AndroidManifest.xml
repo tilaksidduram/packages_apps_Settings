@@ -1631,6 +1631,12 @@
         />
 
         <activity android:name=".paranoid.Halo" />
+
+        <activity android:name=".paranoid.NotificationDrawerQsSettings" />
+        <activity android:name=".AOSPAL.LockscreenOptions" />
+        <activity android:name=".AOSPAL.CustomCarrier" />
+        <activity android:name=".AOSPAL.AnimationSettings" />
+        <activity android:name=".du.ScreenStateToggles" />
         <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereBuilderActivity" />
         <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereCreateGestureActivity" />
         <activity android:name=".util.ShowBuildProp" />
