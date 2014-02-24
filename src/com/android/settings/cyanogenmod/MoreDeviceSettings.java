@@ -247,12 +247,16 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         ContentResolver resolver = getActivity().getContentResolver();
-        Context context = getApplicationContext();
         if (preference == mStatusBarCustomHeader) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver,
                 Settings.System.STATUS_BAR_CUSTOM_HEADER, value ? 1 : 0);
             Helpers.restartSystemUI();
+        } else if (preference == mEnableNavigationBar) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_SHOW,
+                    ((Boolean) objValue) ? 1 : 0);
+             return true;
         } else if (preference == mStatusBarBrightnessControl) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
@@ -262,13 +266,6 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_HEIGHT, (Integer)objValue / 100f);
             mNavigationBarHeight.setTitle(getResources().getText(R.string.navigation_bar_height) + " " + (Integer)objValue + "%");
-        } else if (preference == mEnableNavigationBar) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_SHOW,
-                    ((Boolean) objValue) ? 1 : 0);
-            mNavigationBarHeight.setEnabled((Boolean)objValue);
-            Toast.makeText(context, "Please reboot to apply the change", Toast.LENGTH_LONG).show();
-             return true;
 	} else if (preference == mRamUsageBar) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(getContentResolver(),
