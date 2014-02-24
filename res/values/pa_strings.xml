@@ -1022,18 +1022,14 @@
     <string name="show_network_traffic_2000">2000 ms</string>
 
     <!-- PA More -->
-    <string name="generalUI_title">User Interface</string>
-    <string name="statusbar_title">Status Bar</string>
-    <string name="animation_title">Animations</string>
-    <string name="status_bar_category_title">Status Bar Tweaks</string>
-    <string name="system_title">System</string>
-    <string name="misc_title">Misc. Tweaks</string>
-    <string name="lockscreen_category">Lockscreen</string>
-    <string name="status_bar_misc">Misc Tweaks</string>
-    <string name="powermenu_settings">Power Menu</string>
-    <string name="recents_view">Clear-All button</string>
-    <string name="misc_traffic">Traffic Indicators</string>
-    <string name="lockscreen_screen_options">Lockscreen</string>
+    <string name="pa_settings_userinterface_title">User Interface</string>
+    <string name="pa_settings_system_title">System</string>
+    <string name="pa_settings_animations_title">Animations</string>
+    <string name="pa_settings_statusbar_title">Status Bar</string>
+    <string name="pa_settings_lockscreen_title">Lockscreen</string>
+    <string name="pa_settings_interface_title">Interface</string>
+    <string name="pa_settings_notification_title">Notification Drawer</string>
+    <string name="pa_settings_misc_title">Misc. Tweaks</string>
 
     <!-- String for IconPicker -->
     <string name="icon_picker_title">Choose icon source</string>
