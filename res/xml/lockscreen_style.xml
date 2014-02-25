@@ -46,12 +46,4 @@
         android:summary="@string/lockscreen_dots_color_summary"
         android:defaultValue="0xffffff" />
 
-    <CheckBoxPreference
-        android:key="lockscreen_wallpaper"
-        android:title="@string/lockscreen_wallpaper" />
-
-    <Preference
-        android:key="select_lockscreen_wallpaper"
-        android:title="@string/select_wallpaper" />
-
 </PreferenceScreen>
