@@ -50,7 +50,6 @@ import com.android.internal.util.paranoid.DeviceUtils;
 
 import java.io.File;
 import java.io.IOException;
-import com.android.settings.util.Helpers;
 
 public class StatusBarSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -162,7 +161,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver,
                 Settings.System.STATUS_BAR_CUSTOM_HEADER, value ? 1 : 0);
-            Helpers.restartSystemUI();
         } else if (preference == mStatusBarNotifCount) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver,
