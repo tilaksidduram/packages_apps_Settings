@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2014 2014 ParanoidAndroid Project
+<!-- Copyright (C) 2014 ParanoidAndroid Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -20,8 +20,6 @@
     android:key="notification_drawer_qs_settings"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-   <PreferenceCategory
-        android:title="@string/pa_settings_notification_title">
 
     <Preference
         android:fragment="com.android.settings.slim.NotificationDrawerStyle"
@@ -29,6 +27,27 @@
         android:title="@string/notification_style_title"
         android:summary="@string/notification_style_summary" />
 
-   </PreferenceCategory>
+
+    <CheckBoxPreference
+	android:key="noti_reminder_enabled"
+	android:title="@string/noti_reminder_enable_title"
+	android:summaryOn="@string/enabled"
+	android:summaryOff="@string/disabled"
+	android:defaultValue="false" />
+
+    <ListPreference
+	android:key="noti_reminder_sound"
+	android:defaultValue="0"
+	android:title="@string/noti_reminder_sound_title"
+	android:entries="@array/noti_reminder_sound_entries"
+	android:entryValues="@array/noti_reminder_sound_values"
+	android:dependency="noti_reminder_enabled" />
+
+    <RingtonePreference
+	android:key="noti_reminder_ringtone"
+	android:title="@string/noti_reminder_ringtone"
+	android:ringtoneType="all"
+	android:showSilent="false"
+	android:dependency="noti_reminder_enabled" />
 
 </PreferenceScreen>
