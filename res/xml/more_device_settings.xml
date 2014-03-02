@@ -189,7 +189,8 @@
             android:title="@string/navigation_bar_height"
             android:icon="@drawable/ic_pa_navbar_dimen"
             android:max="100"
-            android:defaultValue="100" /> 
+            android:defaultValue="100"
+	    android:dependency="enable_nav_bar" />
 
          <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
             android:key="navigation_bar_left"
