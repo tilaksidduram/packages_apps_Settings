@@ -225,7 +225,7 @@ public class LockscreenOptions extends SettingsPreferenceFragment implements
 	if (preference == mBatteryStatus) {
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.LOCKSCREEN_ALWAYS_SHOW_BATTERY,
-                    ((Boolean) value) ? 1 : 0, UserHandle.USER_CURRENT);
+                    ((Boolean) objValue) ? 1 : 0, UserHandle.USER_CURRENT);
         }
         return true;
     }

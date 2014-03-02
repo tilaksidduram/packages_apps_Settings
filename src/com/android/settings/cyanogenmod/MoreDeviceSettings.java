@@ -87,11 +87,15 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String NAVIGATION_BAR_CATEGORY = "navigation_bar";
     private static final String NAVIGATION_BAR_LEFT = "navigation_bar_left";
     private static final String RAM_USAGE_BAR = "ram_usage_bar";
+    private static final String RECENT_MENU_CLEAR_ALL = "recent_menu_clear_all";
+    private static final String RECENT_MENU_CLEAR_ALL_LOCATION = "recent_menu_clear_all_location";
 
     private CheckBoxPreference mDTS;
     private CheckBoxPreference mEnableNavigationBar;
     private SeekBarPreference mNavigationBarHeight;
     private CheckBoxPreference mRamUsageBar;
+    private ListPreference mRecentClearAllPosition;
+    private CheckBoxPreference mRecentClearAll;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -155,6 +159,17 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
                 Settings.System.RAM_USAGE_BAR, 1) == 1);
         mRamUsageBar.setOnPreferenceChangeListener(this);
 
+        mRecentClearAll = (CheckBoxPreference) prefSet.findPreference(RECENT_MENU_CLEAR_ALL);
+        mRecentClearAll.setChecked(Settings.System.getInt(getContentResolver(),
+            Settings.System.SHOW_CLEAR_RECENTS_BUTTON, 1) == 1);
+        mRecentClearAll.setOnPreferenceChangeListener(this);
+        mRecentClearAllPosition = (ListPreference) prefSet.findPreference(RECENT_MENU_CLEAR_ALL_LOCATION);
+        String recentClearAllPosition = Settings.System.getString(getContentResolver(), Settings.System.CLEAR_RECENTS_BUTTON_LOCATION);
+        if (recentClearAllPosition != null) {
+             mRecentClearAllPosition.setValue(recentClearAllPosition);
+        }
+        mRecentClearAllPosition.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -177,6 +192,13 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
             boolean value = (Boolean) objValue;
             Settings.System.putInt(getContentResolver(),
                     Settings.System.RAM_USAGE_BAR, value ? 1 : 0);
+	} else if (preference == mRecentClearAll) {
+            Settings.System.putInt(getContentResolver(), Settings.System.SHOW_CLEAR_RECENTS_BUTTON,
+                    (Boolean) objValue ? 1 : 0);
+            return true;
+        } else if (preference == mRecentClearAllPosition) {
+            Settings.System.putString(getContentResolver(), Settings.System.CLEAR_RECENTS_BUTTON_LOCATION, (String) objValue);
+            return true;
 	} else {
             return false;
         }
