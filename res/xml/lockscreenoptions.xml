@@ -37,4 +37,9 @@
         android:key="select_lockscreen_wallpaper"
         android:title="@string/select_wallpaper" />
 
+    <CheckBoxPreference
+	android:key="lockscreen_battery_status"
+	android:title="@string/lockscreen_battery_status_title"
+	android:summary="@string/lockscreen_battery_status_summary" />
+
 </PreferenceScreen>

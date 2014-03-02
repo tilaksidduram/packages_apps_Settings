@@ -85,10 +85,12 @@ public class LockscreenOptions extends SettingsPreferenceFragment implements
 
     private static final String KEY_LOCKSCREEN_WALLPAPER = "lockscreen_wallpaper";
     private static final String KEY_SELECT_LOCKSCREEN_WALLPAPER = "select_lockscreen_wallpaper";
+    private static final String KEY_ALWAYS_BATTERY_PREF = "lockscreen_battery_status";
 
 
     private CheckBoxPreference mLockscreenWallpaper;
     private Preference mSelectLockscreenWallpaper;
+    private CheckBoxPreference mBatteryStatus;
 
     private File mWallpaperTemporary;
 
@@ -113,6 +115,7 @@ public class LockscreenOptions extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.lockscreenoptions);
         ContentResolver resolver = getContentResolver();
+	PreferenceScreen prefs = getPreferenceScreen();
 
         Intent intent = new Intent();
         intent.setClassName("com.android.keyguard", "com.android.keyguard.KeyguardService");
@@ -128,11 +131,21 @@ public class LockscreenOptions extends SettingsPreferenceFragment implements
         mSelectLockscreenWallpaper = findPreference(KEY_SELECT_LOCKSCREEN_WALLPAPER);
         mSelectLockscreenWallpaper.setEnabled(mLockscreenWallpaper.isChecked());
         mWallpaperTemporary = new File(getActivity().getCacheDir() + "/lockwallpaper.tmp");
+
+        mBatteryStatus = (CheckBoxPreference) prefs.findPreference(KEY_ALWAYS_BATTERY_PREF);
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        if (mBatteryStatus != null) {
+            mBatteryStatus.setChecked(Settings.System.getIntForUser(getContentResolver(),
+                    Settings.System.LOCKSCREEN_ALWAYS_SHOW_BATTERY, 0,
+                    UserHandle.USER_CURRENT) != 0);
+            mBatteryStatus.setOnPreferenceChangeListener(this);
+        }
     }
 
     public void onActivityResult(int requestCode, int resultCode,
@@ -209,7 +222,11 @@ public class LockscreenOptions extends SettingsPreferenceFragment implements
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        final String key = preference.getKey();
+	if (preference == mBatteryStatus) {
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.LOCKSCREEN_ALWAYS_SHOW_BATTERY,
+                    ((Boolean) value) ? 1 : 0, UserHandle.USER_CURRENT);
+        }
         return true;
     }
 
