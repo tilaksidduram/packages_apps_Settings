@@ -839,10 +839,6 @@
     <string name="sizer_message_noselect">Nothing selected.</string>
     <string name="system_app_remover">System App Remover</string>
 
-    <!-- Safe headset volume warning -->
-    <string name="safe_headset_volume_warning_title">Volume warning</string>
-    <string name="safe_headset_volume_warning_summary">Show safe headset volume warning</string>
-
     <!-- Volume panel style -->
     <string name="volume_overlay_title">Volume panel style</string>
     <string name="volume_overlay_single">Single</string>
