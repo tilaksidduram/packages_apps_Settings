@@ -1243,4 +1243,9 @@
     <string name="partition_info_sdcard">/sdcard (FAT)</string>
     <string name="partition_info_sdext">/sd-ext (EXT)</string>
     <string name="partition_info_used_of">/</string>
+
+    <!-- Alternative Recents -->
+    <string name="recents_title">Alternative Recents</string>
+    <string name="custom_recent_title">Slim recents</string>
+    <string name="custom_recent_summary">Switch between slim style recents</string>
 </resources>

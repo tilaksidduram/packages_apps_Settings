@@ -88,12 +88,14 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String RAM_USAGE_BAR = "ram_usage_bar";
     private static final String RECENT_MENU_CLEAR_ALL = "recent_menu_clear_all";
     private static final String RECENT_MENU_CLEAR_ALL_LOCATION = "recent_menu_clear_all_location";
+    private static final String CUSTOM_RECENT_MODE = "custom_recent_mode";
 
     private CheckBoxPreference mEnableNavigationBar;
     private SeekBarPreference mNavigationBarHeight;
     private CheckBoxPreference mRamUsageBar;
     private ListPreference mRecentClearAllPosition;
     private CheckBoxPreference mRecentClearAll;
+    private CheckBoxPreference mRecentsCustom;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -164,6 +166,11 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         }
         mRecentClearAllPosition.setOnPreferenceChangeListener(this);
 
+        boolean enableRecentsCustom = Settings.System.getBoolean(getContentResolver(),
+                                      Settings.System.CUSTOM_RECENT, false);
+        mRecentsCustom = (CheckBoxPreference) findPreference(CUSTOM_RECENT_MODE);
+        mRecentsCustom.setChecked(enableRecentsCustom);
+        mRecentsCustom.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -192,6 +199,11 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
             return true;
         } else if (preference == mRecentClearAllPosition) {
             Settings.System.putString(getContentResolver(), Settings.System.CLEAR_RECENTS_BUTTON_LOCATION, (String) objValue);
+            return true;
+        } else if (preference == mRecentsCustom) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(resolver, Settings.System.CUSTOM_RECENT, value ? 1 : 0);
+            Helpers.restartSystemUI();
             return true;
 	} else {
             return false;

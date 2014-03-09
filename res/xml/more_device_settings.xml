@@ -65,6 +65,12 @@
 	android:summary="@string/ram_bar_summary"
 	android:defaultValue="true" />
 
+    <CheckBoxPreference
+        android:key="custom_recent_mode"
+        android:title="@string/custom_recent_title"
+        android:summary="@string/custom_recent_summary"
+        android:persistent="false" />
+
      <CheckBoxPreference
 	android:key="recent_menu_clear_all"
 	android:title="@string/show_recent_clear_all_button_title"
