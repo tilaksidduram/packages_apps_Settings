@@ -81,7 +81,6 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_DISPLAY_COLOR = "color_calibration";
     private static final String KEY_DISPLAY_GAMMA = "gamma_tuning";
     private static final String KEY_SCREEN_GESTURE_SETTINGS = "touch_screen_gesture_settings";
-    private static final String KEY_DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
     private static final String KEY_ENABLE_NAVIGATION_BAR = "enable_nav_bar";
     private static final String KEY_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
     private static final String NAVIGATION_BAR_CATEGORY = "navigation_bar";
@@ -90,7 +89,6 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String RECENT_MENU_CLEAR_ALL = "recent_menu_clear_all";
     private static final String RECENT_MENU_CLEAR_ALL_LOCATION = "recent_menu_clear_all_location";
 
-    private CheckBoxPreference mDTS;
     private CheckBoxPreference mEnableNavigationBar;
     private SeekBarPreference mNavigationBarHeight;
     private CheckBoxPreference mRamUsageBar;
@@ -127,10 +125,6 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
 
         Utils.updatePreferenceToSpecificActivityFromMetaDataOrRemove(getActivity(),
                 getPreferenceScreen(), KEY_SCREEN_GESTURE_SETTINGS);
-
-        mDTS = (CheckBoxPreference) findPreference(KEY_DOUBLE_TAP_SLEEP_GESTURE);
-        mDTS.setChecked(Settings.System.getInt(getContentResolver(),
-              Settings.System.DOUBLE_TAP_SLEEP_GESTURE, 0) == 1);
 
         boolean hasNavBarByDefault = getResources().getBoolean(
                 com.android.internal.R.bool.config_showNavigationBar);
@@ -208,12 +202,6 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
          ContentResolver cr = getActivity().getContentResolver();
-         if (preference == mDTS) {
-              Settings.System.putInt(cr, Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
-                     mDTS.isChecked() ? 1 : 0);
-        }else {
          return super.onPreferenceTreeClick(preferenceScreen, preference);
-       }
-         return true;
     }
 }

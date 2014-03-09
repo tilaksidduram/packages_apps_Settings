@@ -47,13 +47,6 @@
 	android:summary="@string/headset_connect_player_summary"
 	android:defaultValue="false" />
 
-    <CheckBoxPreference
-	android:key="double_tap_sleep_gesture"
-	android:title="@string/double_tap_to_sleep_title"
-	android:icon="@drawable/ic_pa_powermenu"
-	android:summary="@string/double_tap_to_sleep_summary"
-	android:defaultValue="false" />
-
     </PreferenceCategory>
 
     <PreferenceCategory

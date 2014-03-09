@@ -157,10 +157,9 @@
     <string name="battery_prefs_title">Options</string>
     <string name="battery_stats_title">Statistics</string>
 
-    <!--Double tap to sleep-->
-    <string name="gesture_category_title">Gestures</string>
-    <string name="double_tap_to_sleep_title">Double tap to sleep</string>
-    <string name="double_tap_to_sleep_summary">Double tap statusbar to lock device</string>
+    <!-- StatusBar Double tap to sleep-->
+    <string name="status_bar_double_tap_to_sleep_title">Double-tap to sleep</string>
+    <string name="status_bar_double_tap_to_sleep_summary">Double-tap statusbar to lock device</string>
 
     <!--Notification count-->
     <string name="status_bar_notif_count_title">Show notification count</string>
