@@ -170,6 +170,12 @@
         	android:title="@string/smart_cover_title"
         	android:fragment="com.android.settings.temasek.SmartCoverSettings" />
 
+    	<!-- On-The-Go Mode -->
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="power_menu_onthego_enabled"
+            android:title="@string/power_menu_onthego_title"
+            android:defaultValue="false" />
+
         <!-- DeviceParts Device Specific Display settings -->
         <Preference
             android:key="advanced_display_settings"
