@@ -1248,4 +1248,8 @@
     <string name="recents_title">Alternative Recents</string>
     <string name="custom_recent_title">Slim recents</string>
     <string name="custom_recent_summary">Switch between slim style recents</string>
+
+    <!-- Status Bar Activity Indicators -->
+    <string name="show_activity_indicators_on_status_bar_title">Network activity indicator</string>
+    <string name="show_activity_indicators_on_status_bar_summary">Show network activity in statusbar</string>
 </resources>

@@ -63,11 +63,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
     private static final String NETWORK_TRAFFIC_UNIT = "network_traffic_unit";
     private static final String NETWORK_TRAFFIC_PERIOD = "network_traffic_period";
+    private static final String STATUS_BAR_NETWORK_ACTIVITY = "status_bar_network_activity";
 
     private CheckBoxPreference mStatusBarCustomHeader;
     private CheckBoxPreference mForceExpanded;
     private CheckBoxPreference mStatusBarNotifCount;
     private CheckBoxPreference mStatusBarBrightnessControl;
+    private CheckBoxPreference mStatusBarNetworkActivity;
     private ListPreference mNetTrafficState;
     private ListPreference mNetTrafficUnit;
     private ListPreference mNetTrafficPeriod;
@@ -114,6 +116,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         mStatusBarBrightnessControl.setChecked((Settings.System.getInt(getContentResolver(),
                             Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1));
         mStatusBarBrightnessControl.setOnPreferenceChangeListener(this);
+
+        mStatusBarNetworkActivity = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_NETWORK_ACTIVITY);
+        mStatusBarNetworkActivity.setChecked(Settings.System.getInt(resolver,
+            Settings.System.STATUS_BAR_NETWORK_ACTIVITY, 0) == 1);
+         mStatusBarNetworkActivity.setOnPreferenceChangeListener(this);
 
         mNetTrafficState = (ListPreference) prefSet.findPreference(NETWORK_TRAFFIC_STATE);
         mNetTrafficUnit = (ListPreference) prefSet.findPreference(NETWORK_TRAFFIC_UNIT);
@@ -169,6 +176,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
                     (Boolean) objValue ? 1 : 0);
+        } else if (preference == mStatusBarNetworkActivity) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(resolver,
+                Settings.System.STATUS_BAR_NETWORK_ACTIVITY, value ? 1 : 0);
         } else if (preference == mNetTrafficState) {
             int intState = Integer.valueOf((String)objValue);
             mNetTrafficVal = setBit(mNetTrafficVal, MASK_UP, getBit(intState, MASK_UP));
