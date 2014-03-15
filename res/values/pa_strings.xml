@@ -32,6 +32,13 @@
     <string name="screen_on_notification_led_title">Screen-On Notification Light</string>
     <string name="screen_on_notification_led_summary">Enable Notification Light even when screen is on</string>
 
+    <!--Notification category-->
+    <string name="notification_category">Notifications</string>
+
+    <!--Notification peek-->
+    <string name="notification_peek_title">Notification peek</string>
+    <string name="notification_peek_summary">Show latest notification after picking up your device</string>
+
     <!--Notification LED category header-->
     <string name="notification_led_category_title">Notification LED</string>
 
