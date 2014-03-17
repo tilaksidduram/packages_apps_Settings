@@ -54,6 +54,7 @@ import android.preference.ListPreference;
 import android.preference.SeekBarPreference;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Display;
 import android.view.Window;
 import android.widget.Toast;
@@ -90,18 +91,24 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String RECENT_MENU_CLEAR_ALL_LOCATION = "recent_menu_clear_all_location";
     private static final String CUSTOM_RECENT_MODE = "custom_recent_mode";
 
+    private static final String RECENT_PANEL_LEFTY_MODE = "recent_panel_lefty_mode";
+    private static final String RECENT_PANEL_SCALE = "recent_panel_scale";
+
     private CheckBoxPreference mEnableNavigationBar;
     private SeekBarPreference mNavigationBarHeight;
     private CheckBoxPreference mRamUsageBar;
     private ListPreference mRecentClearAllPosition;
     private CheckBoxPreference mRecentClearAll;
     private CheckBoxPreference mRecentsCustom;
+    private CheckBoxPreference mRecentPanelLeftyMode;
+    private ListPreference mRecentPanelScale;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.more_device_settings);
+	initializeAllPreferences();
 
         ContentResolver resolver = getContentResolver();
 	PreferenceScreen prefSet = getPreferenceScreen();
@@ -176,6 +183,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     @Override
     public void onResume() {
         super.onResume();
+	updateAllPreferences();
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -205,6 +213,16 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(resolver, Settings.System.CUSTOM_RECENT, value ? 1 : 0);
             Helpers.restartSystemUI();
             return true;
+        } else if (preference == mRecentPanelScale) {
+            int value = Integer.parseInt((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.RECENT_PANEL_SCALE_FACTOR, value);
+            return true;
+        } else if (preference == mRecentPanelLeftyMode) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.RECENT_PANEL_GRAVITY,
+                    ((Boolean) objValue) ? Gravity.LEFT : Gravity.RIGHT);
+            return true;
 	} else {
             return false;
         }
@@ -215,5 +233,30 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
          ContentResolver cr = getActivity().getContentResolver();
          return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
+    private void initializeAllPreferences() {
+        mRecentPanelLeftyMode =
+                (CheckBoxPreference) findPreference(RECENT_PANEL_LEFTY_MODE);
+        mRecentPanelLeftyMode.setOnPreferenceChangeListener(this);
+
+        mRecentPanelScale =
+                (ListPreference) findPreference(RECENT_PANEL_SCALE);
+        mRecentPanelScale.setOnPreferenceChangeListener(this);
+
+    }
+
+    private void updateAllPreferences() {
+        updateSystemPreferences();
+    }
+
+    private void updateSystemPreferences() {
+        final boolean recentLeftyMode = Settings.System.getInt(getContentResolver(),
+                Settings.System.RECENT_PANEL_GRAVITY, Gravity.RIGHT) == Gravity.LEFT;
+        mRecentPanelLeftyMode.setChecked(recentLeftyMode);
+
+        final int recentScale = Settings.System.getInt(getContentResolver(),
+                Settings.System.RECENT_PANEL_SCALE_FACTOR, 100);
+        mRecentPanelScale.setValue(recentScale + "");
     }
 }
