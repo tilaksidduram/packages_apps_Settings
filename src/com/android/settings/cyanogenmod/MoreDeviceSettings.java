@@ -53,6 +53,7 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.SeekBarPreference;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Display;
@@ -67,9 +68,13 @@ import com.android.settings.hardware.DisplayColor;
 import com.android.settings.hardware.DisplayGamma;
 import com.android.settings.hardware.VibratorIntensity;
 import com.android.internal.util.paranoid.DeviceUtils;
+import com.android.settings.chameleonos.AppMultiSelectListPreference;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import com.android.settings.util.Helpers;
 
 public class MoreDeviceSettings extends SettingsPreferenceFragment implements
@@ -91,6 +96,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String RECENT_MENU_CLEAR_ALL = "recent_menu_clear_all";
     private static final String RECENT_MENU_CLEAR_ALL_LOCATION = "recent_menu_clear_all_location";
     private static final String CUSTOM_RECENT_MODE = "custom_recent_mode";
+    private static final String PREF_INCLUDE_APP_CIRCLE_BAR_KEY = "app_circle_bar_included_apps";
 
     private static final String RECENT_PANEL_SHOW_TOPMOST = "recent_panel_show_topmost";
     private static final String RECENT_PANEL_LEFTY_MODE = "recent_panel_lefty_mode";
@@ -108,6 +114,8 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private ListPreference mRecentPanelScale;
     private ListPreference mRecentPanelExpandedMode;
 
+    private AppMultiSelectListPreference mIncludedAppCircleBar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +125,11 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
 
         ContentResolver resolver = getContentResolver();
 	PreferenceScreen prefSet = getPreferenceScreen();
+
+        mIncludedAppCircleBar = (AppMultiSelectListPreference) prefSet.findPreference(PREF_INCLUDE_APP_CIRCLE_BAR_KEY);
+        Set<String> includedApps = getIncludedApps();
+        if (includedApps != null) mIncludedAppCircleBar.setValues(includedApps);
+        mIncludedAppCircleBar.setOnPreferenceChangeListener(this);
 
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (!VibratorIntensity.isSupported() || vibrator == null || !vibrator.hasVibrator()) {
@@ -240,10 +253,34 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
                     Settings.System.RECENT_PANEL_SHOW_TOPMOST,
                     ((Boolean) objValue) ? 1 : 0);
             return true;
+        } else if (preference == mIncludedAppCircleBar) {
+            storeIncludedApps((Set<String>) objValue);
+            return true;
 	} else {
             return false;
         }
         return true;
+    }
+
+    private Set<String> getIncludedApps() {
+        String included = Settings.System.getString(getContentResolver(),
+                Settings.System.WHITELIST_APP_CIRCLE_BAR);
+        if (TextUtils.isEmpty(included)) {
+            return null;
+        }
+        return new HashSet<String>(Arrays.asList(included.split("\\|")));
+    }
+
+    private void storeIncludedApps(Set<String> values) {
+        StringBuilder builder = new StringBuilder();
+        String delimiter = "";
+        for (String value : values) {
+            builder.append(delimiter);
+            builder.append(value);
+            delimiter = "|";
+        }
+        Settings.System.putString(getContentResolver(),
+                Settings.System.WHITELIST_APP_CIRCLE_BAR, builder.toString());
     }
 
     @Override
