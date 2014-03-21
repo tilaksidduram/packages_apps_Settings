@@ -1687,8 +1687,6 @@
             android:theme="@style/CryptKeeperBlankTheme"
         />
 
-        <activity android:name=".paranoid.Halo" />
-
         <activity android:name=".paranoid.NotificationDrawerQsSettings" />
         <activity android:name=".AOSPAL.LockscreenOptions" />
         <activity android:name=".AOSPAL.CustomCarrier" />
