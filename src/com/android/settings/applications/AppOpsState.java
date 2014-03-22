@@ -32,7 +32,6 @@ import android.text.format.DateUtils;
 
 import android.util.Log;
 import android.util.SparseArray;
-
 import com.android.settings.R;
 
 import java.io.File;
@@ -228,98 +227,9 @@ public class AppOpsState {
             new boolean[] { true, }
             );
 
-    public static final OpsTemplate PERMISSIONS_TEMPLATE = new OpsTemplate(
-            new int[] { AppOpsManager.OP_COARSE_LOCATION,
-                    AppOpsManager.OP_FINE_LOCATION,
-                    AppOpsManager.OP_GPS,
-                    AppOpsManager.OP_WIFI_SCAN,
-                    AppOpsManager.OP_NEIGHBORING_CELLS,
-                    AppOpsManager.OP_MONITOR_LOCATION,
-                    AppOpsManager.OP_MONITOR_HIGH_POWER_LOCATION,
-                    AppOpsManager.OP_READ_CONTACTS,
-                    AppOpsManager.OP_WRITE_CONTACTS,
-                    AppOpsManager.OP_READ_CALL_LOG,
-                    AppOpsManager.OP_WRITE_CALL_LOG,
-                    AppOpsManager.OP_READ_CALENDAR,
-                    AppOpsManager.OP_WRITE_CALENDAR,
-                    AppOpsManager.OP_READ_CLIPBOARD,
-                    AppOpsManager.OP_WRITE_CLIPBOARD,
-                    AppOpsManager.OP_READ_SMS,
-                    AppOpsManager.OP_RECEIVE_SMS,
-                    AppOpsManager.OP_RECEIVE_EMERGECY_SMS,
-                    AppOpsManager.OP_RECEIVE_MMS,
-                    AppOpsManager.OP_RECEIVE_WAP_PUSH,
-                    AppOpsManager.OP_WRITE_SMS,
-                    AppOpsManager.OP_SEND_SMS,
-                    AppOpsManager.OP_READ_ICC_SMS,
-                    AppOpsManager.OP_WRITE_ICC_SMS,
-                    AppOpsManager.OP_VIBRATE,
-                    AppOpsManager.OP_CAMERA,
-                    AppOpsManager.OP_RECORD_AUDIO,
-                    AppOpsManager.OP_PLAY_AUDIO,
-                    AppOpsManager.OP_TAKE_MEDIA_BUTTONS,
-                    AppOpsManager.OP_TAKE_AUDIO_FOCUS,
-                    AppOpsManager.OP_AUDIO_MASTER_VOLUME,
-                    AppOpsManager.OP_AUDIO_VOICE_VOLUME,
-                    AppOpsManager.OP_AUDIO_RING_VOLUME,
-                    AppOpsManager.OP_AUDIO_MEDIA_VOLUME,
-                    AppOpsManager.OP_AUDIO_ALARM_VOLUME,
-                    AppOpsManager.OP_AUDIO_NOTIFICATION_VOLUME,
-                    AppOpsManager.OP_AUDIO_BLUETOOTH_VOLUME,
-                    AppOpsManager.OP_POST_NOTIFICATION,
-                    AppOpsManager.OP_ACCESS_NOTIFICATIONS,
-                    AppOpsManager.OP_CALL_PHONE,
-                    AppOpsManager.OP_WRITE_SETTINGS,
-                    AppOpsManager.OP_SYSTEM_ALERT_WINDOW,
-                    AppOpsManager.OP_WAKE_LOCK },
-            new boolean[] { true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    true }
-            );
-
     public static final OpsTemplate[] ALL_TEMPLATES = new OpsTemplate[] {
-            //LOCATION_TEMPLATE, PERSONAL_TEMPLATE, MESSAGING_TEMPLATE, MEDIA_TEMPLATE, DEVICE_TEMPLATE, BOOTUP_TEMPLATE
-            PERMISSIONS_TEMPLATE
+            LOCATION_TEMPLATE, PERSONAL_TEMPLATE, MESSAGING_TEMPLATE,
+            MEDIA_TEMPLATE, DEVICE_TEMPLATE, BOOTUP_TEMPLATE
     };
 
     /**
@@ -564,6 +474,17 @@ public class AppOpsState {
         private final Collator sCollator = Collator.getInstance();
         @Override
         public int compare(AppOpEntry object1, AppOpEntry object2) {
+            if (object1.getSwitchOrder() != object2.getSwitchOrder()) {
+                return object1.getSwitchOrder() < object2.getSwitchOrder() ? -1 : 1;
+            }
+            if (object1.isRunning() != object2.isRunning()) {
+                // Currently running ops go first.
+                return object1.isRunning() ? -1 : 1;
+            }
+            if (object1.getTime() != object2.getTime()) {
+                // More recent times go first.
+                return object1.getTime() > object2.getTime() ? -1 : 1;
+            }
             return sCollator.compare(object1.getAppEntry().getLabel(),
                     object2.getAppEntry().getLabel());
         }
@@ -572,8 +493,13 @@ public class AppOpsState {
     private void addOp(List<AppOpEntry> entries, AppOpsManager.PackageOps pkgOps,
             AppEntry appEntry, AppOpsManager.OpEntry opEntry, boolean allowMerge, int switchOrder) {
         if (allowMerge && entries.size() > 0) {
-            for (AppOpEntry last : entries) {
-                if (last.getAppEntry() == appEntry) {
+            AppOpEntry last = entries.get(entries.size()-1);
+            if (last.getAppEntry() == appEntry) {
+                boolean lastExe = last.getTime() != 0;
+                boolean entryExe = opEntry.getTime() != 0;
+                if (lastExe == entryExe) {
+                    if (DEBUG) Log.d(TAG, "Add op " + opEntry.getOp() + " to package "
+                            + pkgOps.getPackageName() + ": append to " + last);
                     last.addOp(opEntry);
                     return;
                 }
@@ -595,26 +521,18 @@ public class AppOpsState {
     }
 
     private AppEntry getAppEntry(final Context context, final HashMap<String, AppEntry> appEntries,
-            final String packageName, ApplicationInfo appInfo) {
-        AppEntry appEntry = appEntries.get(packageName);
-        if (appEntry == null) {
-            if (appInfo == null) {
-                try {
-                    appInfo = mPm.getApplicationInfo(packageName,
-                            PackageManager.GET_DISABLED_COMPONENTS
-                            | PackageManager.GET_UNINSTALLED_PACKAGES);
-                } catch (PackageManager.NameNotFoundException e) {
-                    Log.w(TAG, "Unable to find info for package " + packageName);
-                    return null;
-                }
-            }
-            if((appInfo.flags & ApplicationInfo.FLAG_SYSTEM)==0) {
-                appEntry = new AppEntry(this, appInfo);
-                appEntry.loadLabel(context);
-                appEntries.put(packageName, appEntry);
+            final String packageName, ApplicationInfo appInfo, boolean applyFilters) {
+
+        if (appInfo == null) {
+            try {
+                appInfo = mPm.getApplicationInfo(packageName,
+                        PackageManager.GET_DISABLED_COMPONENTS
+                        | PackageManager.GET_UNINSTALLED_PACKAGES);
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.w(TAG, "Unable to find info for package " + packageName);
+                return null;
             }
         }
-        return appEntry;
 
         if (applyFilters) {
             // Hide user apps if needed
@@ -628,6 +546,14 @@ public class AppOpsState {
                 return null;
             }
         }
+
+        AppEntry appEntry = appEntries.get(packageName);
+        if (appEntry == null) {
+            appEntry = new AppEntry(this, appInfo);
+            appEntry.loadLabel(context);
+            appEntries.put(packageName, appEntry);
+        }
+        return appEntry;
     }
 
     private boolean shouldShowUserApps() {

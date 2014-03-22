@@ -37,7 +37,7 @@ import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.CheckBox;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.settings.R;
@@ -173,11 +173,13 @@ public class AppOpsDetails extends Fragment {
                         entry.getCountsText(res));
                 ((TextView)view.findViewById(R.id.op_time)).setText(
                         entry.getTimeText(res, true));
-                CheckBox sw = (CheckBox)view.findViewById(R.id.switchWidget);
+                Spinner sw = (Spinner)view.findViewById(R.id.spinnerWidget);
                 final int switchOp = AppOpsManager.opToSwitch(firstOp.getOp());
-                sw.setChecked(mAppOps.checkOp(switchOp, entry.getPackageOps().getUid(),
-                        entry.getPackageOps().getPackageName()) == AppOpsManager.MODE_ALLOWED);
-                sw.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
+                int mode = mAppOps.checkOp(switchOp, entry.getPackageOps().getUid(),
+                        entry.getPackageOps().getPackageName());
+                sw.setSelection(modeToPosition(mode));
+                sw.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+                    boolean firstMode = true;
 
                     @Override
                     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
