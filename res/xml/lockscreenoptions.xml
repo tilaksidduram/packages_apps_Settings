@@ -30,14 +30,6 @@
 	android:title="@string/lockscreen_target_title" />
 
     <CheckBoxPreference
-        android:key="lockscreen_wallpaper"
-        android:title="@string/lockscreen_wallpaper" />
-
-    <Preference
-        android:key="select_lockscreen_wallpaper"
-        android:title="@string/select_wallpaper" />
-
-    <CheckBoxPreference
 	android:key="lockscreen_battery_status"
 	android:title="@string/lockscreen_battery_status_title"
 	android:summary="@string/lockscreen_battery_status_summary" />
