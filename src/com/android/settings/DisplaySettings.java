@@ -79,7 +79,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private CheckBoxPreference mWakeWhenPluggedOrUnplugged;
     private FontDialogPreference mFontSizePref;
-    private CheckBoxPreference mWakeWhenPluggedOrUnplugged;
 
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
