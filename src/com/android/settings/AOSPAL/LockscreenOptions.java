@@ -82,8 +82,10 @@ public class LockscreenOptions extends SettingsPreferenceFragment implements
     private static final String TAG = "LockscreenOptions";
 
     private static final String KEY_ALWAYS_BATTERY_PREF = "lockscreen_battery_status";
+    private static final String KEY_LOCKSCREEN_MODLOCK_ENABLED = "lockscreen_modlock_enabled";
 
     private CheckBoxPreference mBatteryStatus;
+    private CheckBoxPreference mEnableModLock;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,6 +96,24 @@ public class LockscreenOptions extends SettingsPreferenceFragment implements
 	PreferenceScreen prefs = getPreferenceScreen();
 
         mBatteryStatus = (CheckBoxPreference) prefs.findPreference(KEY_ALWAYS_BATTERY_PREF);
+
+        mEnableModLock = (CheckBoxPreference) findPreference(KEY_LOCKSCREEN_MODLOCK_ENABLED);
+        if (mEnableModLock != null) {
+            mEnableModLock.setOnPreferenceChangeListener(this);
+        }
+
+        boolean canEnableModLockscreen = false;
+        final Bundle keyguard_metadata = Utils.getApplicationMetadata(
+                getActivity(), "com.android.keyguard");
+        if (keyguard_metadata != null) {
+            canEnableModLockscreen = keyguard_metadata.getBoolean(
+                    "com.cyanogenmod.keyguard", false);
+        }
+
+        if (mEnableModLock != null && !canEnableModLockscreen) {
+            generalCategory.removePreference(mEnableModLock);
+            mEnableModLock = null;
+        }
 
     }
 
@@ -107,6 +127,14 @@ public class LockscreenOptions extends SettingsPreferenceFragment implements
                     UserHandle.USER_CURRENT) != 0);
             mBatteryStatus.setOnPreferenceChangeListener(this);
         }
+
+        // Update mod lockscreen status
+        if (mEnableModLock != null) {
+            ContentResolver cr = getActivity().getContentResolver();
+            boolean checked = Settings.System.getInt(
+                    cr, Settings.System.LOCKSCREEN_MODLOCK_ENABLED, 1) == 1;
+            mEnableModLock.setChecked(checked);
+        }
     }
 
     @Override
@@ -114,13 +142,20 @@ public class LockscreenOptions extends SettingsPreferenceFragment implements
 	    return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
+    @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
 	if (preference == mBatteryStatus) {
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.LOCKSCREEN_ALWAYS_SHOW_BATTERY,
                     ((Boolean) objValue) ? 1 : 0, UserHandle.USER_CURRENT);
+            return true;
+        } else if (preference == mEnableModLock) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(cr, Settings.System.LOCKSCREEN_MODLOCK_ENABLED,
+                    value ? 1 : 0);
+            return true;
         }
-        return true;
+        return false;
     }
 
     private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
