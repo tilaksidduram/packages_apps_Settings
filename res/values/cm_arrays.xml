@@ -106,7 +106,6 @@
         <item>@string/hardware_keys_action_voice_search</item>
         <item>@string/hardware_keys_action_in_app_search</item>
         <item>@string/hardware_keys_action_launch_camera</item>
-        <item>@string/hardware_keys_action_sleep</item>
     </string-array>
 
     <string-array name="hardware_keys_action_values" translatable="false">
@@ -117,7 +116,6 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
-        <item>7</item>
     </string-array>
 
     <!-- Volume key cursor control -->
