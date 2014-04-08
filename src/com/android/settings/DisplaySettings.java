@@ -333,6 +333,17 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
     }
 
+    private void updateBatteryPulseSummary() {
+        if (mBatteryPulse != null) {
+            if (Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.BATTERY_LIGHT_ENABLED, 1) == 1) {
+                mBatteryPulse.setSummary(R.string.notification_light_enabled);
+            } else {
+                mBatteryPulse.setSummary(R.string.notification_light_disabled);
+            }
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -397,6 +408,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         readFontSizePreference(mFontSizePref);
         updateScreenSaverSummary();
         updateLightPulseSummary();
+        updateBatteryPulseSummary();
     }
 
     private void updateScreenSaverSummary() {
