@@ -313,9 +313,6 @@
     <!-- Header on first screen of choose encryption password [CHAR LIMIT=30] -->
     <string name="encryptionpassword_choose_your_password_header">Set encryption password</string>
 
-    <!-- Themes settings  -->
-    <string name="themes_settings_title">Themes</string>
-
     <!-- Stylus Icon -->
     <string name="stylus_icon_enabled_title">Show icon when using stylus</string>
     <string name="stylus_icon_enabled_summary">Show the pointer icon while using stylus</string>

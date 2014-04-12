@@ -388,4 +388,18 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
 
     <!-- Custom LockScreen -->
     <string name="lockscreen_enable_modlock_title">Custom lock screen</string>
+
+    <!-- Themes Settings -->
+    <!-- Settings main menu entry -->
+    <string name="themes_settings_title">Themes</string>
+
+    <!-- The following are entries under the themes menu -->
+    <string name="themepacks_settings_title">Theme Packs</string>
+    <string name="styles_settings_title">Styles</string>
+    <string name="icons_settings_title">Icons</string>
+    <string name="fonts_settings_title">Fonts</string>
+    <string name="wallpaper_settings_title">Wallpapers</string>
+    <string name="lockscreen_wallpaper_settings_title">Lockscreen Wallpapers</string>
+    <string name="bootanim_settings_title">Boot Animations</string>
+    <string name="soundpack_settings_title">Sound Packs</string>
 </resources>
