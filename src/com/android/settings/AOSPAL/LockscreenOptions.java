@@ -111,7 +111,7 @@ public class LockscreenOptions extends SettingsPreferenceFragment implements
         }
 
         if (mEnableModLock != null && !canEnableModLockscreen) {
-            generalCategory.removePreference(mEnableModLock);
+            prefs.removePreference(mEnableModLock);
             mEnableModLock = null;
         }
 
@@ -144,6 +144,7 @@ public class LockscreenOptions extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
+	ContentResolver cr = getActivity().getContentResolver();
 	if (preference == mBatteryStatus) {
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.LOCKSCREEN_ALWAYS_SHOW_BATTERY,
