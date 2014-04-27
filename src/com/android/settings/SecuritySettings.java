@@ -77,6 +77,7 @@ public class SecuritySettings extends RestrictedSettingsFragment
     private static final String KEY_SEE_THROUGH = "see_through";
     private static final String KEY_BLUR_RADIUS = "blur_radius";
     private static final String LOCK_BEFORE_UNLOCK = "lock_before_unlock";
+    private static final String LOCK_NUMPAD_RANDOM = "lock_numpad_random";
 
     private static final int SET_OR_CHANGE_LOCK_METHOD_REQUEST = 123;
     private static final int CONFIRM_EXISTING_FOR_BIOMETRIC_WEAK_IMPROVE_REQUEST = 124;
@@ -127,6 +128,7 @@ public class SecuritySettings extends RestrictedSettingsFragment
     private CheckBoxPreference mMaximizeKeyguardWidgets;
     private CheckBoxPreference mMenuUnlock;
     private CheckBoxPreference mLockBeforeUnlock;
+    private ListPreference mLockNumpadRandom;
 
     private Preference mNotificationAccess;
 
@@ -282,6 +284,16 @@ public class SecuritySettings extends RestrictedSettingsFragment
             if (securityCategory != null && mVisibleGesture != null) {
                 securityCategory.removePreference(root.findPreference(KEY_VISIBLE_GESTURE));
             }
+        }
+
+        // Lock Numpad Random
+        mLockNumpadRandom = (ListPreference) root.findPreference(LOCK_NUMPAD_RANDOM);
+        if (mLockNumpadRandom != null) {
+            mLockNumpadRandom.setValue(String.valueOf(
+                    Settings.Secure.getInt(getContentResolver(),
+                    Settings.Secure.LOCK_NUMPAD_RANDOM, 0)));
+            mLockNumpadRandom.setSummary(mLockNumpadRandom.getEntry());
+            mLockNumpadRandom.setOnPreferenceChangeListener(this);
         }
 
         // Lock before Unlock
@@ -777,6 +789,12 @@ public class SecuritySettings extends RestrictedSettingsFragment
             updateLockAfterPreferenceSummary();
         } else if (preference == mBlurRadius) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_BLUR_RADIUS, (Integer)value);
+        } else if (preference == mLockNumpadRandom) {
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.LOCK_NUMPAD_RANDOM,
+                    Integer.valueOf((String) value));
+            mLockNumpadRandom.setValue(String.valueOf(value));
+            mLockNumpadRandom.setSummary(mLockNumpadRandom.getEntry());
         } else if (preference == mLockBeforeUnlock) {
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.LOCK_BEFORE_UNLOCK,
