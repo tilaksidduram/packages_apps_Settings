@@ -28,10 +28,23 @@
                 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="@string/custom_cat_gesture">
+
     <!-- Gesture anywhere -->
     <PreferenceScreen
          android:key="gesture_anywhere"
          android:fragment="com.android.settings.temasek.gestureanywhere.GestureAnywhereSettings"
-         android:title="@string/gesture_anywhere_title" />
+         android:title="@string/gesture_anywhere_title"
+	 android:icon="@drawable/ic_gestureanywhere" />
+
+    <!-- App sidebar -->
+    <PreferenceScreen
+         android:key="app_sidebar"
+         android:fragment="com.android.settings.temasek.AppSidebar"
+         android:title="@string/app_sidebar_title"
+	 android:icon="@drawable/ic_appcirclebar" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
