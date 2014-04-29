@@ -66,6 +66,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
     private static final String KEY_CURRENT_INPUT_METHOD = "current_input_method";
     private static final String KEY_INPUT_METHOD_SELECTOR = "input_method_selector";
     private static final String KEY_USER_DICTIONARY_SETTINGS = "key_user_dictionary_settings";
+    private static final String KEY_IME_SWITCHER = "status_bar_ime_switcher";
     private static final String KEY_POINTER_SETTINGS_CATEGORY = "pointer_settings_category";
     private static final String KEY_STYLUS_GESTURES = "stylus_gestures";
     private static final String KEY_STYLUS_ICON_ENABLED = "stylus_icon_enabled";
@@ -82,6 +83,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         "auto_replace", "auto_caps", "auto_punctuate",
     };
 
+    private CheckBoxPreference mStatusBarImeSwitcher;
     private int mDefaultInputMethodSelectorVisibility = 0;
     private ListPreference mShowInputMethodSelectorPref;
     private CheckBoxPreference mStylusIconEnabled;
@@ -177,6 +179,8 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         // Build hard keyboard and game controller preference categories.
         mIm = (InputManager)getActivity().getSystemService(Context.INPUT_SERVICE);
         updateInputDevices();
+
+        mStatusBarImeSwitcher = (CheckBoxPreference) findPreference(KEY_IME_SWITCHER);
 
         PreferenceCategory pointerSettingsCategory = (PreferenceCategory)
                         findPreference(KEY_POINTER_SETTINGS_CATEGORY);
@@ -308,6 +312,9 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
                     Settings.System.STYLUS_ICON_ENABLED, 0) == 1);
         }
 
+        mStatusBarImeSwitcher.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.STATUS_BAR_IME_SWITCHER, 1) != 0);
+
         // Hard keyboard
         if (!mHardKeyboardPreferenceList.isEmpty()) {
             for (int i = 0; i < sHardKeyboardKeys.length; ++i) {
@@ -363,7 +370,11 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         if (Utils.isMonkeyRunning()) {
             return false;
         }
-        if (preference instanceof PreferenceScreen) {
+        if (preference == mStatusBarImeSwitcher) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.STATUS_BAR_IME_SWITCHER, mStatusBarImeSwitcher.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference instanceof PreferenceScreen) {
             if (preference.getFragment() != null) {
                 // Fragment will be handled correctly by the super class.
             } else if (KEY_CURRENT_INPUT_METHOD.equals(preference.getKey())) {
