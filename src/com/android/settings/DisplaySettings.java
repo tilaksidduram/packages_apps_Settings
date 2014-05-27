@@ -22,9 +22,12 @@ import static android.provider.Settings.System.SCREEN_OFF_ANIMATION;
 import android.app.ActivityManagerNative;
 import android.app.Dialog;
 import android.app.admin.DevicePolicyManager;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
@@ -77,6 +80,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_SCREEN_OFF_ANIMATION = "screen_off_animation";
     private static final String KEY_SCREEN_COLOR_SETTINGS = "screencolor_settings";
 
+    private static final String PEEK_APPLICATION = "com.jedga.peek";
+
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
     private CheckBoxPreference mWakeWhenPluggedOrUnplugged;
@@ -93,6 +98,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private ListPreference mScreenTimeoutPreference;
     private Preference mScreenSaverPreference;
+
+    private PackageStatusReceiver mPackageStatusReceiver;
+    private IntentFilter mIntentFilter;
 
     private CheckBoxPreference mAdaptiveBacklight;
     private CheckBoxPreference mTapToWake;
@@ -114,6 +122,20 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             updateDisplayRotationPreferenceDescription();
         }
     };
+
+    private boolean isPeekAppInstalled() {
+        return isPackageInstalled(PEEK_APPLICATION);
+    }
+
+    private boolean isPackageInstalled(String packagename) {
+        PackageManager pm = getActivity().getPackageManager();
+        try {
+            pm.getPackageInfo(packagename, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (NameNotFoundException e) {
+            return false;
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -193,6 +215,16 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         if (!isPostProcessingSupported()) {
             getPreferenceScreen().removePreference(mScreenColorSettings);
         }
+
+        if (mPackageStatusReceiver == null) {
+            mPackageStatusReceiver = new PackageStatusReceiver();
+        }
+        if (mIntentFilter == null) {
+            mIntentFilter = new IntentFilter();
+            mIntentFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
+            mIntentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        }
+        getActivity().registerReceiver(mPackageStatusReceiver, mIntentFilter);
     }
 
     private void updateDisplayRotationPreferenceDescription() {
@@ -357,6 +389,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         RotationPolicy.registerRotationPolicyListener(getActivity(),
                 mRotationPolicyListener);
+        getActivity().registerReceiver(mPackageStatusReceiver, mIntentFilter);
 
         final ContentResolver resolver = getContentResolver();
 
@@ -390,6 +423,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         RotationPolicy.unregisterRotationPolicyListener(getActivity(),
                 mRotationPolicyListener);
+        getActivity().unregisterReceiver(mPackageStatusReceiver);
 
         // Display rotation observer
         getContentResolver().unregisterContentObserver(mAccelerometerRotationObserver);
@@ -444,7 +478,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private void updatePeekCheckbox() {
         boolean enabled = Settings.System.getInt(getContentResolver(),
                 Settings.System.PEEK_STATE, 0) == 1;
-        mNotificationPeek.setChecked(enabled);
+        mNotificationPeek.setChecked(enabled && !isPeekAppInstalled());
+        mNotificationPeek.setEnabled(!isPeekAppInstalled());
     }
 
     public void writeFontSizePreference(Object objValue) {
@@ -513,6 +548,18 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             }
         }
         return false;
+    }
+
+    public class PackageStatusReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals(Intent.ACTION_PACKAGE_ADDED)) {
+                updatePeekCheckbox();
+            } else if(action.equals(Intent.ACTION_PACKAGE_REMOVED)) {
+                updatePeekCheckbox();
+            }
+        }
     }
 
     /**
