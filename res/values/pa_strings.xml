@@ -1294,4 +1294,8 @@
     <string name="background_result_successful">Background changed</string>
     <string name="background_result_not_successful">Background not changed</string>
     <string name="setting_lockscreen_background">Applying background</string>
+
+    <!-- Proximity work-around -->
+    <string name="is_inaccurate_proximity_title" translatable="false">Inaccurate proximity</string>
+    <string name="is_inaccurate_proximity_summary" translatable="false">Work-around for inaccurate proximity sensors: this will force phone to turn on the screen after the call has ended.</string>
 </resources>

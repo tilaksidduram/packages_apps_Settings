@@ -116,6 +116,12 @@
         android:summary="@string/status_bar_double_tap_to_sleep_summary"
         android:defaultValue="false" />
 
+        <!-- Proximity wake workaround -->
+        <CheckBoxPreference
+        android:key="is_inaccurate_proximity"
+        android:title="@string/is_inaccurate_proximity_title"
+        android:summary="@string/is_inaccurate_proximity_summary" />
+
         <!-- Notifications -->
         <PreferenceCategory
             android:key="notification_category"

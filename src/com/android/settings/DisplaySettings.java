@@ -68,6 +68,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
     private static final String KEY_FONT_SIZE = "font_size";
+    private static final String KEY_IS_INACCURATE_PROXIMITY = "is_inaccurate_proximity";
     private static final String KEY_BATTERY_LIGHT = "battery_light";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_SCREEN_SAVER = "screensaver";
@@ -87,6 +88,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mWakeWhenPluggedOrUnplugged;
     private CheckBoxPreference mNotificationPeek;
     private FontDialogPreference mFontSizePref;
+    private CheckBoxPreference mInaccurateProximityPref;
 
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
@@ -192,6 +194,14 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         mWakeWhenPluggedOrUnplugged =
                 (CheckBoxPreference) findPreference(KEY_WAKE_WHEN_PLUGGED_OR_UNPLUGGED);
+
+        // In-accurate proximity
+        mInaccurateProximityPref = (CheckBoxPreference) findPreference(KEY_IS_INACCURATE_PROXIMITY);
+        if (mInaccurateProximityPref != null) {
+            mInaccurateProximityPref.setChecked(Settings.System.getInt(resolver,
+                    Settings.System.INACCURATE_PROXIMITY_WORKAROUND, 0) == 1);
+            mInaccurateProximityPref.setOnPreferenceChangeListener(this);
+        }
 
         mNotificationPeek = (CheckBoxPreference) findPreference(KEY_PEEK);
         mNotificationPeek.setPersistent(false);
@@ -520,9 +530,12 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
-        }
-        if (KEY_FONT_SIZE.equals(key)) {
+        } else if (KEY_FONT_SIZE.equals(key)) {
             writeFontSizePreference(objValue);
+        } else if (KEY_IS_INACCURATE_PROXIMITY.equals(key)) {
+             Settings.System.putInt(getContentResolver(),
+                     Settings.System.INACCURATE_PROXIMITY_WORKAROUND,
+                     ((Boolean) objValue).booleanValue() ? 1 : 0);
         }
         if (KEY_SCREEN_OFF_ANIMATION.equals(key)) {
             int value = Integer.parseInt((String) objValue);
