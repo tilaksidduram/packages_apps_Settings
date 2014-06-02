@@ -40,13 +40,6 @@
 	android:key="statusbar_settings"
 	android:icon="@drawable/ic_pa_statusbar"/>
 
-    <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
-	android:key="headset_connect_player"
-	android:title="@string/headset_connect_player_title"
-	android:icon="@drawable/ic_pa_headset"
-	android:summary="@string/headset_connect_player_summary"
-	android:defaultValue="false" />
-
     </PreferenceCategory>
 
     <PreferenceCategory

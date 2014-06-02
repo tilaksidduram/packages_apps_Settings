@@ -275,4 +275,10 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         mRecentPanelExpandedMode.setValue(recentExpandedMode + "");
 
     }
+
+    public static boolean hasItems() {
+        return DisplayColor.isSupported() ||
+               DisplayGamma.isSupported() ||
+               VibratorIntensity.isSupported();
+    }
 }

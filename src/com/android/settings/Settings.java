@@ -74,6 +74,7 @@ import com.android.settings.applications.ManageApplications;
 import com.android.settings.applications.ProcessStatsUi;
 import com.android.settings.bluetooth.BluetoothEnabler;
 import com.android.settings.bluetooth.BluetoothSettings;
+import com.android.settings.cyanogenmod.MoreDeviceSettings;
 import com.android.settings.deviceinfo.Memory;
 import com.android.settings.deviceinfo.UsbSettings;
 import com.android.settings.fuelgauge.PowerUsageSummary;
@@ -371,6 +372,7 @@ public class Settings extends PreferenceActivity
         KeyboardLayoutPickerFragment.class.getName(),
         ApnSettings.class.getName(),
         QuietHours.class.getName(),
+        MoreDeviceSettings.class.getName(),
         ThemeSettings.class.getName()
     };
 
@@ -646,6 +648,10 @@ public class Settings extends PreferenceActivity
                     target.remove(header);
             } else if (id == R.id.voice_wakeup_settings) {
                 if(!Utils.isPackageInstalled(this, VOICE_WAKEUP_PACKAGE_NAME)) {
+                    target.remove(header);
+                }
+            } else if (id == R.id.more_device_settings) {
+                if (!MoreDeviceSettings.hasItems()) {
                     target.remove(header);
                 }
             }
