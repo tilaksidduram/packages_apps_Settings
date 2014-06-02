@@ -90,6 +90,7 @@ public class Processor extends SettingsPreferenceFragment implements
     private Handler mCurCPUHandler = new Handler() {
         public void handleMessage(Message msg) {
             mCurFrequencyPref.setSummary(toMHz((String) msg.obj));
+            updateCpufreqValues();
         }
     };
 
@@ -185,11 +186,8 @@ public class Processor extends SettingsPreferenceFragment implements
         }
     }
 
-    @Override
-    public void onResume() {
+    private void updateCpufreqValues() {
         String temp;
-
-        super.onResume();
 
         if (Utils.fileExists(FREQ_MIN_FILE) && (temp = Utils.fileReadOneLine(FREQ_MIN_FILE)) != null) {
             mMinFrequencyPref.setValue(temp);
@@ -204,6 +202,13 @@ public class Processor extends SettingsPreferenceFragment implements
         if (Utils.fileExists(GOV_FILE) && (temp = Utils.fileReadOneLine(GOV_FILE)) != null) {
             mGovernorPref.setSummary(String.format(mGovernorFormat, temp));
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initFreqCapFiles();
+        updateCpufreqValues();
     }
 
     @Override
