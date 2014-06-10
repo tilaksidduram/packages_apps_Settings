@@ -207,7 +207,6 @@ public class Processor extends SettingsPreferenceFragment implements
     @Override
     public void onResume() {
         super.onResume();
-        initFreqCapFiles();
         updateCpufreqValues();
     }
 
