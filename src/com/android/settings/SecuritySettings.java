@@ -74,7 +74,6 @@ public class SecuritySettings extends RestrictedSettingsFragment
     private static final String KEY_ENABLE_WIDGETS = "keyguard_enable_widgets";
     private static final String KEY_VISIBLE_GESTURE = "visiblegesture";
     private static final String KEY_SEE_THROUGH = "see_through";
-    private static final String KEY_BLUR_RADIUS = "blur_radius";
     private static final String LOCK_BEFORE_UNLOCK = "lock_before_unlock";
     private static final String LOCK_NUMPAD_RANDOM = "lock_numpad_random";
 
@@ -123,7 +122,6 @@ public class SecuritySettings extends RestrictedSettingsFragment
     private CheckBoxPreference mEnableKeyguardWidgets;
     private CheckBoxPreference mVisibleGesture;
     private CheckBoxPreference mSeeThrough;
-    private SeekBarPreference mBlurRadius;
     private CheckBoxPreference mMaximizeKeyguardWidgets;
     private CheckBoxPreference mMenuUnlock;
     private CheckBoxPreference mLockBeforeUnlock;
@@ -242,11 +240,10 @@ public class SecuritySettings extends RestrictedSettingsFragment
 
         // lockscreen see through
         mSeeThrough = (CheckBoxPreference) root.findPreference(KEY_SEE_THROUGH);
-        mBlurRadius = (SeekBarPreference) root.findPreference(KEY_BLUR_RADIUS);
-        mBlurRadius.setProgress(Settings.System.getInt(getContentResolver(), 
-                Settings.System.LOCKSCREEN_BLUR_RADIUS, 12));
-        mBlurRadius.setOnPreferenceChangeListener(this);
-        mBlurRadius.setEnabled(mSeeThrough.isChecked() && mSeeThrough.isEnabled());
+        if (mSeeThrough != null) {
+            mSeeThrough.setChecked(Settings.System.getInt(getContentResolver(),
+                    Settings.System.LOCKSCREEN_SEE_THROUGH, 0) == 1);
+        }
 
         // Menu Unlock
         mMenuUnlock = (CheckBoxPreference) root.findPreference(MENU_UNLOCK_PREF);
@@ -737,7 +734,6 @@ public class SecuritySettings extends RestrictedSettingsFragment
         } else if (preference == mSeeThrough) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SEE_THROUGH,
                     mSeeThrough.isChecked() ? 1 : 0);
-	    mBlurRadius.setEnabled(mSeeThrough.isChecked());
         } else if (KEY_TOGGLE_VERIFY_APPLICATIONS.equals(key)) {
             Settings.Global.putInt(getContentResolver(), Settings.Global.PACKAGE_VERIFIER_ENABLE,
                     mToggleVerifyApps.isChecked() ? 1 : 0);
