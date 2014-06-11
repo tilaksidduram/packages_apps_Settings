@@ -787,8 +787,6 @@ public class SecuritySettings extends RestrictedSettingsFragment
                 Log.e("SecuritySettings", "could not persist lockAfter timeout setting", e);
             }
             updateLockAfterPreferenceSummary();
-        } else if (preference == mBlurRadius) {
-            Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_BLUR_RADIUS, (Integer)value);
         } else if (preference == mLockNumpadRandom) {
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.LOCK_NUMPAD_RANDOM,
