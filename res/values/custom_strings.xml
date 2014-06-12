@@ -934,4 +934,8 @@
     <string name="reset_temasek">temasek</string>
     <string name="reset_android">Android</string>
 
+    <!-- CM Extra Info -->
+    <string name="cmextrainfo">Extra information</string>
+    <string name="cmextrainfo_summary">Display extra info for cpu, display, etc</string>
+
 </resources>
