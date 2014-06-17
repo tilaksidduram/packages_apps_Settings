@@ -92,6 +92,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String RECENT_MENU_CLEAR_ALL_LOCATION = "recent_menu_clear_all_location";
     private static final String CUSTOM_RECENT_MODE = "custom_recent_mode";
 
+    private static final String RECENT_PANEL_SHOW_TOPMOST = "recent_panel_show_topmost";
     private static final String RECENT_PANEL_LEFTY_MODE = "recent_panel_lefty_mode";
     private static final String RECENT_PANEL_SCALE = "recent_panel_scale";
     private static final String RECENT_PANEL_EXPANDED_MODE = "recent_panel_expanded_mode";
@@ -102,6 +103,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private ListPreference mRecentClearAllPosition;
     private CheckBoxPreference mRecentClearAll;
     private CheckBoxPreference mRecentsCustom;
+    private CheckBoxPreference mRecentsShowTopmost;
     private CheckBoxPreference mRecentPanelLeftyMode;
     private ListPreference mRecentPanelScale;
     private ListPreference mRecentPanelExpandedMode;
@@ -233,6 +235,11 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
                     Settings.System.RECENT_PANEL_GRAVITY,
                     ((Boolean) objValue) ? Gravity.LEFT : Gravity.RIGHT);
             return true;
+        } else if (preference == mRecentsShowTopmost) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.RECENT_PANEL_SHOW_TOPMOST,
+                    ((Boolean) objValue) ? 1 : 0);
+            return true;
 	} else {
             return false;
         }
@@ -246,6 +253,12 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     }
 
     private void initializeAllPreferences() {
+        boolean enableRecentsShowTopmost = Settings.System.getInt(getContentResolver(),
+                                      Settings.System.RECENT_PANEL_SHOW_TOPMOST, 0) == 1;
+        mRecentsShowTopmost = (CheckBoxPreference) findPreference(RECENT_PANEL_SHOW_TOPMOST);
+        mRecentsShowTopmost.setChecked(enableRecentsShowTopmost);
+        mRecentsShowTopmost.setOnPreferenceChangeListener(this);
+
         mRecentPanelLeftyMode =
                 (CheckBoxPreference) findPreference(RECENT_PANEL_LEFTY_MODE);
         mRecentPanelLeftyMode.setOnPreferenceChangeListener(this);
