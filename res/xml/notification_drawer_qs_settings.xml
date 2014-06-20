@@ -27,6 +27,10 @@
         android:title="@string/notification_style_title"
         android:summary="@string/notification_style_summary" />
 
+    <PreferenceScreen
+        android:key="heads_up"
+        android:fragment="com.android.settings.headsup.HeadsUpDoNotDisturbSettings"
+        android:title="@string/category_heads_up" />
 
     <CheckBoxPreference
 	android:key="noti_reminder_enabled"
