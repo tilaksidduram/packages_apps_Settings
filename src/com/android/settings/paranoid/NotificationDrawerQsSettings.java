@@ -49,7 +49,6 @@ import java.util.regex.Pattern;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.util.paranoid.DeviceUtils;
-import com.android.settings.cyanogenmod.SystemSettingSwitchPreference;
 
 public class NotificationDrawerQsSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -61,7 +60,7 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment imp
     private static final String PREF_NOTI_REMINDER_INTERVAL = "noti_reminder_interval";
     private static final String PREF_NOTI_REMINDER_RINGTONE = "noti_reminder_ringtone";
 
-    private SystemSettingSwitchPreference mSwitchPreference;
+    private Preference mHeadsUp;
 
     CheckBoxPreference mReminder;
     ListPreference mReminderMode;
@@ -74,8 +73,7 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment imp
 
         addPreferencesFromResource(R.xml.notification_drawer_qs_settings);
 
-        mSwitchPreference = (SystemSettingSwitchPreference)
-                findPreference(Settings.System.HEADS_UP_NOTIFICATION);
+        mHeadsUp = findPreference(Settings.System.HEADS_UP_NOTIFICATION);
 
         mReminder = (CheckBoxPreference) findPreference(PREF_NOTI_REMINDER_ENABLED);
         mReminder.setChecked(Settings.System.getIntForUser(getContentResolver(),
@@ -117,10 +115,11 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment imp
     @Override
     public void onResume() {
         super.onResume();
-        boolean headsUpEnabled = Settings.System.getIntForUser(
-                getActivity().getContentResolver(),
-                Settings.System.HEADS_UP_NOTIFICATION, 0, UserHandle.USER_CURRENT) == 1;
-        mSwitchPreference.setChecked(headsUpEnabled);
+
+        boolean headsUpEnabled = Settings.System.getInt(
+                getContentResolver(), Settings.System.HEADS_UP_NOTIFICATION, 0) == 1;
+        mHeadsUp.setSummary(headsUpEnabled
+                ? R.string.summary_heads_up_enabled : R.string.summary_heads_up_disabled);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {

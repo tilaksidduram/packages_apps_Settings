@@ -27,11 +27,10 @@
         android:title="@string/notification_style_title"
         android:summary="@string/notification_style_summary" />
 
-    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+    <Preference
         android:key="heads_up_enabled"
         android:fragment="com.android.settings.headsup.HeadsUpSettings"
-        android:title="@string/category_heads_up"
-        android:summary="@string/summary_heads_up" />
+        android:title="@string/category_heads_up" />
 
     <CheckBoxPreference
 	android:key="noti_reminder_enabled"
