@@ -87,6 +87,10 @@
     <string name="battery_light_medium_color_title">Charging</string>
     <string name="battery_light_full_color_title">Fully charged</string>
 
+    <!-- Proximity wake -->
+    <string name="proximity_wake_title">Proximity wake-up</string>
+    <string name="proximity_wake_summary">Use proximity sensor to help decide whether to wake device up</string>
+
     <!-- button settings -->
     <string name="button_headsethook_title">Headset</string>
     <string name="button_headsethook_launch_voice_title">Headset launches voice</string>
