@@ -326,7 +326,6 @@ public class SearchPopulator extends IntentService {
             int fragmentIndex = c.getColumnIndex(DatabaseContract.Settings.ACTION_FRAGMENT);
             int titleIndex = c.getColumnIndex(DatabaseContract.Settings.ACTION_TITLE);
             int iconIndex = c.getColumnIndex(DatabaseContract.Settings.ACTION_ICON);
-            int parentIndex = c.getColumnIndex(DatabaseContract.Settings.ACTION_PARENT_TITLE);
             int headerIndex = c.getColumnIndex(DatabaseContract.Settings.ACTION_HEADER);
 
             while (c.moveToNext()) {
