@@ -68,6 +68,11 @@
 	android:key="status_bar_notif_count"
 	android:defaultValue="false" />
 
+    <PreferenceScreen
+        android:id="@+id/weather"
+        android:title="@string/weather_settings_title"
+        android:fragment="com.android.settings.du.Weather" />
+
    </PreferenceCategory>
 
     <!-- Network traffic meter -->
