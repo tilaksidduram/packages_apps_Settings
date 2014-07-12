@@ -51,7 +51,6 @@ public class SettingsSearchFilterAdapter extends ArrayAdapter<SearchInfo> implem
         public String fragment;
         public String title;
         public int iconRes;
-        public String key;
     }
 
     public SettingsSearchFilterAdapter(Context context, int resourceId,

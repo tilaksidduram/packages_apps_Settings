@@ -55,7 +55,6 @@ public class SearchPopulator extends IntentService {
     private static final String TAG = SearchPopulator.class.getSimpleName();
 
     public static final String EXTRA_NOTIFIER = "notifier";
-    public static final String EXTRA_PREF_KEY = "pref_key";
 
     protected static final String LAST_PACKAGE_HASH = "last_package_hash";
     private ResultReceiver mNotifier;
@@ -283,8 +282,6 @@ public class SearchPopulator extends IntentService {
                     }
                 }
 
-                String key = sa.getString(com.android.internal.R.styleable.Preference_key);
-
                 boolean excludeFromSearch = se.getBoolean(
                         com.android.settings.R.styleable.SearchableInfo_excludeFromSearch, false);
                 if (excludeFromSearch) {
@@ -299,14 +296,14 @@ public class SearchPopulator extends IntentService {
                     populateFromXml(subXmlId, null, level + 1, header.iconRes,
                             fragment);
                     dbHelper.insertEntry(preferenceTitle, level, fragment,
-                            header.iconRes, key);
+                            header.iconRes);
                 } else if (header != null) {
                     header.title = preferenceTitle;
                     header.titleRes = 0;
-                    dbHelper.insertHeader(header, key);
+                    dbHelper.insertHeader(header);
                 } else {
                     dbHelper.insertEntry(preferenceTitle, level, prefFragment,
-                            iconRes, key);
+                            iconRes);
 
                 }
 
@@ -330,7 +327,7 @@ public class SearchPopulator extends IntentService {
             int titleIndex = c.getColumnIndex(DatabaseContract.Settings.ACTION_TITLE);
             int iconIndex = c.getColumnIndex(DatabaseContract.Settings.ACTION_ICON);
             int headerIndex = c.getColumnIndex(DatabaseContract.Settings.ACTION_HEADER);
-            int keyIndex = c.getColumnIndex(DatabaseContract.Settings.ACTION_KEY);
+
             while (c.moveToNext()) {
                 byte[] data = c.getBlob(headerIndex);
                 SearchInfo info = new SearchInfo();
@@ -347,7 +344,6 @@ public class SearchPopulator extends IntentService {
                 info.fragment = c.getString(fragmentIndex);
                 info.title = c.getString(titleIndex);
                 info.iconRes = c.getInt(iconIndex);
-                info.key = c.getString(keyIndex);
                 infos.add(info);
             }
             c.close();
