@@ -46,9 +46,11 @@ public class SettingsAutoCompleteTextView extends AutoCompleteTextView
     }
 
     private void create() {
-        mClearButton = getResources().getDrawable(R.drawable.ic_action_content_remove);
+        mClearButton = getResources().getDrawable(
+                R.drawable.ic_action_content_remove);
 
-        setCompoundDrawablesWithIntrinsicBounds(null, null, mClearButton, null);
+        this.setCompoundDrawablesWithIntrinsicBounds(null, null,
+                mClearButton, null);
 
         // set touch listener
         setOnTouchListener(this);
@@ -56,14 +58,16 @@ public class SettingsAutoCompleteTextView extends AutoCompleteTextView
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
+        SettingsAutoCompleteTextView settingsAutoCompleteTextView = SettingsAutoCompleteTextView.this;
+
         if (motionEvent.getAction() != MotionEvent.ACTION_UP)
             return false;
 
-        int clearButtonStart = getWidth() - getPaddingRight()
-                - mClearButton.getIntrinsicWidth();
-        if (motionEvent.getX() > clearButtonStart) {
+        if (motionEvent.getX() > settingsAutoCompleteTextView.getWidth()
+                - settingsAutoCompleteTextView.getPaddingRight()
+                - mClearButton.getIntrinsicWidth()) {
             // clear text
-            setText("");
+            settingsAutoCompleteTextView.setText("");
         }
         return false;
     }

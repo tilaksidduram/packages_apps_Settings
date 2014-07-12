@@ -33,10 +33,10 @@ public class SettingsSearchDatabaseHelper extends SQLiteOpenHelper {
     protected static final int DATABASE_VERSION = 1;
     private Context mContext;
 
-    public static SettingsSearchDatabaseHelper getInstance(Context context) {
+    public static SettingsSearchDatabaseHelper getInstance(Context ctx) {
         if (mInstance == null) {
             mInstance = new SettingsSearchDatabaseHelper(
-                    context.getApplicationContext(), DATABASE_VERSION);
+                    ctx.getApplicationContext(), DATABASE_VERSION);
         }
         return mInstance;
     }
@@ -79,7 +79,7 @@ public class SettingsSearchDatabaseHelper extends SQLiteOpenHelper {
         if (!TextUtils.isEmpty(header.title)) {
             title = header.title.toString();
         } else if (header.titleRes != 0) {
-            title = mContext.getString(header.titleRes);
+            title = mContext.getResources().getString(header.titleRes);
         }
         if (TextUtils.isEmpty(title)) {
             return;

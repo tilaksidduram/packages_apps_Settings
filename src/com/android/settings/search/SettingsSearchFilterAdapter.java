@@ -24,11 +24,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 
 import com.android.settings.R;
 import com.android.settings.search.SettingsSearchFilterAdapter.SearchInfo;
@@ -37,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SettingsSearchFilterAdapter extends ArrayAdapter<SearchInfo> implements Filterable {
+
     private List<SearchInfo> mOriginalValues;
     private List<SearchInfo> mObjects;
     private Filter mFilter;
@@ -53,8 +50,7 @@ public class SettingsSearchFilterAdapter extends ArrayAdapter<SearchInfo> implem
         public int iconRes;
     }
 
-    public SettingsSearchFilterAdapter(Context context, int resourceId,
-            ArrayList<SearchInfo> infos) {
+    public SettingsSearchFilterAdapter(Context context, int resourceId, ArrayList<SearchInfo> infos) {
         super(context, resourceId, infos);
         mOriginalValues = new ArrayList<SearchInfo>(infos);
         mObjects = new ArrayList<SearchInfo>(mOriginalValues);
@@ -69,13 +65,14 @@ public class SettingsSearchFilterAdapter extends ArrayAdapter<SearchInfo> implem
         ViewHolder holder;
 
         if (v == null) {
-            LayoutInflater inflater = LayoutInflater.from(mContext);
-            v = inflater.inflate(mResId, null);
+            LayoutInflater vi = (LayoutInflater) mContext.getSystemService(
+                    Context.LAYOUT_INFLATER_SERVICE);
+            v = vi.inflate(mResId, null);
             holder = new ViewHolder();
             holder.imageView = (ImageView) v.findViewById(R.id.autocomplete_image);
             holder.titleView = (TextView)  v.findViewById(R.id.autocomplete_title);
             v.setTag(holder);
-        } else {
+        }else {
             holder = (ViewHolder) v.getTag();
         }
 
@@ -100,11 +97,10 @@ public class SettingsSearchFilterAdapter extends ArrayAdapter<SearchInfo> implem
 
     @Override
     public int getCount() {
-        if (mObjects == null) {
+        if(mObjects == null)
             return 0;
-        } else {
+        else
             return mObjects.size();
-        }
     }
 
     @Override
@@ -113,6 +109,10 @@ public class SettingsSearchFilterAdapter extends ArrayAdapter<SearchInfo> implem
     }
 
     @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
+
     public Filter getFilter() {
         if (mFilter == null) {
             mFilter = new CustomFilter();
@@ -120,35 +120,39 @@ public class SettingsSearchFilterAdapter extends ArrayAdapter<SearchInfo> implem
         return mFilter;
     }
 
-    private static String removeNonAlphaNumeric(String s) {
-        return s.replaceAll("[^A-Za-z0-9]", "");
-    }
-
     private static class ViewHolder {
         private ImageView imageView;
         private TextView titleView;
     }
 
+    private String removeNonAlphaNumeric(String s) {
+        return s.replaceAll("[^A-Za-z0-9]", "");
+    }
+
     private class CustomFilter extends Filter {
+
         @Override
-        protected Filter.FilterResults performFiltering(CharSequence constraint) {
-            Filter.FilterResults results = new Filter.FilterResults();
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
 
             if (constraint == null) {
                 return results;
             }
 
-            String actualConstraint = constraint.toString().trim().toLowerCase();
-            if (actualConstraint.length() > 0) {
-                String filteredConstraint = removeNonAlphaNumeric(actualConstraint);
-                ArrayList<SearchInfo> newValues = new ArrayList<SearchInfo>();
+            constraint = constraint.toString().trim();
 
+            if (constraint.length() == 0) {
+                return results;
+            } else {
+                String filteredConstraint = removeNonAlphaNumeric(constraint.toString());
+                ArrayList<SearchInfo> newValues = new ArrayList<SearchInfo>();
                 for (int i = 0; i < mOriginalValues.size(); i++) {
                     SearchInfo item = mOriginalValues.get(i);
-                    String title = item.title.toString().toLowerCase();
-                    String filteredTitle = removeNonAlphaNumeric(title);
-                    if (title.contains(actualConstraint) ||
-                            filteredTitle.contains(filteredConstraint)) {
+                    String filteredTitle = removeNonAlphaNumeric(item.title.toString());
+                    if (item.title.toString().toLowerCase().contains(
+                            constraint.toString().toLowerCase()) ||
+                            filteredTitle.toLowerCase().contains(
+                                    filteredConstraint.toLowerCase())) {
                         newValues.add(item);
                     }
                 }
@@ -161,7 +165,7 @@ public class SettingsSearchFilterAdapter extends ArrayAdapter<SearchInfo> implem
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint,
-                Filter.FilterResults results) {
+                                      FilterResults results) {
             mObjects = (List<SearchInfo>) results.values;
             notifyDataSetChanged();
         }
