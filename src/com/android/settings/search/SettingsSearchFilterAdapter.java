@@ -121,7 +121,7 @@ public class SettingsSearchFilterAdapter extends ArrayAdapter<SearchInfo> implem
     }
 
     private static String removeNonAlphaNumeric(String s) {
-        return s.replaceAll("[^\\p{L}\\p{Nd}]+", "");
+        return s.replaceAll("[^A-Za-z0-9]", "");
     }
 
     private static class ViewHolder {
