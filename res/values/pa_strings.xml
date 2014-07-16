@@ -349,6 +349,10 @@
     <string name="navigation_bar_summary">Enable or Disable the Navigation Bar.</string>
     <string name="navigation_bar_height">Navigation bar height:</string>
 
+    <!-- S-Pen -->
+    <string name="enable_navbar_spen_title">Enable navigation bar</string>
+    <string name="enable_navbar_spen_summary">Enable navigation bar when s-pen is in use</string>
+
     <!-- Minimum Vibration Duration -->
     <string name="minimum_vibration_duration">Minimum vibration duration</string>
 
