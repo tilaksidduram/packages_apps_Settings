@@ -146,6 +146,7 @@
     <string name="battery_bar_percent">Bar &amp; percent</string>
     <string name="battery_circle">Circle</string>
     <string name="battery_circle_percent">Circle &amp; percent</string>
+    <string name="battery_hidden">Hidden</string>
 
     <!-- Low battery warning policy -->
     <string name="pref_low_battery_warning_policy_title">Low battery warning</string>
