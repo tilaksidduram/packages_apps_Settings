@@ -537,4 +537,12 @@
     <string name="no_media_notification_summary">Show notification when storage media is removed</string>
     <string name="mount_notification_title">Mount notification</string>
     <string name="mount_notification_summary">Display ongoing notification for mounted storage</string>
+
+    <!-- Smart cover -->
+    <string name="smart_cover_title">Smart cover</string>
+    <string name="lid_settings_title">Lid</string>
+    <string name="lid_controls_sleep_title">Control sleep</string>
+    <string name="lid_controls_sleep_summary">Turn screen off when lid closes</string>
+    <string name="lid_controls_wake_title">Control wake</string>
+    <string name="lid_controls_wake_summary">Turn screen on when lid opens</string>
 </resources>
