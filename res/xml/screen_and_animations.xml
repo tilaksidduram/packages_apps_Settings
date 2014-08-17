@@ -9,6 +9,13 @@
         android:key="screen_and_animations"
         android:title="@string/screen_and_animations_title" >
 
+        <!-- overscroll effects -->
+        <PreferenceScreen
+            android:key="overscroll_effects"
+            android:title="@string/ui_overscroll_title"
+            android:summary="@string/overscroll_weight_summary"
+            android:fragment="com.android.settings.temasek.OverscrollEffects" />
+
         <!-- Torch Settings -->
         <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
             android:key="disable_torch_on_screen_off"
