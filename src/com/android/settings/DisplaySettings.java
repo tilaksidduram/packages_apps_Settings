@@ -193,7 +193,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         mSunlightEnhancement = (CheckBoxPreference) findPreference(KEY_SUNLIGHT_ENHANCEMENT);
         if (!isSunlightEnhancementSupported()) {
-            advancedPrefs.removePreference(mSunlightEnhancement);
+            getPreferenceScreen().removePreference(mSunlightEnhancement);
             mSunlightEnhancement = null;
         }
 
