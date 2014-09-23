@@ -1852,6 +1852,7 @@
 
         <!-- PAC-Rom activities Starts -->
         <activity android:name=".pac.AppSidebar" />
+	<activity android:name=".pac.AppCircleBar" />
         <!-- PAC-Rom activities End -->
 
         <!-- CyanogenMod activities Start -->

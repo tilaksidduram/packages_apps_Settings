@@ -51,17 +51,10 @@
 	android:icon="@drawable/ic_pa_animations"
         android:title="@string/interface_animation_title"/>
 
-    <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+    <PreferenceScreen
         android:key="enable_app_circle_bar"
-        android:title="@string/app_circle_bar_title"
-        android:summary="@string/app_circle_bar_summary" />
-
-    <com.android.settings.chameleonos.AppMultiSelectListPreference
-        android:key="app_circle_bar_included_apps"
-        android:persistent="false"
-        android:title="@string/app_circle_bar_included_apps_title"
-        android:summary="@string/app_circle_bar_included_apps_summary"
-        android:dependency="enable_app_circle_bar" />
+        android:fragment="com.android.settings.pac.AppCircleBar"
+        android:title="@string/app_circle_bar_title" />
 
     <PreferenceScreen
         android:key="@+id/app_sidebar"
