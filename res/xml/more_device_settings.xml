@@ -23,22 +23,19 @@
 	android:title="@string/pa_settings_userinterface_title">
 
     <PreferenceScreen
-        android:fragment="com.android.settings.paranoid.NotificationDrawerQsSettings"
         android:key="notification_drawer_qs_settings"
-	android:icon="@drawable/ic_pa_notification"
+        android:fragment="com.android.settings.paranoid.NotificationDrawerQsSettings"
         android:title="@string/pa_settings_notification_title"/>
 
     <PreferenceScreen
-        android:fragment="com.android.settings.AOSPAL.LockscreenOptions"
         android:key="keyguard_style"
-	android:icon="@drawable/ic_pa_lockscreen"
+        android:fragment="com.android.settings.AOSPAL.LockscreenOptions"
         android:title="@string/pa_settings_lockscreen_title"/>
 
     <PreferenceScreen
-        android:fragment="com.android.settings.paranoid.StatusBarSettings"
-        android:title="@string/pa_settings_statusbar_title"
 	android:key="statusbar_settings"
-	android:icon="@drawable/ic_pa_statusbar"/>
+        android:fragment="com.android.settings.paranoid.StatusBarSettings"
+        android:title="@string/pa_settings_statusbar_title"/>
 
     </PreferenceCategory>
 
@@ -46,9 +43,8 @@
 	android:title="@string/pa_settings_system_title">
 
     <PreferenceScreen
-        android:fragment="com.android.settings.AOSPAL.AnimationSettings"
         android:key="animation_settings"
-	android:icon="@drawable/ic_pa_animations"
+        android:fragment="com.android.settings.AOSPAL.AnimationSettings"
         android:title="@string/interface_animation_title"/>
 
     <PreferenceScreen
@@ -59,12 +55,15 @@
     <PreferenceScreen
         android:key="@+id/app_sidebar"
         android:fragment="com.android.settings.pac.AppSidebar"
-        android:title="@string/app_sidebar_title"
-        android:icon="@drawable/ic_settings_appsidebar" />
+        android:title="@string/app_sidebar_title"/>
+
+    <PreferenceScreen
+        android:key="interface_voice_tts"
+        android:fragment="com.android.settings.cyanogenmod.TtsNotification"
+        android:title="@string/voice_tts_title" />
 
      <CheckBoxPreference
 	android:key="ram_usage_bar"
-	android:icon="@drawable/ic_pa_recents"
 	android:title="@string/ram_bar_title"
 	android:summary="@string/ram_bar_summary"
 	android:defaultValue="true" />
@@ -118,23 +117,15 @@
 	android:summary="@string/recent_panel_scale_summary"
 	android:persistent="false" />
 
-    <PreferenceScreen
-        android:key="interface_voice_tts"
-        android:fragment="com.android.settings.cyanogenmod.TtsNotification"
-	android:icon="@drawable/ic_pa_drivingmode"
-        android:title="@string/voice_tts_title" />
+      <PreferenceScreen
+	android:id="@+id/screen_state_service"
+	android:title="@string/screen_state_toggles_title"
+	android:fragment="com.android.settings.du.ScreenStateToggles" />
 
       <PreferenceScreen
 	android:id="@+id/wakelock_blocker"
-	android:layout="@layout/preference_wakelockblocker"
 	android:title="@string/wakelock_blocker"
 	android:fragment="com.android.settings.du.WakeLockBlocker" />
-
-      <PreferenceScreen
-	android:id="@+id/screen_state_service"
-	android:layout="@layout/preference_suspend"
-	android:title="@string/screen_state_toggles_title"
-	android:fragment="com.android.settings.du.ScreenStateToggles" />
 
     </PreferenceCategory>
 
@@ -144,21 +135,16 @@
      <PreferenceScreen
 	android:key="gesture_anywhere"
 	android:fragment="com.android.settings.chameleonos.labs.gestureanywhere.GestureAnywhereSettings"
-	android:icon="@drawable/ic_dt_gesture_anywhere"
 	android:title="@string/gesture_anywhere_title" />
 
      <Preference
 	android:key="buildprop_modder"
 	android:title="@string/propmodder_title"
-	android:icon="@drawable/ic_dt_buildprop"
-	android:layout="@layout/preference_buildprop"
 	android:fragment="com.android.settings.cyanogenmod.PropModder"/>
 
      <PreferenceScreen
 	android:id="@+id/system_app_remover"
-	android:icon="@drawable/ic_settings_slim_sizer"
 	android:title="@string/system_app_remover"
-	android:layout="@layout/preference_systemappremover"
 	android:fragment="com.android.settings.du.SystemappRemover" />
 
     </PreferenceCategory>
@@ -167,19 +153,19 @@
         android:key="display_calibration_category"
         android:title="@string/display_calibration_title" >
 
-       <com.android.settings.hardware.DisplayColor
-                android:key="color_calibration"
-                android:title="@string/color_calibration_title"
-                android:dialogTitle="@string/color_calibration_title"
-                android:summary="@string/color_calibration_summary"
-                android:persistent="false" />
+    <com.android.settings.hardware.DisplayColor
+        android:key="color_calibration"
+        android:title="@string/color_calibration_title"
+        android:dialogTitle="@string/color_calibration_title"
+        android:summary="@string/color_calibration_summary"
+        android:persistent="false" />
 
-        <com.android.settings.hardware.DisplayGamma
-                android:key="gamma_tuning"
-                android:title="@string/gamma_tuning_title_head"
-                android:dialogTitle="@string/gamma_tuning_title_head"
-                android:summary="@string/gamma_tuning_summary_head"
-                android:persistent="false" />
+    <com.android.settings.hardware.DisplayGamma
+        android:key="gamma_tuning"
+        android:title="@string/gamma_tuning_title_head"
+        android:dialogTitle="@string/gamma_tuning_title_head"
+        android:summary="@string/gamma_tuning_summary_head"
+        android:persistent="false" />
 
     </PreferenceCategory>
 
@@ -187,11 +173,11 @@
         android:key="sensors_motors_category"
         android:title="@string/sensors_motors_title" >
 
-        <com.android.settings.hardware.VibratorIntensity
-            android:key="vibration_intensity"
-            android:title="@string/vibrator_intensity_title"
-            android:dialogTitle="@string/vibrator_intensity_title"
-            android:persistent="false" />
+    <com.android.settings.hardware.VibratorIntensity
+        android:key="vibration_intensity"
+        android:title="@string/vibrator_intensity_title"
+        android:dialogTitle="@string/vibrator_intensity_title"
+        android:persistent="false" />
 
     </PreferenceCategory>
 
@@ -208,27 +194,24 @@
          android:title="@string/navigation_bar"
          android:key="navigation_bar">
 
-         <CheckBoxPreference
-            android:key="enable_nav_bar"
-            android:title="@string/navigation_bar"
-            android:icon="@drawable/ic_pa_navbar"
-            android:summary="@string/navigation_bar_summary"
-            android:defaultValue="true" />
+    <CheckBoxPreference
+        android:key="enable_nav_bar"
+        android:title="@string/navigation_bar"
+        android:summary="@string/navigation_bar_summary"
+        android:defaultValue="true" />
 
-         <SeekBarPreference
-            android:key="navigation_bar_height"
-            android:title="@string/navigation_bar_height"
-            android:icon="@drawable/ic_pa_navbar_dimen"
-            android:max="100"
-            android:defaultValue="100"
-	    android:dependency="enable_nav_bar" />
+    <SeekBarPreference
+        android:key="navigation_bar_height"
+        android:title="@string/navigation_bar_height"
+        android:max="100"
+        android:defaultValue="100"
+        android:dependency="enable_nav_bar" />
 
-         <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
-            android:key="navigation_bar_left"
-            android:title="@string/navigation_bar_left_title"
-            android:icon="@drawable/ic_pa_navbar"
-            android:summary="@string/navigation_bar_left_summary"
-            android:defaultValue="false" />
+    <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+        android:key="navigation_bar_left"
+        android:title="@string/navigation_bar_left_title"
+        android:summary="@string/navigation_bar_left_summary"
+        android:defaultValue="false" />
 
    </PreferenceCategory>
 
