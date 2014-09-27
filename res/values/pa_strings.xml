@@ -1394,4 +1394,7 @@
     <string name="enable_adb_pa">Android debugging</string>
     <!-- Setting checkbox summary for Whether to enable Android debugging support on the phone -->
     <string name="enable_adb_summary_pa">Enable the Android Debug Bridge (adb) interface</string>
+
+    <!-- Viper Equalizer -->
+    <string name="equalizer_settings_title">Equalizer</string>
 </resources>

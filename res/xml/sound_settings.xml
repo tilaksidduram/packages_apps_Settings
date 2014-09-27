@@ -19,6 +19,16 @@
         android:key="sound_settings"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <!-- Equalizer -->
+    <Preference
+        android:id="@+id/equalizer_settings"
+        android:title="@string/equalizer_settings_title">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.vipercn.viper4android_v2.activity.ViPER4Android"
+            android:targetPackage="com.vipercn.viper4android_v2" />
+    </Preference> 
+
     <PreferenceScreen
         android:key="quiet_hours_settings"
         android:fragment="com.android.settings.slim.QuietHours"
