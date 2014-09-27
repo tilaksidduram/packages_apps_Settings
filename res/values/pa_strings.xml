@@ -1397,4 +1397,8 @@
 
     <!-- Viper Equalizer -->
     <string name="equalizer_settings_title">Equalizer</string>
+
+    <!-- Status Bar Carrier Logo -->
+    <string name="disable_carrier_logo">Statusbar carrier logo</string>
+    <string name="disable_carrier_logo_summary">Shows carrier logo in status bar</string>
 </resources>
