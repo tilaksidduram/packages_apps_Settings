@@ -71,6 +71,7 @@ import com.android.internal.util.paranoid.DeviceUtils;
 import java.io.File;
 import java.io.IOException;
 import com.android.settings.util.Helpers;
+import com.android.settings.util.CMDProcessor;
 
 public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -91,6 +92,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private static final String RECENT_MENU_CLEAR_ALL = "recent_menu_clear_all";
     private static final String RECENT_MENU_CLEAR_ALL_LOCATION = "recent_menu_clear_all_location";
     private static final String CUSTOM_RECENT_MODE = "custom_recent_mode";
+    private static final String DISABLE_BOOTAUDIO = "disable_bootaudio";
 
     private static final String RECENT_PANEL_SHOW_TOPMOST = "recent_panel_show_topmost";
     private static final String RECENT_PANEL_LEFTY_MODE = "recent_panel_lefty_mode";
@@ -107,6 +109,7 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mRecentPanelLeftyMode;
     private ListPreference mRecentPanelScale;
     private ListPreference mRecentPanelExpandedMode;
+    private CheckBoxPreference mDisableBootAudio;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -185,6 +188,17 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
         mRecentsCustom = (CheckBoxPreference) findPreference(CUSTOM_RECENT_MODE);
         mRecentsCustom.setChecked(enableRecentsCustom);
         mRecentsCustom.setOnPreferenceChangeListener(this);
+
+        mDisableBootAudio = (CheckBoxPreference) findPreference("disable_bootaudio");
+        if(!new File("/system/media/audio.mp3").exists() &&
+                !new File("/system/media/boot_audio").exists() ) {
+            mDisableBootAudio.setEnabled(false);
+            mDisableBootAudio.setSummary(R.string.disable_bootaudio_summary_disabled);
+        } else {
+            mDisableBootAudio.setChecked(!new File("/system/media/audio.mp3").exists());
+            if (mDisableBootAudio.isChecked())
+                mDisableBootAudio.setSummary(R.string.disable_bootaudio_summary);
+        }
     }
 
     @Override
@@ -249,6 +263,22 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment implements
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
          ContentResolver cr = getActivity().getContentResolver();
+        if (preference == mDisableBootAudio) {
+            boolean checked = ((CheckBoxPreference) preference).isChecked();
+            if (checked) {
+                Helpers.getMount("rw");
+                new CMDProcessor().su
+                        .runWaitFor("mv /system/media/audio.mp3 /system/media/boot_audio");
+                Helpers.getMount("ro");
+                preference.setSummary(R.string.disable_bootaudio_summary);
+            } else {
+                Helpers.getMount("rw");
+                new CMDProcessor().su
+                        .runWaitFor("mv /system/media/boot_audio /system/media/audio.mp3");
+                Helpers.getMount("ro");
+            }
+            return true;
+        }
          return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 

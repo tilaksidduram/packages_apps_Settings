@@ -1401,4 +1401,9 @@
     <!-- Status Bar Carrier Logo -->
     <string name="disable_carrier_logo">Statusbar carrier logo</string>
     <string name="disable_carrier_logo_summary">Shows carrier logo in status bar</string>
+
+    <!-- Disable Boot Audio -->
+    <string name="disable_bootaudio_title">Disable boot audio</string>
+    <string name="disable_bootaudio_summary">Quiet</string>
+    <string name="disable_bootaudio_summary_disabled">To enable boot audio, you must have an MP3 file at \n/system/media/audio.mp3</string>
 </resources>

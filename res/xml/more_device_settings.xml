@@ -132,15 +132,20 @@
     <PreferenceCategory
 	android:title="@string/pa_settings_misc_title">
 
-     <PreferenceScreen
-	android:key="gesture_anywhere"
-	android:fragment="com.android.settings.chameleonos.labs.gestureanywhere.GestureAnywhereSettings"
-	android:title="@string/gesture_anywhere_title" />
-
      <Preference
 	android:key="buildprop_modder"
 	android:title="@string/propmodder_title"
 	android:fragment="com.android.settings.cyanogenmod.PropModder"/>
+
+     <CheckBoxPreference
+        android:key="disable_bootaudio"
+        android:title="@string/disable_bootaudio_title"
+        android:persistent="false" />
+
+     <PreferenceScreen
+	android:key="gesture_anywhere"
+	android:fragment="com.android.settings.chameleonos.labs.gestureanywhere.GestureAnywhereSettings"
+	android:title="@string/gesture_anywhere_title" />
 
      <PreferenceScreen
 	android:id="@+id/system_app_remover"
