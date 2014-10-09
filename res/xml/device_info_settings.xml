@@ -17,6 +17,11 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/about_settings">
 
+        <!-- Changelog -->
+        <PreferenceScreen android:key="changelog"
+                android:title="@string/changelog_title"
+                android:fragment="com.android.settings.temasek.Changelog" />
+
         <!-- System update settings - launches activity -->
         <PreferenceScreen android:key="system_update_settings"
                 android:title="@string/system_update_settings_list_item_title"

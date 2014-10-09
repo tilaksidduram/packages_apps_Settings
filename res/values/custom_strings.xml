@@ -45,4 +45,8 @@
     <string name="interruptions_ignore_while_media_title">Prevent audio ducking</string>
     <string name="interruptions_ignore_while_media_summary">Do not reduce media playback volume when a notification arrives</string>
 
+    <!-- Changelog -->
+    <string name="changelog_title">Changelog</string>
+    <string name="changelog_error">Unable to load changelog</string>
+
 </resources>
