@@ -442,7 +442,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="voice_title">Voice calls</string>
 
     <!-- Multi Sim Settings screen, Data box label -->
-    <string name="data_title">Data calls</string>
+    <string name="data_title">Data connection</string>
 
     <!-- Multi Sim Settings screen, SMS box label -->
     <string name="sms_title">Sending SMS</string>
