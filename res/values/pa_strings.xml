@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-
-   Copyright 2013 The ParanoidAndroid Project
+   Copyright 2013,2014, The ParanoidAndroid Project
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -345,4 +344,9 @@
     <string name="display_density_override">Reported density</string>
     <string name="display_density_override_summary">Overrides the display density reported to apps (0 to disable, requires a reboot)</string>
 
+    <!--User preferences settings-->
+    <string name="personalization">Personalization</string>
+    <string name="reset_user_preferences_title">Reset preferences</string>
+    <string name="reset_user_preferences_summary">Restores user interface preferences to default values</string>
+    <string name="reset_user_preferences_dialog">Are you sure you want to reset your preferences?</string>
 </resources>
