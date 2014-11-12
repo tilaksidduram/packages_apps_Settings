@@ -169,4 +169,10 @@
     <!-- Scramble pin layout when unlocking -->
     <string name="unlock_scramble_pin_layout_title">Scramble layout</string>
     <string name="unlock_scramble_pin_layout_summary">Scramble PIN layout when unlocking device</string>
+
+    <!--User preferences settings-->
+    <string name="personalization">Personalization</string>
+    <string name="reset_user_preferences_title">Reset preferences</string>
+    <string name="reset_user_preferences_summary">Restores user interface preferences to default values</string>
+    <string name="reset_user_preferences_dialog">Are you sure you want to reset your preferences?</string>
 </resources>
