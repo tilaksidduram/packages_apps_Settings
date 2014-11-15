@@ -37,6 +37,7 @@ import android.os.Handler;
 import android.os.UserHandle;
 import android.os.ServiceManager;
 import android.preference.Preference;
+import android.preference.ListPreference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceCategory;
@@ -64,7 +65,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
-public class ZenModeSettings extends SettingsPreferenceFragment implements Indexable {
+public class ZenModeSettings extends SettingsPreferenceFragment implements Indexable,
+        Preference.OnPreferenceChangeListener {
     private static final String TAG = "ZenModeSettings";
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
@@ -89,6 +91,8 @@ public class ZenModeSettings extends SettingsPreferenceFragment implements Index
 
     private static final String KEY_HEADS_UP_TOGGLE = "zen_heads_up_toggle";
     private static final String KEY_ALLOW_LIGHTS = "allow_lights";
+
+    private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
 
     private static final SettingPrefWithCallback PREF_ZEN_MODE = new SettingPrefWithCallback(
             SettingPref.TYPE_GLOBAL, KEY_ZEN_MODE, Global.ZEN_MODE, Global.ZEN_MODE_OFF,
@@ -165,6 +169,8 @@ public class ZenModeSettings extends SettingsPreferenceFragment implements Index
 
     private SwitchPreference mNotificationsAsHeadsUp;
 
+    private ListPreference mAnnoyingNotifications;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -187,6 +193,13 @@ public class ZenModeSettings extends SettingsPreferenceFragment implements Index
                 return true;
             }
         });
+
+        mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
+        int notificationThreshold = Settings.System.getInt(getContentResolver(),
+                Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
+                0);
+        mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
+        mAnnoyingNotifications.setOnPreferenceChangeListener(this);
 
         mConfig = getZenModeConfig();
         if (DEBUG) Log.d(TAG, "Loaded mConfig=" + mConfig);
@@ -524,6 +537,16 @@ public class ZenModeSettings extends SettingsPreferenceFragment implements Index
          Settings.System.putIntForUser(mContext.getContentResolver(),
                 Settings.System.HEADS_UP_USER_ENABLED,
                 val, UserHandle.USER_CURRENT);
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        final String key = preference.getKey();
+        if (PREF_LESS_NOTIFICATION_SOUNDS.equals(key)) {
+            final int val = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
+        }
+        return true;
     }
 
     @Override
