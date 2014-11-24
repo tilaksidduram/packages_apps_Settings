@@ -128,6 +128,12 @@
     <string name="lockscreen_shorcuts_longpress_title">Shortcuts longpress</string>
     <string name="lockscreen_shorcuts_longpress_summary">Open custom lock screen shortcuts on longpress</string>
 
+    <!-- App Notifications -->
+    <string name="app_notification_show_on_keyguard_title">Show on lockscreen</string>
+    <string name="app_notification_show_on_keyguard_summary">Show notifications from this app on the lockscreen</string>
+    <string name="app_notification_no_ongoing_on_keyguard_title">Disable ongoing on lockscreen</string>
+    <string name="app_notification_no_ongoing_on_keyguard_summary">Never show ongoing notifications from this app on the lockscreen</string>
+
      <!--PA Version-->
      <string name="pa_version">ParanoidAndroid version</string>
      <string name="pa_version_default">Unknown</string>
