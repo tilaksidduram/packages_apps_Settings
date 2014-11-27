@@ -256,6 +256,7 @@
         <item>@string/app_ops_summaries_toggle_nfc</item>
         <item>@string/app_ops_summaries_toggle_mobile_data</item>
         <item>@string/app_ops_summaries_superuser</item>
+        <item>@string/app_ops_summaries_wake_up</item>
     </string-array>
 
     <!-- User display names for app ops codes - extension of AOSP -->
@@ -329,6 +330,7 @@
         <item>@string/app_ops_labels_toggle_nfc</item>
         <item>@string/app_ops_labels_toggle_mobile_data</item>
         <item>@string/app_ops_labels_superuser</item>
+        <item>@string/app_ops_labels_wake_up</item>
     </string-array>
 
     <!-- App ops permissions -->
