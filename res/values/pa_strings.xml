@@ -375,4 +375,8 @@
     <string name="status_bar_show_unused_sims_title_summary_off">Hide icons of unused SIM slots</string>
     <string name="status_bar_show_unused_sims_title_summary_on">Indicate unused SIM slots</string>
 
+    <!-- allow home button to wake device -->
+    <string name="button_wake_title">Wake up</string>
+    <string name="home_wake_summary">Pressing the home button will wake your device</string>
+
 </resources>
