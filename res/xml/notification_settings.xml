@@ -121,11 +121,6 @@
                 android:persistent="false"
                 android:fragment="com.android.settings.notification.NotificationAccessSettings" />
 
-        <!-- Filter Spam Notifications -->
-        <PreferenceScreen
-            android:title="@string/block_notifications_title"
-            android:fragment="com.android.settings.cyanogenmod.SpamList" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>
