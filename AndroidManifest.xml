@@ -1755,6 +1755,8 @@
 
         <!-- CyanogenMod activities End -->
 
+        <activity android:name=".cyanogenmod.SpamList" />
+
         <!-- "Blacklist settings" UI, used only on voice-capable phone devices. -->
         <activity android:name="Settings$BlacklistSettingsActivity"
                 android:theme="@style/Theme.SubSettingsDialogWhenLarge"
@@ -1770,8 +1772,6 @@
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/security_settings" />
         </activity>
-
-        <activity android:name=".cyanogenmod.SpamList" />
 
         <!-- Pseudo-activity used to provide an intent-filter entry point to encryption settings -->
         <activity android:name="Settings$CryptKeeperSettingsActivity"

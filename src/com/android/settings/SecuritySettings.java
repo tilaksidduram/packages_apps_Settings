@@ -55,7 +55,6 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.search.Index;
 import com.android.settings.search.Indexable;
 import com.android.settings.search.SearchIndexableRaw;
-import com.android.settings.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -155,7 +154,6 @@ public class SecuritySettings extends SettingsPreferenceFragment
 
     private static int getResIdForLockUnlockScreen(Context context,
             LockPatternUtils lockPatternUtils) {
-        // Add options for lock/unlock screen
         int resid = 0;
         if (!lockPatternUtils.isSecure()) {
             // if there are multiple users, disable "None" setting
@@ -866,4 +864,5 @@ public class SecuritySettings extends SettingsPreferenceFragment
             return keys;
         }
     }
+
 }
