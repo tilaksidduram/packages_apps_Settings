@@ -322,6 +322,10 @@
     <string name="clock_date_style_uppercase">Uppercase</string>
     <string name="clock_date_format_custom">Custom java format</string>
 
+    <!-- Show/Hide Search Bar -->
+    <string name="recents_show_searchbar">Show search bar in recents menu</string>
+    <string name="keywords_recents_show_searchbar">recent recents disable enable show hide search bar searchbar</string>
+
     <!-- About phone screen, build date -->
     <string name="build_date">Build date</string>
     <string name="build_date_default" translatable="false">2014-01-01-0000</string>
