@@ -196,26 +196,7 @@
     <string name="block_notifications_title">Filter notifications</string>
     <string name="block_notifications_summary">Manage ignored notifications and filters</string>
     <string name="no_filters_title">No filters set</string>
-<<<<<<< HEAD
-    <string name="app_ops_ignored_count">Denied <xliff:g id="count" example="2 times">%s</xliff:g></string>
     <string name="blacklist_button_delete">Delete</string>
-=======
-
-    <!-- About phone screen, CyanogenMod version -->
-    <string name="mod_version">CyanogenMod version</string>
-    <string name="mod_version_default">Unknown</string>
-
-    <!-- About phone screen, build date -->
-    <string name="build_date">Build date</string>
-    <string name="build_date_default">2014-01-01-0000</string>
-
-    <!--- Advanced Settings -->
-    <string name="advanced_settings">Advanced settings</string>
-    <string name="advanced_settings_summary">Enable more settings options</string>
-
-    <!--- Tap To Wake -->
-    <string name="double_tap_to_wake_title">Double-tap to wake</string>
->>>>>>> 2b4ee1c... [1/2] Settings AppOps: show/hide app type and allow/deny counters
 
     <!-- Proximity wake -->
     <string name="proximity_wake_title">Prevent accidental wake-up</string>
