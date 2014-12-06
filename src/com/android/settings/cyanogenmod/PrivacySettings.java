@@ -38,15 +38,13 @@ public class PrivacySettings extends SettingsPreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.privacy_settings_cyanogenmod);
 
-        mBlacklist = (PreferenceScreen) findPreference(KEY_BLACKLIST);
-
         // Add package manager to check if features are available
         PackageManager pm = getPackageManager();
 
         // Determine options based on device telephony support
         if (!pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
             // No telephony, remove dependent options
-            PreferenceScreen root = getPreferenceScreen();
+        PreferenceScreen root = getPreferenceScreen();
             root.removePreference(mBlacklist);
         }
     }
@@ -58,10 +56,12 @@ public class PrivacySettings extends SettingsPreferenceFragment {
     }
 
     private void updateBlacklistSummary() {
-        if (BlacklistUtils.isBlacklistEnabled(getActivity())) {
-            mBlacklist.setSummary(R.string.blacklist_summary);
-        } else {
-            mBlacklist.setSummary(R.string.blacklist_summary_disabled);
+        if (mBlacklist != null) {
+            if (BlacklistUtils.isBlacklistEnabled(getActivity())) {
+                mBlacklist.setSummary(R.string.blacklist_summary);
+            } else {
+                mBlacklist.setSummary(R.string.blacklist_summary_disabled);
+            }
         }
     }
 
