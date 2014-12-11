@@ -19,6 +19,10 @@
      <!-- Viper Equalizer -->
      <string name="equalizer_settings_title">Equalizer</string>
 
+    <!-- Unaccounted and overcounted battery stats -->
+    <string name="show_unac_and_overcounted_stats_title">Show unaccounted/overcounted stats</string>
+    <string name="show_unac_and_overcounted_stats_summary">Show in battery statistics unaccounted and over-counted usage.</string>
+
      <!--PA Version-->
      <string name="pa_version">ParanoidAndroid version</string>
      <string name="pa_version_default">Unknown</string>
