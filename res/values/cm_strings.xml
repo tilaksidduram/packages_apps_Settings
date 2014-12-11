@@ -193,6 +193,9 @@
     <string name="saving_protected_components">Saving component state\u2026</string>
     <string name="launch_app">Launch app</string>
 
+    <string name="stats_collection_title">Stats collection</string>
+    <string name="stats_collection_summary">When enabled, allows metrics collection.</string>
+
     <string name="pa_login_username_hint">Username (email)</string>
     <string name="pa_login_password_hint">Password</string>
     <string name="pa_login_submit_button">Sign in</string>
@@ -542,5 +545,4 @@
     <string name="gamma_tuning_saturation">Saturation</string>
 
     <string name="settings_reset_button">Reset</string>
-
 </resources>
