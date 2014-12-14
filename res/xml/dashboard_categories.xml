@@ -84,6 +84,14 @@
                 android:icon="@drawable/ic_settings_home"
                 />
 
+        <!-- Gestures -->
+        <dashboard-tile
+                android:id="@+id/gesture_settings"
+                android:title="@string/gesture_title"
+                android:fragment="com.android.settings.paranoid.GestureSettings"
+                android:icon="@drawable/ic_settings_gestures"
+                />
+
         <!-- Display -->
         <dashboard-tile
                 android:id="@+id/display_settings"

@@ -29,6 +29,7 @@ import com.android.settings.R;
 import com.android.settings.Utils;
 import com.android.settings.ButtonSettings;
 import com.android.settings.location.LocationSettings;
+import com.android.settings.paranoid.GestureSettings;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,5 +43,6 @@ public class BootReceiver extends BroadcastReceiver {
         /* Restore the hardware tunable values */
         DisplaySettings.restore(ctx);
         ButtonSettings.restoreKeyDisabler(ctx);
+        GestureSettings.restore(ctx);
     }
 }
