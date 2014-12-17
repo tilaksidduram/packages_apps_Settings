@@ -23,9 +23,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceScreen;
+import android.preference.PreferenceCategory;
 import android.preference.SwitchPreference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
 import android.util.Log;
 
 import com.android.settings.R;
@@ -34,6 +37,8 @@ import com.android.internal.util.slim.DeviceUtils;
 
 public class StatusBarSettings extends SettingsPreferenceFragment
         implements OnPreferenceChangeListener {
+
+    private static final String TAG = "StatusBarSettings";
 
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String KEY_STATUS_BAR_TICKER = "status_bar_ticker_enabled";
