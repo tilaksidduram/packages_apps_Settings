@@ -514,6 +514,9 @@
     multiple font sizes in a limited amount of space. -->
     <string name="font_size_sample">Sample</string>
 
+    <!-- Volume settings - Volume adjustment sound -->
+    <string name="volume_adjust_sounds_title">Volume adjustment sounds</string>
+
     <!-- Backlight brightness settings screen -->
     <string name="adaptive_backlight_title">Adaptive backlight</string>
     <string name="adaptive_backlight_summary">Dynamically adjust the brightness of the display\'s backlight to maximize battery life while maintaining usability</string>
