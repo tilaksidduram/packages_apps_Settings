@@ -86,5 +86,17 @@
                     android:title="@string/proximity_wake_title"
                     android:summary="@string/proximity_wake_summary"
                     android:defaultValue="true" />
+
+                <SwitchPreference
+                    android:key="adaptive_backlight"
+                    android:title="@string/adaptive_backlight_title"
+                    android:summary="@string/adaptive_backlight_summary"
+                    android:defaultValue="true" />
+
+               <SwitchPreference
+                    android:key="sunlight_enhancement"
+                    android:title="@string/sunlight_enhancement_title"
+                    android:summary="@string/sunlight_enhancement_summary"
+                    android:defaultValue="true" />
         </PreferenceCategory>
 </PreferenceScreen>

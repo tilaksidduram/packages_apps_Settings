@@ -51,6 +51,14 @@
     <string name="proximity_wake_title">Prevent accidental wake-up</string>
     <string name="proximity_wake_summary">Check the proximity sensor prior to waking up screen</string>
 
+    <!-- Backlight brightness settings screen -->
+    <string name="adaptive_backlight_title">Adaptive backlight</string>
+    <string name="adaptive_backlight_summary">Dynamically adjust the brightness of the display\'s backlight to maximize battery life while maintaining usability</string>
+
+    <!-- Sunlight readability enhancement screen -->
+    <string name="sunlight_enhancement_title">Sunlight enhancement</string>
+    <string name="sunlight_enhancement_summary">Enhance display brightness and readability under bright sunlight</string>
+
     <!-- Partition Info -->
     <string name="partition_info_title">Partition info</string>
     <string name="partition_info_system">/system</string>
