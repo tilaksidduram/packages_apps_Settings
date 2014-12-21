@@ -16,5 +16,10 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/pa_settings_title" >
 
+    <!-- Circle app bar -->
+    <PreferenceScreen
+        android:key="app_circle_bar"
+        android:fragment="com.android.settings.aicp.AppCircleBar"
+        android:title="@string/app_circle_bar_title"/>
 
 </PreferenceScreen>
