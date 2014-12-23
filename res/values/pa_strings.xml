@@ -224,6 +224,9 @@
     <string name="clock_date_format_custom">Custom java format</string>
     <string name="status_bar_clock_style_reset_message">Reset clock color?</string>
 
+    <!-- Gestures -->
+    <string name="gesture_title">Gestures</string>
+
     <!--PA Version-->
     <string name="pa_version">ParanoidAndroid version</string>
     <string name="pa_version_default">Unknown</string>
