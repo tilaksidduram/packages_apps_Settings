@@ -55,6 +55,13 @@
             android:entryValues="@array/torch_screen_off_delay_values"
             android:dependency="disable_torch_on_screen_off" />
 
+        <!-- AOKP custom animations -->
+        <PreferenceScreen
+            android:key="aokp_animation"
+            android:title="@string/aokp_animation_title"
+            android:summary="@string/aokp_animation_summary"
+            android:fragment="com.android.settings.temasek.fragments.AnimationControls" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
