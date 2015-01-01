@@ -44,6 +44,12 @@
         android:fragment="com.android.settings.aicp.WakeLockBlocker"
         android:title="@string/wakelock_blocker_title" />
 
+    <!-- Clock widget -->
+    <PreferenceScreen
+         android:key="lock_clock"
+         android:fragment="com.android.settings.temasek.LockClock"
+         android:title="@string/lock_clock_title" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
