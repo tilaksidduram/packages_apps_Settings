@@ -75,9 +75,4 @@
     <string name="max_cpu_freq_file" translatable="false">/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq</string>
     <string name="min_cpu_freq_file" translatable="false">/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq</string>
 
-    <!-- maximum value for the custom display density -->
-    <integer name="display_density_max">480</integer>
-    <!-- minimum value for the custom display density -->
-    <integer name="display_density_min">240</integer>
-
 </resources>
