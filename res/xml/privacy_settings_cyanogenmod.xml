@@ -34,4 +34,14 @@
             android:summary="@string/stats_collection_summary"
             android:defaultValue="true" />
 
+        <PreferenceScreen
+            android:key="key_dns_crypt"
+            android:title="@string/dns_enc_title"
+            android:summary="@string/dns_enc_summary">
+            <intent
+                android:action="com.android.settings.action.ACTION_DNSCRYPT_SETTINGS"
+                android:targetPackage="com.android.settings"
+                android:targetClass="com.android.settings.dnscrypt.DnsCryptPreferenceActivity" />
+        </PreferenceScreen>
+
 </PreferenceScreen>
