@@ -73,6 +73,7 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
     private static final String KEY_VOLUME_LINK_NOTIFICATION = "volume_link_notification";
     private static final String KEY_PHONE_RINGTONE = "ringtone";
     private static final String KEY_NOTIFICATION_RINGTONE = "notification_ringtone";
+    private static final String KEY_ALARM_RINGTONE = "alarm_ringtone";
     private static final String KEY_VIBRATE_WHEN_RINGING = "vibrate_when_ringing";
     private static final String KEY_NOTIFICATION = "notification";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
@@ -105,6 +106,7 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
     private Preference mNotificationAccess;
     private boolean mSecure;
     private int mLockscreenSelectedValue;
+    private Preference mAlarmRingtonePreference;
     private ComponentName mSuppressor;
     private int mRingerMode = -1;
     private SwitchPreference mVolumeLinkNotificationSwitch;
@@ -283,6 +285,7 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
             mPhoneRingtonePreference = null;
         }
         mNotificationRingtonePreference = root.findPreference(KEY_NOTIFICATION_RINGTONE);
+        mAlarmRingtonePreference = root.findPreference(KEY_ALARM_RINGTONE);
     }
 
     private void lookupRingtoneNames() {
@@ -304,6 +307,13 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
                         mContext, RingtoneManager.TYPE_NOTIFICATION);
                 if (summary != null) {
                     mHandler.obtainMessage(H.UPDATE_NOTIFICATION_RINGTONE, summary).sendToTarget();
+                }
+            }
+            if (mAlarmRingtonePreference != null) {
+                final CharSequence summary = updateRingtoneName(
+                        mContext, RingtoneManager.TYPE_ALARM);
+                if (summary != null) {
+                    mHandler.obtainMessage(H.UPDATE_ALARM_RINGTONE, summary).sendToTarget();
                 }
             }
         }
@@ -584,6 +594,7 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
                 case UPDATE_ALARM_RINGTONE:
                     mAlarmRingtonePreference.setSummary((CharSequence) msg.obj);
                     break;
+
             }
         }
     }
