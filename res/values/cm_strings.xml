@@ -699,6 +699,7 @@
     <string name="qs_tile_compass">Compass</string>
     <string name="qs_tile_lockscreen">Lockscreen</string>
     <string name="qs_tile_visualizer">AudioFX</string>
+    <string name="qs_tile_screen_timeout">Screen timeout</string>
 
     <string name="qs_main_tiles_title">Enlarge first row</string>
     <string name="qs_main_tiles_summary_on">Two main tiles on the first row</string>
@@ -735,5 +736,4 @@
     <!-- SAR information -->
     <string name="maximum_head_level">Head: %1$s W/kg</string>
     <string name="maximum_body_level">Body: %1$s W/kg</string>
-
 </resources>
