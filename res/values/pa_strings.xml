@@ -24,6 +24,7 @@
     <string name="enabled">Enabled</string>
     <string name="choose_app">Choose application</string>
     <string name="reset_message">Reset all entries to default?</string>
+    <string name="default_string">Default</string>
 
     <!-- About device screen, CPU and RAM info. -->
     <string name="cpu_info">CPU</string>
