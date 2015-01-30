@@ -48,6 +48,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.search.Indexable;
 import com.android.settings.search.Indexable.SearchIndexProvider;
 
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ import java.util.List;
  * Gesture lock pattern settings.
  */
 public class PrivacySettings extends SettingsPreferenceFragment implements
-        DialogInterface.OnClickListener {
+        DialogInterface.OnClickListener, Indexable {
 
     static final String TAG = "PrivacySettings";
 
