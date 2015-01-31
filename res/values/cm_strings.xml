@@ -487,6 +487,11 @@
     <string name="app_ops_categories_bootup">Bootup</string>
     <string name="app_ops_categories_su">Root access</string>
 
+    <!-- App ops permissions -->
+    <string name="app_ops_permissions_allowed">Allowed</string>
+    <string name="app_ops_permissions_ignored">Ignored</string>
+    <string name="app_ops_permissions_always_ask">Always ask</string>
+
     <string name="ok">OK</string>
 
     <!-- Profiles -->
