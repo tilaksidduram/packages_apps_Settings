@@ -897,6 +897,7 @@
     <string name="qs_tile_lockscreen">Lock screen</string>
     <string name="qs_tile_visualizer" translatable="false">AudioFX</string>
     <string name="qs_tile_screen_timeout">Screen timeout</string>
+    <string name="qs_sync_tile">Sync</string>
 
     <string name="qs_main_tiles_title">Enlarge first row</string>
     <string name="qs_main_tiles_summary_on">Two main tiles on the first row</string>
@@ -906,6 +907,7 @@
     <string name="qs_advanced_location_summary">Enable advanced settings for location in Quick Settings</string>
 
     <!-- QuickSettings 4 columns -->
+    <string name="qs_main_tiles_summary_off2">Three or four tiles on each row</string>
     <string name="qs_four_columns_title">Show four tiles per row</string>
 
     <!-- Gesture Settings -->
