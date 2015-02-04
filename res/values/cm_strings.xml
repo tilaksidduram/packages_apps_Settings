@@ -125,16 +125,6 @@
     <string name="profile_trigger_disconnect">On disconnect</string>
     <string name="profile_trigger_notrigger">No trigger</string>
 
-    <!-- Profile Settings sound modes labels -->
-    <string name="sound_mode">Notification mode</string>
-    <string name="ringer_mode">Ring mode</string>
-    <string name="lights_mode">Lights mode</string>
-    <string name="vibrate_mode">Vibrate mode</string>
-
-    <!-- Sound settings screen, setting option name to pick ringtone (a list dialog comes up)-->
-    <string name="soundtone_title">Notification tone</string>
-    <string name="soundtone_summary" translatable="false">""</string>
-
     <!-- Title for application group setting screen -->
     <string name="profile_applist_title">Apps</string>
 
@@ -750,7 +740,6 @@
     <string name="maximum_head_level">Head: %1$s W/kg</string>
     <string name="maximum_body_level">Body: %1$s W/kg</string>
 
-    <string name="lockscreen_settings_title">Lock screen</string>
     <string name="lockscreen_targets_message">Lock screen shortcuts</string>
     <string name="lockscreen_default_target">Default</string>
     <string name="lockscreen_message">Tap an icon on the left or right to reassign a lock screen shortcut.</string>
