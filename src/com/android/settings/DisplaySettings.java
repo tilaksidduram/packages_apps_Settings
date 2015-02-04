@@ -190,6 +190,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             advancedPrefs.removePreference(findPreference(KEY_PROXIMITY_WAKE));
             Settings.System.putInt(getContentResolver(), Settings.System.PROXIMITY_ON_WAKE, 1);
         }
+
+        if (advancedPrefs.getPreferenceCount() == 0) {
+            getPreferenceScreen().removePreference(advancedPrefs);
+        }
     }
 
     private static boolean allowAllRotations(Context context) {
