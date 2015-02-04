@@ -234,6 +234,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         if (!isPostProcessingSupported()) {
             getPreferenceScreen().removePreference(mScreenColorSettings);
         }
+
+        if (advancedPrefs.getPreferenceCount() == 0) {
+            getPreferenceScreen().removePreference(advancedPrefs);
+        }
     }
 
     private static boolean allowAllRotations(Context context) {
