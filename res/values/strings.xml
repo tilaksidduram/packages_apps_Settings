@@ -5237,20 +5237,20 @@
     <string name="backup_pw_cancel_button_text">Cancel</string>
 
     <!-- MultiSim Settings changes-->
-	<string name="sim_enabler_title">SIM status</string>
-	<string name="sim_enabler_summary">SIM is <xliff:g id="status" example="enabled">%1$s</xliff:g></string>
-	<string name="sim_enabled">enabled</string>
-	<string name="sim_disabled">disabled</string>
-	<string name="sim_missing">missing or faulty</string>
-	<string name="sim_enabler_need_disable_sim">SIM card will be deactivated. Do you want to continue?</string>
-	<string name="sim_enabler_airplane_on">Unable to perform the operation while airplane mode is on.</string>
-	<string name="sim_enabler_in_call">Unable to perform the operation while in call.</string>
-	<string name="sim_enabler_both_inactive">Can\'t disable all SIM cards</string>
-	<string name="sim_enabler_sim">SIM</string>
-	<string name="sim_enabler_enabling">Activating\2026</string>
-	<string name="sim_enabler_disabling">Deactivating\2026</string>
-	<string name="sub_activate_success">SIM activated.</string>
-	<string name="sub_deactivate_success">SIM deactivated.</string>
+    <string name="sim_enabler_title">SIM status</string>
+    <string name="sim_enabler_summary">SIM is <xliff:g id="status" example="enabled">%1$s</xliff:g></string>
+    <string name="sim_enabled">enabled</string>
+    <string name="sim_disabled">disabled</string>
+    <string name="sim_missing">missing or faulty</string>
+    <string name="sim_enabler_need_disable_sim">SIM card will be deactivated. Do you want to continue?</string>
+    <string name="sim_enabler_airplane_on">Unable to perform the operation while airplane mode is on.</string>
+    <string name="sim_enabler_in_call">Unable to perform the operation while in call.</string>
+    <string name="sim_enabler_both_inactive">Can\'t disable all SIM cards</string>
+    <string name="sim_enabler_sim">SIM</string>
+    <string name="sim_enabler_enabling">Activating\u2026</string>
+    <string name="sim_enabler_disabling">Deactivating\u2026</string>
+    <string name="sub_activate_success">SIM activated.</string>
+    <string name="sub_deactivate_success">SIM deactivated.</string>
 
     <!-- A menu item in "About phone" that allows the user to update the phone with settings
     from their cell phone carrier. The use of the string is similar to the string

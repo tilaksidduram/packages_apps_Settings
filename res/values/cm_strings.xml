@@ -298,7 +298,7 @@
     <string name="status_bar_am_pm_info">24-hour clock is enabled</string>
     <string name="status_bar_am_pm_normal">Normal</string>
     <string name="status_bar_am_pm_small">Small</string>
-    <string name="status_bar_am_pm_hidden">Hidden (default)</string>
+    <string name="status_bar_am_pm_hidden">Hidden</string>
 
     <!-- Status bar - Battery -->
     <string name="status_bar_battery_style_title">Battery status style</string>
@@ -310,7 +310,7 @@
 
     <!-- Status bar - Battery percentage -->
     <string name="status_bar_battery_percentage_title">Battery percentage</string>
-    <string name="status_bar_battery_percentage_default">Hidden (default)</string>
+    <string name="status_bar_battery_percentage_default">Hidden</string>
     <string name="status_bar_battery_percentage_text_inside">Inside the icon</string>
     <string name="status_bar_battery_percentage_text_next">Next to the icon</string>
 
@@ -416,7 +416,7 @@
     <string name="app_ops_summaries_read_mms">read MMS</string>
     <string name="app_ops_summaries_write_mms">write MMS</string>
     <string name="app_ops_summaries_auto_start">auto start</string>
-    <string name="app_ops_summaries_nfc_change">nfc change</string>
+    <string name="app_ops_summaries_nfc_change">NFC change</string>
     <string name="app_ops_summaries_delete_sms">delete SMS</string>
     <string name="app_ops_summaries_delete_mms">delete MMS</string>
     <string name="app_ops_summaries_delete_contacts">delete contacts</string>
@@ -710,7 +710,7 @@
     <string name="qs_tile_performance">Performance</string>
     <string name="qs_tile_nfc">NFC</string>
     <string name="qs_tile_compass">Compass</string>
-    <string name="qs_tile_lockscreen">Lockscreen</string>
+    <string name="qs_tile_lockscreen">Lock screen</string>
     <string name="qs_tile_visualizer" translatable="false">AudioFX</string>
     <string name="qs_tile_screen_timeout">Screen timeout</string>
 
@@ -751,7 +751,7 @@
     <string name="maximum_body_level">Body: %1$s W/kg</string>
 
     <string name="lockscreen_settings_title">Lock screen</string>
-    <string name="lockscreen_targets_message">Lockscreen shortcuts</string>
+    <string name="lockscreen_targets_message">Lock screen shortcuts</string>
     <string name="lockscreen_default_target">Default</string>
     <string name="lockscreen_message">Tap an icon on the left or right to reassign a lock screen shortcut.</string>
     <string name="lockscreen_choose_action_title">Choose action</string>
