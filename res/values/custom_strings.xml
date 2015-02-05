@@ -1383,4 +1383,8 @@
     <string name="status_bar_custom_header_shadow_title">Header image shadow</string>
     <string name="status_bar_custom_header_shadow_summary">For better visibility on bright images</string>
 
+    <!-- Captive Portal -->
+    <string name="captive_portal_detection">Captive portal detection</string>
+    <string name="captive_portal_detection_summary">If enabled, a connection to Google servers is required in order to detect data connection</string>
+
 </resources>
