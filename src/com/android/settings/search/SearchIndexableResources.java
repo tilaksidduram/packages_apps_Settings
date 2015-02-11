@@ -52,6 +52,7 @@ import com.android.settings.wifi.AdvancedWifiSettings;
 import com.android.settings.wifi.SavedAccessPointsWifiSettings;
 import com.android.settings.wifi.WifiSettings;
 
+import com.android.settings.paranoid.AmbientSettings;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -294,6 +295,13 @@ public final class SearchIndexableResources {
                         R.xml.privacy_settings_cyanogenmod,
                         com.android.settings.cyanogenmod.PrivacySettings.class.getName(),
                         R.drawable.ic_settings_privacy));
+
+        sResMap.put(AmbientSettings.class.getName(),
+                new SearchIndexableResource(
+                        Ranking.getRankForClassName(AmbientSettings.class.getName()),
+                        NO_DATA_RES_ID,
+                        AmbientSettings.class.getName(),
+                        R.drawable.ic_settings_display));
     }
 
     private SearchIndexableResources() {
