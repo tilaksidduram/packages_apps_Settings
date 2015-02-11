@@ -134,11 +134,6 @@ public class ProfilesSettings extends SettingsPreferenceFragment {
 
         // check if we are enabled
         updateProfilesEnabledState();
-
-        // If running on a phone, remove padding around tabs
-        if (!ScreenType.isTablet(getActivity())) {
-            mContainer.setPadding(0, 0, 0, 0);
-        }
     }
 
     @Override
