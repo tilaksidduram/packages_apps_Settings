@@ -33,6 +33,14 @@
             android:switchTextOff=""
             android:switchTextOn="" />
 
+    <SwitchPreference
+           android:key="music_interruptions"
+           android:title="@string/interruptions_ignore_while_media_title"
+           android:summary="@string/interruptions_ignore_while_media_summary"
+           android:persistent="false"
+           android:switchTextOff=""
+           android:switchTextOn="" />
+
     <PreferenceCategory
         android:key="important"
         android:title="@string/zen_mode_important_category" >
