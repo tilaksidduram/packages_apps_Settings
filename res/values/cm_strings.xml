@@ -852,4 +852,7 @@
 
     <string name="advanced">Advanced</string>
     <string name="advanced_mode_title">Advanced mode</string>
+
+    <string name="interruptions_ignore_while_media_title">Prevent audio ducking</string>
+    <string name="interruptions_ignore_while_media_summary">Do not reduce media playback volume when a notification arrives</string>
 </resources>
