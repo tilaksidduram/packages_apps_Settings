@@ -103,5 +103,6 @@ public class Settings extends SettingsActivity {
     public static class ApnSettingsActivity extends SettingsActivity { /* empty */ }
     public static class ProfilesSettingsActivity extends SettingsActivity { /* empty */ }
     public static class AmbientDisplaySettingsActivity extends SettingsActivity { /* empty */ }
+    public static class LiveDisplayActivity extends SettingsActivity { /* empty */ }
 }
 
