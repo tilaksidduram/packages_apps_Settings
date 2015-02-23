@@ -320,11 +320,4 @@
     <!-- Captive Portal -->
     <string name="captive_portal_detection">Captive portal detection</string>
     <string name="captive_portal_detection_summary">If disabled, a connection to google servers is not required in order to detect data connection.</string>
-
-    <!-- Doze pulse (ambient display) notification timeout -->
-    <string name="doze_timeout_title">Ambient display timeout</string>
-    <string name="doze_timeout_summary">Time that the screen stays on for notification pulse</string>
-
-    <!-- Doze (ambient display) preference category -->
-    <string name="display_category_doze_options_title">Ambient display options</string>
 </resources>
