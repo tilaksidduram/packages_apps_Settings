@@ -99,7 +99,6 @@ import com.android.settings.notification.NotificationAccessSettings;
 import com.android.settings.notification.NotificationSettings;
 import com.android.settings.notification.NotificationStation;
 import com.android.settings.notification.ZenModeSettings;
-import com.android.settings.paranoid.GestureSettings;
 import com.android.settings.print.PrintJobSettingsFragment;
 import com.android.settings.print.PrintSettingsFragment;
 import com.android.settings.sim.SimSettings;
@@ -239,8 +238,7 @@ public class SettingsActivity extends Activity
             R.id.print_settings,
             R.id.nfc_payment_settings,
             R.id.home_settings,
-            R.id.dashboard,
-            R.id.gesture_settings
+            R.id.dashboard
     };
 
     private static final String[] ENTRY_FRAGMENTS = {
@@ -304,8 +302,7 @@ public class SettingsActivity extends Activity
             AppNotificationSettings.class.getName(),
             OtherSoundSettings.class.getName(),
             QuickLaunchSettings.class.getName(),
-            ApnSettings.class.getName(),
-            GestureSettings.class.getName()
+            ApnSettings.class.getName()
     };
 
 
