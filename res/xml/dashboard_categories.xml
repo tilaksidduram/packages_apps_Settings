@@ -132,6 +132,14 @@
                 />
 	 -->
 
+        <!-- ParanoidAndroid Tools -->
+         <dashboard-tile
+                android:id="@+id/main_settings"
+                android:title="@string/pa_settings_title"
+                android:fragment="com.android.settings.paranoid.MainSettings"
+                android:icon="@drawable/ic_settings_pa"
+                /> 
+
     </dashboard-category>
 
     <!-- DEVICE -->

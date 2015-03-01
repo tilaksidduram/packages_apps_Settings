@@ -98,6 +98,7 @@ public class Settings extends SettingsActivity {
     public static class AppNotificationSettingsActivity extends SettingsActivity { /* empty */ }
     public static class OtherSoundSettingsActivity extends SettingsActivity { /* empty */ }
     public static class QuickLaunchSettingsActivity extends SettingsActivity { /* empty */ }
+    public static class MainSettingsActivity extends SettingsActivity { /* empty */ }
     public static class TopLevelSettings extends SettingsActivity { /* empty */ }
     public static class ApnSettingsActivity extends SettingsActivity { /* empty */ }
     public static class ProfilesSettingsActivity extends SettingsActivity { /* empty */ }
