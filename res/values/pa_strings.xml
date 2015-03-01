@@ -407,6 +407,8 @@
     <string name="captive_portal_detection_summary">If disabled, a connection to google servers is not required in order to detect data connection.</string>
 
     <!-- Doze pulse (ambient display) options -->
+    <string name="summary_doze_enabled">Enabled</string>
+    <string name="summary_doze_disabled">Disabled</string>
     <string name="doze_overwrite_value_title">Overwrite value</string>
     <string name="doze_overwrite_value_summary">Allow to overwrite default value with user config</string>
 
