@@ -16,9 +16,11 @@
 
 package com.android.settings.paranoid;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
@@ -28,12 +30,36 @@ import com.android.settings.SettingsPreferenceFragment;
 
 import java.util.List;
 
-public class MainSettings extends SettingsPreferenceFragment {
+public class MainSettings extends SettingsPreferenceFragment
+        implements OnSharedPreferenceChangeListener {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.pa_main_settings);
+
+        PreferenceScreen prefSet = getPreferenceScreen();
+        PackageManager pm = getPackageManager();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 }
