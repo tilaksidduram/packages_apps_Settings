@@ -142,6 +142,10 @@ public class QSTileHolder {
                 resourceName = "ic_qs_screenrecord";
                 stringId = R.string.qs_screenrecord_tile;
                 break;
+            case QSConstants.TILE_NOTIFICATIONS:
+                resourceName = "ic_qs_ringer_audible";
+                stringId = R.string.qs_notifications_tile;
+                break;
             default:
                 return null;
         }
