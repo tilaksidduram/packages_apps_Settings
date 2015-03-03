@@ -369,4 +369,9 @@
     <string name="heads_up_snooze_15min">15 minutes</string>
     <string name="heads_up_snooze_20min">20 minutes</string>
 
+    <!-- Status bar - MSIM tweaks-->
+    <string name="status_bar_show_unused_sims_title">Show empty SIM icons</string>
+    <string name="status_bar_show_unused_sims_title_summary_off">Hide icons of unused SIM slots</string>
+    <string name="status_bar_show_unused_sims_title_summary_on">Indicate unused SIM slots</string>
+
 </resources>
