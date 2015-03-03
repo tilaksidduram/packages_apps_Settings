@@ -24,6 +24,7 @@ import android.app.AlertDialog;
 import android.app.AppOpsManager;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -55,6 +56,7 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.search.Index;
 import com.android.settings.search.Indexable;
 import com.android.settings.search.SearchIndexableRaw;
+import com.android.settings.util.Helpers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +89,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private static final String KEY_MANAGE_TRUST_AGENTS = "manage_trust_agents";
     private static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL = "quick_unlock_control";
     private static final String LOCK_NUMPAD_RANDOM = "lock_numpad_random";
+    private static final String KEY_LOCKSCREEN_WEATHER = "lockscreen_weather";
 
     private static final int SET_OR_CHANGE_LOCK_METHOD_REQUEST = 123;
     private static final int CONFIRM_EXISTING_FOR_BIOMETRIC_WEAK_IMPROVE_REQUEST = 124;
@@ -136,6 +139,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private SwitchPreference mPowerButtonInstantlyLocks;
     private SwitchPreference mQuickUnlockScreen;
     private ListPreference mLockNumpadRandom;
+    private SwitchPreference mLockscreenWeather;
 
     private boolean mIsPrimary;
 
@@ -150,6 +154,14 @@ public class SecuritySettings extends SettingsPreferenceFragment
         mDPM = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
 
         mChooseLockSettingsHelper = new ChooseLockSettingsHelper(getActivity());
+
+        ContentResolver resolver = getActivity().getContentResolver();
+
+        // Lockscreen weather
+        mLockscreenWeather = (SwitchPreference) findPreference(KEY_LOCKSCREEN_WEATHER);
+        mLockscreenWeather.setChecked(Settings.System.getIntForUser(resolver,
+            Settings.System.LOCKSCREEN_WEATHER, 1, UserHandle.USER_CURRENT) == 1);
+        mLockscreenWeather.setOnPreferenceChangeListener(this);
 
         if (savedInstanceState != null
                 && savedInstanceState.containsKey(TRUST_AGENT_CLICK_INTENT)) {
@@ -745,6 +757,11 @@ public class SecuritySettings extends SettingsPreferenceFragment
                     Integer.valueOf((String) value));
             mLockNumpadRandom.setValue(String.valueOf(value));
             mLockNumpadRandom.setSummary(mLockNumpadRandom.getEntry());
+        } else if (preference == mLockscreenWeather) {
+            boolean value = (Boolean) value;
+            Settings.System.putIntForUser(getActivity().getContentResolver(),
+                    Settings.System.LOCKSCREEN_WEATHER, value ? 1 : 0, UserHandle.USER_CURRENT);
+            Helpers.restartSystemUI();
         }
         return result;
     }

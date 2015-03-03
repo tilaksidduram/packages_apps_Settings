@@ -127,4 +127,11 @@
 
     </PreferenceCategory>
 
+    <!-- Lockscreen weather -->
+    <SwitchPreference
+        android:key="lockscreen_weather"
+        android:title="@string/lockscreen_weather_title"
+        android:summary="@string/lockscreen_weather_summary"
+        android:defaultValue="true" />
+
 </PreferenceScreen>
