@@ -75,6 +75,12 @@
                 settings:keywords="@string/keywords_recents_show_searchbar"
                 android:defaultValue="true" />
 
+	<com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+		android:key="recents_clear_all_dismiss_all"
+		android:title="@string/recents_clear_all_dismiss_all_title"
+		android:summary="@string/recents_clear_all_dismiss_all_summary"
+		android:defaultValue="true" />
+
         <PreferenceScreen
                 android:key="wifi_display"
                 android:title="@string/wifi_display_settings_title"

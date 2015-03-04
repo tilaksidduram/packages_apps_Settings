@@ -994,6 +994,9 @@
     <string name="recents_show_searchbar">Show search bar in recents menu</string>
     <string name="keywords_recents_show_searchbar">recent recents disable enable show hide search bar searchbar</string>
 
+    <string name="recents_clear_all_dismiss_all_title">Clear all tasks</string>
+    <string name="recents_clear_all_dismiss_all_summary">Choose whether to dismiss all tasks or ignore the foreground task</string>
+
     <!-- Advanced, Device specific (DeviceParts) settings  -->
     <string name="advanced_settings_title">Advanced</string>
 </resources>
