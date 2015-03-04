@@ -758,9 +758,9 @@ public class SecuritySettings extends SettingsPreferenceFragment
             mLockNumpadRandom.setValue(String.valueOf(value));
             mLockNumpadRandom.setSummary(mLockNumpadRandom.getEntry());
         } else if (preference == mLockscreenWeather) {
-            boolean value = (Boolean) value;
             Settings.System.putIntForUser(getActivity().getContentResolver(),
-                    Settings.System.LOCKSCREEN_WEATHER, value ? 1 : 0, UserHandle.USER_CURRENT);
+                    Settings.System.LOCKSCREEN_WEATHER,
+                    (Boolean) value ? 1 : 0, UserHandle.USER_CURRENT);
             Helpers.restartSystemUI();
         }
         return result;
