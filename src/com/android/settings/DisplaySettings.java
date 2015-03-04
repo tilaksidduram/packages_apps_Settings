@@ -119,7 +119,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private SwitchPreference mAdaptiveBacklight;
     private SwitchPreference mSunlightEnhancement;
     private SwitchPreference mColorEnhancement;
-    private PreferenceScreen mDozeFragement;
+    private PreferenceScreen mDozeFragment;
 
     private ContentObserver mAccelerometerRotationObserver =
             new ContentObserver(new Handler()) {
@@ -211,9 +211,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             advancedPrefs.removePreference(findPreference(KEY_DISPLAY_GAMMA));
         }
 
-        mDozeFragement = (PreferenceScreen) findPreference(KEY_DOZE_FRAGMENT);
+        mDozeFragment = (PreferenceScreen) findPreference(KEY_DOZE_FRAGMENT);
         if (!isDozeAvailable(activity)) {
-            getPreferenceScreen().removePreference(mDozeFragement);
+            getPreferenceScreen().removePreference(mDozeFragment);
         }
 
         mTapToWake = (SwitchPreference) findPreference(KEY_TAP_TO_WAKE);
