@@ -14,24 +14,13 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/pa_settings_title" >
+    android:title="@string/lockscreen_title" >
 
-    <!-- Circle app bar -->
-    <PreferenceScreen
-        android:key="app_circle_bar"
-        android:fragment="com.android.settings.aicp.AppCircleBar"
-        android:title="@string/app_circle_bar_title"/>
-
-    <!-- Gesture anywhere -->
-    <PreferenceScreen
-        android:key="gesture_anywhere"
-        android:fragment="com.android.settings.aicp.gestureanywhere.GestureAnywhereSettings"
-        android:title="@string/gesture_anywhere_title" />
-
-    <!-- Custom Lockscreen -->
-    <PreferenceScreen
-        android:key="lockscreen_paranoid"
-        android:fragment="com.android.settings.paranoid.LockScreenSettings"
-        android:title="@string/lockscreen_title" />
+    <!-- Lockscreen weather -->
+    <SwitchPreference
+        android:key="lockscreen_weather"
+        android:title="@string/lockscreen_weather_title"
+        android:summary="@string/lockscreen_weather_summary"
+        android:defaultValue="true" />
 
 </PreferenceScreen>
