@@ -23,6 +23,7 @@ import com.android.settings.notification.DropDownPreference.Callback;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.search.Indexable;
 
+import static android.hardware.CmHardwareManager.FEATURE_TAP_TO_WAKE;
 import static android.provider.Settings.Secure.WAKE_GESTURE_ENABLED;
 import static android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE;
 import static android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
@@ -40,6 +41,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.SharedPreferences;
+import android.hardware.CmHardwareManager;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Build;
@@ -67,7 +69,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.android.settings.cyanogenmod.DisplayRotation;
-import org.cyanogenmod.hardware.TapToWake;
 
 public class DisplaySettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener, OnPreferenceClickListener, Indexable {
@@ -113,6 +114,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private SwitchPreference mWakeWhenPluggedOrUnplugged;
     private PreferenceScreen mDozeFragment;
 
+    private CmHardwareManager mCmHardwareManager;
+
     private ContentObserver mAccelerometerRotationObserver =
             new ContentObserver(new Handler()) {
         @Override
@@ -134,6 +137,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         super.onCreate(savedInstanceState);
         final Activity activity = getActivity();
         final ContentResolver resolver = activity.getContentResolver();
+        mCmHardwareManager = (CmHardwareManager) activity.getSystemService(Context.CMHW_SERVICE);
 
         addPreferencesFromResource(R.xml.display_settings);
 
@@ -184,7 +188,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
 
         mTapToWake = (SwitchPreference) findPreference(KEY_TAP_TO_WAKE);
-        if (!isTapToWakeSupported()) {
+
+        if (advancedPrefs != null && !mCmHardwareManager.isSupported(FEATURE_TAP_TO_WAKE)) {
             advancedPrefs.removePreference(mTapToWake);
             mTapToWake = null;
         }
@@ -351,7 +356,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         super.onResume();
         updateDisplayRotationPreferenceDescription();
         if (mTapToWake != null) {
-            mTapToWake.setChecked(TapToWake.isEnabled());
+            mTapToWake.setChecked(mCmHardwareManager.get(FEATURE_TAP_TO_WAKE));
         }
 
         RotationPolicy.registerRotationPolicyListener(getActivity(),
@@ -436,15 +441,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
     }
 
-    private static boolean isTapToWakeSupported() {
-        try {
-            return TapToWake.isSupported();
-        } catch (NoClassDefFoundError e) {
-            // Hardware abstraction framework not installed
-            return false;
-        }
-    }
-
     /**
      * Reads the current font size and sets the value in the summary text
      */
@@ -473,7 +469,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mTapToWake) {
-            return TapToWake.setEnabled(mTapToWake.isChecked());
+            return mCmHardwareManager.set(FEATURE_TAP_TO_WAKE, mTapToWake.isChecked());
         } else if (preference == mWakeWhenPluggedOrUnplugged) {
             Settings.Global.putInt(getContentResolver(),
                     Settings.Global.WAKE_WHEN_PLUGGED_OR_UNPLUGGED,
@@ -568,15 +564,18 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     /**
      * Restore the properties associated with this preference on boot
-       @param ctx A valid context
+     *
+     * @param ctx A valid context
      */
     public static void restore(Context ctx) {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        if (isTapToWakeSupported()) {
+        CmHardwareManager cmHardwareManager =
+            (CmHardwareManager) ctx.getSystemService(Context.CMHW_SERVICE);
+        if (cmHardwareManager.isSupported(FEATURE_TAP_TO_WAKE)) {
             final boolean enabled = prefs.getBoolean(KEY_TAP_TO_WAKE,
-                TapToWake.isEnabled());
+                cmHardwareManager.get(FEATURE_TAP_TO_WAKE));
 
-            if (!TapToWake.setEnabled(enabled)) {
+            if (!cmHardwareManager.set(FEATURE_TAP_TO_WAKE, enabled)) {
                 Log.e(TAG, "Failed to restore tap-to-wake settings.");
             } else {
                 Log.d(TAG, "Tap-to-wake settings restored.");
@@ -587,6 +586,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
             new BaseSearchIndexProvider() {
+
                 @Override
                 public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
                         boolean enabled) {
@@ -602,10 +602,15 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
                 @Override
                 public List<String> getNonIndexableKeys(Context context) {
+                    CmHardwareManager cmHardwareManager =
+                        (CmHardwareManager) context.getSystemService(Context.CMHW_SERVICE);
                     ArrayList<String> result = new ArrayList<String>();
                     if (!context.getResources().getBoolean(
                             com.android.internal.R.bool.config_dreamsSupported)) {
                         result.add(KEY_SCREEN_SAVER);
+                    }
+                    if (!cmHardwareManager.isSupported(FEATURE_TAP_TO_WAKE)) {
+                        result.add(KEY_TAP_TO_WAKE);
                     }
                     if (!isAutomaticBrightnessAvailable(context.getResources())) {
                         result.add(KEY_AUTO_BRIGHTNESS);
