@@ -28,6 +28,12 @@
         android:fragment="com.android.settings.aicp.gestureanywhere.GestureAnywhereSettings"
         android:title="@string/gesture_anywhere_title" />
 
+    <!-- Wakelock blocker -->
+    <PreferenceScreen
+        android:key="wakelock_blocker"
+        android:fragment="com.android.settings.aicp.WakeLockBlocker"
+        android:title="@string/wakelock_blocker_title" />
+
     <!-- Custom Lockscreen -->
     <PreferenceScreen
         android:key="lockscreen_paranoid"
