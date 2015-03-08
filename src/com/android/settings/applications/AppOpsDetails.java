@@ -37,7 +37,6 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.android.settings.R;
@@ -172,17 +171,12 @@ public class AppOpsDetails extends Fragment {
                         entry.getSwitchText(mState));
                 ((TextView)view.findViewById(R.id.op_time)).setText(
                         entry.getTimeText(res, true));
-
-                Spinner sp = (Spinner) view.findViewById(R.id.spinnerWidget);
-                sp.setVisibility(View.INVISIBLE);
-                Switch sw = (Switch) view.findViewById(R.id.switchWidget);
-                sw.setVisibility(View.INVISIBLE);
-
+                Spinner sw = (Spinner)view.findViewById(R.id.spinnerWidget);
                 final int switchOp = AppOpsManager.opToSwitch(firstOp.getOp());
                 int mode = mAppOps.checkOp(switchOp, entry.getPackageOps().getUid(),
                         entry.getPackageOps().getPackageName());
-                sp.setSelection(modeToPosition(mode));
-                sp.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+                sw.setSelection(modeToPosition(mode));
+                sw.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
                     boolean firstMode = true;
 
                     @Override
@@ -200,24 +194,6 @@ public class AppOpsDetails extends Fragment {
                         // your code here
                     }
                 });
-
-                sw.setChecked(mAppOps.checkOp(switchOp, entry.getPackageOps()
-                        .getUid(), entry.getPackageOps().getPackageName()) == AppOpsManager.MODE_ALLOWED);
-                sw.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton buttonView,
-                            boolean isChecked) {
-                        mAppOps.setMode(switchOp, entry.getPackageOps()
-                                .getUid(), entry.getPackageOps()
-                                .getPackageName(),
-                                isChecked ? AppOpsManager.MODE_ALLOWED
-                                        : AppOpsManager.MODE_IGNORED);
-                    }
-                });
-                if (AppOpsManager.isStrictOp(switchOp)) {
-                    sp.setVisibility(View.VISIBLE);
-                } else {
-                    sw.setVisibility(View.VISIBLE);
-                }
             }
         }
 
