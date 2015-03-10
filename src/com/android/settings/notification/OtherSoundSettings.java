@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.ContentObserver;
+import android.hardware.CmHardwareManager;
 import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -139,15 +140,6 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
         }
     };
 
-    private static final SettingPref PREF_VIBRATION_INTENSITY = new SettingPref(
-            TYPE_SYSTEM, KEY_VIBRATION_INTENSITY, System.HAPTIC_FEEDBACK_ENABLED, DEFAULT_ON) {
-        @Override
-        public boolean isApplicable(Context context) {
-            return VibratorIntensity.isSupported();
-        }
-    };
-
-
     private static final SettingPref PREF_VOLUME_ADJUST_SOUND = new SettingPref(
             TYPE_SYSTEM, KEY_VOLUME_ADJUST_SOUND, System.VOLUME_ADJUST_SOUND_ENABLED, DEFAULT_ON) {
         @Override
@@ -211,7 +203,6 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
         PREF_VOLUME_ADJUST_SOUND,
         PREF_DOCK_AUDIO_MEDIA,
         PREF_EMERGENCY_TONE,
-        PREF_VIBRATION_INTENSITY,
     };
 
     private final SettingsObserver mSettingsObserver = new SettingsObserver();
@@ -223,6 +214,7 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.other_sound_settings);
+	PreferenceScreen prefSet = getPreferenceScreen();
 
         mContext = getActivity();
 
@@ -263,6 +255,15 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
         for (SettingPref pref : PREFS) {
             pref.init(this);
         }
+
+	CmHardwareManager cmHardwareManager =
+		(CmHardwareManager) getSystemService(Context.CMHW_SERVICE);
+	if (!cmHardwareManager.isSupported(CmHardwareManager.FEATURE_VIBRATOR)) {
+	    Preference preference = prefSet.findPreference(KEY_VIBRATION_INTENSITY);
+	    if (preference != null) {
+		prefSet.removePreference(preference);
+	    }
+	}
     }
 
     @Override
