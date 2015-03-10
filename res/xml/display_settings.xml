@@ -133,6 +133,4 @@
                 android:targetClass="com.cyanogenmod.settings.device.DisplaySettings" />
         </Preference>
 
-        </PreferenceCategory>
-
 </PreferenceScreen>
