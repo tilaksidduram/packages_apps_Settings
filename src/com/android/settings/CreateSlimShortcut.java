@@ -23,9 +23,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import com.android.internal.util.crdroid.ActionHelper;
-import com.android.internal.util.crdroid.DeviceUtils;
-import com.android.internal.util.crdroid.DeviceUtils.FilteredDeviceFeaturesArray;
+import com.android.internal.util.slim.ActionHelper;
+import com.android.internal.util.slim.DeviceUtils;
+import com.android.internal.util.slim.DeviceUtils.FilteredDeviceFeaturesArray;
 import com.android.settings.slim.SlimActionShortcut;
 
 import com.android.settings.R;
