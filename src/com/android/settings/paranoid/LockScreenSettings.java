@@ -37,10 +37,6 @@ public class LockScreenSettings extends SettingsPreferenceFragment
 
     private static final String TAG = "LockScreenSettings";
 
-    private static final String KEY_LOCKSCREEN_WEATHER = "lockscreen_weather";
-
-    private SwitchPreference mLockscreenWeather;
-
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -48,11 +44,6 @@ public class LockScreenSettings extends SettingsPreferenceFragment
 
         ContentResolver resolver = getActivity().getContentResolver();
 
-        // Lockscreen weather
-        mLockscreenWeather = (SwitchPreference) findPreference(KEY_LOCKSCREEN_WEATHER);
-        mLockscreenWeather.setChecked(Settings.System.getIntForUser(resolver,
-            Settings.System.LOCKSCREEN_WEATHER, 1, UserHandle.USER_CURRENT) == 1);
-        mLockscreenWeather.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -71,12 +62,7 @@ public class LockScreenSettings extends SettingsPreferenceFragment
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        if (preference == mLockscreenWeather) {
-            boolean value = (Boolean) objValue;
-            Settings.System.putIntForUser(getActivity().getContentResolver(),
-                    Settings.System.LOCKSCREEN_WEATHER, value ? 1 : 0, UserHandle.USER_CURRENT);
-            Helpers.restartSystemUI();
-        }
+ 
         return false;
     }
 }
