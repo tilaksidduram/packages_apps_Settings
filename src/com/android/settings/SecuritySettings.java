@@ -20,6 +20,7 @@ package com.android.settings;
 
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.AppOpsManager;
 import android.app.admin.DevicePolicyManager;
@@ -87,6 +88,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private static final String KEY_OWNER_INFO_SETTINGS = "owner_info_settings";
     private static final String KEY_ADVANCED_SECURITY = "advanced_security";
     private static final String KEY_MANAGE_TRUST_AGENTS = "manage_trust_agents";
+    private static final String KEY_SHOW_VISUALIZER = "lockscreen_visualizer";
 
     private static final int SET_OR_CHANGE_LOCK_METHOD_REQUEST = 123;
     private static final int CONFIRM_EXISTING_FOR_BIOMETRIC_WEAK_IMPROVE_REQUEST = 124;
@@ -266,6 +268,16 @@ public class SecuritySettings extends SettingsPreferenceFragment
                     trustAgentPreference.setSummary(R.string.disabled_because_no_backup_security);
                 }
             }
+
+        // remove lockscreen visualizer option on low end gfx devices
+        if (!ActivityManager.isHighEndGfx() && securityCategory != null) {
+            SwitchPreference displayVisualizer = (SwitchPreference)
+                    securityCategory.findPreference(KEY_SHOW_VISUALIZER);
+            if (displayVisualizer != null) {
+                securityCategory.removePreference(displayVisualizer);
+            }
+        }
+
         }
 
         // lock after preference
@@ -912,6 +924,11 @@ public class SecuritySettings extends SettingsPreferenceFragment
             if (!lockPatternUtils.isSecure()) {
                 keys.add(KEY_TRUST_AGENT);
                 keys.add(KEY_MANAGE_TRUST_AGENTS);
+            }
+
+            // hidden on low end gfx devices.
+            if (!ActivityManager.isHighEndGfx()) {
+                keys.add(KEY_SHOW_VISUALIZER);
             }
 
             return keys;
