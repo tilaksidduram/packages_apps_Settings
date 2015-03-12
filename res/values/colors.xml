@@ -79,7 +79,7 @@
 
     <color name="wifi_divider">#ffe0e0e0</color>
     <color name="sim_noitification">@*android:color/material_deep_teal_500</color>
-    <color name="regulatory_text_color">#fff</color>
+    <color name="regulatory_text_color">#000</color>
 
     <!-- DSLV colors -->
     <color name="dslv_icon_dark">#80000000</color>
