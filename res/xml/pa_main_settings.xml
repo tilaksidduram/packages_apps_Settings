@@ -16,6 +16,10 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/pa_settings_title" >
 
+    <PreferenceCategory
+        android:key="gesture_cat"
+        android:title="@string/gesture_cat" >
+
     <!-- Circle app bar -->
     <PreferenceScreen
         android:key="app_circle_bar"
@@ -28,16 +32,30 @@
         android:fragment="com.android.settings.aicp.gestureanywhere.GestureAnywhereSettings"
         android:title="@string/gesture_anywhere_title" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="misc_cat"
+        android:title="@string/misc_cat" >
+
     <!-- Wakelock blocker -->
     <PreferenceScreen
         android:key="wakelock_blocker"
         android:fragment="com.android.settings.aicp.WakeLockBlocker"
         android:title="@string/wakelock_blocker_title" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="misc_cat"
+        android:title="@string/misc_cat" >
+
     <!-- Custom Lockscreen -->
     <PreferenceScreen
         android:key="lockscreen_paranoid"
         android:fragment="com.android.settings.paranoid.LockScreenSettings"
         android:title="@string/lockscreen_title" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
