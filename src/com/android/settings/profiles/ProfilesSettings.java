@@ -61,8 +61,7 @@ import com.android.settings.cyanogenmod.BaseSystemSettingSwitchBar;
 import java.util.UUID;
 
 public class ProfilesSettings extends SettingsPreferenceFragment
-        implements BaseSystemSettingSwitchBar.SwitchBarChangeCallback,
-        Preference.OnPreferenceChangeListener {
+        implements Preference.OnPreferenceChangeListener {
     private static final String TAG = "ProfilesSettings";
 
     public static final String EXTRA_PROFILE = "Profile";
