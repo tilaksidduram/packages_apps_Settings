@@ -38,7 +38,6 @@ import java.util.List;
 public class PrivacySettings extends SettingsPreferenceFragment implements Indexable {
 
     private static final String KEY_BLACKLIST = "blacklist";
-    private static final String KEY_WHISPERPUSH = "whisperpush";
 
     private PreferenceScreen mBlacklist;
     private Preference mWhisperPush;
@@ -48,16 +47,13 @@ public class PrivacySettings extends SettingsPreferenceFragment implements Index
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.privacy_settings_cyanogenmod);
 
-        mBlacklist = (PreferenceScreen) findPreference(KEY_BLACKLIST);
-        mWhisperPush = (Preference) findPreference(KEY_WHISPERPUSH);
-
         // Add package manager to check if features are available
         PackageManager pm = getPackageManager();
 
         // Determine options based on device telephony support
         if (!pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
             // No telephony, remove dependent options
-            PreferenceScreen root = getPreferenceScreen();
+        PreferenceScreen root = getPreferenceScreen();
             root.removePreference(mBlacklist);
         }
     }
@@ -74,10 +70,12 @@ public class PrivacySettings extends SettingsPreferenceFragment implements Index
     }
 
     private void updateBlacklistSummary() {
-        if (BlacklistUtils.isBlacklistEnabled(getActivity())) {
-            mBlacklist.setSummary(R.string.blacklist_summary);
-        } else {
-            mBlacklist.setSummary(R.string.blacklist_summary_disabled);
+        if (mBlacklist != null) {
+            if (BlacklistUtils.isBlacklistEnabled(getActivity())) {
+                mBlacklist.setSummary(R.string.blacklist_summary);
+            } else {
+                mBlacklist.setSummary(R.string.blacklist_summary_disabled);
+            }
         }
     }
 
@@ -104,9 +102,6 @@ public class PrivacySettings extends SettingsPreferenceFragment implements Index
                     // Determine options based on device telephony support
                     if (!pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
                         result.add(KEY_BLACKLIST);
-                    }
-                    if (!isWhisperPushable(context, pm)) {
-                        result.add(KEY_WHISPERPUSH);
                     }
                     return result;
                 }
