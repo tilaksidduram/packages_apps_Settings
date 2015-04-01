@@ -22,7 +22,6 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.SearchIndexableResource;
-import com.android.internal.telephony.util.BlacklistUtils;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
@@ -31,14 +30,6 @@ import com.android.settings.search.Indexable;
 
 import java.util.ArrayList;
 import java.util.List;
-
-//import android.content.pm.PackageManager;
-import android.os.Bundle;
-//import android.preference.PreferenceScreen;
-//import com.android.settings.Utils;
-
-import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
 
 /**
  * Privacy settings
@@ -49,11 +40,6 @@ public class PrivacySettings extends SettingsPreferenceFragment implements Index
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.privacy_settings_cyanogenmod);
-    }
-
-    private static boolean isWhisperPushable(Context context, PackageManager pm) {
-        return pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY) &&
-                Utils.isPackageInstalled(context, "org.whispersystems.whisperpush");
     }
 
     @Override
@@ -73,18 +59,6 @@ public class PrivacySettings extends SettingsPreferenceFragment implements Index
                     sir.xmlResId = R.xml.privacy_settings_cyanogenmod;
                     result.add(sir);
 
-                    return result;
-                }
-
-                @Override
-                public List<String> getNonIndexableKeys(Context context) {
-                    ArrayList<String> result = new ArrayList<String>();
-                    PackageManager pm = context.getPackageManager();
-
-                    // Determine options based on device telephony support
-                    if (!pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
-                        result.add(KEY_BLACKLIST);
-                    }
                     return result;
                 }
             };

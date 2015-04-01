@@ -78,7 +78,6 @@ public class PrivacySettings extends SettingsPreferenceFragment implements
     private static final String CONFIGURE_ACCOUNT = "configure_account";
     private static final String BACKUP_INACTIVE = "backup_inactive";
     private static final String PERSONAL_DATA_CATEGORY = "personal_data_category";
-    private static final String TAG = "PrivacySettings";
     private IBackupManager mBackupManager;
     private SwitchPreference mBackup;
     private SwitchPreference mAutoRestore;
