@@ -1298,6 +1298,7 @@
         <item>Purple</item>
         <item>Pink</item>
         <item>Red</item>
+    </string-array>
 
     <!-- Values for the notification light pulse spinners -->
     <string-array name="notification_pulse_length_entries" translatable="false">
