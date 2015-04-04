@@ -84,6 +84,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private static final String KEY_VISIBLE_ERROR_PATTERN = "visible_error_pattern";
     private static final String KEY_VISIBLE_DOTS = "visibledots";
     private static final String KEY_SECURITY_CATEGORY = "security_category";
+    private static final String KEY_GENERAL_CATEGORY = "general_category";
     private static final String KEY_DEVICE_ADMIN_CATEGORY = "device_admin_category";
     private static final String KEY_LOCK_AFTER_TIMEOUT = "lock_after_timeout";
     private static final String KEY_OWNER_INFO_SETTINGS = "owner_info_settings";
@@ -269,12 +270,14 @@ public class SecuritySettings extends SettingsPreferenceFragment
                 }
             }
 
+        PreferenceGroup generalCategory = (PreferenceGroup)
+                root.findPreference(KEY_GENERAL_CATEGORY);
         // remove lockscreen visualizer option on low end gfx devices
-        if (!ActivityManager.isHighEndGfx() && securityCategory != null) {
+        if (!ActivityManager.isHighEndGfx() && generalCategory != null) {
             SwitchPreference displayVisualizer = (SwitchPreference)
-                    securityCategory.findPreference(KEY_SHOW_VISUALIZER);
+                    generalCategory.findPreference(KEY_SHOW_VISUALIZER);
             if (displayVisualizer != null) {
-                securityCategory.removePreference(displayVisualizer);
+                generalCategory.removePreference(displayVisualizer);
             }
         }
 
