@@ -54,4 +54,16 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="@string/custom_cat_animation">
+
+    <!-- Screen and animations -->
+    <PreferenceScreen
+         android:key="screen_and_animations"
+         android:fragment="com.android.settings.temasek.ScreenAndAnimations"
+         android:title="@string/screen_and_animations_title"
+	 android:icon="@drawable/ic_animation" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
