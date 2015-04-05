@@ -21,11 +21,13 @@ public class ScreenAndAnimations extends SettingsPreferenceFragment implements
 
     private static final String TAG = "ScreenAndAnimations";
 
+    private static final String KEY_TOAST_ANIMATION = "toast_animation";
     private static final String DISABLE_TORCH_ON_SCREEN_OFF = "disable_torch_on_screen_off";
     private static final String DISABLE_TORCH_ON_SCREEN_OFF_DELAY = "disable_torch_on_screen_off_delay";
 
     private Context mContext;
 
+    private ListPreference mToastAnimation;
     private SwitchPreference mTorchOff;
     private ListPreference mTorchOffDelay;
 
@@ -39,6 +41,15 @@ public class ScreenAndAnimations extends SettingsPreferenceFragment implements
         PreferenceScreen prefSet = getPreferenceScreen();
 
         mContext = getActivity().getApplicationContext();
+
+        // Toast Animations
+        mToastAnimation = (ListPreference) findPreference(KEY_TOAST_ANIMATION);
+        mToastAnimation.setSummary(mToastAnimation.getEntry());
+        int CurrentToastAnimation = Settings.System.getInt(resolver,
+                Settings.System.TOAST_ANIMATION, 1);
+        mToastAnimation.setValueIndex(CurrentToastAnimation); //set to index of default value
+        mToastAnimation.setSummary(mToastAnimation.getEntries()[CurrentToastAnimation]);
+        mToastAnimation.setOnPreferenceChangeListener(this);
 
         mTorchOff = (SwitchPreference) prefSet.findPreference(DISABLE_TORCH_ON_SCREEN_OFF);
         mTorchOffDelay = (ListPreference) prefSet.findPreference(DISABLE_TORCH_ON_SCREEN_OFF_DELAY);
@@ -61,6 +72,13 @@ public class ScreenAndAnimations extends SettingsPreferenceFragment implements
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final String key = preference.getKey();
+        if (preference == mToastAnimation) {
+            int index = mToastAnimation.findIndexOfValue((String) objValue);
+            Settings.System.putString(getContentResolver(), Settings.System.TOAST_ANIMATION, (String) objValue);
+            mToastAnimation.setSummary(mToastAnimation.getEntries()[index]);
+            Toast.makeText(mContext, "Toast Test", Toast.LENGTH_SHORT).show();
+            return true;
+        }
         if (preference == mTorchOffDelay) {
             int torchOffDelay = Integer.valueOf((String) objValue);
             int index = mTorchOffDelay.findIndexOfValue((String) objValue);
