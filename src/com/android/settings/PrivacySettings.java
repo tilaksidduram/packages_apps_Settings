@@ -66,8 +66,6 @@ import java.util.List;
 public class PrivacySettings extends SettingsPreferenceFragment implements
         DialogInterface.OnClickListener, Indexable {
 
-    static final String TAG = "PrivacySettings";
-
     // Vendor specific
     private static final String GSETTINGS_PROVIDER = "com.google.settings";
     private static final String BACKUP_CATEGORY = "backup_category";
