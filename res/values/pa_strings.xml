@@ -109,6 +109,7 @@
     <!-- Hardware tunables - Vibrator intensity -->
     <string name="vibrator_intensity_title">Vibrator intensity</string>
     <string name="vibrator_warning">Values higher than %1$d are not recommended</string>
+    <string name="auto_brightness_reset_button">Reset</string>
 
     <!-- Gesture Settings -->
     <string name="gesture_settings_title">Gestures</string>
