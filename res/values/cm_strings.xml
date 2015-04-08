@@ -1003,6 +1003,8 @@
     <string name="qs_main_tiles_summary_off2">Three or four tiles on each row</string>
     <string name="qs_four_columns_title">Show four tiles per row</string>
 
+    <string name="sim_no_number_set">No number assigned</string>
+
     <!-- Gesture Settings -->
     <!-- Settings main menu entry -->
     <string name="gesture_settings_title">Gestures</string>
