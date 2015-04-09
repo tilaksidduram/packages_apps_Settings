@@ -17,6 +17,7 @@
 package com.android.settings.cyanogenmod;
 
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.UserInfo;
 import android.content.res.Resources;
@@ -40,6 +41,7 @@ import cyanogenmod.providers.CMSettings;
 import org.cyanogenmod.internal.logging.CMMetricsLogger;
 
 import static com.android.internal.util.cm.PowerMenuConstants.*;
+import com.android.settings.widget.NumberPickerPreference;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -50,6 +52,7 @@ public class PowerMenuActions extends SettingsPreferenceFragment
     final static String TAG = "PowerMenuActions";
 
     private static final String PREF_ON_THE_GO_ALPHA = "on_the_go_alpha";
+    private static final String SCREENSHOT_DELAY = "screenshot_delay";
 
     private CheckBoxPreference mRebootPref;
     private CheckBoxPreference mScreenshotPref;
@@ -70,12 +73,24 @@ public class PowerMenuActions extends SettingsPreferenceFragment
     private String[] mAvailableActions;
     private String[] mAllActions;
 
+    private NumberPickerPreference mScreenshotDelay;
+
+    private ContentResolver mCr;
+    private PreferenceScreen mPrefSet;
+
+    private static final int MIN_DELAY_VALUE = 1;
+    private static final int MAX_DELAY_VALUE = 30;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.power_menu_settings);
         mContext = getActivity().getApplicationContext();
+
+        mPrefSet = getPreferenceScreen();
+
+        mCr = getActivity().getContentResolver();
 
         mAvailableActions = getActivity().getResources().getStringArray(
                 R.array.power_menu_actions_array);
@@ -117,6 +132,15 @@ public class PowerMenuActions extends SettingsPreferenceFragment
         mOnTheGoAlphaPref.setDefault(50);
         mOnTheGoAlphaPref.setInterval(1);
         mOnTheGoAlphaPref.setOnPreferenceChangeListener(this);
+
+        mScreenshotDelay = (NumberPickerPreference) mPrefSet.findPreference(
+                SCREENSHOT_DELAY);
+        mScreenshotDelay.setOnPreferenceChangeListener(this);
+        mScreenshotDelay.setMinValue(MIN_DELAY_VALUE);
+        mScreenshotDelay.setMaxValue(MAX_DELAY_VALUE);
+        int ssDelay = Settings.System.getInt(mCr,
+                Settings.System.SCREENSHOT_DELAY, 1);
+        mScreenshotDelay.setCurrentValue(ssDelay);
 
         getUserConfig();
     }
@@ -252,6 +276,11 @@ public class PowerMenuActions extends SettingsPreferenceFragment
             float val = Float.parseFloat((String) newValue);
             Settings.System.putFloat(mCr, Settings.System.ON_THE_GO_ALPHA,
                     val / 100);
+            return true;
+        } else if (preference == mScreenshotDelay) {
+            int value = Integer.parseInt(newValue.toString());
+            Settings.System.putInt(mCr, Settings.System.SCREENSHOT_DELAY,
+                    value);
             return true;
         }
         return false;
