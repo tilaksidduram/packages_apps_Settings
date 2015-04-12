@@ -70,4 +70,7 @@
     <!-- Font size sample text. This needs to be a very short string, as it is shown in
     multiple font sizes in a limited amount of space. -->
     <string name="font_size_sample">Sample</string>
+
+    <!-- Sound & notification > Other sounds: Title for the option enabling sound on volume slide adjust. [CHAR LIMIT=30] -->
+    <string name="volume_adjust_sound_title">Volume slider sound</string>
 </resources>
