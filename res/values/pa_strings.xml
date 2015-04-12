@@ -525,4 +525,8 @@
     <string name="heads_up_touch_outside_summary_disabled">Do not hide notification after touch outside or on home button press</string>
 
     <string name="alarm_ringtone_title">Default alarm ringtone</string>
+
+    <!-- Membar in Recents -->
+    <string name="recents_show_membar_title">Memory bar</string>
+    <string name="recents_show_membar_summary">Show a bar with the device\'s available memory</string>
 </resources>
