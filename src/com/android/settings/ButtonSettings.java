@@ -305,8 +305,15 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mDisableNavigationKeys) {
+            mDisableNavigationKeys.setEnabled(false);
             writeDisableNavkeysOption(getActivity(), mDisableNavigationKeys.isChecked());
             updateDisableNavkeysOption();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mDisableNavigationKeys.setEnabled(true);
+                }
+            }, 1000);
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
