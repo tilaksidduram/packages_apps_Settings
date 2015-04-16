@@ -252,8 +252,8 @@ public class UsbSettings extends SettingsPreferenceFragment {
 
         //if choose none, we set the function as the default config
         String function = USB_FUNCTION_DEFAULT;
-        if (preference == mMtp && mMtp.isChecked()) {
-            function = UsbManager.USB_FUNCTION_MTP;
+        if (preference == mMtp) {
+            function = mMtp.isChecked() ? UsbManager.USB_FUNCTION_MTP : UsbManager.USB_FUNCTION_PTP;
         } else if (preference == mPtp && mPtp.isChecked()) {
             function = UsbManager.USB_FUNCTION_PTP;
         } else if (preference == mCharging && mCharging.isChecked()) {
