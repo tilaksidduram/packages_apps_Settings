@@ -37,4 +37,8 @@
 
     <!-- The duration (in milliseconds) of activity transitions -->
     <integer name="setup_wizard_transition_duration">300</integer>
+
+    <!-- Display ro.product.name above Device model -->
+    <bool name="config_displayDeviceName">false</bool>
+
 </resources>
