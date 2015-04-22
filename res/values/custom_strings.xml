@@ -49,6 +49,18 @@
     <string name="changelog_title">Changelog</string>
     <string name="changelog_error">Unable to load changelog</string>
 
+    <!-- General strings -->
+    <string name="attention">Attention</string>
+    <string name="reset">Reset</string>
+    <string name="help">Help</string>
+    <string name="default_string">Default</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="ok">Ok</string>
+    <string name="reset_message">Reset all entries to default?</string>
+    <string name="reset_default_message">Reset default</string>
+    <string name="additional_options_title">Additional options</string>
+
     <!-- About device screen, CPU and RAM info. -->
     <string name="cpu_info">CPU</string>
     <string name="mem_info">RAM</string>
@@ -103,6 +115,11 @@
     <string name="status_bar_date_format_custom">Custom java format</string>
     <string name="status_bar_date_string_edittext_title">Must be in DateFormat eg. MM/dd/yy</string>
     <string name="status_bar_date_string_edittext_summary">Enter string</string>
+
+    <!-- Status bar - Clock -->
+    <string name="clock_color_title">Color</string>
+    <string name="status_bar_clock_style_reset">Reset color</string>
+    <string name="status_bar_clock_style_reset_message">Reset clock color?</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
