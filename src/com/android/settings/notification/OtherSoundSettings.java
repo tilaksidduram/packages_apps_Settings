@@ -54,7 +54,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class OtherSoundSettings extends SettingsPreferenceFragment implements Indexable {
+public class OtherSoundSettings extends SettingsPreferenceFragment implements
+	Preference.OnPreferenceChangeListener, Indexable {
     private static final String TAG = "OtherSoundSettings";
 
     private static final int DEFAULT_ON = 1;
@@ -81,6 +82,7 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
     private static final String KEY_EMERGENCY_TONE = "emergency_tone";
     private static final String KEY_VIBRATION_INTENSITY = "vibration_intensity";
     private static final String KEY_SAFE_HEADSET_VOLUME = "safe_headset_volume";
+    private static final String KEY_VOL_MEDIA = "volume_keys_control_media_stream";
 
     private static final String KEY_POWER_NOTIFICATIONS = "power_notifications";
     private static final String KEY_POWER_NOTIFICATIONS_VIBRATE = "power_notifications_vibrate";
@@ -93,6 +95,7 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
     private static final String POWER_NOTIFICATIONS_SILENT_URI = "silent";
 
     private SwitchPreference mSafeHeadsetVolume;
+    private SwitchPreference mVolumeKeysControlMedia;
     private SwitchPreference mPowerSounds;
     private SwitchPreference mPowerSoundsVibrate;
     private Preference mPowerSoundsRingtone;
@@ -230,6 +233,11 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
                 Settings.System.SAFE_HEADSET_VOLUME, 1) != 0);
         mSafeHeadsetVolume.setOnPreferenceChangeListener(this);
 
+        mVolumeKeysControlMedia = (SwitchPreference) findPreference(KEY_VOL_MEDIA);
+        mVolumeKeysControlMedia.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.VOLUME_KEYS_CONTROL_MEDIA_STREAM, 0) != 0);
+        mVolumeKeysControlMedia.setOnPreferenceChangeListener(this);
+
         // power state change notification sounds
         mPowerSounds = (SwitchPreference) findPreference(KEY_POWER_NOTIFICATIONS);
         mPowerSounds.setChecked(Global.getInt(getContentResolver(),
@@ -323,6 +331,11 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
             } else {
                 showDialogInner(DLG_SAFE_HEADSET_VOLUME);
             }
+        }
+        if (KEY_VOL_MEDIA.equals(key)) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.VOLUME_KEYS_CONTROL_MEDIA_STREAM,
+                    (Boolean) objValue ? 1 : 0);
         }
         return true;
     }
