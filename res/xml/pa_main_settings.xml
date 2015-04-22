@@ -53,8 +53,8 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="misc_cat"
-        android:title="@string/misc_cat" >
+        android:key="lockscreen_cat"
+        android:title="@string/lockscreen_cat" >
 
     <!-- Custom Lockscreen -->
     <PreferenceScreen
