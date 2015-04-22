@@ -20,6 +20,9 @@ import static com.android.settings.notification.SettingPref.TYPE_GLOBAL;
 import static com.android.settings.notification.SettingPref.TYPE_SYSTEM;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -65,6 +68,8 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
     private static final int DOCK_AUDIO_MEDIA_ENABLED = 1;
     private static final int DEFAULT_DOCK_AUDIO_MEDIA = DOCK_AUDIO_MEDIA_DISABLED;
 
+    private static final int DLG_SAFE_HEADSET_VOLUME = 0;
+
     private static final String KEY_DIAL_PAD_TONES = "dial_pad_tones";
     private static final String KEY_SCREEN_LOCKING_SOUNDS = "screen_locking_sounds";
     private static final String KEY_DOCKING_SOUNDS = "docking_sounds";
@@ -75,6 +80,7 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
     private static final String KEY_DOCK_AUDIO_MEDIA = "dock_audio_media";
     private static final String KEY_EMERGENCY_TONE = "emergency_tone";
     private static final String KEY_VIBRATION_INTENSITY = "vibration_intensity";
+    private static final String KEY_SAFE_HEADSET_VOLUME = "safe_headset_volume";
 
     private static final String KEY_POWER_NOTIFICATIONS = "power_notifications";
     private static final String KEY_POWER_NOTIFICATIONS_VIBRATE = "power_notifications_vibrate";
@@ -86,6 +92,7 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
     // Used for power notification uri string if set to silent
     private static final String POWER_NOTIFICATIONS_SILENT_URI = "silent";
 
+    private SwitchPreference mSafeHeadsetVolume;
     private SwitchPreference mPowerSounds;
     private SwitchPreference mPowerSoundsVibrate;
     private Preference mPowerSoundsRingtone;
@@ -218,6 +225,11 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
 
         mContext = getActivity();
 
+        mSafeHeadsetVolume = (SwitchPreference) findPreference(KEY_SAFE_HEADSET_VOLUME);
+        mSafeHeadsetVolume.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.SAFE_HEADSET_VOLUME, 1) != 0);
+        mSafeHeadsetVolume.setOnPreferenceChangeListener(this);
+
         // power state change notification sounds
         mPowerSounds = (SwitchPreference) findPreference(KEY_POWER_NOTIFICATIONS);
         mPowerSounds.setChecked(Global.getInt(getContentResolver(),
@@ -300,6 +312,73 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
         }
 
         return true;
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        final String key = preference.getKey();
+        if (KEY_SAFE_HEADSET_VOLUME.equals(key)) {
+            if ((Boolean) objValue) {
+                Settings.System.putInt(getContentResolver(),
+                        Settings.System.SAFE_HEADSET_VOLUME, 1);
+            } else {
+                showDialogInner(DLG_SAFE_HEADSET_VOLUME);
+            }
+        }
+        return true;
+    }
+
+    private void showDialogInner(int id) {
+        DialogFragment newFragment = MyAlertDialogFragment.newInstance(id);
+        newFragment.setTargetFragment(this, 0);
+        newFragment.show(getFragmentManager(), "dialog " + id);
+    }
+
+    public static class MyAlertDialogFragment extends DialogFragment {
+
+        public static MyAlertDialogFragment newInstance(int id) {
+            MyAlertDialogFragment frag = new MyAlertDialogFragment();
+            Bundle args = new Bundle();
+            args.putInt("id", id);
+            frag.setArguments(args);
+            return frag;
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            int id = getArguments().getInt("id");
+            switch (id) {
+                case DLG_SAFE_HEADSET_VOLUME:
+                    return new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.attention)
+                    .setMessage(R.string.safe_headset_volume_warning_dialog_text)
+                    .setPositiveButton(R.string.dlg_ok,
+                        new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Settings.System.putInt(getOwner().getContentResolver(),
+                                    Settings.System.SAFE_HEADSET_VOLUME, 0);
+
+                        }
+                    })
+                    .setNegativeButton(R.string.dlg_cancel,
+                        new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                    .create();
+            }
+            throw new IllegalArgumentException("unknown id " + id);
+        }
+
+        @Override
+        public void onCancel(DialogInterface dialog) {
+            int id = getArguments().getInt("id");
+            switch (id) {
+                case DLG_SAFE_HEADSET_VOLUME:
+                    getOwner().mSafeHeadsetVolume.setChecked(true);
+                    break;
+            }
+        }
     }
 
     private static boolean hasDockSettings(Context context) {
