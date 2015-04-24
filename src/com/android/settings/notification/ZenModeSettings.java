@@ -94,6 +94,8 @@ public class ZenModeSettings extends SettingsPreferenceFragment implements Index
 
     private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
 
+    private static final String PREF_HEADS_UP_SNOOZE_TIME = "heads_up_snooze_time";
+
     private static final SettingPrefWithCallback PREF_ZEN_MODE = new SettingPrefWithCallback(
             SettingPref.TYPE_GLOBAL, KEY_ZEN_MODE, Global.ZEN_MODE, Global.ZEN_MODE_OFF,
             Global.ZEN_MODE_OFF, Global.ZEN_MODE_IMPORTANT_INTERRUPTIONS,
@@ -171,6 +173,8 @@ public class ZenModeSettings extends SettingsPreferenceFragment implements Index
 
     private ListPreference mAnnoyingNotifications;
 
+    private ListPreference mHeadsUpSnoozeTime;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -200,6 +204,22 @@ public class ZenModeSettings extends SettingsPreferenceFragment implements Index
                 0);
         mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
         mAnnoyingNotifications.setOnPreferenceChangeListener(this);
+
+        Resources systemUiResources;
+        try {
+            systemUiResources = mPM.getResourcesForApplication("com.android.systemui");
+        } catch (Exception e) {
+            return;
+        }
+
+        int defaultSnooze = systemUiResources.getInteger(systemUiResources.getIdentifier(
+                    "com.android.systemui:integer/heads_up_default_snooze_length_ms", null, null));
+        mHeadsUpSnoozeTime = (ListPreference) findPreference(PREF_HEADS_UP_SNOOZE_TIME);
+        mHeadsUpSnoozeTime.setOnPreferenceChangeListener(this);
+        int headsUpSnooze = Settings.System.getInt(getContentResolver(),
+                Settings.System.HEADS_UP_NOTIFICATION_SNOOZE, defaultSnooze);
+        mHeadsUpSnoozeTime.setValue(String.valueOf(headsUpSnooze));
+        updateHeadsUpSnoozeTimeSummary(headsUpSnooze);
 
         mConfig = getZenModeConfig();
         if (DEBUG) Log.d(TAG, "Loaded mConfig=" + mConfig);
@@ -545,8 +565,22 @@ public class ZenModeSettings extends SettingsPreferenceFragment implements Index
             final int val = Integer.valueOf((String) objValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
+            return true;
+        } else if (PREF_HEADS_UP_SNOOZE_TIME.equals(key)) {
+            final int headsUpSnooze = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.HEADS_UP_NOTIFICATION_SNOOZE, headsUpSnooze);
+                    updateHeadsUpSnoozeTimeSummary(headsUpSnooze);
+            return true;
         }
-        return true;
+        return false;
+    }
+
+    private void updateHeadsUpSnoozeTimeSummary(int value) {
+        String summary = value != 0
+                ? getResources().getString(R.string.heads_up_snooze_summary, value / 60 / 1000)
+                : getResources().getString(R.string.heads_up_snooze_disabled_summary);
+        mHeadsUpSnoozeTime.setSummary(summary);
     }
 
     @Override

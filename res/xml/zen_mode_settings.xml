@@ -34,6 +34,13 @@
             android:switchTextOff=""
             android:switchTextOn="" />
 
+    <ListPreference
+            android:key="heads_up_snooze_time"
+            android:title="@string/heads_up_snooze_title"
+            android:entries="@array/heads_up_snooze_entries"
+            android:entryValues="@array/heads_up_snooze_values"
+            android:persistent="false" />
+
     <SwitchPreference
            android:key="music_interruptions"
            android:title="@string/interruptions_ignore_while_media_title"
