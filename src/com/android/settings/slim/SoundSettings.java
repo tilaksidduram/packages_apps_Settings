@@ -46,7 +46,6 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
     private static final String KEY_CAMERA_SOUNDS = "camera_sounds";
     private static final String PROP_CAMERA_SOUND = "persist.sys.camera-sound";
-    private static final String KEY_VOL_MEDIA = "volume_keys_control_media_stream";
 
     private SwitchPreference mSafeHeadsetVolume;
     private ListPreference mAnnoyingNotifications;
@@ -75,11 +74,6 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mCameraSounds = (SwitchPreference) findPreference(KEY_CAMERA_SOUNDS);
         mCameraSounds.setChecked(SystemProperties.getBoolean(PROP_CAMERA_SOUND, true));
         mCameraSounds.setOnPreferenceChangeListener(this);
-
-        mVolumeKeysControlMedia = (SwitchPreference) findPreference(KEY_VOL_MEDIA);
-        mVolumeKeysControlMedia.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.VOLUME_KEYS_CONTROL_MEDIA_STREAM, 0) != 0);
-        mVolumeKeysControlMedia.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -114,11 +108,6 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             } else {
                 showDialogInner(DLG_CAMERA_SOUND);
             }
-        }
-        if (KEY_VOL_MEDIA.equals(key)) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.VOLUME_KEYS_CONTROL_MEDIA_STREAM,
-                    (Boolean) objValue ? 1 : 0);
         }
         return true;
     }
