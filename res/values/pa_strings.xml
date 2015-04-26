@@ -18,6 +18,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- General strings -->
+    <string name="attention">Attention</string>
     <string name="ok">OK</string>
     <string name="reset">Reset</string>
     <string name="help">Help</string>
