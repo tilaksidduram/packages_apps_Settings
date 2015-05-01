@@ -48,6 +48,14 @@
         android:title="@string/none_is_silent_title"
         android:summary="@string/none_is_silent_summary" />
 
+    <!-- Whether to allow notification lights in zen mode -->
+    <!-- This is set to true to match the default state in Android 5.1 -->
+    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+        android:key="allow_lights"
+        android:title="@string/allow_lights_title"
+        android:order="101"
+        android:defaultValue="true" />
+
     <PreferenceCategory
         android:key="important"
         android:title="@string/zen_mode_important_category" >
@@ -108,13 +116,6 @@
                 android:order="100"
                 android:persistent="false" />
 
-        <!-- Whether to allow notification lights in zen mode -->
-        <!-- This is set to true to match the default state in Android 5.1 -->
-        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
-            android:key="allow_lights"
-            android:title="@string/allow_lights_title"
-            android:order="101"
-            android:defaultValue="true" />
 
     </PreferenceCategory>
 
