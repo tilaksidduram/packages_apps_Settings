@@ -439,6 +439,8 @@
     <string name="gesture_cat">Gestures</string>
     <string name="misc_cat">Misc</string>
     <string name="lockscreen_cat">Lockscreen</string>
+    <string name="screen_and_animations_cat">Screen and animations</string>
+    <string name="screen_and_animations_title">Screen and animations</string>
 
     <!-- Lockscreen weather -->
     <string name="lock_screen_weather_settings_title">Lock screen weather</string>
@@ -757,5 +759,15 @@
     <string name="custom_carrier_label_explain">Please enter a new label. Leave blank to revert to stock label.</string>
     <string name="custom_carrier_label_notset">Custom label currently not set</string>
     <string name="status_bar_carrier_color">Carrier label color</string>
+
+    <!-- Disable torch when screen goes off -->
+    <string name="disable_torch_screen_off_title">Disable torch on screen off</string>
+    <string name="disable_torch_screen_off_delay_title">Delay</string>
+    <string name="torch_screen_off_one_second">1 second</string>
+    <string name="torch_screen_off_ten_second">10 seconds (default)</string>
+    <string name="torch_screen_off_thirty_second">30 seconds</string>
+    <string name="torch_screen_off_one_minute">1 minute</string>
+    <string name="torch_screen_off_five_minutes">5 minutes</string>
+    <string name="torch_screen_off_ten_minutes">10 minutes</string>
 
 </resources>

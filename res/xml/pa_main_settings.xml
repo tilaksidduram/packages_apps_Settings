@@ -17,6 +17,18 @@
     android:title="@string/pa_settings_title" >
 
     <PreferenceCategory
+        android:key="screen_and_animations"
+        android:title="@string/screen_and_animations_cat" >
+
+    <!-- Screen and animations -->
+    <PreferenceScreen
+         android:key="screen_and_animations"
+         android:fragment="com.android.settings.paranoid.ScreenAndAnimations"
+         android:title="@string/screen_and_animations_title"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="gesture_cat"
         android:title="@string/gesture_cat" >
 
