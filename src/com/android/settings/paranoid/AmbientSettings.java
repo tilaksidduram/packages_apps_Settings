@@ -46,7 +46,7 @@ import android.util.MathUtils;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.cyanogenmod.SystemSettingSwitchPreference;
-import com.android.settings.temasek.SeekBarPreference;
+import com.android.settings.crdroid.SeekBarPreference;
 import com.android.settings.paranoid.sensor.ShakeSensorManager;
 
 import java.util.ArrayList;

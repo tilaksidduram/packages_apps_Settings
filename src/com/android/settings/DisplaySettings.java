@@ -407,8 +407,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         boolean dozeEnabled = Settings.Secure.getInt(
                 getContentResolver(), Settings.Secure.DOZE_ENABLED, 1) != 0;
-        if (mDozeFragment != null) {
-            mDozeFragment.setSummary(dozeEnabled
+        if (mDozeFragement != null) {
+            mDozeFragement.setSummary(dozeEnabled
                     ? R.string.summary_doze_enabled : R.string.summary_doze_disabled);
         }
 

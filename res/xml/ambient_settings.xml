@@ -65,7 +65,7 @@
                         android:defaultValue="false"
                         android:disableDependentsState="true" />
 
-                    <com.android.settings.euphoria.SeekBarPreference
+                    <com.android.settings.crdroid.SeekBarPreference
                         android:key="doze_brightness"
                         android:title="@string/doze_brightness_title"
                         android:max="100"
