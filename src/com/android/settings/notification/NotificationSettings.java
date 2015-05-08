@@ -82,6 +82,8 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
     private static final String KEY_NOTIFICATION_LIGHT = "notification_light";
     private static final String KEY_BATTERY_LIGHT = "battery_light";
 
+    private static final String KEY_HEADS_UP_SETTINGS = "heads_up_enabled";
+
     private static final int SAMPLE_CUTOFF = 2000;  // manually cap sample playback at 2 seconds
 
     private final VolumePreferenceCallback mVolumeCallback = new VolumePreferenceCallback();
@@ -156,7 +158,7 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
         updateRingerMode();
         updateEffectsSuppressor();
 
-        mHeadsUp = findPreference(Settings.System.HEADS_UP_NOTIFICATION);
+        mHeadsUp = findPreference(KEY_HEADS_UP_SETTINGS);
 
     }
 
@@ -175,7 +177,7 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
         }
 
         boolean headsUpEnabled = Settings.System.getInt(
-                getContentResolver(), Settings.System.HEADS_UP_NOTIFICATION,1) != 0;
+                getContentResolver(), Settings.System.HEADS_UP_USER_ENABLED, Settings.System.HEADS_UP_USER_ON) != 0;
         mHeadsUp.setSummary(headsUpEnabled
                 ? R.string.summary_heads_up_enabled : R.string.summary_heads_up_disabled);
     }
