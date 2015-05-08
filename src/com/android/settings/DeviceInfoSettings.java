@@ -81,6 +81,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment implements In
     private static final String KEY_DEVICE_FEEDBACK = "device_feedback";
     private static final String KEY_SAFETY_LEGAL = "safetylegal";
     private static final String KEY_PA_VERSION = "pa_version";
+    private static final String KEY_MOD_BUILD_DATE = "build_date";
 
     static final int TAPS_TO_BE_A_DEVELOPER = 7;
 
@@ -105,6 +106,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment implements In
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
         findPreference(KEY_PA_VERSION).setEnabled(true);
         setValueSummary(KEY_PA_VERSION, "ro.pa.version");
+        setValueSummary(KEY_MOD_BUILD_DATE, "ro.build.date");
 
         if (!SELinux.isSELinuxEnabled()) {
             String status = getResources().getString(R.string.selinux_status_disabled);

@@ -321,4 +321,8 @@
     <string name="clock_date_style_lowercase">Lowercase</string>
     <string name="clock_date_style_uppercase">Uppercase</string>
     <string name="clock_date_format_custom">Custom java format</string>
+
+    <!-- About phone screen, build date -->
+    <string name="build_date">Build date</string>
+    <string name="build_date_default">2014-01-01-0000</string>
 </resources>
