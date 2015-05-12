@@ -82,6 +82,14 @@
             <extra android:name="fragment" android:value="com.android.settings.slim.fragments.LockscreenShortcutFragment" />
         </PreferenceScreen>
 
+        <ListPreference
+            android:key="lockscreen_shortcuts_launch_type"
+            android:title="@string/lockscreen_shorcuts_launch_type_title"
+            android:summary="%s"
+            android:defaultValue="1"
+            android:entries="@array/lockscreen_shortcuts_launch_type_entries"
+            android:entryValues="@array/lockscreen_shortcuts_launch_type_values" />
+
     	<com.android.settings.cyanogenmod.SystemSettingSwitchPreference
             android:key="double_tap_sleep_anywhere"
             android:title="@string/double_tap_sleep_anywhere_title"
