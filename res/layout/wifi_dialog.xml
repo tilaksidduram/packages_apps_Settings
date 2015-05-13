@@ -474,7 +474,8 @@
                             style="@style/wifi_item_edit_content"
                             android:singleLine="true"
                             android:hint="@string/wifi_ip_address_hint"
-                            android:inputType="number" />
+                            android:inputType="number|numberDecimal"
+                            android:digits="0123456789." />
                 </LinearLayout>
 
                 <LinearLayout
@@ -493,7 +494,8 @@
                             style="@style/wifi_item_edit_content"
                             android:singleLine="true"
                             android:hint="@string/wifi_gateway_hint"
-                            android:inputType="number" />
+                            android:inputType="number|numberDecimal"
+                            android:digits="0123456789." />
                 </LinearLayout>
 
                 <LinearLayout
@@ -530,7 +532,8 @@
                             style="@style/wifi_item_edit_content"
                             android:singleLine="true"
                             android:hint="@string/wifi_dns1_hint"
-                            android:inputType="number" />
+                            android:inputType="number|numberDecimal"
+                            android:digits="0123456789." />
                 </LinearLayout>
 
                 <LinearLayout
@@ -549,7 +552,8 @@
                             style="@style/wifi_item_edit_content"
                             android:singleLine="true"
                             android:hint="@string/wifi_dns2_hint"
-                            android:inputType="number" />
+                            android:inputType="number|numberDecimal"
+                            android:digits="0123456789." />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
