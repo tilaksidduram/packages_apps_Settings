@@ -65,12 +65,12 @@
 
     <!-- Partition Info -->
     <string name="partition_info_title">Partition info</string>
-    <string name="partition_info_system">/system</string>
-    <string name="partition_info_data">/data</string>
-    <string name="partition_info_cache">/cache</string>
-    <string name="partition_info_sdcard">/sdcard (FAT)</string>
-    <string name="partition_info_sdext">/sd-ext (EXT)</string>
-    <string name="partition_info_used_of">/</string>
+    <string name="partition_info_system" translatable="false">/system</string>
+    <string name="partition_info_data" translatable="false">/data</string>
+    <string name="partition_info_cache" translatable="false">/cache</string>
+    <string name="partition_info_sdcard" translatable="false">/sdcard (FAT)</string>
+    <string name="partition_info_sdext" translatable="false">/sd-ext (EXT)</string>
+    <string name="partition_info_used_of" translatable="false">/</string>
 
     <!--Battery Icon selection-->
     <string name="battery_status_icon_title">Status icon</string>
@@ -197,12 +197,12 @@
 
     <!-- WiFi Ad-Hoc mode -->
     <string name="wifi_mode">Mode</string>
-    <string name="wifi_mode_ibss">Ad-Hoc (IBSS) Network</string>
-    <string name="wifi_mode_ibss_short">Ad-Hoc</string>
+    <string name="wifi_mode_ibss" translatable="false">Ad-Hoc (IBSS) Network</string>
+    <string name="wifi_mode_ibss_short" translatable="false">Ad-Hoc</string>
 
     <string name="wifi_ibss_freq_title">Channel / Frequency</string>
     <string name="wifi_channel">Channel</string>
-    <string name="wifi_mhz">MHz</string>
+    <string name="wifi_mhz" translatable="false">MHz</string>
 
     <!-- Linked / unlinked notification volume -->
     <string name="link_volume_option_title">Link ring and notification volumes</string>
@@ -220,8 +220,8 @@
     <!-- Display & Lights screen, setting options for LCD density -->
     <string name="lcd_density">LCD density</string>
     <string name="dialog_title_lcd_density">LCD density</string>
-    <string name="lcd_density_value_format">%d DPI</string>
-    <string name="lcd_density_default_value_format">%d DPI (default)</string>
+    <string name="lcd_density_value_format" translatable="false">%d DPI</string>
+    <string name="lcd_density_default_value_format" translatable="false">%d DPI (default)</string>
     <string name="restarting_ui">Restarting UI\u2026</string>
 
     <!-- Themes Settings -->
@@ -262,19 +262,19 @@
     <string name="doze_time_mode_title">Show clock and date</string>
     <string name="doze_time_mode_summary">Force showing time when there is no notification</string>
 
-    <string name="twohundred_ms">200 ms</string>
-    <string name="fivehundred_ms">500 ms</string>
-    <string name="one_second">1 s</string>
-    <string name="one_second_default">1 s (default)</string>
-    <string name="onehalf_second">1.5 s</string>
-    <string name="two_second">2 s</string>
-    <string name="twohalf_second">2.5 s</string>
-    <string name="three_second">3 s</string>
-    <string name="three_second_default">3 s (default)</string>
-    <string name="threehalf_second">3.5 s</string>
-    <string name="four_second">4 s</string>
-    <string name="fourhalf_second">4.5 s</string>
-    <string name="five_second">5 s</string>
+    <string name="twohundred_ms" translatable="false">200 ms</string>
+    <string name="fivehundred_ms" translatable="false">500 ms</string>
+    <string name="one_second" translatable="false">1 s</string>
+    <string name="one_second_default" translatable="false">1 s (default)</string>
+    <string name="onehalf_second" translatable="false">1.5 s</string>
+    <string name="two_second" translatable="false">2 s</string>
+    <string name="twohalf_second" translatable="false">2.5 s</string>
+    <string name="three_second" translatable="false">3 s</string>
+    <string name="three_second_default" translatable="false">3 s (default)</string>
+    <string name="threehalf_second" translatable="false">3.5 s</string>
+    <string name="four_second" translatable="false">4 s</string>
+    <string name="fourhalf_second" translatable="false">4.5 s</string>
+    <string name="five_second" translatable="false">5 s</string>
 
     <string name="veryeasy_shake">Very easy</string>
     <string name="easy_shake">Easy</string>
@@ -298,7 +298,7 @@
     <string name="clock_enabled">Enabled</string>
     <string name="clock_disabled">Disabled</string>
     <string name="status_bar_show_clock_title">Show date and time</string>
-    <string name="status_bar_am_pm_title">AM/PM</string>
+    <string name="status_bar_am_pm_title" translatable="false">AM/PM</string>
     <string name="status_bar_am_pm_info">24-hour clock is enabled</string>
     <string name="enable_clock_weekday">Day of the week</string>
     <string name="enable_clock_weekday_summary">Abbreviated day of the week before the time</string>
@@ -324,7 +324,7 @@
 
     <!-- About phone screen, build date -->
     <string name="build_date">Build date</string>
-    <string name="build_date_default">2014-01-01-0000</string>
+    <string name="build_date_default" translatable="false">2014-01-01-0000</string>
 
     <!-- About phone screen, Device model -->
     <string name="device_model">Device model</string>
