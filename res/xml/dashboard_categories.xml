@@ -190,14 +190,6 @@
                 android:icon="@drawable/ic_settings_multiuser"
                 />
 
-        <!-- Manage NFC payment apps -->
-        <dashboard-tile
-                android:id="@+id/nfc_payment_settings"
-                android:title="@string/nfc_payment_settings_title"
-                android:fragment="com.android.settings.nfc.PaymentSettings"
-                android:icon="@drawable/ic_settings_nfc_payment"
-                />
-
         <!-- Manufacturer hook -->
         <dashboard-tile
                 android:id="@+id/manufacturer_settings"

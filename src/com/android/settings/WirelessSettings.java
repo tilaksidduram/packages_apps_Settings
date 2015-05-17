@@ -76,6 +76,7 @@ public class WirelessSettings extends SettingsPreferenceFragment
     private static final String KEY_SMS_APPLICATION = "sms_application";
     private static final String KEY_TOGGLE_NSD = "toggle_nsd"; //network service discovery
     private static final String KEY_CELL_BROADCAST_SETTINGS = "cell_broadcast_settings";
+    private static final String KEY_NFC_PAYMENT_SETTINGS = "nfc_payment_settings";
 
     public static final String EXIT_ECM_RESULT = "exit_ecm_result";
     public static final int REQUEST_CODE_EXIT_ECM = 1;
@@ -270,9 +271,10 @@ public class WirelessSettings extends SettingsPreferenceFragment
 
         PreferenceScreen androidBeam = (PreferenceScreen) findPreference(KEY_ANDROID_BEAM_SETTINGS);
         SwitchPreference nsd = (SwitchPreference) findPreference(KEY_TOGGLE_NSD);
+        PreferenceScreen nfcPayment = (PreferenceScreen) findPreference(KEY_NFC_PAYMENT_SETTINGS);
 
         mAirplaneModeEnabler = new AirplaneModeEnabler(activity, mAirplaneModePreference);
-        mNfcEnabler = new NfcEnabler(activity, nfc, androidBeam);
+        mNfcEnabler = new NfcEnabler(activity, nfc, androidBeam, nfcPayment);
 
         mSmsApplicationPreference = (AppListPreference) findPreference(KEY_SMS_APPLICATION);
         // Restricted users cannot currently read/write SMS.
@@ -324,6 +326,7 @@ public class WirelessSettings extends SettingsPreferenceFragment
         if (toggleable == null || !toggleable.contains(Settings.Global.RADIO_NFC)) {
             findPreference(KEY_TOGGLE_NFC).setDependency(KEY_TOGGLE_AIRPLANE);
             findPreference(KEY_ANDROID_BEAM_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
+            findPreference(KEY_NFC_PAYMENT_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
         }
 
         // Remove NFC if not available
@@ -331,7 +334,11 @@ public class WirelessSettings extends SettingsPreferenceFragment
         if (mNfcAdapter == null) {
             getPreferenceScreen().removePreference(nfc);
             getPreferenceScreen().removePreference(androidBeam);
+            getPreferenceScreen().removePreference(nfcPayment);
             mNfcEnabler = null;
+        } else if (!mPm.hasSystemFeature(PackageManager.FEATURE_NFC_HOST_CARD_EMULATION)) {
+            // Only show if we have the HCE feature
+            getPreferenceScreen().removePreference(nfcPayment);
         }
 
         // Remove Mobile Network Settings and Manage Mobile Plan for secondary users,
@@ -345,7 +352,7 @@ public class WirelessSettings extends SettingsPreferenceFragment
         // if config_show_mobile_plan sets false.
         final boolean isMobilePlanEnabled = this.getResources().getBoolean(
                 R.bool.config_show_mobile_plan);
-        if (!isMobilePlanEnabled) {
+        if (!isMobilePlanEnabled || mCm.getMobileProvisioningUrl().isEmpty()) {
             Preference pref = findPreference(KEY_MANAGE_MOBILE_PLAN);
             if (pref != null) {
                 removePreference(KEY_MANAGE_MOBILE_PLAN);
@@ -492,6 +499,7 @@ public class WirelessSettings extends SettingsPreferenceFragment
 
                 result.add(KEY_TOGGLE_NSD);
 
+                final PackageManager pm = context.getPackageManager();
                 final UserManager um = (UserManager) context.getSystemService(Context.USER_SERVICE);
                 final int myUserId = UserHandle.myUserId();
                 final boolean isSecondaryUser = myUserId != UserHandle.USER_OWNER;
@@ -516,6 +524,11 @@ public class WirelessSettings extends SettingsPreferenceFragment
                     if (adapter == null) {
                         result.add(KEY_TOGGLE_NFC);
                         result.add(KEY_ANDROID_BEAM_SETTINGS);
+                        result.add(KEY_NFC_PAYMENT_SETTINGS);
+                    } else if (!pm.hasSystemFeature(
+                            PackageManager.FEATURE_NFC_HOST_CARD_EMULATION)) {
+                        // Only show if we have the HCE feature
+                        result.add(KEY_NFC_PAYMENT_SETTINGS);
                     }
                 }
 
@@ -525,11 +538,15 @@ public class WirelessSettings extends SettingsPreferenceFragment
                     result.add(KEY_MANAGE_MOBILE_PLAN);
                 }
 
+
+                final ConnectivityManager cm = (ConnectivityManager) context.getSystemService(
+                        Context.CONNECTIVITY_SERVICE);
+
                 // Remove Mobile Network Settings and Manage Mobile Plan
                 // if config_show_mobile_plan sets false.
                 final boolean isMobilePlanEnabled = context.getResources().getBoolean(
                         R.bool.config_show_mobile_plan);
-                if (!isMobilePlanEnabled) {
+                if (!isMobilePlanEnabled || cm.getMobileProvisioningUrl().isEmpty()) {
                     result.add(KEY_MANAGE_MOBILE_PLAN);
                 }
 
@@ -539,8 +556,6 @@ public class WirelessSettings extends SettingsPreferenceFragment
                 if (!tm.isSmsCapable() || isRestrictedUser) {
                     result.add(KEY_SMS_APPLICATION);
                 }
-
-                final PackageManager pm = context.getPackageManager();
 
                 // Remove Airplane Mode settings if it's a stationary device such as a TV.
                 if (pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION)) {
