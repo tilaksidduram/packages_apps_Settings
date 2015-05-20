@@ -2394,11 +2394,5 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".profiles.SetupDefaultProfileReceiver">
-            <intent-filter>
-                <action android:name="com.cyanogenmod.setupwizard.SETUP_FINISHED" />
-            </intent-filter>
-        </receiver>
-
     </application>
 </manifest>
