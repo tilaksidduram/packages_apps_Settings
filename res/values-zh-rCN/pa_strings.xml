@@ -36,8 +36,9 @@
   <string name="advanced_settings">高级设置</string>
   <string name="advanced_settings_summary">开启更多设置选项</string>
   <string name="double_tap_to_wake_title">双击唤醒</string>
+  <string name="double_tap_to_wake_summary">双击屏幕以打开屏幕</string>
   <string name="double_tap_to_sleep_title">双击休眠</string>
-  <string name="double_tap_to_sleep_summary">双击状态栏或锁屏滑块使设备休眠</string>
+  <string name="double_tap_to_sleep_summary">双击状态栏关闭屏幕</string>
   <string name="disable_navkeys_title">开启屏幕导航栏</string>
   <string name="disable_navkeys_summary">开启屏幕导航栏并禁用硬件按钮</string>
   <string name="proximity_wake_title">防止意外唤醒</string>
@@ -201,6 +202,8 @@
   <string name="clock_date_style_lowercase">小写</string>
   <string name="clock_date_style_uppercase">大写</string>
   <string name="clock_date_format_custom">自定义 java 格式</string>
+  <string name="recents_show_searchbar">在最近任务列表显示搜索条</string>
+  <string name="keywords_recents_show_searchbar">最近 最近 禁用 启用 显示 隐藏 搜索 搜索条</string>
   <string name="build_date">编译日期</string>
   <string name="device_model">设备型号</string>
   <string name="device_name">设备名称</string>
@@ -217,4 +220,22 @@
   <string name="less_notification_sounds_1m">1 分钟</string>
   <string name="less_notification_sounds_2m">2 分钟</string>
   <string name="less_notification_sounds_5m">5 分钟</string>
+  <string name="power_notifications_category_title">充电提示音</string>
+  <string name="power_notifications_enable_title">启用</string>
+  <string name="power_notifications_enable_summary">当连接或断开充电器时播放提示音</string>
+  <string name="power_notifications_vibrate_title">振动</string>
+  <string name="power_notifications_ringtone_title">通知铃声</string>
+  <string name="power_notifications_ringtone_silent">静音</string>
+  <string name="heads_up_snooze_title">暂停计时器</string>
+  <string name="heads_up_snooze_summary">将浮动通知向上滑动将暂停 <xliff:g id="number">%d</xliff:g>  分钟</string>
+  <string name="heads_up_snooze_disabled_summary">暂停计时器已禁用。</string>
+  <string name="heads_up_snooze_1min">1 分钟</string>
+  <string name="heads_up_snooze_3min">3 分钟</string>
+  <string name="heads_up_snooze_5min">5 分钟</string>
+  <string name="heads_up_snooze_10min">10 分钟</string>
+  <string name="heads_up_snooze_15min">15 分钟</string>
+  <string name="heads_up_snooze_20min">20 分钟</string>
+  <string name="status_bar_show_unused_sims_title">显示无SIM卡图标</string>
+  <string name="status_bar_show_unused_sims_title_summary_off">隐藏不使用的卡槽的图标</string>
+  <string name="status_bar_show_unused_sims_title_summary_on">显示不使用的SIM卡图标</string>
 </resources>

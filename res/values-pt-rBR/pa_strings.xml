@@ -36,8 +36,9 @@
   <string name="advanced_settings">Configurações avançadas</string>
   <string name="advanced_settings_summary">Habilitar mais opções de configuração</string>
   <string name="double_tap_to_wake_title">Dois toques para ativar</string>
+  <string name="double_tap_to_wake_summary">Double-tap on the screen to turn on the display</string>
   <string name="double_tap_to_sleep_title">Dois toques para desligar</string>
-  <string name="double_tap_to_sleep_summary">Dois toques na barra de status ou no anel da tela de bloqueio para bloquear o dispositivo</string>
+  <string name="double_tap_to_sleep_summary">Double-tap on the status bar to turn off the display</string>
   <string name="disable_navkeys_title">Ativar botões virtuais na tela</string>
   <string name="disable_navkeys_summary">Ativar botões virtuais na tela e desativar os botões físicos</string>
   <string name="proximity_wake_title">Evitar despertar acidental</string>
@@ -110,13 +111,13 @@
   <string name="interruptions_ignore_while_media_summary">Não reduzir o volume de reprodução quando chegar uma notificação</string>
   <string name="unlock_quick_unlock_control_title">Desbloqueio rápido</string>
   <string name="unlock_quick_unlock_control_summary">Desbloquear automaticamente quando o PIN/Senha for entrado corretamente</string>
-  <string name="unlock_scramble_pin_layout_title">Scramble layout</string>
-  <string name="unlock_scramble_pin_layout_summary">Scramble PIN layout when unlocking device</string>
+  <string name="unlock_scramble_pin_layout_title">Embaralhar os números</string>
+  <string name="unlock_scramble_pin_layout_summary">Embaralha o PIN na tela de bloqueio</string>
   <string name="personalization">Personalização</string>
   <string name="reset_user_preferences_title">Redefinir preferências</string>
   <string name="reset_user_preferences_summary">Restaura as preferências de interface do usuário para os valores padrão</string>
   <string name="reset_user_preferences_dialog">Tem certeza que deseja redefinir suas preferências?</string>
-  <string name="backlight_timeout_title">Illumination timeout</string>
+  <string name="backlight_timeout_title">Tempo limite da iluminação</string>
   <string name="backlight_timeout_unlimited">Não desligar</string>
   <string name="backlight_summary_disabled">Desativado</string>
   <string name="backlight_summary_enabled_with_timeout">Ativado por <xliff:g id="timeout">%s</xliff:g></string>
@@ -127,12 +128,12 @@
   <string name="wifi_mode">Modo</string>
   <string name="wifi_ibss_freq_title">Canal / Frequência</string>
   <string name="wifi_channel">Canal</string>
-  <string name="link_volume_option_title">Link ring and notification volumes</string>
+  <string name="link_volume_option_title">Unir os volumes de chamada e notificação</string>
   <string name="notification_volume_option_title">Volume de notificação</string>
-  <string name="ring_notification_volume_option_tile">Ring and notification volume</string>
+  <string name="ring_notification_volume_option_tile">Volume de chamada e notificação</string>
   <string name="none_is_silent_title">None is Silent mode</string>
-  <string name="none_is_silent_summary">Silent mode always sounds alarms</string>
-  <string name="allow_lights_title">Allow notification lights</string>
+  <string name="none_is_silent_summary">Sempre tocar alarmes no modo silencioso</string>
+  <string name="allow_lights_title">Permitir luzes de notificação</string>
   <string name="qs_advanced_location_title">Advanced location quick settings</string>
   <string name="qs_advanced_location_summary">Enable advanced settings for location in quick settings</string>
   <string name="lcd_density">LCD density</string>
@@ -201,6 +202,8 @@
   <string name="clock_date_style_lowercase">Lowercase</string>
   <string name="clock_date_style_uppercase">Uppercase</string>
   <string name="clock_date_format_custom">Custom java format</string>
+  <string name="recents_show_searchbar">Show search bar in recents menu</string>
+  <string name="keywords_recents_show_searchbar">recent recents disable enable show hide search bar searchbar</string>
   <string name="build_date">Build date</string>
   <string name="device_model">Device model</string>
   <string name="device_name">Device name</string>
@@ -217,4 +220,22 @@
   <string name="less_notification_sounds_1m">1 minuto</string>
   <string name="less_notification_sounds_2m">2 minutos</string>
   <string name="less_notification_sounds_5m">5 minutos</string>
+  <string name="power_notifications_category_title">Charging sounds</string>
+  <string name="power_notifications_enable_title">Enable</string>
+  <string name="power_notifications_enable_summary">Play a sound when connecting or disconnecting the charger</string>
+  <string name="power_notifications_vibrate_title">Vibrate</string>
+  <string name="power_notifications_ringtone_title">Notification sound</string>
+  <string name="power_notifications_ringtone_silent">Silent</string>
+  <string name="heads_up_snooze_title">Snooze timer</string>
+  <string name="heads_up_snooze_summary">Swiping up on the heads up notification will snooze it for <xliff:g id="number">%d</xliff:g> minutes</string>
+  <string name="heads_up_snooze_disabled_summary">Snooze timer is disabled</string>
+  <string name="heads_up_snooze_1min">1 minute</string>
+  <string name="heads_up_snooze_3min">3 minutes</string>
+  <string name="heads_up_snooze_5min">5 minutes</string>
+  <string name="heads_up_snooze_10min">10 minutes</string>
+  <string name="heads_up_snooze_15min">15 minutes</string>
+  <string name="heads_up_snooze_20min">20 minutes</string>
+  <string name="status_bar_show_unused_sims_title">Show empty SIM icons</string>
+  <string name="status_bar_show_unused_sims_title_summary_off">Hide icons of unused SIM slots</string>
+  <string name="status_bar_show_unused_sims_title_summary_on">Indicate unused SIM slots</string>
 </resources>

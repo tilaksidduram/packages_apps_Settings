@@ -36,8 +36,9 @@
   <string name="advanced_settings">Advanced settings</string>
   <string name="advanced_settings_summary">Enable more settings options</string>
   <string name="double_tap_to_wake_title">Double-tap to wake</string>
+  <string name="double_tap_to_wake_summary">Double-tap on the screen to turn on the display</string>
   <string name="double_tap_to_sleep_title">Double-tap to sleep</string>
-  <string name="double_tap_to_sleep_summary">Double tap status bar or lock screen slider to put the device to sleep</string>
+  <string name="double_tap_to_sleep_summary">Double-tap on the status bar to turn off the display</string>
   <string name="disable_navkeys_title">Enable on-screen nav bar</string>
   <string name="disable_navkeys_summary">Enable on-screen navigation bar and disable hardware buttons</string>
   <string name="proximity_wake_title">Prevenir wake-ups accidentals</string>
@@ -201,6 +202,8 @@
   <string name="clock_date_style_lowercase">Lowercase</string>
   <string name="clock_date_style_uppercase">Uppercase</string>
   <string name="clock_date_format_custom">Custom java format</string>
+  <string name="recents_show_searchbar">Show search bar in recents menu</string>
+  <string name="keywords_recents_show_searchbar">recent recents disable enable show hide search bar searchbar</string>
   <string name="build_date">Build date</string>
   <string name="device_model">Device model</string>
   <string name="device_name">Device name</string>
@@ -217,4 +220,22 @@
   <string name="less_notification_sounds_1m">1 minute</string>
   <string name="less_notification_sounds_2m">2 minutes</string>
   <string name="less_notification_sounds_5m">5 minutes</string>
+  <string name="power_notifications_category_title">Charging sounds</string>
+  <string name="power_notifications_enable_title">Enable</string>
+  <string name="power_notifications_enable_summary">Play a sound when connecting or disconnecting the charger</string>
+  <string name="power_notifications_vibrate_title">Vibrate</string>
+  <string name="power_notifications_ringtone_title">Notification sound</string>
+  <string name="power_notifications_ringtone_silent">Silent</string>
+  <string name="heads_up_snooze_title">Snooze timer</string>
+  <string name="heads_up_snooze_summary">Swiping up on the heads up notification will snooze it for <xliff:g id="number">%d</xliff:g> minutes</string>
+  <string name="heads_up_snooze_disabled_summary">Snooze timer is disabled</string>
+  <string name="heads_up_snooze_1min">1 minute</string>
+  <string name="heads_up_snooze_3min">3 minutes</string>
+  <string name="heads_up_snooze_5min">5 minutes</string>
+  <string name="heads_up_snooze_10min">10 minutes</string>
+  <string name="heads_up_snooze_15min">15 minutes</string>
+  <string name="heads_up_snooze_20min">20 minutes</string>
+  <string name="status_bar_show_unused_sims_title">Show empty SIM icons</string>
+  <string name="status_bar_show_unused_sims_title_summary_off">Hide icons of unused SIM slots</string>
+  <string name="status_bar_show_unused_sims_title_summary_on">Indicate unused SIM slots</string>
 </resources>

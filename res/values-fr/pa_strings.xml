@@ -36,8 +36,9 @@
   <string name="advanced_settings">Paramètres avancés</string>
   <string name="advanced_settings_summary">Activer plus d\'options de réglages</string>
   <string name="double_tap_to_wake_title">Double-clic pour réveiller</string>
+  <string name="double_tap_to_wake_summary">Appui double sur l\'écran pour l\'allumer</string>
   <string name="double_tap_to_sleep_title">Appuyez deux fois pour mettre en veille</string>
-  <string name="double_tap_to_sleep_summary">Appuyez deux fois sur la barre d\'état ou sur le curseur de verrouillage de l\'écran pour mettre l\'appareil en veille</string>
+  <string name="double_tap_to_sleep_summary">Appui double sur la barre d\'état pour éteindre l\'écran</string>
   <string name="disable_navkeys_title">Activez la barre de navigation sur l\'écran</string>
   <string name="disable_navkeys_summary">Activez la barre de navigation à l\'écran et désactiver les boutons matériels</string>
   <string name="proximity_wake_title">Empêcher l\'éveil involontaire</string>
@@ -56,9 +57,9 @@
   <string name="volume_adjust_sound_title">Son curseur de volume</string>
   <string name="advanced_reboot_title">Redémarrage avancé</string>
   <string name="advanced_reboot_summary">Lorsque déverrouillé, inclure des options dans le menu d\'alimentation pour redémarrer dans le menu de restauration ou le chargeur de démarrage</string>
-  <string name="zen_heads_up_toggle_title">Notifications Heads-up</string>
+  <string name="zen_heads_up_toggle_title">Notifications Flottantes</string>
   <string name="zen_heads_up_toggle_summary">Permet les notifications entrantes qui prennent en charge le mode Heads-up de s\'afficher en haut de l\'écran.</string>
-  <string name="heads_up_ticker_exp_title">Activer Heads-up ticker</string>
+  <string name="heads_up_ticker_exp_title">Activer notifications flottantes</string>
   <string name="heads_up_ticker_exp_summary">Lorsqu\'une notification n\'est pas gênante, vérifier si le ticker n\'est pas vide et l\'afficher. Les notifications groupées sont encore à moitié cassées, voir Hangouts.</string>
   <string name="bluetooth_accept_all_files">Accepter tous les types de fichier</string>
   <string name="gesture_settings_title">Gestes</string>
@@ -150,7 +151,7 @@
   <string name="doze_pulse_on_notifications_title">Impulsion sur les notifications</string>
   <string name="doze_pulse_on_notifications_summary">Déclencher l\'activation uniquement sur les notifications en attente</string>
   <string name="doze_shake_title">Paramètres secousses</string>
-  <string name="doze_shake_mode_title">Shake mode</string>
+  <string name="doze_shake_mode_title">Mode secousse</string>
   <string name="doze_shake_mode_summary">Utilisez la valeur du capteur de mouvement pour déclencher l\'activation</string>
   <string name="doze_shake_mode_test_summary">Voulez-vous tester le capteur de mouvement?</string>
   <string name="doze_shake_mode_test_result">Appliquer la valeur actuelle?</string>
@@ -158,7 +159,7 @@
   <string name="doze_shake_it">Mouvement détecté!</string>
   <string name="doze_shake_acc_threshold_title">Seuil de mouvement</string>
   <string name="doze_shake_acc_threshold_summary">Configurer la force de mouvement requise pour déclencher l\'activation</string>
-  <string name="doze_time_mode_title">Show clock and date</string>
+  <string name="doze_time_mode_title">Afficher la date et l\'heure</string>
   <string name="doze_time_mode_summary">Forcer l\'affichage de l\'heure lorsqu\'il n\'y a pas de notification</string>
   <string name="veryeasy_shake">Très sensible</string>
   <string name="easy_shake">Sensible</string>
@@ -166,7 +167,7 @@
   <string name="hard_shake">Peu sensible</string>
   <string name="veryhard_shake">Très peu sensible</string>
   <string name="strong_shake">Presque insensible</string>
-  <string name="fully_mode">Full mode</string>
+  <string name="fully_mode">Mode complet</string>
   <string name="pocket_shake_mode">Poche et mouvement</string>
   <string name="pocket_pulse_mode">Poche et impulsion</string>
   <string name="pocket_only_mode">Poche</string>
@@ -181,7 +182,7 @@
   <string name="status_bar_show_clock_title">Afficher la date et l\'heure</string>
   <string name="status_bar_am_pm_info">Le format 24h est activé</string>
   <string name="enable_clock_weekday">Jour de la semaine</string>
-  <string name="enable_clock_weekday_summary">Abbreviated day of the week before the time</string>
+  <string name="enable_clock_weekday_summary">Jour abrégé devant l\'heure</string>
   <string name="right_clock">Droite</string>
   <string name="center_clock">Centre</string>
   <string name="dont_show">Ne pas afficher</string>
@@ -201,6 +202,8 @@
   <string name="clock_date_style_lowercase">Minuscule</string>
   <string name="clock_date_style_uppercase">Majuscule</string>
   <string name="clock_date_format_custom">Format personnalisé java</string>
+  <string name="recents_show_searchbar">Afficher la barre de recherche dans le menu de recents</string>
+  <string name="keywords_recents_show_searchbar">Afficher la barre de recherche dans le menu des applications récentes</string>
   <string name="build_date">Date de build</string>
   <string name="device_model">Modèle de l\'appareil</string>
   <string name="device_name">Nom du périphérique</string>
@@ -217,4 +220,22 @@
   <string name="less_notification_sounds_1m">1 minute</string>
   <string name="less_notification_sounds_2m">2 minutes</string>
   <string name="less_notification_sounds_5m">5 minutes</string>
+  <string name="power_notifications_category_title">Son d\'alimentation</string>
+  <string name="power_notifications_enable_title">Activer</string>
+  <string name="power_notifications_enable_summary">Émettre un son lors de la connexion ou déconnexion du chargeur</string>
+  <string name="power_notifications_vibrate_title">Vibreur</string>
+  <string name="power_notifications_ringtone_title">Son de notification</string>
+  <string name="power_notifications_ringtone_silent">Silencieux</string>
+  <string name="heads_up_snooze_title">Rappel d\'alarme</string>
+  <string name="heads_up_snooze_summary">Balayer vers le haut une notification flottante va la désactiver pour <xliff:g id="number">%d </xliff:g> minutes</string>
+  <string name="heads_up_snooze_disabled_summary">Rappel d\'alarme désactivé</string>
+  <string name="heads_up_snooze_1min">1 minute</string>
+  <string name="heads_up_snooze_3min">3 minutes</string>
+  <string name="heads_up_snooze_5min">5 minutes</string>
+  <string name="heads_up_snooze_10min">10 minutes</string>
+  <string name="heads_up_snooze_15min">15 minutes</string>
+  <string name="heads_up_snooze_20min">20 minutes</string>
+  <string name="status_bar_show_unused_sims_title">Afficher les icônes SIM vides</string>
+  <string name="status_bar_show_unused_sims_title_summary_off">Masquer les icônes d\'emplacements SIM inutilisés</string>
+  <string name="status_bar_show_unused_sims_title_summary_on">Indiquer les emplacements SIM inutilisés</string>
 </resources>

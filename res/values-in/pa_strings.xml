@@ -36,8 +36,9 @@
   <string name="advanced_settings">Pengaturan lanjutan</string>
   <string name="advanced_settings_summary">Aktifkan opsi pengaturan tambahan</string>
   <string name="double_tap_to_wake_title">Tekan dua kali untuk menyalakan layar</string>
+  <string name="double_tap_to_wake_summary">Double-tap pada layar untuk menyalakan tampilan</string>
   <string name="double_tap_to_sleep_title">Tekan dua kali untuk mematikan layar</string>
-  <string name="double_tap_to_sleep_summary">Tekan dua kali status  bar atau geser kunci layar untuk menempatkan perangkat untuk tidur</string>
+  <string name="double_tap_to_sleep_summary">Double-tap pada status bar untuk mematikan layar</string>
   <string name="disable_navkeys_title">Aktifkan nav bar di layar</string>
   <string name="disable_navkeys_summary">Aktifkan navigasi bar di layar dan menonaktifkan tombol perangkat keras</string>
   <string name="proximity_wake_title">Mencegah bangun</string>
@@ -201,6 +202,8 @@
   <string name="clock_date_style_lowercase">Huruf kecil</string>
   <string name="clock_date_style_uppercase">Huruf besar</string>
   <string name="clock_date_format_custom">Format kustom Java</string>
+  <string name="recents_show_searchbar">Tampilkan bar pencarian di recents menu</string>
+  <string name="keywords_recents_show_searchbar">recents terakhir menonaktifkan mengaktifkan menampilkan menyembunyikan search bar searchbar</string>
   <string name="build_date">Tanggal pembuatan</string>
   <string name="device_model">Model perangkat</string>
   <string name="device_name">Nama Perangkat</string>
@@ -217,4 +220,22 @@
   <string name="less_notification_sounds_1m">1 menit</string>
   <string name="less_notification_sounds_2m">2 menit</string>
   <string name="less_notification_sounds_5m">5 menit</string>
+  <string name="power_notifications_category_title">Suara pengisian</string>
+  <string name="power_notifications_enable_title">Aktifkan</string>
+  <string name="power_notifications_enable_summary">Mainkan suara ketika menghubungkan atau melepaskan pengisi baterai</string>
+  <string name="power_notifications_vibrate_title">Getaran</string>
+  <string name="power_notifications_ringtone_title">Suara pemberitahuan</string>
+  <string name="power_notifications_ringtone_silent">Diam</string>
+  <string name="heads_up_snooze_title">Waktu tunda</string>
+  <string name="heads_up_snooze_summary">Menggesekkan pada heads up pemberitahuan akan tunda selama <xliff:g id="number">%d </xliff:g> menit</string>
+  <string name="heads_up_snooze_disabled_summary">Waktu tunda dinonaktifkan</string>
+  <string name="heads_up_snooze_1min">1 menit</string>
+  <string name="heads_up_snooze_3min">30 menit</string>
+  <string name="heads_up_snooze_5min">5 menit</string>
+  <string name="heads_up_snooze_10min">10 menit</string>
+  <string name="heads_up_snooze_15min">15 menit</string>
+  <string name="heads_up_snooze_20min">20 menit</string>
+  <string name="status_bar_show_unused_sims_title">Tampilkan ikon SIM kosong</string>
+  <string name="status_bar_show_unused_sims_title_summary_off">Sembunyikan ikon SIM slot tidak terpakai</string>
+  <string name="status_bar_show_unused_sims_title_summary_on">Menunjukkan slot SIM tidak terpakai</string>
 </resources>

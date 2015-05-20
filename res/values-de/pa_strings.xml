@@ -36,8 +36,9 @@
   <string name="advanced_settings">Erweiterte Einstellungen</string>
   <string name="advanced_settings_summary">Weitere Optionen aktivieren</string>
   <string name="double_tap_to_wake_title">Double-tap to wake</string>
+  <string name="double_tap_to_wake_summary">Doppelt auf den Bildschirm tippen, um das Display anzuschalten</string>
   <string name="double_tap_to_sleep_title">Doppelt Tippen für Schlafmodus</string>
-  <string name="double_tap_to_sleep_summary">Doppeltippen auf die Statusbar oder den Sperrbildschirm-Slider um den Schlafmodus zu aktivieren</string>
+  <string name="double_tap_to_sleep_summary">Doppelt auf die Statusleiste tippen, um das Display auzuschalten</string>
   <string name="disable_navkeys_title">On-Screen Navigationsleiste aktivieren</string>
   <string name="disable_navkeys_summary">Hardware Tasten deaktivieren und stattdessen Navigationsleiste auf dem Bildschirm anzeigen</string>
   <string name="proximity_wake_title">Unbeabsichtigtes Aufwecken verhindern</string>
@@ -201,6 +202,8 @@
   <string name="clock_date_style_lowercase">Kleinbuchstaben</string>
   <string name="clock_date_style_uppercase">Großbuchstaben</string>
   <string name="clock_date_format_custom">Benutzerdefiniertes Java-Format</string>
+  <string name="recents_show_searchbar">Suchleiste im Anwendungsverlauf</string>
+  <string name="keywords_recents_show_searchbar">Anwendungsverlauf aktivieren deaktivieren anzeigen Suchleiste Suche ausblenden</string>
   <string name="build_date">Build-Datum</string>
   <string name="device_model">Gerätemodell</string>
   <string name="device_name">Gerätename</string>
@@ -217,4 +220,22 @@
   <string name="less_notification_sounds_1m">1 Minute</string>
   <string name="less_notification_sounds_2m">2 Minuten</string>
   <string name="less_notification_sounds_5m">5 Minuten</string>
+  <string name="power_notifications_category_title">Ladegeräte-Töne</string>
+  <string name="power_notifications_enable_title">Aktivieren</string>
+  <string name="power_notifications_enable_summary">Beim Anschließen oder Trennen des Ladegerätes einen Ton abspielen</string>
+  <string name="power_notifications_vibrate_title">Vibrieren</string>
+  <string name="power_notifications_ringtone_title">Benachrichtigungston</string>
+  <string name="power_notifications_ringtone_silent">Lautlos</string>
+  <string name="heads_up_snooze_title">Schlummerzeit</string>
+  <string name="heads_up_snooze_summary">Hochwischen der Heads-Up Benachrichtigung lässt sie für <xliff:g id="number">%d</xliff:g> Minuten schlummern</string>
+  <string name="heads_up_snooze_disabled_summary">Schlummertimer ist deaktiviert</string>
+  <string name="heads_up_snooze_1min">1 Minute</string>
+  <string name="heads_up_snooze_3min">3 Minuten</string>
+  <string name="heads_up_snooze_5min">5 Minuten</string>
+  <string name="heads_up_snooze_10min">10 Minuten</string>
+  <string name="heads_up_snooze_15min">15 Minuten</string>
+  <string name="heads_up_snooze_20min">20 Minuten</string>
+  <string name="status_bar_show_unused_sims_title">Zeige leere SIM-Symbole</string>
+  <string name="status_bar_show_unused_sims_title_summary_off">Symbole ungenutzter SIM-Slots ausblenden</string>
+  <string name="status_bar_show_unused_sims_title_summary_on">Unbenutzte SIM-Slots zeigen</string>
 </resources>
