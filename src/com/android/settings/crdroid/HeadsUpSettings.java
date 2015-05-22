@@ -324,7 +324,7 @@ public class HeadsUpSettings extends SettingsPreferenceFragment
                     headsUpTimeOut);
             updateHeadsUpTimeOutSummary(headsUpTimeOut);
             return true;
-        } else if (PREF_HEADS_UP_SNOOZE_TIME.equals(key)) {
+        } else if (preference == mHeadsUpSnoozeTime) {
             final int headsUpSnooze = Integer.valueOf((String) newValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.HEADS_UP_NOTIFICATION_SNOOZE, headsUpSnooze);
