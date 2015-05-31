@@ -118,6 +118,12 @@
             	android:summary="@string/recents_show_membar_summary"
             	android:defaultValue="false" />
 
+	<!-- Slim recents -->
+	<PreferenceScreen
+		android:key="recent_panel"
+		android:fragment="com.android.settings.temasek.RecentPanel"
+		android:title="@string/recent_panel_category" />
+
         <EditTextPreference
                 android:key="lcd_density"
                 android:title="@string/lcd_density"
