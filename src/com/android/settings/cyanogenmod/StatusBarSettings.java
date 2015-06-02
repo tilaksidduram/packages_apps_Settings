@@ -22,6 +22,8 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceScreen;
+import android.preference.PreferenceCategory;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
@@ -64,6 +66,8 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.status_bar_settings);
+
+        PreferenceScreen prefSet = getPreferenceScreen();
 
         PreferenceCategory mCategory = (PreferenceCategory) findPreference("status_bar");
         ContentResolver resolver = getActivity().getContentResolver();
