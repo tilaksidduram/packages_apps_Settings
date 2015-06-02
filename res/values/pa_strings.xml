@@ -776,4 +776,7 @@
     <string name="lcd_density_error_msg">The value must be between %1$d and %2$d DPI</string>
     <string name="lcd_density_dialog_title">Enter value between %1$d and %2$d DPI</string>
 
+    <!-- SuperSU header name - the app hides itself from launcher based on this resource name being present in com.android.settings -->
+    <string name="supersu_title">SuperSU</string>
+
 </resources>
