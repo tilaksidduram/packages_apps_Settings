@@ -103,9 +103,10 @@
             	android:summary="@string/recents_show_membar_summary"
             	android:defaultValue="false" />
 
-        <ListPreference
+        <EditTextPreference
                 android:key="lcd_density"
                 android:title="@string/lcd_density"
+                android:inputType="number"
                 android:persistent="false" />
 
         <PreferenceScreen

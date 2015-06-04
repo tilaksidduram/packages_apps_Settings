@@ -457,4 +457,10 @@
   <string name="power_menu_expanded_desktop">Rozszerzony pulpit</string>
   <string name="whisperpush_title">WhisperPush</string>
   <string name="whisperpush_summary">Zarządzaj ustawieniami bezpiecznych SMS-ów</string>
+  <string name="lcd_density">Gęstość LCD</string>
+  <string name="dialog_title_lcd_density">Gęstość LCD</string>
+  <string name="lcd_density_value_format">%1$d DPI (Domyślnie: %2$d DPI)</string>
+  <string name="lcd_density_default_value_format">%1$d DPI (domyślnie)</string>
+  <string name="restarting_ui">Uruchamianie ponownie\u2026</string>
+
 </resources>

@@ -61,6 +61,7 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemProperties;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
@@ -75,6 +76,7 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,7 +109,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
-    private ListPreference mLcdDensityPreference;
+    private EditTextPreference mLcdDensityPreference;
     private FontDialogPreference mFontSizePref;
     private PreferenceScreen mDisplayRotationPreference;
 
@@ -167,7 +169,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         updateTimeoutPreferenceDescription(currentTimeout);
         updateDisplayRotationPreferenceDescription();
 
-        mLcdDensityPreference = (ListPreference) findPreference(KEY_LCD_DENSITY);
+        mLcdDensityPreference = (EditTextPreference) findPreference(KEY_LCD_DENSITY);
         if (mLcdDensityPreference != null) {
             int defaultDensity = getDefaultDensity();
             int currentDensity = getCurrentDensity();
@@ -176,28 +178,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 currentDensity = defaultDensity;
             }
 
-            int factor = defaultDensity >= 480 ? 40 : 20;
-            int minimumDensity = defaultDensity - 4 * factor;
-            int currentIndex = -1;
-            String[] densityEntries = new String[7];
-            String[] densityValues = new String[7];
-            for (int idx = 0; idx < 7; ++idx) {
-                int val = minimumDensity + factor * idx;
-                int valueFormatResId = val == defaultDensity
-                        ? R.string.lcd_density_default_value_format
-                        : R.string.lcd_density_value_format;
+            int minimumDensity = getMinimumDensity();
+            int maximumDensity = getMaxmimumDensity();
+            String title = getString(R.string.lcd_density_dialog_title);
+            mLcdDensityPreference.setDialogTitle(String.format(title, minimumDensity, maximumDensity));
 
-                densityEntries[idx] = getString(valueFormatResId, val);
-                densityValues[idx] = Integer.toString(val);
-                if (currentDensity == val) {
-                    currentIndex = idx;
-                }
-            }
-            mLcdDensityPreference.setEntries(densityEntries);
-            mLcdDensityPreference.setEntryValues(densityValues);
-            if (currentIndex != -1) {
-                mLcdDensityPreference.setValueIndex(currentIndex);
-            }
             mLcdDensityPreference.setOnPreferenceChangeListener(this);
             updateLcdDensityPreferenceDescription(currentDensity);
         }
@@ -373,9 +358,15 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     }
 
     private void updateLcdDensityPreferenceDescription(int currentDensity) {
-        final int summaryResId = currentDensity == getDefaultDensity()
-                ? R.string.lcd_density_default_value_format : R.string.lcd_density_value_format;
-        mLcdDensityPreference.setSummary(getString(summaryResId, currentDensity));
+        String formattedSummary;
+        if (currentDensity == getDefaultDensity()) {
+           final String summary = getString(R.string.lcd_density_default_value_format);
+           formattedSummary = String.format(summary, currentDensity);
+        } else {
+           final String summary = getString(R.string.lcd_density_value_format);
+           formattedSummary = String.format(summary, currentDensity, getDefaultDensity());
+        }
+        mLcdDensityPreference.setSummary(formattedSummary);
     }
 
     private void disableUnusableTimeouts(ListPreference screenTimeoutPreference) {
@@ -608,8 +599,17 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         if (KEY_LCD_DENSITY.equals(key)) {
             try {
                 int value = Integer.parseInt((String) objValue);
-                writeLcdDensityPreference(preference.getContext(), value);
-                updateLcdDensityPreferenceDescription(value);
+
+                int minimumDensity = getMinimumDensity();
+                int maximumDensity = getMaxmimumDensity();
+                if (value < minimumDensity || value > maximumDensity) {
+                    final String errorMsg = getString(R.string.lcd_density_error_msg);
+                    Toast.makeText(preference.getContext(), String.format(errorMsg, minimumDensity, maximumDensity),
+                        Toast.LENGTH_LONG).show();
+                } else {
+                    writeLcdDensityPreference(preference.getContext(), value);
+                    updateLcdDensityPreferenceDescription(value);
+                }
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist display density setting", e);
             }
@@ -646,6 +646,17 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         return false;
     }
 
+    private int getMinimumDensity() {
+        int defaultDensity = getDefaultDensity();
+        int factor = defaultDensity >= 480 ? 40 : 20;
+        return defaultDensity - 4 * factor;
+    }
+
+    private int getMaxmimumDensity() {
+        int defaultDensity = getDefaultDensity();
+        int factor = defaultDensity >= 480 ? 40 : 20;
+        return defaultDensity + 4 * factor;
+    }
 
     /**
      * Restore the properties associated with this preference on boot

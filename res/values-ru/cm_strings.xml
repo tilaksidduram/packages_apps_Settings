@@ -706,7 +706,12 @@
   <string name="whisperpush_title">Технология WhisperPush</string>
   <string name="whisperpush_summary">Настройка шифрования SMS-сообщений</string>
   <string name="navigation_ring_title">Ярлыки навигационного кольца</string>
-  <string name="navigation_ring_message">Коснитесь значка правки для изменения навигационного кольца.\n\nВыберите ярлык для настройки его поведения.\n\nКоснитесь галочки (\u2713) для сохранения изменений, или значка сброса для восстановления настроек по умолчанию.</string>
+  <string name="navigation_ring_message">Коснитесь значка правки для изменения навигационного кольца.\n\nВыберите ярлык для настройки его поведения.\n\nКоснитесь галочки (\u2713) для выхода из режима редактирования и сохранения изменений, а для возврата ярлыков по умолчанию — коснитесь кнопки «Восстановить».</string>
+  <string name="lcd_density">Плотность LCD</string>
+  <string name="dialog_title_lcd_density">Плотность LCD</string>
+  <string name="lcd_density_value_format">%1$d DPI (по умолчанию %2$d DPI)</string>
+  <string name="lcd_density_default_value_format">%1$d DPI (по умолчанию)</string>
+  <string name="restarting_ui">Перезапуск UI\u2026</string>
   <string name="stylus_icon_enabled_title">Курсор при использовании стилуса</string>
   <string name="stylus_icon_enabled_summary">Показывать значок указателя при работе со стилусом</string>
   <string name="gestures_settings_title">Поддержка стилуса</string>

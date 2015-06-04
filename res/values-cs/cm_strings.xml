@@ -470,4 +470,8 @@
   <string name="power_menu_expanded_desktop">Rozšířená plocha</string>
   <string name="whisperpush_title">WhisperPush</string>
   <string name="whisperpush_summary">Spravovat nastavení zabezpečených SMS</string>
+  <string name="lcd_density">LCD hustota</string>
+  <string name="dialog_title_lcd_density">LCD hustota</string>
+  <string name="lcd_density_value_format">%1$d DPI (výchozí: %2$d DPI)</string>
+  <string name="lcd_density_default_value_format">%1$d DPI (výchozí)</string>
 </resources>

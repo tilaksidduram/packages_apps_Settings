@@ -691,4 +691,9 @@
   <string name="lockscreen_choose_action_title">Scegli azione</string>
   <string name="whisperpush_title">WhisperPush</string>
   <string name="whisperpush_summary">Gestisci le impostazioni SMS sicuri</string>
+  <string name="lcd_density">Densità LCD</string>
+  <string name="dialog_title_lcd_density">Densità LCD</string>
+  <string name="lcd_density_value_format">%1$d DPI (default: %2$d DPI)</string>
+  <string name="lcd_density_default_value_format">%1$d DPI (default)</string>
+  <string name="restarting_ui">Riavvio UI\u2026</string>
 </resources>
