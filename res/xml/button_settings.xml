@@ -23,6 +23,13 @@
         android:summary="@string/disable_navkeys_summary"
         android:defaultValue="false" />
 
+    <!--PA Pie Control -->
+    <PreferenceScreen
+        android:key="pa_pie_control"
+        android:title="@string/pa_pie_control_title"
+        android:summary="@string/pa_piecontrol_settings_summary"
+        android:fragment="com.android.settings.paranoid.PieControl" />
+
     <com.android.settings.paranoid.backlight.ButtonBacklightBrightness
         android:key="button_backlight"
         android:title="@string/button_backlight_title"

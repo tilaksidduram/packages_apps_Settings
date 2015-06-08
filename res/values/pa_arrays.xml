@@ -126,4 +126,33 @@ limitations under the License.
         <item>Custom</item>
     </string-array>
 
+    <!-- PA PIE -->
+    <string-array name="entries_pa_pie_size">
+        <item>@string/pa_pie_size_small</item>
+        <item>@string/pa_pie_size_default</item>
+        <item>@string/pa_pie_size_large</item>
+        <item>@string/pa_pie_size_gigantic</item>
+    </string-array>
+
+    <string-array name="values_pa_pie_size" translatable="false">
+        <item>0.9</item>
+        <item>1.0</item>
+        <item>1.1</item>
+        <item>1.2</item>
+    </string-array>
+
+    <string-array name="entries_pa_pie_mode">
+        <item>@string/pa_pie_mode_bare</item>
+        <item>@string/pa_pie_mode_quick</item>
+        <item>@string/pa_pie_mode_default</item>
+        <item>@string/pa_pie_mode_slow</item>
+    </string-array>
+
+    <string-array name="values_pa_pie_mode" translatable="false">
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 </resources>
