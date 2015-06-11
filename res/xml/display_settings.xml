@@ -111,12 +111,6 @@
                     android:summary="@string/wake_when_plugged_or_unplugged_summary"
                     android:defaultValue="false" />
 
-                <com.android.settings.cyanogenmod.SecureSettingSwitchPreference
-                    android:key="qs_location_advanced"
-                    android:title="@string/qs_advanced_location_title"
-                    android:summary="@string/qs_advanced_location_summary"
-                    android:defaultValue="false" /> 
-
                 <SwitchPreference
                     android:key="proximity_on_wake"
                     android:title="@string/proximity_wake_title"
