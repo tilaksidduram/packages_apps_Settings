@@ -186,6 +186,10 @@ public class QSTileHolder {
                 resourceName = "ic_qs_media_play";
                 stringId = R.string.qs_music_play_tile;
                 break;
+            case QSConstants.TILE_IMMERSIVE:
+                resourceName = "ic_qs_immersive_full";
+                stringId = R.string.qs_tile_immersive;
+                break;
             default:
                 return null;
         }
