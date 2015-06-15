@@ -39,6 +39,8 @@
   <string name="double_tap_to_wake_summary">Double-tap pada layar untuk menyalakan tampilan</string>
   <string name="double_tap_to_sleep_title">Tekan dua kali untuk mematikan layar</string>
   <string name="double_tap_to_sleep_summary">Double-tap pada status bar untuk mematikan layar</string>
+  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
+  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
   <string name="disable_navkeys_title">Aktifkan nav bar di layar</string>
   <string name="disable_navkeys_summary">Aktifkan navigasi bar di layar dan menonaktifkan tombol perangkat keras</string>
   <string name="proximity_wake_title">Mencegah bangun</string>
@@ -238,4 +240,6 @@
   <string name="status_bar_show_unused_sims_title">Tampilkan ikon SIM kosong</string>
   <string name="status_bar_show_unused_sims_title_summary_off">Sembunyikan ikon SIM slot tidak terpakai</string>
   <string name="status_bar_show_unused_sims_title_summary_on">Menunjukkan slot SIM tidak terpakai</string>
+  <string name="button_wake_title">Wake up</string>
+  <string name="home_wake_summary">Pressing the home button will wake your device</string>
 </resources>

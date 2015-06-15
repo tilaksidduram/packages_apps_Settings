@@ -39,6 +39,8 @@
   <string name="double_tap_to_wake_summary">Appui double sur l\'écran pour l\'allumer</string>
   <string name="double_tap_to_sleep_title">Appuyez deux fois pour mettre en veille</string>
   <string name="double_tap_to_sleep_summary">Appui double sur la barre d\'état pour éteindre l\'écran</string>
+  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
+  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
   <string name="disable_navkeys_title">Activez la barre de navigation sur l\'écran</string>
   <string name="disable_navkeys_summary">Activez la barre de navigation à l\'écran et désactiver les boutons matériels</string>
   <string name="proximity_wake_title">Empêcher l\'éveil involontaire</string>
@@ -238,4 +240,6 @@
   <string name="status_bar_show_unused_sims_title">Afficher les icônes SIM vides</string>
   <string name="status_bar_show_unused_sims_title_summary_off">Masquer les icônes d\'emplacements SIM inutilisés</string>
   <string name="status_bar_show_unused_sims_title_summary_on">Indiquer les emplacements SIM inutilisés</string>
+  <string name="button_wake_title">Wake up</string>
+  <string name="home_wake_summary">Pressing the home button will wake your device</string>
 </resources>

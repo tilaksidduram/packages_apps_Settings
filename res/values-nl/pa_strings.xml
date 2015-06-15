@@ -39,6 +39,8 @@
   <string name="double_tap_to_wake_summary">Dubbeltikken op het scherm om het scherm aan te zetten</string>
   <string name="double_tap_to_sleep_title">Dubbeltikken voor slaapstand</string>
   <string name="double_tap_to_sleep_summary">Dubbeltikken op de statusbalk om het scherm uit te schakelen</string>
+  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
+  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
   <string name="disable_navkeys_title">On-screen navigatiebalk inschakelen</string>
   <string name="disable_navkeys_summary">On-screen navigatiebalk inschakelen en hardware-knoppen uitschakelen</string>
   <string name="proximity_wake_title">Per ongeluk ontwaken voorkomen</string>
@@ -67,7 +69,7 @@
   <string name="app_notification_show_on_keyguard_summary">Laat meldingen van deze app op het vergrendelscherm zien</string>
   <string name="app_notification_no_ongoing_on_keyguard_title">Schakel lopende uit op vergrendelscherm</string>
   <string name="app_notification_no_ongoing_on_keyguard_summary">Toon nooit lopende notificaties van deze app op het vergrendelscherm</string>
-  <string name="vibrator_intensity_title">Vibrator intensiteit</string>
+  <string name="vibrator_intensity_title">Trilintensiteit</string>
   <string name="vibrator_warning">Waarden hoger dan %1$d worden niet aangeraden</string>
   <string name="auto_brightness_reset_button">Reset</string>
   <string name="gesture_settings_title">Gebaren</string>
@@ -238,4 +240,6 @@
   <string name="status_bar_show_unused_sims_title">Toon lege SIM iconen</string>
   <string name="status_bar_show_unused_sims_title_summary_off">Verberg iconen van ongebruikte SIM-slots</string>
   <string name="status_bar_show_unused_sims_title_summary_on">Ongebruikte SIM slots aangeven</string>
+  <string name="button_wake_title">Wake up</string>
+  <string name="home_wake_summary">Pressing the home button will wake your device</string>
 </resources>

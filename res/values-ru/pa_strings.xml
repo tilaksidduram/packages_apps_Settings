@@ -39,6 +39,8 @@
   <string name="double_tap_to_wake_summary">Включение экрана по двойному касанию</string>
   <string name="double_tap_to_sleep_title">Уход в сон по двойному касанию</string>
   <string name="double_tap_to_sleep_summary">Выключение экрана по двойному касанию строки состояния</string>
+  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
+  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
   <string name="disable_navkeys_title">Экранная панель навигации</string>
   <string name="disable_navkeys_summary">Использовать программную панель навигации и отключить физические кнопки</string>
   <string name="proximity_wake_title">Предотвращать случайные пробужд.</string>
@@ -238,4 +240,6 @@
   <string name="status_bar_show_unused_sims_title">Показ отсутствующих SIM-карт</string>
   <string name="status_bar_show_unused_sims_title_summary_off">Скрывать иконки неиспользуемых слотов SIM</string>
   <string name="status_bar_show_unused_sims_title_summary_on">Отображать иконки неиспользуемых слотов SIM</string>
+  <string name="button_wake_title">Wake up</string>
+  <string name="home_wake_summary">Pressing the home button will wake your device</string>
 </resources>

@@ -39,6 +39,8 @@
   <string name="double_tap_to_wake_summary">Διπλός χτύπος στην οθόνη για ενεργοποίηση προβολής</string>
   <string name="double_tap_to_sleep_title">Διπλό χτύπημα για απενεργοποίηση</string>
   <string name="double_tap_to_sleep_summary">διπλός χτύπος στην γραμμή κατάστασης για απενεργοποίηση προβολής</string>
+  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
+  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
   <string name="disable_navkeys_title">Ενεργοποίηση γραμμής πλοήγησης εντός οθόνης</string>
   <string name="disable_navkeys_summary">Ενεργοποίηση γραμμής πλοήγησης εντός οθόνης και απενεργοποίηση των πλήκτρων της συσκευής</string>
   <string name="proximity_wake_title">Πρόληψη ακούσιας αφύπνισης</string>
@@ -238,4 +240,6 @@
   <string name="status_bar_show_unused_sims_title">Προβολή εικονιδίων άδειας SIM</string>
   <string name="status_bar_show_unused_sims_title_summary_off">Απόκρυψη εικονιδίων υποδοχών SIM που δεν χρησιμοποιούνται</string>
   <string name="status_bar_show_unused_sims_title_summary_on">Ανάδειξη αρχησιμοποίητων υποδοχών SIM</string>
+  <string name="button_wake_title">Wake up</string>
+  <string name="home_wake_summary">Pressing the home button will wake your device</string>
 </resources>

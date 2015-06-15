@@ -36,9 +36,11 @@
   <string name="advanced_settings">הגדרות מתקדמות</string>
   <string name="advanced_settings_summary">הפעל אפשרויות הגדרות נוספות</string>
   <string name="double_tap_to_wake_title">הקשה-כפולה להעיר</string>
-  <string name="double_tap_to_wake_summary">Double-tap on the screen to turn on the display</string>
+  <string name="double_tap_to_wake_summary">הקשה-כפולה על המסך על מנת להדליק את המסך</string>
   <string name="double_tap_to_sleep_title">הקשה-כפולה לשינה</string>
-  <string name="double_tap_to_sleep_summary">Double-tap on the status bar to turn off the display</string>
+  <string name="double_tap_to_sleep_summary">הקשה-כפולה על שורת הסטטוס על מנת לכבות את המסך</string>
+  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
+  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
   <string name="disable_navkeys_title">אפשר סרגל ניווט וירטואלי</string>
   <string name="disable_navkeys_summary">אפשר סרגל ניווט וירטואלי ובטל לחצנים פיזיים</string>
   <string name="proximity_wake_title">מנע התעוררות מקרית</string>
@@ -137,7 +139,7 @@
   <string name="qs_advanced_location_title">הגדרות מיקום מורחבות בהגדרות מהירות</string>
   <string name="qs_advanced_location_summary">אפשר הגדרות מורחבות עבור מיקום בחלון הגדרות מהירות</string>
   <string name="lcd_density">צפיפות LCD</string>
-  <string name="dialog_title_lcd_density">LCD density</string>
+  <string name="dialog_title_lcd_density">צפיפות LCD</string>
   <string name="restarting_ui">איתחול UI\u2026</string>
   <string name="themes_settings_title">ערכות נושא</string>
   <string name="doze_overwrite_value_title">החלף ערך</string>
@@ -190,7 +192,7 @@
   <string name="clock_date_display_summary">הצגת תאריך מותאם אישית לפני השעה</string>
   <string name="clock_date_style">סיגנון תאריך</string>
   <string name="clock_date_format">פורמט תאריך</string>
-  <string name="clock_date_string_edittext_title">Must be in DateFormat eg. MM/dd/yy</string>
+  <string name="clock_date_string_edittext_title">חייב להיות בפורט התאריך למשל MM/dd/yy</string>
   <string name="clock_date_string_edittext_summary">הזן מחרוזת</string>
   <string name="am_pm_clock_normal">גודל פונט נורמלי</string>
   <string name="am_pm_clock_small">גודל פונט קטן</string>
@@ -202,7 +204,7 @@
   <string name="clock_date_style_lowercase">אותיות קטנות</string>
   <string name="clock_date_style_uppercase">אותיות גדולות</string>
   <string name="clock_date_format_custom">פורמט Java מותאם אישית</string>
-  <string name="recents_show_searchbar">Show search bar in recents menu</string>
+  <string name="recents_show_searchbar">הצג סרגל חיפוש בתפריט \"משימות אחרונות\"</string>
   <string name="keywords_recents_show_searchbar">recent recents disable enable show hide search bar searchbar</string>
   <string name="build_date">תאריך בנייה</string>
   <string name="device_model">מודל המכשיר</string>
@@ -220,22 +222,24 @@
   <string name="less_notification_sounds_1m">1 דקה</string>
   <string name="less_notification_sounds_2m">2 דקות</string>
   <string name="less_notification_sounds_5m">5 דקות</string>
-  <string name="power_notifications_category_title">Charging sounds</string>
-  <string name="power_notifications_enable_title">Enable</string>
-  <string name="power_notifications_enable_summary">Play a sound when connecting or disconnecting the charger</string>
-  <string name="power_notifications_vibrate_title">Vibrate</string>
-  <string name="power_notifications_ringtone_title">Notification sound</string>
-  <string name="power_notifications_ringtone_silent">Silent</string>
-  <string name="heads_up_snooze_title">Snooze timer</string>
-  <string name="heads_up_snooze_summary">Swiping up on the heads up notification will snooze it for <xliff:g id="number">%d</xliff:g> minutes</string>
-  <string name="heads_up_snooze_disabled_summary">Snooze timer is disabled</string>
-  <string name="heads_up_snooze_1min">1 minute</string>
-  <string name="heads_up_snooze_3min">3 minutes</string>
-  <string name="heads_up_snooze_5min">5 minutes</string>
-  <string name="heads_up_snooze_10min">10 minutes</string>
-  <string name="heads_up_snooze_15min">15 minutes</string>
-  <string name="heads_up_snooze_20min">20 minutes</string>
-  <string name="status_bar_show_unused_sims_title">Show empty SIM icons</string>
-  <string name="status_bar_show_unused_sims_title_summary_off">Hide icons of unused SIM slots</string>
-  <string name="status_bar_show_unused_sims_title_summary_on">Indicate unused SIM slots</string>
+  <string name="power_notifications_category_title">צלילי טעינה</string>
+  <string name="power_notifications_enable_title">הפעל</string>
+  <string name="power_notifications_enable_summary">השמע צליל בעת חיבור או ניתוק מטען</string>
+  <string name="power_notifications_vibrate_title">רטט</string>
+  <string name="power_notifications_ringtone_title">צליל התראה</string>
+  <string name="power_notifications_ringtone_silent">שקט</string>
+  <string name="heads_up_snooze_title">נודניק</string>
+  <string name="heads_up_snooze_summary">גרירת התראת Heads-Up בכיוון מעלה תפעיל מצב נודניק לאחר <xliff:g id="number">%d</xliff:g> דקות</string>
+  <string name="heads_up_snooze_disabled_summary">נודניק מושבת</string>
+  <string name="heads_up_snooze_1min">1 דקה</string>
+  <string name="heads_up_snooze_3min">3 דקות</string>
+  <string name="heads_up_snooze_5min">5 דקות</string>
+  <string name="heads_up_snooze_10min">10 דקות</string>
+  <string name="heads_up_snooze_15min">15 דקות</string>
+  <string name="heads_up_snooze_20min">20 דקות</string>
+  <string name="status_bar_show_unused_sims_title">הצג סמל SIM ריק</string>
+  <string name="status_bar_show_unused_sims_title_summary_off">הסתר סמלי חריצי SIM שאינם בשימוש</string>
+  <string name="status_bar_show_unused_sims_title_summary_on">סמן סמלי חריצי SIM שאינם בשימוש</string>
+  <string name="button_wake_title">Wake up</string>
+  <string name="home_wake_summary">Pressing the home button will wake your device</string>
 </resources>
