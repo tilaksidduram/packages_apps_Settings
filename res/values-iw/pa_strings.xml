@@ -39,8 +39,8 @@
   <string name="double_tap_to_wake_summary">הקשה-כפולה על המסך על מנת להדליק את המסך</string>
   <string name="double_tap_to_sleep_title">הקשה-כפולה לשינה</string>
   <string name="double_tap_to_sleep_summary">הקשה-כפולה על שורת הסטטוס על מנת לכבות את המסך</string>
-  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
-  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
+  <string name="wake_when_plugged_or_unplugged_title">הער מסך בעת חיבור</string>
+  <string name="wake_when_plugged_or_unplugged_summary">הדלק את המסך כאשר מקור חשמל מחובר או מנותק מהמכשיר</string>
   <string name="disable_navkeys_title">אפשר סרגל ניווט וירטואלי</string>
   <string name="disable_navkeys_summary">אפשר סרגל ניווט וירטואלי ובטל לחצנים פיזיים</string>
   <string name="proximity_wake_title">מנע התעוררות מקרית</string>
@@ -136,8 +136,6 @@
   <string name="none_is_silent_title">אף אחד מהם במצב שקט</string>
   <string name="none_is_silent_summary">מצב שקט תמיד משמיעה אזעקה</string>
   <string name="allow_lights_title">אפשר תאורת התראות</string>
-  <string name="qs_advanced_location_title">הגדרות מיקום מורחבות בהגדרות מהירות</string>
-  <string name="qs_advanced_location_summary">אפשר הגדרות מורחבות עבור מיקום בחלון הגדרות מהירות</string>
   <string name="lcd_density">צפיפות LCD</string>
   <string name="dialog_title_lcd_density">צפיפות LCD</string>
   <string name="restarting_ui">איתחול UI\u2026</string>
@@ -240,6 +238,13 @@
   <string name="status_bar_show_unused_sims_title">הצג סמל SIM ריק</string>
   <string name="status_bar_show_unused_sims_title_summary_off">הסתר סמלי חריצי SIM שאינם בשימוש</string>
   <string name="status_bar_show_unused_sims_title_summary_on">סמן סמלי חריצי SIM שאינם בשימוש</string>
-  <string name="button_wake_title">Wake up</string>
-  <string name="home_wake_summary">Pressing the home button will wake your device</string>
+  <string name="button_wake_title">התעורר</string>
+  <string name="home_wake_summary">לחיצה על כפתור הבית יעיר את המכשיר</string>
+  <string name="usb_not_connected">USB is now disconnected</string>
+  <string name="reset_qs_tiles_title">Reset Quick Settings tile layout</string>
+  <string name="reset_qs_tiles_summary">Use the default positions for all tiles</string>
+  <string name="reset_qs_tiles_dialog_title">Reset all tiles?</string>
+  <string name="reset_qs_tiles_dialog_msg">All your Quick Settings tiles will be moved to their default positions.</string>
+  <string name="reset_qs_tiles_dialog_yes">Reset now</string>
+  <string name="reset_qs_tiles_dialog_no">Cancel</string>
 </resources>

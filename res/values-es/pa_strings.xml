@@ -39,8 +39,8 @@
   <string name="double_tap_to_wake_summary">Doble toque para encender la pantalla</string>
   <string name="double_tap_to_sleep_title">Doble toque para bloquear</string>
   <string name="double_tap_to_sleep_summary">Doble toque en la barra de estado para apagar la pantalla</string>
-  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
-  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
+  <string name="wake_when_plugged_or_unplugged_title">Encender al Conectar</string>
+  <string name="wake_when_plugged_or_unplugged_summary">Encender la pantalla al conectar o desconectar el cargador</string>
   <string name="disable_navkeys_title">Activar la barra de navegación</string>
   <string name="disable_navkeys_summary">Activar barra de navegación y desactivar los botones de hardware</string>
   <string name="proximity_wake_title">Prevenir encendido accidental</string>
@@ -136,8 +136,6 @@
   <string name="none_is_silent_title">Nada es modo silencioso</string>
   <string name="none_is_silent_summary">En modo silencioso siempre suenan las alarmas</string>
   <string name="allow_lights_title">Permitir luces de notificación</string>
-  <string name="qs_advanced_location_title">Configuración rápida avanzada para la localización</string>
-  <string name="qs_advanced_location_summary">Habilitar la configuración avanzada para ubicación en los ajustes rápidos</string>
   <string name="lcd_density">Densidad del LCD</string>
   <string name="dialog_title_lcd_density">Densidad del LCD</string>
   <string name="restarting_ui">Reiniciar UI\u2026</string>
@@ -242,4 +240,11 @@
   <string name="status_bar_show_unused_sims_title_summary_on">Indicar ranuras de tarjeta SIM sin utilizar</string>
   <string name="button_wake_title">Despertar</string>
   <string name="home_wake_summary">Presionar el botón Inicio despertará su dispositivo</string>
+  <string name="usb_not_connected">El USB esta desconectado</string>
+  <string name="reset_qs_tiles_title">Restablecer configuracion rapida de azulejos</string>
+  <string name="reset_qs_tiles_summary">Use las posiciones por defecto para todos los azulejos</string>
+  <string name="reset_qs_tiles_dialog_title">¿restablecer todos los azulejos?</string>
+  <string name="reset_qs_tiles_dialog_msg">Todas los azulejos de configuración rápida se trasladará a sus posiciones predeterminadas.</string>
+  <string name="reset_qs_tiles_dialog_yes">Reiniciar ahora</string>
+  <string name="reset_qs_tiles_dialog_no">Cancelar</string>
 </resources>

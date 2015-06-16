@@ -39,8 +39,8 @@
   <string name="double_tap_to_wake_summary">Dubbeltikken op het scherm om het scherm aan te zetten</string>
   <string name="double_tap_to_sleep_title">Dubbeltikken voor slaapstand</string>
   <string name="double_tap_to_sleep_summary">Dubbeltikken op de statusbalk om het scherm uit te schakelen</string>
-  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
-  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
+  <string name="wake_when_plugged_or_unplugged_title">Ontwaken door lader</string>
+  <string name="wake_when_plugged_or_unplugged_summary">Scherm aan bij het aansluiten of loskoppelen van een lader</string>
   <string name="disable_navkeys_title">On-screen navigatiebalk inschakelen</string>
   <string name="disable_navkeys_summary">On-screen navigatiebalk inschakelen en hardware-knoppen uitschakelen</string>
   <string name="proximity_wake_title">Per ongeluk ontwaken voorkomen</string>
@@ -136,8 +136,6 @@
   <string name="none_is_silent_title">Geen is Stille modus</string>
   <string name="none_is_silent_summary">Stille modus laat altijd alarmen horen</string>
   <string name="allow_lights_title">Meldings LED toestaan</string>
-  <string name="qs_advanced_location_title">Geavanceerde snelle locatie instellingen</string>
-  <string name="qs_advanced_location_summary">Geavanceerde locatie instellingen in snelle instellingen inschakelen</string>
   <string name="lcd_density">LCD dichtheid</string>
   <string name="dialog_title_lcd_density">LCD dichtheid</string>
   <string name="restarting_ui">UI\u2026 herstarten</string>
@@ -240,6 +238,13 @@
   <string name="status_bar_show_unused_sims_title">Toon lege SIM iconen</string>
   <string name="status_bar_show_unused_sims_title_summary_off">Verberg iconen van ongebruikte SIM-slots</string>
   <string name="status_bar_show_unused_sims_title_summary_on">Ongebruikte SIM slots aangeven</string>
-  <string name="button_wake_title">Wake up</string>
-  <string name="home_wake_summary">Pressing the home button will wake your device</string>
+  <string name="button_wake_title">Ontwaken</string>
+  <string name="home_wake_summary">Apparaat ontwaken door op de thuisknop te drukken</string>
+  <string name="usb_not_connected">USB is nu verbroken</string>
+  <string name="reset_qs_tiles_title">Reset Snelle instellingenpaneel lay-out</string>
+  <string name="reset_qs_tiles_summary">Gebruik de standaard posities voor alle tegels</string>
+  <string name="reset_qs_tiles_dialog_title">Reset alle tegels?</string>
+  <string name="reset_qs_tiles_dialog_msg">Al je Snelle instellingen tegels zullen verplaatst worden naar hun standaard posities.</string>
+  <string name="reset_qs_tiles_dialog_yes">Reset nu</string>
+  <string name="reset_qs_tiles_dialog_no">Annuleren</string>
 </resources>

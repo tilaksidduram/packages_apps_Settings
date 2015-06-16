@@ -39,8 +39,8 @@
   <string name="double_tap_to_wake_summary">Doppio tocco sullo schermo per attivare il display</string>
   <string name="double_tap_to_sleep_title">Doppio tap per spegnere</string>
   <string name="double_tap_to_sleep_summary">Doppio tocco sulla barra di stato per disattivare il display</string>
-  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
-  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
+  <string name="wake_when_plugged_or_unplugged_title">Accendi lo schermo al collegamento</string>
+  <string name="wake_when_plugged_or_unplugged_summary">Accende lo schermo quando colleghi o scolleghi il caricabatterie</string>
   <string name="disable_navkeys_title">Abilita tasti a schermo</string>
   <string name="disable_navkeys_summary">Abilita tasti a schermo e disabilita i pulsanti hardware</string>
   <string name="proximity_wake_title">Previeni risvegli accidentali</string>
@@ -136,8 +136,6 @@
   <string name="none_is_silent_title">\"None\" è la modalità silenziosa</string>
   <string name="none_is_silent_summary">In modalità silenziosa permetti alle sveglie di suonare</string>
   <string name="allow_lights_title">Contenti le luci di notifica</string>
-  <string name="qs_advanced_location_title">Impostazioni rapide di Posizione avanzata</string>
-  <string name="qs_advanced_location_summary">Abilita le impostazioni avanzate per la localizzazione in impostazioni rapide</string>
   <string name="lcd_density">Densità LCD</string>
   <string name="dialog_title_lcd_density">Densità LCD</string>
   <string name="restarting_ui">Riavvio UI\u2026</string>
@@ -242,4 +240,11 @@
   <string name="status_bar_show_unused_sims_title_summary_on">Indicare gli slot SIM non usati</string>
   <string name="button_wake_title">Risveglio</string>
   <string name="home_wake_summary">La pressione del tasto Home risveglierà il dispositivo</string>
+  <string name="usb_not_connected">L\'USB è ora disconnessa</string>
+  <string name="reset_qs_tiles_title">Reimposta la disposizione dei pannelli dei Quick Settings</string>
+  <string name="reset_qs_tiles_summary">Usa la disposizione predefinita per tutti i pannelli</string>
+  <string name="reset_qs_tiles_dialog_title">Reimpostare tutti i pannelli?</string>
+  <string name="reset_qs_tiles_dialog_msg">Tutti i tuoi Quick Settings saranno spostati nella posizione predefinita.</string>
+  <string name="reset_qs_tiles_dialog_yes">Reimposta ora</string>
+  <string name="reset_qs_tiles_dialog_no">Annulla</string>
 </resources>

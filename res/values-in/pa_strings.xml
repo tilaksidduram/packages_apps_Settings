@@ -136,8 +136,6 @@
   <string name="none_is_silent_title">Tidak ada mode diam</string>
   <string name="none_is_silent_summary">Mode diam selalu dengar alarm</string>
   <string name="allow_lights_title">Izinkan lampu notifikasi</string>
-  <string name="qs_advanced_location_title">Penyetelan cepat lokasi lanjutan</string>
-  <string name="qs_advanced_location_summary">Aktifkan pengaturan lanjutan untuk lokasi di Setelan Cepat</string>
   <string name="lcd_density">Densitas LCD</string>
   <string name="dialog_title_lcd_density">Densitas LCD</string>
   <string name="restarting_ui">Restart UI\u2026</string>
@@ -242,4 +240,11 @@
   <string name="status_bar_show_unused_sims_title_summary_on">Menunjukkan slot SIM tidak terpakai</string>
   <string name="button_wake_title">Wake up</string>
   <string name="home_wake_summary">Pressing the home button will wake your device</string>
+  <string name="usb_not_connected">USB is now disconnected</string>
+  <string name="reset_qs_tiles_title">Reset Quick Settings tile layout</string>
+  <string name="reset_qs_tiles_summary">Use the default positions for all tiles</string>
+  <string name="reset_qs_tiles_dialog_title">Reset all tiles?</string>
+  <string name="reset_qs_tiles_dialog_msg">All your Quick Settings tiles will be moved to their default positions.</string>
+  <string name="reset_qs_tiles_dialog_yes">Reset now</string>
+  <string name="reset_qs_tiles_dialog_no">Cancel</string>
 </resources>

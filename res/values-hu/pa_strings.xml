@@ -39,8 +39,8 @@
   <string name="double_tap_to_wake_summary">A kijelző bekapcsolásához érintse meg duplán a képernyőt</string>
   <string name="double_tap_to_sleep_title">Alvás dupla érintésre</string>
   <string name="double_tap_to_sleep_summary">A kijelző kikapcsolásához érintse meg duplán az állapotsávot</string>
-  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
-  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
+  <string name="wake_when_plugged_or_unplugged_title">Felébredés töltő csatlakoztatásakor</string>
+  <string name="wake_when_plugged_or_unplugged_summary">A képernyő bekapcsolása a töltő csatlakoztatása/eltávolítása után</string>
   <string name="disable_navkeys_title">Navigációs sáv engedélyezése</string>
   <string name="disable_navkeys_summary">Navigációs sáv engedélyezése és a hardveres gombok letiltása</string>
   <string name="proximity_wake_title">Véletlen ébresztés megakadályozása</string>
@@ -136,8 +136,6 @@
   <string name="none_is_silent_title">Nincs a Csendes mód</string>
   <string name="none_is_silent_summary">Csendes módban mindig szól az ébresztés</string>
   <string name="allow_lights_title">Értesítési fény engedélyezése</string>
-  <string name="qs_advanced_location_title">Speciális helymeghatározási beállítások</string>
-  <string name="qs_advanced_location_summary">Engedélyezi a helymeghatározás speciális beállításat a Gyors beállításokban</string>
   <string name="lcd_density">LCD sűrűség</string>
   <string name="dialog_title_lcd_density">LCD sűrűség</string>
   <string name="restarting_ui">Felhasználói felület újraindítása\u2026</string>
@@ -242,4 +240,11 @@
   <string name="status_bar_show_unused_sims_title_summary_on">Nem használt SIM foglalatok jelzése</string>
   <string name="button_wake_title">Felébresztés</string>
   <string name="home_wake_summary">A kezdő gomb megnyomására felébred a készülék</string>
+  <string name="usb_not_connected">USB is now disconnected</string>
+  <string name="reset_qs_tiles_title">Reset Quick Settings tile layout</string>
+  <string name="reset_qs_tiles_summary">Use the default positions for all tiles</string>
+  <string name="reset_qs_tiles_dialog_title">Reset all tiles?</string>
+  <string name="reset_qs_tiles_dialog_msg">All your Quick Settings tiles will be moved to their default positions.</string>
+  <string name="reset_qs_tiles_dialog_yes">Reset now</string>
+  <string name="reset_qs_tiles_dialog_no">Cancel</string>
 </resources>

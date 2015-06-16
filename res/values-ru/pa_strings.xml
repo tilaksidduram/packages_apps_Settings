@@ -39,8 +39,8 @@
   <string name="double_tap_to_wake_summary">Включение экрана по двойному касанию</string>
   <string name="double_tap_to_sleep_title">Уход в сон по двойному касанию</string>
   <string name="double_tap_to_sleep_summary">Выключение экрана по двойному касанию строки состояния</string>
-  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
-  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
+  <string name="wake_when_plugged_or_unplugged_title">Пробуждение при подключении USB/Зарядки</string>
+  <string name="wake_when_plugged_or_unplugged_summary">Включать экран при подключении или отключении источника питания</string>
   <string name="disable_navkeys_title">Экранная панель навигации</string>
   <string name="disable_navkeys_summary">Использовать программную панель навигации и отключить физические кнопки</string>
   <string name="proximity_wake_title">Предотвращать случайные пробужд.</string>
@@ -136,8 +136,6 @@
   <string name="none_is_silent_title">Включение бесшумного режима</string>
   <string name="none_is_silent_summary">В безвучном режиме режиме всегда действуют будильники</string>
   <string name="allow_lights_title">Разрешить индикацию уведомлений</string>
-  <string name="qs_advanced_location_title">Особые настройки для пер. геоданных</string>
-  <string name="qs_advanced_location_summary">Включить дополнительные настройки для плитки определения местоположения</string>
   <string name="lcd_density">Разрешение экрана</string>
   <string name="dialog_title_lcd_density">Разрешение экрана</string>
   <string name="restarting_ui">Перезапуск UI\u2026</string>
@@ -240,6 +238,13 @@
   <string name="status_bar_show_unused_sims_title">Показ отсутствующих SIM-карт</string>
   <string name="status_bar_show_unused_sims_title_summary_off">Скрывать иконки неиспользуемых слотов SIM</string>
   <string name="status_bar_show_unused_sims_title_summary_on">Отображать иконки неиспользуемых слотов SIM</string>
-  <string name="button_wake_title">Wake up</string>
-  <string name="home_wake_summary">Pressing the home button will wake your device</string>
+  <string name="button_wake_title">Пробуждение</string>
+  <string name="home_wake_summary">Нажатие кнопки \"Домой\" разбудит устройство</string>
+  <string name="usb_not_connected">USB is now disconnected</string>
+  <string name="reset_qs_tiles_title">Reset Quick Settings tile layout</string>
+  <string name="reset_qs_tiles_summary">Use the default positions for all tiles</string>
+  <string name="reset_qs_tiles_dialog_title">Reset all tiles?</string>
+  <string name="reset_qs_tiles_dialog_msg">All your Quick Settings tiles will be moved to their default positions.</string>
+  <string name="reset_qs_tiles_dialog_yes">Reset now</string>
+  <string name="reset_qs_tiles_dialog_no">Cancel</string>
 </resources>

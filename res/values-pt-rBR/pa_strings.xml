@@ -39,8 +39,8 @@
   <string name="double_tap_to_wake_summary">Ativa a tela com dois toques</string>
   <string name="double_tap_to_sleep_title">Dois toques para desligar</string>
   <string name="double_tap_to_sleep_summary">Desativa a tela com dois toques na barra de status</string>
-  <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
-  <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
+  <string name="wake_when_plugged_or_unplugged_title">Acordar ao conectar</string>
+  <string name="wake_when_plugged_or_unplugged_summary">Ligar a tela quando conectar ou desconectar uma fonte de energia</string>
   <string name="disable_navkeys_title">Ativar botões virtuais na tela</string>
   <string name="disable_navkeys_summary">Ativar botões virtuais na tela e desativar os botões físicos</string>
   <string name="proximity_wake_title">Evitar despertar acidental</string>
@@ -136,8 +136,6 @@
   <string name="none_is_silent_title">Nenhum = Modo Silencioso</string>
   <string name="none_is_silent_summary">Sempre tocar alarmes no modo silencioso</string>
   <string name="allow_lights_title">Permitir luzes de notificação</string>
-  <string name="qs_advanced_location_title">Localização com configurações avançadas</string>
-  <string name="qs_advanced_location_summary">Ativar as configurações avançadas de localização em Configurações Rápidas</string>
   <string name="lcd_density">Densidade do LCD</string>
   <string name="dialog_title_lcd_density">Densidade do LCD</string>
   <string name="restarting_ui">Reiniciando UI\u2026</string>
@@ -242,4 +240,11 @@
   <string name="status_bar_show_unused_sims_title_summary_on">Indicar os slots de cartões SIM não utilizados</string>
   <string name="button_wake_title">Acordar</string>
   <string name="home_wake_summary">Pressionar o botão home irá acordar o telefone</string>
+  <string name="usb_not_connected">USB is now disconnected</string>
+  <string name="reset_qs_tiles_title">Reset Quick Settings tile layout</string>
+  <string name="reset_qs_tiles_summary">Use the default positions for all tiles</string>
+  <string name="reset_qs_tiles_dialog_title">Reset all tiles?</string>
+  <string name="reset_qs_tiles_dialog_msg">All your Quick Settings tiles will be moved to their default positions.</string>
+  <string name="reset_qs_tiles_dialog_yes">Reset now</string>
+  <string name="reset_qs_tiles_dialog_no">Cancel</string>
 </resources>

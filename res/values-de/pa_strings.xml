@@ -136,8 +136,6 @@
   <string name="none_is_silent_title">Nichts ist Silent-Modus</string>
   <string name="none_is_silent_summary">Alarme funktionieren auch im Lautlos-Modus</string>
   <string name="allow_lights_title">Erlaube Benachrichtigungslicht</string>
-  <string name="qs_advanced_location_title">Erweiterte Standort-Schnelleinstellungen</string>
-  <string name="qs_advanced_location_summary">Erweiterte Standort-Einstellungen in Schnelleinstellungen aktivieren</string>
   <string name="lcd_density">LCD Density</string>
   <string name="dialog_title_lcd_density">LCD Density</string>
   <string name="restarting_ui">Neustart von UI\u2026</string>
@@ -242,4 +240,11 @@
   <string name="status_bar_show_unused_sims_title_summary_on">Unbenutzte SIM-Slots zeigen</string>
   <string name="button_wake_title">Wake up</string>
   <string name="home_wake_summary">Pressing the home button will wake your device</string>
+  <string name="usb_not_connected">USB is now disconnected</string>
+  <string name="reset_qs_tiles_title">Reset Quick Settings tile layout</string>
+  <string name="reset_qs_tiles_summary">Use the default positions for all tiles</string>
+  <string name="reset_qs_tiles_dialog_title">Reset all tiles?</string>
+  <string name="reset_qs_tiles_dialog_msg">All your Quick Settings tiles will be moved to their default positions.</string>
+  <string name="reset_qs_tiles_dialog_yes">Reset now</string>
+  <string name="reset_qs_tiles_dialog_no">Cancel</string>
 </resources>

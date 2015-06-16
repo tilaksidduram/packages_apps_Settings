@@ -136,8 +136,6 @@
   <string name="none_is_silent_title">Κανένα δεν είναι σε Αθόρυβη λειτουργία</string>
   <string name="none_is_silent_summary">Σε αθόρυβη λειτουργία ακούγονται πάντα οι αφυπνίσεις</string>
   <string name="allow_lights_title">Να επιτρέπονται τα φώτα των ειδοποιήσεων</string>
-  <string name="qs_advanced_location_title">Γρήγορες ρυθμίσεις  προηγμένων επιλογών τοποθεσίας</string>
-  <string name="qs_advanced_location_summary">Ενεργοποίηση προηγμένων ρυθμίσεων τοποθεσίας στις Γρήγορες ρυθμίσεις</string>
   <string name="lcd_density">Πυκνότητα LCD</string>
   <string name="dialog_title_lcd_density">Πυκνότητα LCD</string>
   <string name="restarting_ui">Επανεκκίνηση UI\u2026</string>
@@ -242,4 +240,11 @@
   <string name="status_bar_show_unused_sims_title_summary_on">Ανάδειξη αρχησιμοποίητων υποδοχών SIM</string>
   <string name="button_wake_title">Wake up</string>
   <string name="home_wake_summary">Pressing the home button will wake your device</string>
+  <string name="usb_not_connected">USB is now disconnected</string>
+  <string name="reset_qs_tiles_title">Reset Quick Settings tile layout</string>
+  <string name="reset_qs_tiles_summary">Use the default positions for all tiles</string>
+  <string name="reset_qs_tiles_dialog_title">Reset all tiles?</string>
+  <string name="reset_qs_tiles_dialog_msg">All your Quick Settings tiles will be moved to their default positions.</string>
+  <string name="reset_qs_tiles_dialog_yes">Reset now</string>
+  <string name="reset_qs_tiles_dialog_no">Cancel</string>
 </resources>
