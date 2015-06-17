@@ -63,6 +63,10 @@ import com.android.settings.search.Index;
 import com.android.settings.search.Indexable;
 import com.android.settings.search.SearchIndexableRaw;
 
+import org.cyanogenmod.internal.util.CmLockPatternUtils;
+
+import cyanogenmod.providers.CMSettings;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,6 +90,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
 
     // Lock Settings
     private static final String KEY_UNLOCK_SET_OR_CHANGE = "unlock_set_or_change";
+    private static final String KEY_DIRECTLY_SHOW = "directlyshow";
     private static final String KEY_VISIBLE_PATTERN = "visiblepattern";
     private static final String KEY_VISIBLE_ERROR_PATTERN = "visible_error_pattern";
     private static final String KEY_VISIBLE_DOTS = "visibledots";
@@ -119,7 +124,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
 
     // These switch preferences need special handling since they're not all stored in Settings.
     private static final String SWITCH_PREFERENCE_KEYS[] = { KEY_LOCK_AFTER_TIMEOUT,
-            KEY_VISIBLE_PATTERN, KEY_VISIBLE_ERROR_PATTERN, KEY_VISIBLE_DOTS,
+            KEY_VISIBLE_PATTERN, KEY_VISIBLE_ERROR_PATTERN, KEY_VISIBLE_DOTS, KEY_DIRECTLY_SHOW,
             KEY_POWER_INSTANTLY_LOCKS, KEY_SHOW_PASSWORD, KEY_TOGGLE_INSTALL_APPLICATIONS };
 
     // Only allow one trust agent on the platform.
@@ -137,6 +142,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private LockPatternUtils mLockPatternUtils;
     private ListPreference mLockAfter;
 
+    private SwitchPreference mDirectlyShow;
     private SwitchPreference mVisiblePattern;
     private SwitchPreference mVisibleErrorPattern;
     private SwitchPreference mVisibleDots;
@@ -285,6 +291,9 @@ public class SecuritySettings extends SettingsPreferenceFragment
                 setupLockAfterPreference();
                 updateLockAfterPreferenceSummary();
             }
+
+            // directly show
+            mDirectlyShow = (SwitchPreference) root.findPreference(KEY_DIRECTLY_SHOW);
 
             // visible pattern
             mVisiblePattern = (SwitchPreference) root.findPreference(KEY_VISIBLE_PATTERN);
@@ -692,6 +701,10 @@ public class SecuritySettings extends SettingsPreferenceFragment
         createPreferenceHierarchy();
 
         final LockPatternUtils lockPatternUtils = mChooseLockSettingsHelper.utils();
+        final CmLockPatternUtils cmLockPatternUtils = mChooseLockSettingsHelper.cmUtils();
+        if (mDirectlyShow != null) {
+            mDirectlyShow.setChecked(cmLockPatternUtils.shouldPassToSecurityView(MY_USER_ID));
+        }
         if (mVisiblePattern != null) {
             mVisiblePattern.setChecked(lockPatternUtils.isVisiblePatternEnabled(MY_USER_ID));
         }
@@ -771,6 +784,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
         boolean result = true;
         final String key = preference.getKey();
         final LockPatternUtils lockPatternUtils = mChooseLockSettingsHelper.utils();
+        final CmLockPatternUtils cmLockPatternUtils = mChooseLockSettingsHelper.cmUtils();
         if (KEY_LOCK_AFTER_TIMEOUT.equals(key)) {
             int timeout = Integer.parseInt((String) value);
             try {
@@ -780,6 +794,8 @@ public class SecuritySettings extends SettingsPreferenceFragment
                 Log.e("SecuritySettings", "could not persist lockAfter timeout setting", e);
             }
             updateLockAfterPreferenceSummary();
+        } else if (KEY_DIRECTLY_SHOW.equals(key)) {
+            cmLockPatternUtils.setPassToSecurityView((Boolean) value, MY_USER_ID);
         } else if (KEY_VISIBLE_PATTERN.equals(key)) {
             lockPatternUtils.setVisiblePatternEnabled((Boolean) value, MY_USER_ID);
         } else if (KEY_VISIBLE_ERROR_PATTERN.equals(key)) {
