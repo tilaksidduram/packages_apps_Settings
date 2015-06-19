@@ -298,6 +298,7 @@ limitations under the License.
         <item>@string/shortcut_action_ime</item>
         <item>@string/shortcut_action_power_menu</item>
         <item>@string/shortcut_action_recent</item>
+        <item>@string/shortcut_action_restartui</item>
         <item>@string/shortcut_action_power</item>
         <item>@string/shortcut_action_search</item>
         <item>@string/shortcut_action_none</item>
@@ -311,6 +312,7 @@ limitations under the License.
         <item>**ime**</item>
         <item>**power_menu**</item>
         <item>**recents**</item>
+        <item>**restartui**</item>
         <item>**power**</item>
         <item>**search**</item>
         <item>**null**</item>
