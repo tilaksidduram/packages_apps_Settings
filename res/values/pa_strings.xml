@@ -752,15 +752,6 @@
     <string name="status_bar_power_menu_action_screen_off">Screen off - Power menu</string>
     <string name="status_bar_power_menu_action_dialog">Power menu - Screen off</string>
 
-    <!-- Show carrier label and custom -->
-    <string name="carrier_options">Carrier Label</string>
-    <string name="show_status_bar_carrier_title">Status bar carrier</string>
-    <string name="show_status_bar_carrier_summary">Show carrier in status bar</string>
-    <string name="custom_carrier_label_title">Custom carrier label</string>
-    <string name="custom_carrier_label_explain">Please enter a new label. Leave blank to revert to stock label.</string>
-    <string name="custom_carrier_label_notset">Custom label currently not set</string>
-    <string name="status_bar_carrier_color">Carrier label color</string>
-
     <!-- Disable torch when screen goes off -->
     <string name="disable_torch_screen_off_title">Disable torch on screen off</string>
     <string name="disable_torch_screen_off_delay_title">Delay</string>
