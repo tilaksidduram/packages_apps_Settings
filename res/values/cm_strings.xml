@@ -977,6 +977,7 @@
     <string name="qs_usb_tether_tile">USB Tethering</string>
     <string name="qs_tile_immersive">Immersive</string>
     <string name="qs_systemui_restart_tile">Restart SystemUI</string>
+    <string name="qs_tile_slim_floats">Slim Floats</string>
 
     <string name="qs_dynamic_tile_next_alarm">Next alarm</string>
     <string name="qs_dynamic_tile_ime_selector">IME selector</string>
