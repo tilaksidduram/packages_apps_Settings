@@ -328,7 +328,8 @@ public class SettingsActivity extends Activity
             com.android.settings.cyanogenmod.PrivacySettings.class.getName(),
             AmbientSettings.class.getName(),
             LiveDisplay.class.getName(),
-            HeadsUpSettings.class.getName()
+            HeadsUpSettings.class.getName(),
+            ButtonSettings.class.getName()
     };
 
 
