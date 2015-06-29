@@ -15,6 +15,7 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/category_heads_up">
 
     <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
@@ -37,18 +38,22 @@
         android:summaryOff="@string/heads_up_touch_outside_summary_disabled"
         android:defaultValue="false" />
 
-    <ListPreference
+    <com.android.settings.crdroid.SeekBarPreference
         android:key="heads_up_time_out"
         android:title="@string/heads_up_time_out_title"
-        android:entries="@array/heads_up_time_out_entries"
-        android:entryValues="@array/heads_up_time_out_values"
+        android:max="10"
+        settings:minimum="0"
+        settings:unitsLeft=""
+        settings:unitsRight="sec"
         android:persistent="false" />
 
-    <ListPreference
+    <com.android.settings.crdroid.SeekBarPreference
         android:key="heads_up_snooze_time"
         android:title="@string/heads_up_snooze_title"
-        android:entries="@array/heads_up_snooze_entries"
-        android:entryValues="@array/heads_up_snooze_values"
+        android:max="10"
+        settings:minimum="0"
+        settings:unitsLeft=""
+        settings:unitsRight="min"
         android:persistent="false" />
 
     <PreferenceCategory
