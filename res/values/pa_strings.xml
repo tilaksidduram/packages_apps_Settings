@@ -553,6 +553,10 @@
     <!-- Heads Up Snooze -->
     <string name="heads_up_snooze_title">Snooze timer</string>
 
+    <!-- Heads Up Floating Mode -->
+    <string name="heads_up_floating_window_title">Float mode</string>
+    <string name="heads_up_floating_window_summary">Longpress and release to open in float mode when not on home screen</string>
+
     <string name="alarm_ringtone_title">Default alarm ringtone</string>
 
     <!-- Membar in Recents -->
