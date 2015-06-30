@@ -41,7 +41,6 @@ import com.android.settings.net.DataUsageMeteredSettings;
 import com.android.settings.notification.NotificationSettings;
 import com.android.settings.notification.OtherSoundSettings;
 import com.android.settings.notification.ZenModeSettings;
-import com.android.settings.paranoid.AmbientSettings;
 import com.android.settings.print.PrintSettingsFragment;
 import com.android.settings.sim.SimSettings;
 import com.android.settings.users.UserSettings;
@@ -263,14 +262,6 @@ public final class SearchIndexableResources {
                         NO_DATA_RES_ID,
                         DeviceInfoSettings.class.getName(),
                         R.drawable.ic_settings_about));
-
-        sResMap.put(AmbientSettings.class.getName(),
-                new SearchIndexableResource(
-                        Ranking.getRankForClassName(AmbientSettings.class.getName()),
-                        NO_DATA_RES_ID,
-                        AmbientSettings.class.getName(),
-                        R.drawable.ic_settings_display));
-
     }
 
     private SearchIndexableResources() {

@@ -81,6 +81,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_FONT_SIZE = "font_size";
     private static final String KEY_SCREEN_SAVER = "screensaver";
     private static final String KEY_LIFT_TO_WAKE = "lift_to_wake";
+    private static final String KEY_DOZE = "doze";
     private static final String KEY_AUTO_BRIGHTNESS = "auto_brightness";
     private static final String KEY_AUTO_ROTATE = "auto_rotate";
     private static final String KEY_TAP_TO_WAKE = "double_tap_wake_gesture";
@@ -90,7 +91,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String CATEGORY_ADVANCED = "advanced_display_prefs";
     private static final String SHOW_CLEAR_ALL_RECENTS = "show_clear_all_recents";
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
-    private static final String KEY_DOZE_FRAGMENT = "doze_fragment";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
@@ -108,7 +108,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private SwitchPreference mWakeWhenPluggedOrUnplugged;
     private SwitchPreference mRecentsClearAll;
     private ListPreference mRecentsClearAllLocation;
-    private PreferenceScreen mDozeFragement;
 
     private CmHardwareManager mCmHardwareManager;
 
@@ -195,10 +194,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         PreferenceCategory advancedPrefs = (PreferenceCategory) findPreference(CATEGORY_ADVANCED);
 
-        mDozeFragement = (PreferenceScreen) findPreference(KEY_DOZE_FRAGMENT);
-        if (!isDozeAvailable(activity)) {
-            getPreferenceScreen().removePreference(mDozeFragement);
-            mDozeFragement = null;
+        if (isDozeAvailable(activity)) {
+            mDozePreference = (SwitchPreference) findPreference(KEY_DOZE);
+            mDozePreference.setOnPreferenceChangeListener(this);
+        } else {
+            removePreference(KEY_DOZE);
         }
 
         if (RotationPolicy.isRotationLockToggleVisible(activity)) {
@@ -550,6 +550,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                     Settings.System.RECENTS_CLEAR_ALL_LOCATION, location, UserHandle.USER_CURRENT);
             updateRecentsLocation(location);
         }
+        if (preference == mDozePreference) {
+            boolean value = (Boolean) objValue;
+            Settings.Secure.putInt(getContentResolver(), DOZE_ENABLED, value ? 1 : 0);
+        }
         return true;
     }
 
@@ -623,7 +627,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                         result.add(KEY_LIFT_TO_WAKE);
                     }
                     if (!isDozeAvailable(context)) {
-                        result.add(KEY_DOZE_FRAGMENT);
+                        result.add(KEY_DOZE);
                     }
                     if (!RotationPolicy.isRotationLockToggleVisible(context)) {
                         result.add(KEY_AUTO_ROTATE);
