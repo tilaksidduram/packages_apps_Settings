@@ -271,7 +271,9 @@ public class SetupActionsFragment extends SettingsPreferenceFragment
             }
             if (groupsAdded > 0) {
                 // add "Other" at the end
-                mItems.add(new AppGroupItem(mProfile, mProfile.getDefaultGroup()));
+                mItems.add(new AppGroupItem(mProfile, mProfile.getDefaultGroup(),
+                        mProfileManager.getNotificationGroup(
+                                mProfile.getDefaultGroup().getUuid())));
             }
         }
         if (mProfileManager.getNotificationGroups().length > 0) {

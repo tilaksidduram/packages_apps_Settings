@@ -51,7 +51,8 @@ import com.android.settings.Utils;
 import java.util.UUID;
 
 public class ProfilesSettings extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener {
+        implements BaseSystemSettingSwitchBar.SwitchBarChangeCallback,
+        Preference.OnPreferenceChangeListener {
     private static final String TAG = "ProfilesSettings";
 
     public static final String EXTRA_PROFILE = "Profile";
@@ -64,7 +65,7 @@ public class ProfilesSettings extends SettingsPreferenceFragment
     private final BroadcastReceiver mReceiver;
 
     private ProfileManager mProfileManager;
-    private ProfileEnabler mProfileEnabler;
+    private BaseSystemSettingSwitchBar mProfileEnabler;
 
     private View mAddProfileFab;
     private boolean mEnabled;
@@ -168,7 +169,8 @@ public class ProfilesSettings extends SettingsPreferenceFragment
     public void onStart() {
         super.onStart();
         final SettingsActivity activity = (SettingsActivity) getActivity();
-        mProfileEnabler = new ProfileEnabler(activity, activity.getSwitchBar());
+        mProfileEnabler = new BaseSystemSettingSwitchBar(activity, activity.getSwitchBar(),
+                Settings.System.SYSTEM_PROFILES_ENABLED, true, this);
     }
 
     @Override
@@ -247,6 +249,16 @@ public class ProfilesSettings extends SettingsPreferenceFragment
         } else {
             refreshList();
         }
+    }
+
+    @Override
+    public void onEnablerChanged(boolean isEnabled) {
+        Intent intent = new Intent(ProfileManager.PROFILES_STATE_CHANGED_ACTION);
+        intent.putExtra(ProfileManager.EXTRA_PROFILES_STATE,
+                isEnabled ?
+                        ProfileManager.PROFILES_STATE_ENABLED :
+                        ProfileManager.PROFILES_STATE_DISABLED);
+        getActivity().sendBroadcast(intent);
     }
 
     public void refreshList() {
