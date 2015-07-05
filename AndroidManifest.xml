@@ -1893,12 +1893,6 @@
                        android:resource="@id/button_settings" />
         </activity-alias>
 
-        <receiver android:name="com.android.settings.paranoid.utils.OnBoot">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
-
         <!-- CyanogenMod activities Start -->
         <activity android:name="Settings$VoiceWakeupSettingsActivity"
                 android:label="@string/voice_wakeup_settings_title"

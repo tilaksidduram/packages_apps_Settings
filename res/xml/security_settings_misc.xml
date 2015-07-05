@@ -115,18 +115,6 @@
                 android:persistent="false"
                 android:fragment="com.android.settings.TrustAgentSettings"/>
 
-        <!-- SELinux changer -->
-        <Preference
-                android:key="selinux_switch"
-                android:title="@string/selinux_switch_title"
-                android:summary="@string/selinux_switch_summary"
-                android:selectable="false"/>
-
-        <SwitchPreference
-                android:key="selinux"
-                android:title="@string/selinux_title"
-                android:defaultValue="false" />
-
         <PreferenceScreen
                 android:key="screen_pinning_settings"
                 android:title="@string/screen_pinning_title"
