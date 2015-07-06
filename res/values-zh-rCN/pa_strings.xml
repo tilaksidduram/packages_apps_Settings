@@ -145,39 +145,6 @@
   <string name="dialog_title_lcd_density">LCD密度</string>
   <string name="restarting_ui">正在重新启动用户界面\u2026</string>
   <string name="themes_settings_title">主题</string>
-  <string name="doze_overwrite_value_title">覆盖参数</string>
-  <string name="doze_overwrite_value_summary">允许使用用户配置覆盖默认值</string>
-  <string name="doze_list_mode_title">Doze 模式</string>
-  <string name="doze_list_mode_summary">配置Doze模式的选项</string>
-  <string name="doze_pulse_title">时间设置</string>
-  <string name="doze_pulse_duration_in_title">淡入</string>
-  <string name="doze_pulse_duration_visible_title">可见时长</string>
-  <string name="doze_pulse_duration_out_title">淡出</string>
-  <string name="doze_pulse_on_notifications_title">有通知时闪烁</string>
-  <string name="doze_pulse_on_notifications_summary">仅在等待通知期间触发激活</string>
-  <string name="doze_shake_title">晃动设置</string>
-  <string name="doze_shake_mode_title">晃动模式</string>
-  <string name="doze_shake_mode_summary">使用晃动感应器的数值来触发激活</string>
-  <string name="doze_shake_mode_test_summary">你想测试晃动感应器吗？</string>
-  <string name="doze_shake_mode_test_result">应用当前参数？</string>
-  <string name="doze_shake_test">现在请晃动您的设备</string>
-  <string name="doze_shake_it">检测到晃动 ！</string>
-  <string name="doze_shake_acc_threshold_title">晃动阀值</string>
-  <string name="doze_shake_acc_threshold_summary">设置用于触发激活器的晃动力度</string>
-  <string name="doze_time_mode_title">显示时钟和日期</string>
-  <string name="doze_time_mode_summary">没有通知时强制显示时间</string>
-  <string name="veryeasy_shake">十分微弱</string>
-  <string name="easy_shake">弱</string>
-  <string name="medium_shake">默认</string>
-  <string name="hard_shake">强</string>
-  <string name="veryhard_shake">十分强</string>
-  <string name="strong_shake">超强</string>
-  <string name="fully_mode">完整模式</string>
-  <string name="pocket_shake_mode">口袋模式和晃动模式</string>
-  <string name="pocket_pulse_mode">口袋模式和脉冲模式</string>
-  <string name="pocket_only_mode">口袋模式</string>
-  <string name="shake_pulse_mode">晃动模式和脉冲模式</string>
-  <string name="pulse_only_mode">脉冲模式（默认）</string>
   <string name="status_bar_clock">时间和日期</string>
   <string name="status_bar_clock_title">日期和时间格式</string>
   <string name="status_bar_clock_summary">配置日期和时间选项</string>
@@ -254,4 +221,50 @@
   <string name="reset_qs_tiles_dialog_msg">你所有快速设置面板下的瓷块都将恢复到默认的位置。</string>
   <string name="reset_qs_tiles_dialog_yes">重置</string>
   <string name="reset_qs_tiles_dialog_no">取消</string>
+  <string name="show_clear_all_recents_button_title">Clear all recents button</string>
+  <string name="show_clear_all_recents_button_summary">Show clear all button on recents panel</string>
+  <string name="recents_clear_all_location_title">Clear all recents location</string>
+  <string name="recents_clear_all_location_top_right">Top right</string>
+  <string name="recents_clear_all_location_top_left">Top left</string>
+  <string name="recents_clear_all_location_bottom_right">Bottom right</string>
+  <string name="recents_clear_all_location_bottom_left">Bottom left</string>
+  <string name="category_calibration">Calibration</string>
+  <string name="color_calibration_title">Color calibration</string>
+  <string name="color_calibration_summary">Calibrate on-screen colors</string>
+  <string name="color_red_title">Red</string>
+  <string name="color_green_title">Green</string>
+  <string name="color_blue_title">Blue</string>
+  <string name="gamma_tuning_title_head">Gamma calibration</string>
+  <string name="gamma_tuning_summary_head">Tweak gamma values</string>
+  <string name="gamma_tuning_control_set_header">Group <xliff:g id="index">%d</xliff:g></string>
+  <string name="screencolor">Screen color</string>
+  <string name="screencolor_summary">Tune screen hue, saturation, contrast or intensity</string>
+  <string name="live_display_summary">Optimize your screen based on time of day and ambient conditions to improve readibility and reduce eyestrain</string>
+  <string name="live_display_mode">Display mode</string>
+  <string name="live_display_color_temperature_title">Color temperature</string>
+  <string name="live_display_color_temperature_summary">Day: <xliff:g id="day_temperature">%1$d</xliff:g>K  Night: <xliff:g id="night_temperature">%2$d</xliff:g>K</string>
+  <string name="live_display_color_temperature_label"><xliff:g id="degrees">%1$d</xliff:g>K</string>
+  <string name="live_display_day">Day</string>
+  <string name="live_display_night">Night</string>
+  <string name="live_display_outdoor_mode_title">Automatic outdoor mode</string>
+  <string name="live_display_outdoor_mode_summary">Increase brightness and saturation automatically under bright sunlight</string>
+  <string name="live_display_low_power_title">Reduce power consumption</string>
+  <string name="live_display_low_power_summary">Adjust display for lowest power consumption without degradation</string>
+  <string name="live_display_enhance_color_title">Enhance colors</string>
+  <string name="live_display_enhance_color_summary">Improve color vibrance of flesh tones, scenery, and other images</string>
+  <string name="screencolor">Screen color</string>
+  <string name="screencolor_summary">Tune screen hue, saturation, contrast or intensity</string>
+  <string name="custom_screencolor">Custom screen color</string>
+  <string name="screencolor_save">Save</string>
+  <string name="screencolor_cancel">Cancel</string>
+  <string name="previous_str">Previous</string>
+  <string name="new_str">New</string>
+  <string name="restore_preview">View default picture</string>
+  <string name="selectnewfile_menu">View new picture from Gallery</string>
+  <string name="selectfile_menu">View picture from Gallery</string>
+  <string name="restore_default_str">Reset</string>
+  <string name="hue_str">Hue: <xliff:g id="hue_value">%1$s</xliff:g></string>
+  <string name="saturation_str">Saturation: <xliff:g id="saturation_value">%1$s</xliff:g></string>
+  <string name="contrast_str">Contrast: <xliff:g id="contrast_value">%1$s</xliff:g></string>
+  <string name="intensity_str">Intensity: <xliff:g id="intensity_str_value">%1$s</xliff:g></string>
 </resources>

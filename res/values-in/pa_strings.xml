@@ -145,39 +145,6 @@
   <string name="dialog_title_lcd_density">Densitas LCD</string>
   <string name="restarting_ui">Restart UI\u2026</string>
   <string name="themes_settings_title">Tema</string>
-  <string name="doze_overwrite_value_title">Menimpa nilai</string>
-  <string name="doze_overwrite_value_summary">Memungkinkan untuk menimpa nilai default dengan konfigurasi</string>
-  <string name="doze_list_mode_title">Mode tertidur</string>
-  <string name="doze_list_mode_summary">Pilihan untuk mengkonfigurasi mode tidur</string>
-  <string name="doze_pulse_title">Pengaturan waktu</string>
-  <string name="doze_pulse_duration_in_title">Fade in</string>
-  <string name="doze_pulse_duration_visible_title">Durasi terlihat</string>
-  <string name="doze_pulse_duration_out_title">Fade out</string>
-  <string name="doze_pulse_on_notifications_title">Kedip pemberitahuan</string>
-  <string name="doze_pulse_on_notifications_summary">Memicu aktivasi hanya pada pemberitahuan tertunda</string>
-  <string name="doze_shake_title">Kocok pengaturan</string>
-  <string name="doze_shake_mode_title">Kocok mode</string>
-  <string name="doze_shake_mode_summary">Gunakan shake sensor nilai untuk memicu aktivasi</string>
-  <string name="doze_shake_mode_test_summary">Apakah Anda ingin menguji goyang sensor?</string>
-  <string name="doze_shake_mode_test_result">Menerapkan nilai saat ini?</string>
-  <string name="doze_shake_test">Kocok perangkat Anda sekarang</string>
-  <string name="doze_shake_it">Kocok terdeteksi!</string>
-  <string name="doze_shake_acc_threshold_title">Kocok ambang</string>
-  <string name="doze_shake_acc_threshold_summary">Mengkonfigurasi goyang kekuatan yang diperlukan untuk memicu aktivasi</string>
-  <string name="doze_time_mode_title">Tampilkan jam dan tanggal</string>
-  <string name="doze_time_mode_summary">Tet tetap menampilkan waktu ketika ada tidak ada pemberitahuan</string>
-  <string name="veryeasy_shake">Sangat mudah</string>
-  <string name="easy_shake">Mudah</string>
-  <string name="medium_shake">Standar</string>
-  <string name="hard_shake">Susah</string>
-  <string name="veryhard_shake">Sangat sulit</string>
-  <string name="strong_shake">Kuat</string>
-  <string name="fully_mode">Mode penuh</string>
-  <string name="pocket_shake_mode">Saku dan goyang</string>
-  <string name="pocket_pulse_mode">Saku dan kedip</string>
-  <string name="pocket_only_mode">Saku</string>
-  <string name="shake_pulse_mode">Goyang dan kedip</string>
-  <string name="pulse_only_mode">Kedip (default)</string>
   <string name="status_bar_clock">Jam &amp; tanggal</string>
   <string name="status_bar_clock_title">gaya tanggal &amp; waktu</string>
   <string name="status_bar_clock_summary">Mengkonfigurasi opsi tanggal &amp; waktu</string>
@@ -254,4 +221,50 @@
   <string name="reset_qs_tiles_dialog_msg">All your Quick Settings tiles will be moved to their default positions.</string>
   <string name="reset_qs_tiles_dialog_yes">Reset now</string>
   <string name="reset_qs_tiles_dialog_no">Cancel</string>
+  <string name="show_clear_all_recents_button_title">Clear all recents button</string>
+  <string name="show_clear_all_recents_button_summary">Show clear all button on recents panel</string>
+  <string name="recents_clear_all_location_title">Clear all recents location</string>
+  <string name="recents_clear_all_location_top_right">Top right</string>
+  <string name="recents_clear_all_location_top_left">Top left</string>
+  <string name="recents_clear_all_location_bottom_right">Bottom right</string>
+  <string name="recents_clear_all_location_bottom_left">Bottom left</string>
+  <string name="category_calibration">Calibration</string>
+  <string name="color_calibration_title">Color calibration</string>
+  <string name="color_calibration_summary">Calibrate on-screen colors</string>
+  <string name="color_red_title">Red</string>
+  <string name="color_green_title">Green</string>
+  <string name="color_blue_title">Blue</string>
+  <string name="gamma_tuning_title_head">Gamma calibration</string>
+  <string name="gamma_tuning_summary_head">Tweak gamma values</string>
+  <string name="gamma_tuning_control_set_header">Group <xliff:g id="index">%d</xliff:g></string>
+  <string name="screencolor">Screen color</string>
+  <string name="screencolor_summary">Tune screen hue, saturation, contrast or intensity</string>
+  <string name="live_display_summary">Optimize your screen based on time of day and ambient conditions to improve readibility and reduce eyestrain</string>
+  <string name="live_display_mode">Display mode</string>
+  <string name="live_display_color_temperature_title">Color temperature</string>
+  <string name="live_display_color_temperature_summary">Day: <xliff:g id="day_temperature">%1$d</xliff:g>K  Night: <xliff:g id="night_temperature">%2$d</xliff:g>K</string>
+  <string name="live_display_color_temperature_label"><xliff:g id="degrees">%1$d</xliff:g>K</string>
+  <string name="live_display_day">Day</string>
+  <string name="live_display_night">Night</string>
+  <string name="live_display_outdoor_mode_title">Automatic outdoor mode</string>
+  <string name="live_display_outdoor_mode_summary">Increase brightness and saturation automatically under bright sunlight</string>
+  <string name="live_display_low_power_title">Reduce power consumption</string>
+  <string name="live_display_low_power_summary">Adjust display for lowest power consumption without degradation</string>
+  <string name="live_display_enhance_color_title">Enhance colors</string>
+  <string name="live_display_enhance_color_summary">Improve color vibrance of flesh tones, scenery, and other images</string>
+  <string name="screencolor">Screen color</string>
+  <string name="screencolor_summary">Tune screen hue, saturation, contrast or intensity</string>
+  <string name="custom_screencolor">Custom screen color</string>
+  <string name="screencolor_save">Save</string>
+  <string name="screencolor_cancel">Cancel</string>
+  <string name="previous_str">Previous</string>
+  <string name="new_str">New</string>
+  <string name="restore_preview">View default picture</string>
+  <string name="selectnewfile_menu">View new picture from Gallery</string>
+  <string name="selectfile_menu">View picture from Gallery</string>
+  <string name="restore_default_str">Reset</string>
+  <string name="hue_str">Hue: <xliff:g id="hue_value">%1$s</xliff:g></string>
+  <string name="saturation_str">Saturation: <xliff:g id="saturation_value">%1$s</xliff:g></string>
+  <string name="contrast_str">Contrast: <xliff:g id="contrast_value">%1$s</xliff:g></string>
+  <string name="intensity_str">Intensity: <xliff:g id="intensity_str_value">%1$s</xliff:g></string>
 </resources>

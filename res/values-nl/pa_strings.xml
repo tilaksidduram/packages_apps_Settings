@@ -145,39 +145,6 @@
   <string name="dialog_title_lcd_density">LCD dichtheid</string>
   <string name="restarting_ui">UI\u2026 herstarten</string>
   <string name="themes_settings_title">Thema\'s</string>
-  <string name="doze_overwrite_value_title">Waarde overschrijven</string>
-  <string name="doze_overwrite_value_summary">Toestaan om de standaardwaarde te overschrijven met gebruikers configuratie</string>
-  <string name="doze_list_mode_title">Sluimer modus</string>
-  <string name="doze_list_mode_summary">Optie om sluimer modus in te stellen</string>
-  <string name="doze_pulse_title">Tijd instellingen</string>
-  <string name="doze_pulse_duration_in_title">Infaden</string>
-  <string name="doze_pulse_duration_visible_title">Zichtbaarheid duur</string>
-  <string name="doze_pulse_duration_out_title">Uitfaden</string>
-  <string name="doze_pulse_on_notifications_title">Trillen bij meldingen</string>
-  <string name="doze_pulse_on_notifications_summary">Start activatie alleen op afwachtende meldingen</string>
-  <string name="doze_shake_title">Schud instellingen</string>
-  <string name="doze_shake_mode_title">Schud modus</string>
-  <string name="doze_shake_mode_summary">Gebruik schudsensor waarde om activatie te starten</string>
-  <string name="doze_shake_mode_test_summary">Wilt u de schud sensor testen?</string>
-  <string name="doze_shake_mode_test_result">Huidige waarde toepassen?</string>
-  <string name="doze_shake_test">Schud nu uw apparaat</string>
-  <string name="doze_shake_it">Schudden gedetecteerd!</string>
-  <string name="doze_shake_acc_threshold_title">Schud drempel</string>
-  <string name="doze_shake_acc_threshold_summary">Schudkracht instellen die nodig is om te activeren</string>
-  <string name="doze_time_mode_title">Klok en datum tonen</string>
-  <string name="doze_time_mode_summary">Tijd tonen afdwingen wanneer er geen notificatie is</string>
-  <string name="veryeasy_shake">Erg licht</string>
-  <string name="easy_shake">Licht</string>
-  <string name="medium_shake">Gemiddeld</string>
-  <string name="hard_shake">Hard</string>
-  <string name="veryhard_shake">Heel hard</string>
-  <string name="strong_shake">Sterk</string>
-  <string name="fully_mode">Volledige modus</string>
-  <string name="pocket_shake_mode">Zak en schudden</string>
-  <string name="pocket_pulse_mode">Zak en trilling</string>
-  <string name="pocket_only_mode">Zak</string>
-  <string name="shake_pulse_mode">Schudden en trillen</string>
-  <string name="pulse_only_mode">Trillen (standaard)</string>
   <string name="status_bar_clock">Klok &amp; datum</string>
   <string name="status_bar_clock_title">datum &amp; tijd stijl</string>
   <string name="status_bar_clock_summary">Datum instellen &amp; tijd opties</string>
@@ -254,4 +221,50 @@
   <string name="reset_qs_tiles_dialog_msg">Al je Snelle instellingen tegels zullen verplaatst worden naar hun standaard posities.</string>
   <string name="reset_qs_tiles_dialog_yes">Reset nu</string>
   <string name="reset_qs_tiles_dialog_no">Annuleren</string>
+  <string name="show_clear_all_recents_button_title">Clear all recents button</string>
+  <string name="show_clear_all_recents_button_summary">Show clear all button on recents panel</string>
+  <string name="recents_clear_all_location_title">Clear all recents location</string>
+  <string name="recents_clear_all_location_top_right">Top right</string>
+  <string name="recents_clear_all_location_top_left">Top left</string>
+  <string name="recents_clear_all_location_bottom_right">Bottom right</string>
+  <string name="recents_clear_all_location_bottom_left">Bottom left</string>
+  <string name="category_calibration">Calibration</string>
+  <string name="color_calibration_title">Color calibration</string>
+  <string name="color_calibration_summary">Calibrate on-screen colors</string>
+  <string name="color_red_title">Red</string>
+  <string name="color_green_title">Green</string>
+  <string name="color_blue_title">Blue</string>
+  <string name="gamma_tuning_title_head">Gamma calibration</string>
+  <string name="gamma_tuning_summary_head">Tweak gamma values</string>
+  <string name="gamma_tuning_control_set_header">Group <xliff:g id="index">%d</xliff:g></string>
+  <string name="screencolor">Screen color</string>
+  <string name="screencolor_summary">Tune screen hue, saturation, contrast or intensity</string>
+  <string name="live_display_summary">Optimize your screen based on time of day and ambient conditions to improve readibility and reduce eyestrain</string>
+  <string name="live_display_mode">Display mode</string>
+  <string name="live_display_color_temperature_title">Color temperature</string>
+  <string name="live_display_color_temperature_summary">Day: <xliff:g id="day_temperature">%1$d</xliff:g>K  Night: <xliff:g id="night_temperature">%2$d</xliff:g>K</string>
+  <string name="live_display_color_temperature_label"><xliff:g id="degrees">%1$d</xliff:g>K</string>
+  <string name="live_display_day">Day</string>
+  <string name="live_display_night">Night</string>
+  <string name="live_display_outdoor_mode_title">Automatic outdoor mode</string>
+  <string name="live_display_outdoor_mode_summary">Increase brightness and saturation automatically under bright sunlight</string>
+  <string name="live_display_low_power_title">Reduce power consumption</string>
+  <string name="live_display_low_power_summary">Adjust display for lowest power consumption without degradation</string>
+  <string name="live_display_enhance_color_title">Enhance colors</string>
+  <string name="live_display_enhance_color_summary">Improve color vibrance of flesh tones, scenery, and other images</string>
+  <string name="screencolor">Screen color</string>
+  <string name="screencolor_summary">Tune screen hue, saturation, contrast or intensity</string>
+  <string name="custom_screencolor">Custom screen color</string>
+  <string name="screencolor_save">Save</string>
+  <string name="screencolor_cancel">Cancel</string>
+  <string name="previous_str">Previous</string>
+  <string name="new_str">New</string>
+  <string name="restore_preview">View default picture</string>
+  <string name="selectnewfile_menu">View new picture from Gallery</string>
+  <string name="selectfile_menu">View picture from Gallery</string>
+  <string name="restore_default_str">Reset</string>
+  <string name="hue_str">Hue: <xliff:g id="hue_value">%1$s</xliff:g></string>
+  <string name="saturation_str">Saturation: <xliff:g id="saturation_value">%1$s</xliff:g></string>
+  <string name="contrast_str">Contrast: <xliff:g id="contrast_value">%1$s</xliff:g></string>
+  <string name="intensity_str">Intensity: <xliff:g id="intensity_str_value">%1$s</xliff:g></string>
 </resources>
