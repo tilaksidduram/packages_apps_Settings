@@ -31,12 +31,21 @@
         android:title="@string/gesture_anywhere_position_title"
         android:entries="@array/gesture_anywhere_position_entries"
         android:entryValues="@array/gesture_anywhere_position_values"
-        android:dependency="gesture_anywhere_enabled"/>
+        android:dependency="gesture_anywhere_enabled" />
 
     <Preference
         android:key="gesture_anywhere_gestures"
         android:title="@string/gesture_anywhere_gestures_title"
-        android:summary="@string/gesture_anywhere_gestures_summary" />
+        android:summary="@string/gesture_anywhere_gestures_summary"
+        android:dependency="gesture_anywhere_enabled" />
+
+    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+        android:key="gesture_anywhere_floating"
+        android:title="@string/gesture_anywhere_floating"
+        android:summary="@string/gesture_anywhere_floating_summary"
+        android:persistent="false"
+        android:defaultValue="false"
+        android:dependency="gesture_anywhere_enabled" />
 
     <PreferenceCategory
         android:title="@string/trigger_category" />
