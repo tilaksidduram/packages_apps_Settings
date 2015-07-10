@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.DashPathEffect;
 import android.os.BatteryManager;
+import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.text.format.Formatter;
 import android.util.Log;
