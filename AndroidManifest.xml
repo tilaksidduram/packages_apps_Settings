@@ -1292,6 +1292,12 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="SetupManageFingerprints"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.android.wizard"
+            android:theme="@style/SetupWizardDisableAppStartingTheme" />
+
         <activity android:name="ChooseLockGesture" android:exported="false"/>
 
         <activity android:name="SetupChooseLockPassword"
