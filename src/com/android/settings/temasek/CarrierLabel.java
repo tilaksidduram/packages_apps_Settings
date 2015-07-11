@@ -42,6 +42,8 @@ import android.widget.EditText;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.Utils;
+import com.android.settings.util.Helpers;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class CarrierLabel extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
@@ -51,11 +53,13 @@ public class CarrierLabel extends SettingsPreferenceFragment implements OnPrefer
     private static final String STATUS_BAR_CARRIER = "status_bar_carrier";
     private static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
     private static final String STATUS_BAR_CARRIER_COLOR = "status_bar_carrier_color";
+    private static final String CARRIERLABEL_ON_LOCKSCREEN="lock_screen_hide_carrier";
 
     static final int DEFAULT_STATUS_CARRIER_COLOR = 0xffffffff;
 
     private SwitchPreference mStatusBarCarrier;
     private PreferenceScreen mCustomCarrierLabel;
+    private SwitchPreference mCarrierLabelOnLockScreen;
 
     private String mCustomCarrierLabelText;
     private ColorPickerPreference mCarrierColorPicker;
@@ -78,6 +82,19 @@ public class CarrierLabel extends SettingsPreferenceFragment implements OnPrefer
                 0, UserHandle.USER_CURRENT) == 1));
         mStatusBarCarrier.setOnPreferenceChangeListener(this);
         mCustomCarrierLabel = (PreferenceScreen) prefSet.findPreference(CUSTOM_CARRIER_LABEL);
+
+        //CarrierLabel on LockScreen
+        mCarrierLabelOnLockScreen = (SwitchPreference) findPreference(CARRIERLABEL_ON_LOCKSCREEN);
+        if (!Utils.isWifiOnly(getActivity())) {
+            mCarrierLabelOnLockScreen.setOnPreferenceChangeListener(this);
+
+            boolean hideCarrierLabelOnLS = Settings.System.getInt(
+                    getActivity().getContentResolver(),
+                    Settings.System.LOCK_SCREEN_HIDE_CARRIER, 0) == 1;
+            mCarrierLabelOnLockScreen.setChecked(hideCarrierLabelOnLS);
+        } else {
+            prefSet.removePreference(mCarrierLabelOnLockScreen);
+        }
 
         mCarrierColorPicker = (ColorPickerPreference) findPreference(STATUS_BAR_CARRIER_COLOR);
         mCarrierColorPicker.setOnPreferenceChangeListener(this);
@@ -120,6 +137,12 @@ public class CarrierLabel extends SettingsPreferenceFragment implements OnPrefer
             Intent i = new Intent();
             i.setAction(Intent.ACTION_CUSTOM_CARRIER_LABEL_CHANGED);
             getActivity().sendBroadcast(i);
+            return true;
+        } else if (preference == mCarrierLabelOnLockScreen) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.LOCK_SCREEN_HIDE_CARRIER,
+                    (Boolean) newValue ? 1 : 0);
+            Helpers.restartSystemUI();
             return true;
          }
          return false;
