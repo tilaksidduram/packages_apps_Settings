@@ -2,6 +2,7 @@ package com.android.settings.paranoid;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.preference.ListPreference;
@@ -73,8 +74,8 @@ public class ScreenAndAnimations extends SettingsPreferenceFragment implements
 
         mTorchOff = (SwitchPreference) prefSet.findPreference(DISABLE_TORCH_ON_SCREEN_OFF);
         mTorchOffDelay = (ListPreference) prefSet.findPreference(DISABLE_TORCH_ON_SCREEN_OFF_DELAY);
-        int torchOffDelay = Settings.System.getInt(resolver,
-                Settings.System.DISABLE_TORCH_ON_SCREEN_OFF_DELAY, 10);
+        int torchOffDelay = Settings.System.getIntForUser(resolver,
+                Settings.System.DISABLE_TORCH_ON_SCREEN_OFF_DELAY, 10, UserHandle.USER_CURRENT);
         mTorchOffDelay.setValue(String.valueOf(torchOffDelay));
         mTorchOffDelay.setSummary(mTorchOffDelay.getEntry());
         mTorchOffDelay.setOnPreferenceChangeListener(this);
@@ -119,8 +120,8 @@ public class ScreenAndAnimations extends SettingsPreferenceFragment implements
         if (preference == mTorchOffDelay) {
             int torchOffDelay = Integer.valueOf((String) objValue);
             int index = mTorchOffDelay.findIndexOfValue((String) objValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.DISABLE_TORCH_ON_SCREEN_OFF_DELAY, torchOffDelay);
+            Settings.System.putIntForUser(getActivity().getContentResolver(),
+                    Settings.System.DISABLE_TORCH_ON_SCREEN_OFF_DELAY, torchOffDelay, UserHandle.USER_CURRENT);
             mTorchOffDelay.setSummary(mTorchOffDelay.getEntries()[index]);
             return true;
         }
