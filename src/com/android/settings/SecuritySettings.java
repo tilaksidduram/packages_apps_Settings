@@ -114,7 +114,6 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private static final String PACKAGE_MIME_TYPE = "application/vnd.android.package-archive";
     private static final String KEY_TRUST_AGENT = "trust_agent";
     private static final String KEY_SCREEN_PINNING = "screen_pinning_settings";
-    private static final String KEY_GENERAL_CATEGORY = "general_category";
     private static final String KEY_LOCKSCREEN_WALLPAPER = "lockscreen_wallpaper";
 
     // These switch preferences need special handling since they're not all stored in Settings.
