@@ -30,7 +30,7 @@ import android.view.View;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
-import com.android.settings.temasek.SeekBarPreference;
+import com.android.settings.crdroid.SeekBarPreference;
 
 import java.util.ArrayList;
 import java.util.List;
