@@ -281,11 +281,14 @@
     <string name="quick_settings_vibrate_title">Vibrate on touch</string>
     <string name="quick_settings_vibrate_summary">Vibrate when touching tiles</string>
 
-    <!--User preferences settings-->
+    <!-- User preferences reset -->
     <string name="personalization">Personalization</string>
     <string name="reset_user_preferences_title">Reset preferences</string>
-    <string name="reset_user_preferences_summary">Restores user interface preferences to default values</string>
-    <string name="reset_user_preferences_dialog">Are you sure you want to reset your preferences?</string>
+    <string name="reset_user_preferences_summary">Set PA preferences to their default values</string>
+    <string name="reset_user_preferences_disabled_summary">All PA preferences are already set to their default values</string>
+    <string name="reset_user_preferences_dialog_title">Reset preferences?</string>
+    <string name="reset_user_preferences_dialog_choice_reset">Reset now</string>
+    <string name="reset_user_preferences_dialog_choice_cancel">Cancel</string>
 
     <!-- Doze pulse (ambient display) options -->
     <string name="summary_doze_enabled">Enabled</string>
