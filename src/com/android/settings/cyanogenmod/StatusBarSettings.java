@@ -73,6 +73,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private static final String STATUS_BAR_DATE = "status_bar_date";
     private static final String STATUS_BAR_DATE_STYLE = "status_bar_date_style";
     private static final String STATUS_BAR_DATE_FORMAT = "status_bar_date_format";
+    private static final String PREF_CLOCK_DATE_POSITION = "clock_date_position";
     private static final String PREF_COLOR_PICKER = "clock_color";
     private static final String PREF_FONT_STYLE = "font_style";
     private static final String PREF_STATUS_BAR_CLOCK_FONT_SIZE  = "status_bar_clock_font_size";
@@ -106,6 +107,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private ListPreference mStatusBarDate;
     private ListPreference mStatusBarDateStyle;
     private ListPreference mStatusBarDateFormat;
+    private ListPreference mClockDatePosition;
     private ColorPickerPreference mColorPicker;
     private ListPreference mFontStyle;
     private ListPreference mStatusBarClockFontSize;
@@ -194,6 +196,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         mStatusBarDateStyle.setValue(String.valueOf(dateStyle));
         mStatusBarDateStyle.setSummary(mStatusBarDateStyle.getEntry());
         mStatusBarDateStyle.setOnPreferenceChangeListener(this);
+
+        mClockDatePosition = (ListPreference) findPreference(PREF_CLOCK_DATE_POSITION);
+        mClockDatePosition.setOnPreferenceChangeListener(this);
+        mClockDatePosition.setValue(Integer.toString(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.STATUSBAR_CLOCK_DATE_POSITION,
+                0)));
+        mClockDatePosition.setSummary(mClockDatePosition.getEntry());
 
         mStatusBarDateFormat.setOnPreferenceChangeListener(this);
         mStatusBarDateFormat.setSummary(mStatusBarDateFormat.getEntry());
@@ -420,6 +429,14 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                     resolver, STATUS_BAR_DATE_STYLE, statusBarDateStyle);
             mStatusBarDateStyle.setSummary(mStatusBarDateStyle.getEntries()[index]);
             return true;
+        } else if (preference == mClockDatePosition) {
+            int val = Integer.parseInt((String) newValue);
+            int index = mClockDatePosition.findIndexOfValue((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_CLOCK_DATE_POSITION, val);
+            mClockDatePosition.setSummary(mClockDatePosition.getEntries()[index]);
+            parseClockDateFormats();
+            return true;
         } else if (preference ==  mStatusBarDateFormat) {
             int index = mStatusBarDateFormat.findIndexOfValue((String) newValue);
             if (index == CUSTOM_CLOCK_DATE_FORMAT_INDEX) {
@@ -625,10 +642,12 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             mStatusBarDate.setEnabled(false);
             mStatusBarDateStyle.setEnabled(false);
             mStatusBarDateFormat.setEnabled(false);
+            mClockDatePosition.setEnabled(false);
         } else {
             mStatusBarDate.setEnabled(true);
             mStatusBarDateStyle.setEnabled(true);
             mStatusBarDateFormat.setEnabled(true);
+            mClockDatePosition.setEnabled(true);
         }
     }
 

@@ -303,6 +303,9 @@
     <string name="clock_font_size_21">21</string>
     <string name="clock_font_size_22">22</string>
     <string name="clock_font_size_23">23</string>
+    <string name="clock_date_position">Date position</string>
+    <string name="clock_date_right">Right of time</string>
+    <string name="clock_date_left">Left of time</string>
 
     <!-- Unaccounted and overcounted battery stats -->
     <string name="show_unac_and_overcounted_stats_title">Show unaccounted/overcounted stats</string>
