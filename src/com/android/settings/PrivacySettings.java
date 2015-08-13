@@ -263,6 +263,7 @@ public class PrivacySettings extends SettingsPreferenceFragment implements
                     }
                 }
 
+                updateResetUserPreferences();
                 dialog.dismiss();
             }
 
