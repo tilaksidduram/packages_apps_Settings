@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.ContentObserver;
-import android.hardware.CmHardwareManager;
 import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -46,6 +45,8 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.search.Indexable;
+
+import cyanogenmod.hardware.CMHardwareManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -266,9 +267,8 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
             pref.init(this);
         }
 
-	CmHardwareManager cmHardwareManager =
-		(CmHardwareManager) getSystemService(Context.CMHW_SERVICE);
-	if (!cmHardwareManager.isSupported(CmHardwareManager.FEATURE_VIBRATOR)) {
+        CMHardwareManager hardware = CMHardwareManager.getInstance(mContext);
+        if (!hardware.isSupported(CMHardwareManager.FEATURE_VIBRATOR)) {
 	    Preference preference = prefSet.findPreference(KEY_VIBRATION_INTENSITY);
 	    if (preference != null) {
 		prefSet.removePreference(preference);
