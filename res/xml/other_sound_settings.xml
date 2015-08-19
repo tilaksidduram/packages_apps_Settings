@@ -67,6 +67,12 @@
             android:title="@string/emergency_tone_title"
             android:persistent="false" />
 
+    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="zen_disable_ducking_during_media_playback"
+            android:title="@string/interruptions_ignore_while_media_title"
+            android:summary="@string/interruptions_ignore_while_media_summary"
+            android:defaultValue="false" />
+
     <PreferenceCategory
             android:title="@string/power_notifications_category_title">
 
