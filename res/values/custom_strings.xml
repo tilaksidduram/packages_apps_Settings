@@ -985,4 +985,8 @@
     <string name="less_notification_sounds_2m">2 minutes</string>
     <string name="less_notification_sounds_5m">5 minutes</string>
 
+    <!-- Device policy override -->
+    <string name="device_policy_override_title">Device policy override</string>
+    <string name="device_policy_override_summary">Allow apps to force secure lock screen and override profile settings</string>
+
 </resources>
