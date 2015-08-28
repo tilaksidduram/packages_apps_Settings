@@ -77,6 +77,11 @@
             android:entries="@array/entries_scrollingcache"
             android:entryValues="@array/values_scrollingcache" />
 
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="toast_icon"
+            android:title="@string/toast_icon_title"
+            android:defaultValue="true" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
