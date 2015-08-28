@@ -171,6 +171,12 @@
                 settings:keywords="@string/keywords_recents_show_searchbar"
                 android:defaultValue="true" />
 
+            <!-- Toast Icons -->
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+                android:key="toast_icon"
+                android:title="@string/toast_icon_title"
+                android:defaultValue="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
