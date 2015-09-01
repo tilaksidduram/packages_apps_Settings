@@ -74,6 +74,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="cyanogenmod.permission.HARDWARE_ABSTRACTION_ACCESS" />
     <uses-permission android:name="cyanogenmod.permission.FINISH_SETUP" />
+    <uses-permission android:name="cyanogenmod.permission.MODIFY_PROFILES" />
 
     <permission
         android:name="cyanogenmod.permission.PROTECTED_APP"
