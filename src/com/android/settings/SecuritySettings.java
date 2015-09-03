@@ -467,17 +467,13 @@ public class SecuritySettings extends SettingsPreferenceFragment
         // Lockscreen wallpaper
         PreferenceCategory generalCategory = (PreferenceCategory)
             root.findPreference(KEY_GENERAL_CATEGORY);
-        if (generalCategory != null) {
-            PreferenceScreen lockscreenWallpaper = (PreferenceScreen)
-                generalCategory.findPreference(KEY_LOCKSCREEN_WALLPAPER);
-            if (lockscreenWallpaper != null) {
-                try {
-                    getActivity().getPackageManager().getPackageInfo("com.slim.wallpaperpicker", 0);
-                } catch (PackageManager.NameNotFoundException e) {
-                    generalCategory.removePreference(lockscreenWallpaper);
-                }
-            }
-         }
+        PreferenceScreen lockscreenWallpaper = (PreferenceScreen)
+            generalCategory.findPreference(KEY_LOCKSCREEN_WALLPAPER);
+        try {
+            getActivity().getPackageManager().getPackageInfo("com.slim.wallpaperpicker", 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            generalCategory.removePreference(lockscreenWallpaper);
+        }
 
         // The above preferences come and go based on security state, so we need to update
         // the index. This call is expected to be fairly cheap, but we may want to do something
