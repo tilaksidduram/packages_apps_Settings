@@ -930,7 +930,7 @@
     <string name="dim_nav_buttons_touch_anywhere_summary_off">Only touches on the navbar will cause buttons to un-dim</string>
 
     <!-- Status bar temperature -->
-    <string name="status_bar_temperature_title">Temperature</string>
+    <string name="status_bar_temperature_title">Weather temperature</string>
     <string name="status_bar_temperature_hidden">Hidden</string>
     <string name="status_bar_temperature_show_scale">Shown with scale</string>
     <string name="status_bar_temperature_hide_scale">Shown without scale</string>
