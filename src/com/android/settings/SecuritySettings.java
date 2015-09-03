@@ -29,7 +29,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.pm.UserInfo;
 import android.content.res.Resources;
@@ -39,7 +38,6 @@ import android.os.UserManager;
 import android.preference.SwitchPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceCategory;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
@@ -114,8 +112,6 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private static final String PACKAGE_MIME_TYPE = "application/vnd.android.package-archive";
     private static final String KEY_TRUST_AGENT = "trust_agent";
     private static final String KEY_SCREEN_PINNING = "screen_pinning_settings";
-    private static final String KEY_GENERAL_CATEGORY = "general_category";
-    private static final String KEY_LOCKSCREEN_WALLPAPER = "lockscreen_wallpaper";
 
     // These switch preferences need special handling since they're not all stored in Settings.
     private static final String SWITCH_PREFERENCE_KEYS[] = { KEY_LOCK_AFTER_TIMEOUT,
@@ -462,17 +458,6 @@ public class SecuritySettings extends SettingsPreferenceFragment
                 manageAgents.setEnabled(false);
                 manageAgents.setSummary(R.string.disabled_because_no_backup_security);
             }
-        }
-
-        // Lockscreen wallpaper
-        PreferenceCategory generalCategory = (PreferenceCategory)
-            root.findPreference(KEY_GENERAL_CATEGORY);
-        PreferenceScreen lockscreenWallpaper = (PreferenceScreen)
-            generalCategory.findPreference(KEY_LOCKSCREEN_WALLPAPER);
-        try {
-            getActivity().getPackageManager().getPackageInfo("com.slim.wallpaperpicker", 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            generalCategory.removePreference(lockscreenWallpaper);
         }
 
         // The above preferences come and go based on security state, so we need to update
