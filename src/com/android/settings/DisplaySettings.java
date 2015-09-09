@@ -114,6 +114,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
+    private PreferenceScreen mDisplaySettings;
     private EditTextPreference mLcdDensityPreference;
     private FontDialogPreference mFontSizePref;
     private PreferenceScreen mDisplayRotationPreference;
@@ -158,6 +159,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         mHardware = CMHardwareManager.getInstance(activity);
 
         addPreferencesFromResource(R.xml.display_settings);
+
+        mDisplaySettings = (PreferenceScreen) findPreference("display_settings");
 
         mDisplayRotationPreference = (PreferenceScreen) findPreference(KEY_DISPLAY_ROTATION);
 
