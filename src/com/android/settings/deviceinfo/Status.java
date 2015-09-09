@@ -62,7 +62,7 @@ import com.android.internal.util.ArrayUtils;
 import com.android.settings.R;
 import com.android.settings.Utils;
 
-import org.cyanogenmod.hardware.SerialNumber;
+import cyanogenmod.hardware.CMHardwareManager;
 
 import java.lang.ref.WeakReference;
 
@@ -721,15 +721,12 @@ public class Status extends PreferenceActivity {
     }
 
     private String getSerialNumber() {
-        try {
-            if (SerialNumber.isSupported()) {
-                return SerialNumber.getSerialNumber();
-            }
-        } catch (NoClassDefFoundError e) {
-            // Hardware abstraction framework not installed; fall through
+        CMHardwareManager hardware = CMHardwareManager.getInstance(this);
+        if (hardware.isSupported(CMHardwareManager.FEATURE_SERIAL_NUMBER)) {
+            return hardware.getSerialNumber();
+        } else {
+            return Build.SERIAL;
         }
-
-        return Build.SERIAL;
     }
 
     public static String getSarValues(Resources res) {
