@@ -72,6 +72,7 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.PreferenceCategory;
 import android.preference.SwitchPreference;
+import android.preference.SlimSeekBarPreference;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -108,6 +109,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_ADVANCED_DISPLAY_SETTINGS = "advanced_display_settings";
     private static final String SHOW_CLEAR_ALL_RECENTS = "show_clear_all_recents";
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
+    private static final String PREF_ON_THE_GO_ALPHA = "on_the_go_alpha";
 
     private static final String KEY_DOZE = "doze";
     private static final String KEY_DOZE_FRAGMENT = "doze_fragment";
@@ -132,6 +134,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private SwitchPreference mRecentsClearAll;
     private ListPreference mRecentsClearAllLocation;
     private SwitchPreference mProximityWakePreference;
+    private SlimSeekBarPreference mOnTheGoAlphaPref;
 
     private CMHardwareManager mHardware;
 
@@ -281,6 +284,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         mRecentsClearAllLocation.setValue(String.valueOf(location));
         mRecentsClearAllLocation.setOnPreferenceChangeListener(this);
         updateRecentsLocation(location);
+
+        mOnTheGoAlphaPref = (SlimSeekBarPreference) findPreference(PREF_ON_THE_GO_ALPHA);
+        mOnTheGoAlphaPref.setDefault(50);
+        mOnTheGoAlphaPref.setInterval(1);
+        mOnTheGoAlphaPref.setOnPreferenceChangeListener(this);
     }
 
     private int getDefaultDensity() {
@@ -690,6 +698,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             boolean value = (Boolean) objValue;
             Settings.System.putInt(getContentResolver(), Settings.System.PROXIMITY_ON_WAKE,
                     value ? 1 : 0);
+        }
+        if (preference == mOnTheGoAlphaPref) {
+            float val = Float.parseFloat((String) objValue);
+            Settings.System.putFloat(getContentResolver(), Settings.System.ON_THE_GO_ALPHA,
+                    val / 100);
         }
         return true;
     }
