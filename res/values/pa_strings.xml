@@ -1058,4 +1058,8 @@
     <string name="lockscreen_see_through_summary">Blurs and displays the content behind your lockscreen.</string>
     <string name="lockscreen_blur_radius">Blur effect intensity</string>
 
+    <!-- Status Bar Activity Indicators -->
+    <string name="status_bar_network_activity_title">Activity indicators</string>
+    <string name="status_bar_network_activity_summary">Show indicators in signal bars</string>
+
 </resources>
