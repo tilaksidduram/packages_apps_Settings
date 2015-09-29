@@ -48,6 +48,7 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.android.internal.widget.LockPatternUtils;
@@ -281,8 +282,9 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
     // === Phone & notification ringtone ===
 
     private void initRingtones(PreferenceCategory root) {
+        boolean isOwner = Utils.isUserOwner();
         mPhoneRingtonePreference = root.findPreference(KEY_PHONE_RINGTONE);
-        if (mPhoneRingtonePreference != null && !mVoiceCapable) {
+        if (mphoneRingtonePreference != null && (!mVoiceCapable || !isOwner)) {
             root.removePreference(mPhoneRingtonePreference);
             mPhoneRingtonePreference = null;
         }
@@ -368,7 +370,7 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
             Log.i(TAG, "Preference not found: " + KEY_VIBRATE_WHEN_RINGING);
             return;
         }
-        if (!mVoiceCapable) {
+        if (!mVoiceCapable || !Utils.isUserOwner()) {
             root.removePreference(mVibrateWhenRinging);
             mVibrateWhenRinging = null;
             return;
