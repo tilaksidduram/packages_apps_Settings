@@ -31,7 +31,7 @@ import android.widget.Toast;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.temasek.SeekBarPreference;
+import com.android.settings.crdroid.SeekBarPreference;
 
 public class LockscreenWallpaper extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
     public static final int IMAGE_PICK = 1;
