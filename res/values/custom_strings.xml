@@ -78,4 +78,7 @@
     <string name="custom_settings_title">Misc Tweaks</string>
     <string name="custom_cat_title">Categories</string>
 
+    <!--Recents-->
+   <string name="recents_settings_title">Recents</string>
+
 </resources>
