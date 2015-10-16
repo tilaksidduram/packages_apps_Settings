@@ -284,7 +284,7 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
     private void initRingtones(PreferenceCategory root) {
         boolean isOwner = Utils.isUserOwner();
         mPhoneRingtonePreference = root.findPreference(KEY_PHONE_RINGTONE);
-        if (mphoneRingtonePreference != null && (!mVoiceCapable || !isOwner)) {
+        if (mPhoneRingtonePreference != null && (!mVoiceCapable || !isOwner)) {
             root.removePreference(mPhoneRingtonePreference);
             mPhoneRingtonePreference = null;
         }
