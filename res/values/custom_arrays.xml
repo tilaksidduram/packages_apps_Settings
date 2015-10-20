@@ -1144,7 +1144,7 @@
         <item>2</item>
     </string-array>
 
-   <string-array name="notification_icons_color_mode_entries" >
+    <string-array name="notification_icons_color_mode_entries" >
         <item>@string/notification_color_mode_never_title</item>
         <item>@string/notification_icon_color_mode_greyscale_title</item>
         <item>@string/notification_color_mode_always_title</item>
@@ -1161,5 +1161,50 @@
         <item>1</item>
         <item>2</item>
     </string-array>
+
+    <!-- Color picker -->
+    <array name="color_picker_panel_view_buttons">
+        <item>@id/panel_view_button_1</item>
+        <item>@id/panel_view_button_2</item>
+        <item>@id/panel_view_button_3</item>
+        <item>@id/panel_view_button_4</item>
+        <item>@id/panel_view_button_5</item>
+        <item>@id/panel_view_button_6</item>
+        <item>@id/panel_view_button_7</item>>
+        <item>@id/panel_view_button_8</item>
+    </array>
+
+    <array name="color_picker_darkkat_palette">
+        <item>@color/black</item>
+        <item>@color/darkkat_blue_grey</item>
+        <item>@color/holo_blue_light</item>
+        <item>@color/material_deep_teal_500</item>
+        <item>@color/white</item>
+        <item>@color/material_indigo_500</item>
+        <item>@color/material_red_500</item>>
+        <item>@color/material_purple_500</item>
+    </array>
+
+    <array name="color_picker_material_palette">
+        <item>@color/material_red_500</item>
+        <item>@color/material_green_500</item>
+        <item>@color/material_blue_500</item>
+        <item>@color/material_deep_teal_500</item>
+        <item>@color/material_indigo_500</item>
+        <item>@color/material_purple_500</item>
+        <item>@color/material_yellow_500</item>>
+        <item>@color/material_orange_500</item>
+    </array>
+
+    <array name="color_picker_rgb_palette">
+        <item>@color/black</item>
+        <item>@color/red</item>
+        <item>@color/green</item>
+        <item>@color/blue</item>
+        <item>@color/white</item>
+        <item>@color/purple</item>
+        <item>@color/yellow</item>>
+        <item>@color/orange</item>
+    </array>
 
 </resources>
