@@ -25,7 +25,6 @@ import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.preference.PreferenceCategory;
 import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.SwitchPreference;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -117,9 +116,9 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         enableStatusBarBatteryDependents(batteryStyle);
         mStatusBarBatteryShowPercent.setOnPreferenceChangeListener(this);
 
-        mTicker = (SwitchPreference) prefSet.findPreference(KEY_STATUS_BAR_TICKER);
-        mTicker.setChecked((Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.TICKER_ENABLED, 0) == 1));
+        mTicker = (SwitchPreference) findPreference(KEY_STATUS_BAR_TICKER);
+        mTicker.setChecked(Settings.System.getInt(
+                getContentResolver(), Settings.System.TICKER_ENABLED, 0) == 1);
         mTicker.setOnPreferenceChangeListener(this);
     }
 
