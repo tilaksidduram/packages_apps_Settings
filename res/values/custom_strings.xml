@@ -79,6 +79,11 @@
     <string name="custom_cat_title">Categories</string>
 
     <!--Recents-->
-   <string name="recents_settings_title">Recents</string>
+    <string name="recents_settings_title">Recents</string>
+
+    <!-- RAM bar -->
+    <string name="recents_show_membar_title">RAM memory bar</string>
+    <string name="recents_show_membar_summary_on">Available RAM memory bar will be displayed on recents view</string>
+    <string name="recents_show_membar_summary_off">Toggle to display available RAM memory bar on recents view</string>
 
 </resources>
