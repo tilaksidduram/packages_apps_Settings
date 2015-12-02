@@ -41,7 +41,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.android.internal.util.cm.ScreenType;
+import org.cyanogenmod.internal.util.ScreenType;
 
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.R;
