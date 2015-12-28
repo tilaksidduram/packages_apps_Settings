@@ -62,6 +62,8 @@
     <string name="additional_options_title">Additional options</string>
     <string name="general_options_title">General</string>
     <string name="screen_and_animations_title">Screen and animations</string>
+    <string name="quicksettings_title">Quicksettings</string>
+    <string name="qs_brightness_slider_title">Show brightness slider</string>
 
     <!-- About device screen, CPU and RAM info. -->
     <string name="cpu_info">CPU</string>
