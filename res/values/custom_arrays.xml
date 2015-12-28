@@ -945,6 +945,19 @@
         <item>3</item>
     </string-array>
 
+    <!-- Power menu Animations  -->
+    <string-array name="power_menu_animations_entries">
+        <item>@string/power_menu_animation_aosp</item>
+        <item>@string/power_menu_animation_bottom</item>
+        <item>@string/power_menu_animation_top</item>
+    </string-array>
+
+    <string-array name="power_menu_animations_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
     <!-- Auto keyboard rotation -->
     <string-array name="keyboard_rotation_timeout_entries" translatable="false">
         <item>2s</item>
