@@ -1035,4 +1035,8 @@
     <string name="recent_app_sidebar_bg_color_title">Background color</string>
     <string name="recent_app_sidebar_scale_title">Size</string>
 
+    <!-- Screenshot sound -->
+    <string name="screenshot_sound_title">Screenshot sound</string>
+    <string name="screenshot_sound_summary">Plays sound effect when screenshot is taken</string>
+
 </resources>
