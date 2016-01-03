@@ -65,6 +65,7 @@
     <string name="quicksettings_title">Quicksettings</string>
     <string name="qs_brightness_slider_title">Show brightness slider</string>
     <string name="statusbar_notifications_title">Notifications</string>
+    <string name="custom_lockscreen_title">Custom Lockscreen Settings</string>
 
     <!-- About device screen, CPU and RAM info. -->
     <string name="cpu_info">CPU</string>
@@ -96,6 +97,7 @@
     <string name="custom_cat_title">Categories</string>
     <string name="custom_cat_gesture">Gestures</string>
     <string name="custom_cat_animation">Animations</string>
+    <string name="custom_cat_lockscreen">Lockscreen settings</string>
 
     <!--Recents-->
     <string name="recents_settings_title">Recents</string>
@@ -975,5 +977,22 @@
     <!-- Device policy override -->
     <string name="device_policy_override_title">Device policy override</string>
     <string name="device_policy_override_summary">Allow apps to force secure lock screen and override profile settings</string>
+
+    <!-- Lock Clock Fonts -->
+    <string name="lock_clock_font_title">Lock Clock Fonts</string>
+    <string name="lock_clock_font_summary">Change the default font of the lockscreen clock widget</string>
+    <string name="lock_clock_font_dialog_title">Select lock clock font</string>
+    <string name="lock_clock_font_stock">Normal (default)</string>
+    <string name="lock_clock_font_bold">Bold</string>
+    <string name="lock_clock_font_italic">Italic</string>
+    <string name="lock_clock_font_bold_italic">Bold Italic</string>
+    <string name="lock_clock_font_light_italic">Light Italic</string>
+    <string name="lock_clock_font_thin_italic">Thin Italic</string>
+    <string name="lock_clock_font_condensed_normal">Condensed</string>
+    <string name="lock_clock_font_condensed_italic">Condensed Italic</string>
+    <string name="lock_clock_font_condensed_bold">Condensed Bold</string>
+    <string name="lock_clock_font_condensed_bold_italic">Condensed Bold Italic</string>
+    <string name="lock_clock_font_medium_normal">Medium</string>
+    <string name="lock_clock_font_medium_italic">Medium Italic</string>
 
 </resources>

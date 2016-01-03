@@ -90,6 +90,12 @@
             android:title="@string/lockscreen_visualizer_title"
             android:defaultValue="true"/>
 
+    	<!-- Lockscreen shortcuts -->
+    	<PreferenceScreen
+            android:key="lockscreen_custom"
+            android:fragment="com.android.settings.custom.LockScreenSettings"
+            android:title="@string/custom_lockscreen_title" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
