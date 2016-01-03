@@ -14,7 +14,8 @@
      limitations under the License.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/lock_screen_weather_settings_title" >
+    android:title="@string/lock_screen_weather_settings_title"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <SwitchPreference
         android:key="weather_show_weather"
@@ -57,5 +58,29 @@
             android:title="@string/icons_title"
             android:defaultValue="0xffffffff" />
 
-	</PreferenceCategory>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="weather_cat_notifications"
+        android:title="@string/weather_cat_notifications_title">
+
+	<com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+               android:key="lock_screen_custom_notif"
+               android:title="@string/lockscreen_maxnotif_title"
+               android:summary="@string/lockscreen_maxnotif_sumary"
+               android:defaultValue="false" />
+
+        <com.android.settings.temasek.SeekBarPreference
+               android:key="lockscreen_max_notif_cofig"
+               android:title="@string/lockscreen_maxnotif_config"
+               android:max="5"
+               settings:minimum="3"
+               settings:interval="1"
+               settings:unitsLeft=""
+               settings:unitsRight=""
+               android:persistent="false"
+               android:dependency="lock_screen_custom_notif" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
