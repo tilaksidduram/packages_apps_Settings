@@ -205,6 +205,14 @@
                 android:icon="@drawable/ic_settings_multiuser"
                 />
 
+        <!-- Misc Tweaks -->
+        <dashboard-tile
+                android:id="@+id/main_settings"
+                android:title="@string/custom_settings_title"
+                android:fragment="com.android.settings.custom.MainSettings"
+                android:icon="@drawable/ic_settings_more"
+                />
+
     </dashboard-category>
 
     <!-- Personalization -->

@@ -75,4 +75,7 @@
     <string name="battery_saver_color_title">Warning color</string>
     <string name="battery_saver_color_summary">Enable orange status and navigation bars when battery saver is activated</string>
 
+    <string name="custom_settings_title">Misc Tweaks</string>
+    <string name="custom_cat_title">Categories</string>
+
 </resources>

@@ -24,6 +24,7 @@ import com.android.settings.DeviceInfoSettings;
 import com.android.settings.DisplaySettings;
 import com.android.settings.HomeSettings;
 import com.android.settings.LegalSettings;
+import com.android.settings.custom.MainSettings;
 import com.android.settings.PrivacySettings;
 import com.android.settings.ScreenPinningSettings;
 import com.android.settings.SecuritySettings;
@@ -82,6 +83,7 @@ public final class Ranking {
     public static final int RANK_PRINTING = 20;
     public static final int RANK_DEVELOPEMENT = 21;
     public static final int RANK_DEVICE_INFO = 22;
+    public static final int RANK_CUSTOM = 23;
 
     public static final int RANK_UNDEFINED = -1;
     public static final int RANK_OTHERS = 1024;
@@ -114,6 +116,9 @@ public final class Ranking {
 
         // Home
         sRankMap.put(HomeSettings.class.getName(), RANK_HOME);
+
+        // Custom
+        sRankMap.put(MainSettings.class.getName(), RANK_CUSTOM);
 
         // Display
         sRankMap.put(DisplaySettings.class.getName(), RANK_DISPLAY);
