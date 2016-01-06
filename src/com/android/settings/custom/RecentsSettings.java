@@ -16,13 +16,19 @@
 package com.android.settings.custom;
 
 import android.os.Bundle;
+import android.content.res.Resources;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
+
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.MetricsLogger;
+import android.provider.Settings;
 
-public class RecentsSettings extends SettingsPreferenceFragment
-            implements OnPreferenceChangeListener  {
+public class RecentsSettings extends SettingsPreferenceFragment implements 
+	Preference.OnPreferenceChangeListener  {
 
+    private static final String TAG = "RecentsSettings";
 
     @Override
     protected int getMetricsCategory() {
@@ -33,5 +39,14 @@ public class RecentsSettings extends SettingsPreferenceFragment
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.recents_settings);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        return false;
     }
 }
