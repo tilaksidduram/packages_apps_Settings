@@ -43,7 +43,7 @@
          android:key="app_sidebar"
          android:fragment="com.android.settings.temasek.AppSidebar"
          android:title="@string/app_sidebar_title"
-	 android:icon="@drawable/ic_appcirclebar" />
+	 android:icon="@drawable/ic_appsidebar" />
 
     <!-- App circle bar -->
     <PreferenceScreen

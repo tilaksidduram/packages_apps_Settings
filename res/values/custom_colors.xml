@@ -5,4 +5,6 @@
     <!-- Gesture Anywhere -->
     <color name="ga_gesture_color">@android:color/holo_blue_light</color>
 
+    <color name="white">@android:color/white</color>
+
 </resources>
