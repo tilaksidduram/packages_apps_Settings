@@ -66,6 +66,8 @@
     <string name="qs_brightness_slider_title">Show brightness slider</string>
     <string name="statusbar_notifications_title">Notifications</string>
     <string name="custom_lockscreen_title">Custom Lockscreen Settings</string>
+    <string name="dlg_reset_temasek">Custom</string>
+    <string name="cat_colors_title">Customize notification colors</string>
 
     <!-- About device screen, CPU and RAM info. -->
     <string name="cpu_info">CPU</string>
@@ -1078,5 +1080,8 @@
     <!-- Quick settings disable on lockscreen -->
     <string name="block_on_secure_keyguard_title">Disable quick settings on lockscreen</string>
     <string name="block_on_secure_keyguard_summary">Disables quick settings in the keyguard for a secure lock only</string>
+
+    <!-- Notification color settings -->
+    <string name="notification_drawer_clear_all_icon_color_title">Clear all icon</string>
 
 </resources>
