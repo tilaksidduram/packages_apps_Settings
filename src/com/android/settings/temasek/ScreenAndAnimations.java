@@ -127,8 +127,8 @@ public class ScreenAndAnimations extends SettingsPreferenceFragment implements
         }
         if (preference == mPowerMenuAnimations) {
             Settings.System.putInt(getContentResolver(), Settings.System.POWER_MENU_ANIMATIONS,
-                    Integer.valueOf((String) newValue));
-            mPowerMenuAnimations.setValue(String.valueOf(newValue));
+                    Integer.valueOf((String) objValue));
+            mPowerMenuAnimations.setValue(String.valueOf(objValue));
             mPowerMenuAnimations.setSummary(mPowerMenuAnimations.getEntry());
             return true;
         }
