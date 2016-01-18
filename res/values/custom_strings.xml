@@ -1083,6 +1083,7 @@
 
     <!-- Notification color settings -->
     <string name="notification_drawer_clear_all_icon_color_title">Clear all icon</string>
+    <string name="notification_color_settings_title">Notification colors</string>
 
     <!-- QS shade transparency -->
     <string name="qs_transparent_shade">QS shade transparency</string>
