@@ -1092,6 +1092,9 @@
     <!-- QS shade transparency -->
     <string name="qs_transparent_shade">QS shade transparency</string>
 
+    <!-- QS header transparency -->
+    <string name="qs_transparent_header">QS header transparency</string>
+
      <!-- Power menu Animations  -->
     <string name="power_menu_animation_title">Power menu animation</string>
     <string name="power_menu_animation_summary">Change the enter/exit animation of the power menu</string>
