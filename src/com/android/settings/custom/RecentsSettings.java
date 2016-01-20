@@ -61,7 +61,7 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
 
     private static final String SHOW_RECENTS_SEARCHBAR = "recents_show_search_bar";
     private static final String SHOW_MEMBAR_RECENTS = "systemui_recents_mem_display";
-    private static final String SHOW_FULLSCREEN_RECENTS = "recents_full_screen";
+    private static final String IMMERSIVE_RECENTS = "immersive_recents";
     private static final String SHOW_CLEAR_ALL_RECENTS = "show_clear_all_recents";
     private static final String RECENTS_DISMISS_ALL = "recents_clear_all_dismiss_all";
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
@@ -87,7 +87,7 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
 
     private SwitchPreference mRecentsSearchBar;
     private SwitchPreference mRecentsMemBar;
-    private SwitchPreference mRecentsFullscreen;
+    private ListPreference mImmersiveRecents;
     private SwitchPreference mRecentsClearAll;
     private SwitchPreference mRecentsDismissAll;
     private ListPreference mRecentsClearAllLocation;
@@ -114,7 +114,6 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
 
         mRecentsSearchBar = (SwitchPreference) prefSet.findPreference(SHOW_RECENTS_SEARCHBAR);
         mRecentsMemBar = (SwitchPreference) prefSet.findPreference(SHOW_MEMBAR_RECENTS);
-        mRecentsFullscreen = (SwitchPreference) prefSet.findPreference(SHOW_FULLSCREEN_RECENTS);
         mRecentsDismissAll = (SwitchPreference) prefSet.findPreference(RECENTS_DISMISS_ALL);
 
         mRecentsClearAll = (SwitchPreference) prefSet.findPreference(SHOW_CLEAR_ALL_RECENTS);
@@ -128,6 +127,12 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
         mRecentsClearAllLocation.setValue(String.valueOf(location));
         mRecentsClearAllLocation.setSummary(mRecentsClearAllLocation.getEntry());
         mRecentsClearAllLocation.setOnPreferenceChangeListener(this);
+
+        mImmersiveRecents = (ListPreference) prefSet.findPreference(IMMERSIVE_RECENTS);
+        mImmersiveRecents.setValue(String.valueOf(Settings.System.getInt(
+                resolver, Settings.System.IMMERSIVE_RECENTS, 0)));
+        mImmersiveRecents.setSummary(mImmersiveRecents.getEntry());
+        mImmersiveRecents.setOnPreferenceChangeListener(this);
 
         mUseSlimRecents = (SwitchPreference) prefSet.findPreference(USE_SLIM_RECENTS);
         mUseSlimRecents.setChecked(Settings.System.getInt(resolver,
@@ -144,7 +149,7 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
         if (slimRecent) {
             mRecentsSearchBar.setEnabled(false);
             mRecentsMemBar.setEnabled(false);
-            mRecentsFullscreen.setEnabled(false);
+            mImmersiveRecents.setEnabled(false);
             mRecentsClearAll.setEnabled(false);
             mRecentsDismissAll.setEnabled(false);
             mRecentsClearAllLocation.setEnabled(false);
@@ -153,7 +158,7 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
         } else {
             mRecentsSearchBar.setEnabled(true);
             mRecentsMemBar.setEnabled(true);
-            mRecentsFullscreen.setEnabled(true);
+            mImmersiveRecents.setEnabled(true);
             mRecentsClearAll.setEnabled(true);
             mRecentsDismissAll.setEnabled(true);
             mRecentsClearAllLocation.setEnabled(true);
@@ -172,6 +177,12 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
             Settings.System.putIntForUser(getActivity().getContentResolver(),
                     Settings.System.RECENTS_CLEAR_ALL_LOCATION, location, UserHandle.USER_CURRENT);
             mRecentsClearAllLocation.setSummary(mRecentsClearAllLocation.getEntries()[index]);
+            return true;
+        } else if (preference == mImmersiveRecents) {
+            Settings.System.putInt(resolver, Settings.System.IMMERSIVE_RECENTS,
+                    Integer.valueOf((String) newValue));
+            mImmersiveRecents.setValue(String.valueOf(newValue));
+            mImmersiveRecents.setSummary(mImmersiveRecents.getEntry());
             return true;
         } else if (preference == mUseSlimRecents) {
             Settings.System.putInt(getContentResolver(), Settings.System.USE_SLIM_RECENTS,
