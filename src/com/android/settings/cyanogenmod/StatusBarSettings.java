@@ -436,6 +436,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             int alpha = (Integer) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.QS_TRANSPARENT_SHADE, alpha * 1);
+            return true;
         } else if (preference == mQuickPulldown) {
             int quickPulldown = Integer.valueOf((String) newValue);
             CMSettings.System.putInt(resolver, CMSettings.System.STATUS_BAR_QUICK_QS_PULLDOWN,
