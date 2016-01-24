@@ -39,6 +39,7 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.util.cm.PowerMenuConstants;
 import cyanogenmod.providers.CMSettings;
 import org.cyanogenmod.internal.logging.CMMetricsLogger;
+import com.android.settings.temasek.SeekBarPreference;
 
 import static com.android.internal.util.cm.PowerMenuConstants.*;
 import com.android.settings.widget.NumberPickerPreference;
@@ -54,6 +55,7 @@ public class PowerMenuActions extends SettingsPreferenceFragment
     private static final String PREF_ON_THE_GO_ALPHA = "on_the_go_alpha";
     private static final String SCREENSHOT_DELAY = "screenshot_delay";
     private static final String PREF_TRANSPARENT_POWER_MENU = "transparent_power_menu";
+    private static final String PREF_TRANSPARENT_POWER_DIALOG_DIM = "transparent_power_dialog_dim";
 
     private CheckBoxPreference mRebootPref;
     private CheckBoxPreference mScreenshotPref;
@@ -69,6 +71,7 @@ public class PowerMenuActions extends SettingsPreferenceFragment
     private CheckBoxPreference mAssistPref;
     private SlimSeekBarPreference mOnTheGoAlphaPref;
     private SeekBarPreference mPowerMenuAlpha;
+    private SeekBarPreference mPowerDialogDim;
 
     Context mContext;
     private ArrayList<String> mLocalUserConfig = new ArrayList<String>();
@@ -137,11 +140,19 @@ public class PowerMenuActions extends SettingsPreferenceFragment
 
         // Power menu alpha
         mPowerMenuAlpha =
-		(SeekBarPreference) prefSet.findPreference(PREF_TRANSPARENT_POWER_MENU);
-        int powerMenuAlpha = Settings.System.getInt(resolver,
+		(SeekBarPreference) mPrefSet.findPreference(PREF_TRANSPARENT_POWER_MENU);
+        int powerMenuAlpha = Settings.System.getInt(mCr,
                 Settings.System.TRANSPARENT_POWER_MENU, 100);
 	mPowerMenuAlpha.setValue(powerMenuAlpha / 1);
 	mPowerMenuAlpha.setOnPreferenceChangeListener(this);
+
+        // Power/reboot dialog dim
+        mPowerDialogDim =
+                (SeekBarPreference) mPrefSet.findPreference(PREF_TRANSPARENT_POWER_DIALOG_DIM);
+        int powerDialogDim = Settings.System.getInt(mCr,
+                Settings.System.TRANSPARENT_POWER_DIALOG_DIM, 50);
+        mPowerDialogDim.setValue(powerDialogDim / 1);
+        mPowerDialogDim.setOnPreferenceChangeListener(this);
 
         mScreenshotDelay = (NumberPickerPreference) mPrefSet.findPreference(
                 SCREENSHOT_DELAY);
@@ -294,8 +305,13 @@ public class PowerMenuActions extends SettingsPreferenceFragment
             return true;
         } else if (preference == mPowerMenuAlpha) {
             int alpha = (Integer) newValue;
-            Settings.System.putInt(resolver,
+            Settings.System.putInt(mCr,
                     Settings.System.TRANSPARENT_POWER_MENU, alpha * 1);
+            return true;
+        } else if (preference == mPowerDialogDim) {
+            int alpha = (Integer) newValue;
+            Settings.System.putInt(mCr,
+                    Settings.System.TRANSPARENT_POWER_DIALOG_DIM, alpha * 1);
             return true;
         }
         return false;

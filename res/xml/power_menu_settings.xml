@@ -99,4 +99,13 @@
         settings:unitsRight="%"
         android:persistent="false" />
 
+    <com.android.settings.temasek.SeekBarPreference
+        android:key="transparent_power_dialog_dim"
+        android:title="@string/power_menu_dialog_dim"
+        android:max="100"
+        settings:minimum="0"
+        settings:unitsLeft=""
+        settings:unitsRight="%"
+        android:persistent="false" />
+
 </PreferenceScreen>
