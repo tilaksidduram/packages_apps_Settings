@@ -1142,4 +1142,7 @@
     <string name="dashboard_tileview_double_lines_summary_on">Show dashboard tile titles in 1 line</string>
     <string name="dashboard_tileview_double_lines_summary_off">Show dashboard tile titles in 2 lines</string>
 
+    <!-- Power menu and dialogs transparency -->
+    <string name="power_menu_transparency">Power/reboot menu transparency</string>
+
 </resources>

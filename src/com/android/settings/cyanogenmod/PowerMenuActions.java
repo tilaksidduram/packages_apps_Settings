@@ -53,6 +53,7 @@ public class PowerMenuActions extends SettingsPreferenceFragment
 
     private static final String PREF_ON_THE_GO_ALPHA = "on_the_go_alpha";
     private static final String SCREENSHOT_DELAY = "screenshot_delay";
+    private static final String PREF_TRANSPARENT_POWER_MENU = "transparent_power_menu";
 
     private CheckBoxPreference mRebootPref;
     private CheckBoxPreference mScreenshotPref;
@@ -67,6 +68,7 @@ public class PowerMenuActions extends SettingsPreferenceFragment
     private CheckBoxPreference mVoiceAssistPref;
     private CheckBoxPreference mAssistPref;
     private SlimSeekBarPreference mOnTheGoAlphaPref;
+    private SeekBarPreference mPowerMenuAlpha;
 
     Context mContext;
     private ArrayList<String> mLocalUserConfig = new ArrayList<String>();
@@ -132,6 +134,14 @@ public class PowerMenuActions extends SettingsPreferenceFragment
         mOnTheGoAlphaPref.setDefault(50);
         mOnTheGoAlphaPref.setInterval(1);
         mOnTheGoAlphaPref.setOnPreferenceChangeListener(this);
+
+        // Power menu alpha
+        mPowerMenuAlpha =
+		(SeekBarPreference) prefSet.findPreference(PREF_TRANSPARENT_POWER_MENU);
+        int powerMenuAlpha = Settings.System.getInt(resolver,
+                Settings.System.TRANSPARENT_POWER_MENU, 100);
+	mPowerMenuAlpha.setValue(powerMenuAlpha / 1);
+	mPowerMenuAlpha.setOnPreferenceChangeListener(this);
 
         mScreenshotDelay = (NumberPickerPreference) mPrefSet.findPreference(
                 SCREENSHOT_DELAY);
@@ -281,6 +291,11 @@ public class PowerMenuActions extends SettingsPreferenceFragment
             int value = Integer.parseInt(newValue.toString());
             Settings.System.putInt(mCr, Settings.System.SCREENSHOT_DELAY,
                     value);
+            return true;
+        } else if (preference == mPowerMenuAlpha) {
+            int alpha = (Integer) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.TRANSPARENT_POWER_MENU, alpha * 1);
             return true;
         }
         return false;
