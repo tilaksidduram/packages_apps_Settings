@@ -223,12 +223,6 @@
             android:dependency="qs_show_brightness_slider"
             android:defaultValue="true"/>
 
-        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
-            android:key="persist_add"
-            android:title="@string/persist_add_title"
-            android:summary="@string/persist_add_summary"
-            android:defaultValue="true"/>
-
         <com.android.settings.temasek.SeekBarPreference
             android:key="qs_transparent_shade"
             android:title="@string/qs_transparent_shade"
