@@ -90,4 +90,6 @@ limitations under the License.
     <color name="blacklist_enabled">#DD2C00</color>
     <color name="blacklist_disabled">#D7D7D7</color>
 
+    <!-- Action bar icons -->
+    <color name="action_bar_icon_tint">@android:color/white</color>
 </resources>
