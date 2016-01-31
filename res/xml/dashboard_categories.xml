@@ -105,6 +105,17 @@
                 android:icon="@drawable/ic_settings_sounds"
                 />
 
+        <!-- Viper4Android -->
+        <dashboard-tile
+            android:id="@+id/viper_settings"
+            android:icon="@drawable/ic_settings_system"
+            android:title="@string/viper_title">
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="com.vipercn.viper4android_v2"
+                android:targetClass="com.vipercn.viper4android_v2.activity.ViPER4Android" />
+        </dashboard-tile>
+
         <!-- Display & lights -->
         <dashboard-tile
                 android:id="@+id/display_and_lights_settings"
@@ -334,17 +345,6 @@
                 android:fragment="com.android.settings.print.PrintSettingsFragment"
                 android:icon="@drawable/ic_settings_print"
                 />
-
-        <!-- Viper4Android -->
-        <dashboard-tile
-            android:id="@+id/viper_settings"
-            android:icon="@drawable/ic_settings_nfc_payment_am_alpha"
-            android:title="@string/viper_title">
-            <intent
-                android:action="android.intent.action.MAIN"
-                android:targetPackage="com.vipercn.viper4android_v2"
-                android:targetClass="com.vipercn.viper4android_v2.activity.ViPER4Android" />
-        </dashboard-tile>
 
         <!-- SuperSU -->
         <dashboard-tile
