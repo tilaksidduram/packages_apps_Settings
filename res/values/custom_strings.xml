@@ -285,8 +285,9 @@
     <string name="dim_nav_buttons_touch_anywhere_summary_on">Touching anywhere on the screen will cause buttons to un-dim</string>
     <string name="dim_nav_buttons_touch_anywhere_summary_off">Only touches on the navbar will cause buttons to un-dim</string>
 
-    <!-- Time-context headers in notification header -->
-    <string name="contextual_title">Contextual headers</string>
+    <!-- Status bar header -->
+    <string name="status_bar_header_title">Status bar header</string>
+    <string name="status_bar_header_font_style_title">Header font style</string>
     <string name="status_bar_custom_header_title">Custom header image</string>
     <string name="status_bar_custom_header_summary">Enable notification panel header image</string>
     <string name="status_bar_custom_header_default_title">Select your images</string>
