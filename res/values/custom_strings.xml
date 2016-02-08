@@ -1183,4 +1183,8 @@
     <string name="hide_lockscreen_clock_title">Show lockscreen clock</string>
     <string name="hide_lockscreen_date_title">Show lockscreen date</string>
 
+    <!-- Navbar buttons rotating icons -->
+    <string name="nav_buttons_rotation_title">Rotation animation for icons</string>
+    <string name="nav_buttons_rotation_summary">Enable for icons to rotate when screen is rotated or navbar recreated.</string>
+
 </resources>
