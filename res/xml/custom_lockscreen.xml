@@ -22,7 +22,7 @@
     <!-- Hide Lockscreen clock & date -->
     <PreferenceCategory
         android:key="hide_lockscreen_items_category"
-        android:title="@string/hide_lockscreen_items_title" />
+        android:title="@string/hide_lockscreen_items_title" >
 
         <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
             android:key="hide_lockscreen_clock"
