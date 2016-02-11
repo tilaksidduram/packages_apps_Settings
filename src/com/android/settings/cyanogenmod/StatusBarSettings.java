@@ -84,6 +84,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private static final String PREF_QS_TRANSPARENT_SHADE = "qs_transparent_shade";
     private static final String PREF_QS_TRANSPARENT_HEADER = "qs_transparent_header";
     private static final String STATUS_BAR_QUICK_QS_PULLDOWN = "qs_quick_pulldown";
+    private static final String PREF_SMART_PULLDOWN = "smart_pulldown";
     private static final String MISSED_CALL_BREATH = "missed_call_breath";
     private static final String VOICEMAIL_BREATH = "voicemail_breath";
     private static final String PREF_STATUS_BAR_HEADER_FONT_STYLE = "status_bar_header_font_style";
@@ -111,6 +112,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private ListPreference mStatusBarBattery;
     private ListPreference mStatusBarBatteryShowPercent;
     private ListPreference mQuickPulldown;
+    private ListPreference mSmartPulldown;
     private SwitchPreference mEnableTaskManager;
     private SwitchPreference mBlockOnSecureKeyguard;
     private SwitchPreference mMissedCallBreath;
@@ -293,6 +295,14 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         }
         mQuickPulldown.setOnPreferenceChangeListener(this);
 
+        // Smart pulldown
+        mSmartPulldown = (ListPreference) findPreference(PREF_SMART_PULLDOWN);
+        mSmartPulldown.setOnPreferenceChangeListener(this);
+        int smartPulldown = Settings.System.getInt(resolver,
+                Settings.System.QS_SMART_PULLDOWN, 0);
+        mSmartPulldown.setValue(String.valueOf(smartPulldown));
+        updateSmartPulldownSummary(smartPulldown);
+
         // Breathing Notifications
         mMissedCallBreath = (SwitchPreference) findPreference(MISSED_CALL_BREATH);
         mVoicemailBreath = (SwitchPreference) findPreference(VOICEMAIL_BREATH);
@@ -420,7 +430,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                 dialog.show();
             } else {
                 if ((String) newValue != null) {
-                    Settings.System.putString(getActivity().getContentResolver(),
+                    Settings.System.putString(resolver,
                         Settings.System.STATUS_BAR_DATE_FORMAT, (String) newValue);
                 }
             }
@@ -446,27 +456,27 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                     .valueOf(newValue)));
             preference.setSummary(hex);
             int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(resolver,
                     Settings.System.STATUSBAR_CLOCK_COLOR, intHex);
             return true;
         } else if (preference == mFontStyle) {
             int val = Integer.parseInt((String) newValue);
             int index = mFontStyle.findIndexOfValue((String) newValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(resolver,
                     Settings.System.STATUSBAR_CLOCK_FONT_STYLE, val);
             mFontStyle.setSummary(mFontStyle.getEntries()[index]);
             return true;
         } else if (preference == mStatusBarClockFontSize) {
             int val = Integer.parseInt((String) newValue);
             int index = mStatusBarClockFontSize.findIndexOfValue((String) newValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(resolver,
                     Settings.System.STATUSBAR_CLOCK_FONT_SIZE, val);
             mStatusBarClockFontSize.setSummary(mStatusBarClockFontSize.getEntries()[index]);
             return true;
         } else if (preference == mCustomHeaderDefault) {
             int customHeaderDefault = Integer.valueOf((String) newValue);
             int index = mCustomHeaderDefault.findIndexOfValue((String) newValue);
-            Settings.System.putInt(getActivity().getContentResolver(), 
+            Settings.System.putInt(resolver, 
                 Settings.System.STATUS_BAR_CUSTOM_HEADER_DEFAULT, customHeaderDefault);
             mCustomHeaderDefault.setSummary(mCustomHeaderDefault.getEntries()[index]);
             createCustomView();
@@ -515,6 +525,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             Settings.System.putIntForUser(resolver,
                     Settings.System.STATUS_BAR_HEADER_FONT_STYLE, val, UserHandle.USER_CURRENT);
             mStatusBarHeaderFontStyle.setSummary(mStatusBarHeaderFontStyle.getEntries()[index]);
+            return true;
+        } else if (preference == mSmartPulldown) {
+            int smartPulldown = Integer.valueOf((String) newValue);
+            Settings.System.putInt(resolver, Settings.System.QS_SMART_PULLDOWN, smartPulldown);
+            updateSmartPulldownSummary(smartPulldown);
             return true;
         }
         return false;
@@ -599,6 +614,31 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             }
         }
         mStatusBarDateFormat.setEntries(parsedDateEntries);
+    }
+
+    private void updateSmartPulldownSummary(int value) {
+        Resources res = getResources();
+
+        if (value == 0) {
+            // Smart pulldown deactivated
+            mSmartPulldown.setSummary(res.getString(R.string.smart_pulldown_off));
+        } else {
+            String type = null;
+            switch (value) {
+                case 1:
+                    type = res.getString(R.string.smart_pulldown_dismissable);
+                    break;
+                case 2:
+                    type = res.getString(R.string.smart_pulldown_persistent);
+                    break;
+                default:
+                    type = res.getString(R.string.smart_pulldown_all);
+                    break;
+            }
+            // Remove title capitalized formatting
+            type = type.toLowerCase();
+            mSmartPulldown.setSummary(res.getString(R.string.smart_pulldown_summary, type));
+        }
     }
 
     private void showDialogInner(int id) {
