@@ -71,6 +71,7 @@
     <string name="custom_lockscreen_title">Custom Lockscreen Settings</string>
     <string name="dlg_reset_temasek">Custom</string>
     <string name="cat_colors_title">Customize notification colors</string>
+    <string name="cancel">Cancel</string>
 
     <!-- About device screen, CPU and RAM info. -->
     <string name="cpu_info">CPU</string>
@@ -1203,5 +1204,15 @@
     <!-- QS Tiles Rows -->
     <string name="qs_num_rows_title">Number of QS rows</string>
     <string name="qs_num_rows_showing">%1$s rows are shown</string>
+
+    <!-- Lockscreen Colors -->
+    <string name="lockscreen_colors_title">Lockscreen colors</string>
+    <string name="lockscreen_owner_info_color">Owner info</string>
+    <string name="lockscreen_alarm_color">Alarm</string>
+    <string name="lockscreen_clock_color">Clock</string>
+    <string name="lockscreen_clock_date_color">Date</string>
+    <string name="lockscreen_colors_reset_title">Reset lockscreen colors</string>
+    <string name="lockscreen_colors_reset_message">Are you sure you want to reset these colors to default?</string>
+    <string name="yes">YES</string>
 
 </resources>
