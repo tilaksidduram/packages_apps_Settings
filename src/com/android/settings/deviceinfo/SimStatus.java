@@ -242,6 +242,9 @@ public class SimStatus extends InstrumentedPreferenceActivity {
             show4GForLTE = con.getResources().getBoolean(id);
         } catch (NameNotFoundException e) {
             Log.e(TAG, "NameNotFoundException for show4GFotLTE");
+        } catch (Exception e) {
+            // Don't crash because of a missing resource.
+            // This is due to us having a togglable 4G option instead. 
         }
 
         if (networktype != null && networktype.equals("LTE") && show4GForLTE) {
