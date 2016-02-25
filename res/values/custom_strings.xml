@@ -1180,10 +1180,11 @@
     <string name="selinux_enforcing_title">Enforcing</string>
     <string name="selinux_permissive_toast_title">Selinux set to permissive!</string>
 
-    <!-- Hide Lockscreen clock & date -->
+    <!-- Hide Lockscreen clock & date & alarm -->
     <string name="hide_lockscreen_items_title">Lockscreen items</string>
     <string name="hide_lockscreen_clock_title">Show lockscreen clock</string>
     <string name="hide_lockscreen_date_title">Show lockscreen date</string>
+    <string name="hide_lockscreen_alarm_title">Show lockscreen alarm</string>
 
     <!-- Navbar buttons rotating icons -->
     <string name="nav_buttons_rotation_title">Rotation animation for icons</string>
