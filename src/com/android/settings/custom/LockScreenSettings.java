@@ -19,6 +19,7 @@ package com.android.settings.custom;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
+import android.content.res.Resources;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
 import com.android.internal.logging.MetricsLogger;
+import com.android.settings.temasek.SeekBarPreference;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
@@ -47,12 +49,19 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements On
     private static final String LOCKSCREEN_CLOCK_DATE_COLOR = "lockscreen_clock_date_color";
     private static final String LOCKSCREEN_COLORS_RESET = "lockscreen_colors_reset";
 
+    private static final String PREF_LS_BOUNCER = "lockscreen_bouncer";
+    private static final String LOCKSCREEN_SECURITY_ALPHA = "lockscreen_security_alpha";
+    private static final String LOCKSCREEN_ALPHA = "lockscreen_alpha";
+
     private ListPreference mLockClockFonts;
     private ColorPickerPreference mLockscreenOwnerInfoColorPicker;
     private ColorPickerPreference mLockscreenAlarmColorPicker;
     private ColorPickerPreference mLockscreenClockColorPicker;
     private ColorPickerPreference mLockscreenClockDateColorPicker;
     private Preference mLockscreenColorsReset;
+    private ListPreference mLsBouncer;
+    private SeekBarPreference mLsSecurityAlpha;
+    private SeekBarPreference mLsAlpha;
 
     static final int DEFAULT = 0xffffffff;
 
@@ -110,7 +119,54 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements On
         mLockscreenClockDateColorPicker.setNewPreviewColor(intColor);
 
         mLockscreenColorsReset = (Preference) findPreference(LOCKSCREEN_COLORS_RESET);
+
+	mLsBouncer = (ListPreference) findPreference(PREF_LS_BOUNCER);
+        mLsBouncer.setOnPreferenceChangeListener(this);
+        int lockbouncer = Settings.Secure.getInt(resolver,
+                Settings.Secure.LOCKSCREEN_BOUNCER, 0);
+        mLsBouncer.setValue(String.valueOf(lockbouncer));
+        updateBouncerSummary(lockbouncer);
+	
+	mLsSecurityAlpha = (SeekBarPreference) findPreference(LOCKSCREEN_SECURITY_ALPHA);
+        float alpha2 = Settings.System.getFloat(resolver,
+                Settings.System.LOCKSCREEN_SECURITY_ALPHA, 0.75f);
+        mLsSecurityAlpha.setValue((int)(100 * alpha2));
+        mLsSecurityAlpha.setOnPreferenceChangeListener(this);
+
+        mLsSecurityAlpha = (SeekBarPreference) findPreference(LOCKSCREEN_SECURITY_ALPHA);
+        float alpha2 = Settings.System.getFloat(resolver,
+                Settings.System.LOCKSCREEN_SECURITY_ALPHA, 0.75f);
+        mLsSecurityAlpha.setValue((int)(100 * alpha2));
+        mLsSecurityAlpha.setOnPreferenceChangeListener(this);
     }
+
+    private void updateBouncerSummary(int value) {
+         Resources res = getResources();
+  
+         if (value == 0) {
+             // stock bouncer
+             mLsBouncer.setSummary(res.getString(R.string.ls_bouncer_on_summary));
+         } else if (value == 1) {
+             // bypass bouncer
+             mLsBouncer.setSummary(res.getString(R.string.ls_bouncer_off_summary));
+         } else {
+             String type = null;
+             switch (value) {
+                 case 2:
+                     type = res.getString(R.string.ls_bouncer_dismissable);
+                     break;
+                 case 3:
+                     type = res.getString(R.string.ls_bouncer_persistent);
+                     break;
+                 case 4:
+                     type = res.getString(R.string.ls_bouncer_all);
+                     break;
+             }
+             // Remove title capitalized formatting
+             type = type.toLowerCase();
+             mLsBouncer.setSummary(res.getString(R.string.ls_bouncer_summary, type));
+         }
+     }
 
     @Override
     public void onResume() {
@@ -157,6 +213,16 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements On
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.LOCKSCREEN_CLOCK_DATE_COLOR, intHex);
+            return true;
+        } else if (preference == mLsAlpha) {
+            int alpha = (Integer) newValue;
+            Settings.System.putFloat(resolver,
+                    Settings.System.LOCKSCREEN_ALPHA, alpha / 100.0f);
+            return true;
+        } else if (preference == mLsSecurityAlpha) {
+            int alpha2 = (Integer) newValue;
+            Settings.System.putFloat(resolver,
+                    Settings.System.LOCKSCREEN_SECURITY_ALPHA, alpha2 / 100.0f);
             return true;
         }
         return false;
