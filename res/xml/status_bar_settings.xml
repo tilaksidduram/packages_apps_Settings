@@ -231,11 +231,18 @@
             android:entryValues="@array/smart_pulldown_values"
             android:persistent="false" />
 
-    <!-- Qs Vibrate Panel -->
+    	<!-- Qs Vibrate Panel -->
     	<PreferenceScreen
             android:id="@+id/qs_vib_customizations"
             android:title="@string/quick_settings_vibrate"
             android:fragment="com.android.settings.custom.QsVibrate" />
+
+    	<!-- Qs Colors -->
+    	<PreferenceScreen
+            android:id="@+id/qs_colors"
+            android:title="@string/quick_settings_colors"
+	    android:summary="@string/qs_colors_summary"	
+            android:fragment="com.android.settings.custom.QsColors" />
 
         <SwitchPreference
             android:key="block_on_secure_keyguard"
