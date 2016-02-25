@@ -1230,4 +1230,17 @@
     <string name="lockscreen_alpha">Lockscreen alpha</string>
     <string name="lockscreen_security_alpha">Lockscreen bouncer alpha</string>
 
+    <!-- QuickSettings haptic feedback -->
+    <string name="quick_settings_vibrate">QS Vibrations</string>	
+    <string name="quick_settings_vibrate_title">Vibrate on touch</string>
+    <string name="quick_settings_vibrate_summary">Vibrate when touching tiles</string>
+
+    <!-- QuickSettings haptic feedback -->
+    <string name="quick_settings_icon_vibrate_title">Vibrate Settings Icon </string>
+    <string name="quick_settings_icon_vibrate_summary">Vibrate when touching Settings Icon</string>
+
+    <!-- QuickSettings haptic feedback -->
+    <string name="quick_settings_sp_vibrate_title">Vibrate on Single Press </string>
+    <string name="quick_settings_sp_vibrate_summary">Vibrate when SinglePressing Tiles</string>
+
 </resources>
