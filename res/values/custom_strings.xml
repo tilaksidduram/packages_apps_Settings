@@ -1425,4 +1425,11 @@
     <string name="hide_apps_from_recents_title">Hidden Apps</string>
     <string name="hide_apps_from_recents_summary">Pick which apps to exclude from the recents panel.</string>
 
+    <!-- Optional Dashboard Switches -->
+    <string name="dashboard_switches_title">Dashboard Switches</string>
+    <string name="dashboard_switches_off">Switches Off</string>
+    <string name="dashboard_switches_on">Switches On</string>
+    <string name="dashboard_switches_summary">Change the position of the dashboard switches</string>
+    <string name="dashboard_switches_dialog_title">Select switch state</string>
+
 </resources>
