@@ -42,12 +42,14 @@ public class FingerprintEnrollIntroduction extends FingerprintEnrollBase {
         setHeaderText(R.string.security_settings_fingerprint_enroll_introduction_title);
         findViewById(R.id.cancel_button).setOnClickListener(this);
 
-        View learnMoreButton = findViewById(R.id.learn_more_button);
+        final View learnMoreButton = findViewById(R.id.learn_more_button);
+        // If help url is not overlaid, remove the button.
         if (TextUtils.isEmpty(getString(R.string.help_url_fingerprint))) {
-            learnMoreButton.setVisibility(View.INVISIBLE);
+            learnMoreButton.setVisibility(View.GONE);
         } else {
             learnMoreButton.setOnClickListener(this);
         }
+
         final int passwordQuality = new ChooseLockSettingsHelper(this).utils()
                 .getActivePasswordQuality(UserHandle.myUserId());
         mHasPassword = passwordQuality != DevicePolicyManager.PASSWORD_QUALITY_UNSPECIFIED;
