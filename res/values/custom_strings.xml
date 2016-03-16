@@ -1379,4 +1379,8 @@
     <string name="logo26">Weather On</string>
     <string name="logo27">Cat</string>
 
+    <!-- Header image shadow -->
+    <string name="status_bar_custom_header_shadow_title">Header image shadow</string>
+    <string name="status_bar_custom_header_shadow_summary">For better visibility on bright images</string>
+
 </resources>

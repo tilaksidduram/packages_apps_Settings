@@ -88,6 +88,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private static final String MISSED_CALL_BREATH = "missed_call_breath";
     private static final String VOICEMAIL_BREATH = "voicemail_breath";
     private static final String PREF_STATUS_BAR_HEADER_FONT_STYLE = "status_bar_header_font_style";
+    private static final String CUSTOM_HEADER_IMAGE_SHADOW = "status_bar_custom_header_shadow";
 
     private static final int STATUS_BAR_BATTERY_STYLE_HIDDEN = 4;
     private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 6;
@@ -123,6 +124,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 
     private SeekBarPreference mQSShadeAlpha;
     private SeekBarPreference mQSHeaderAlpha;
+    private SeekBarPreference mHeaderShadow;
 
     private static final int MY_USER_ID = UserHandle.myUserId();
 
@@ -351,6 +353,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         updateNumRowsSummary(numRows);
         mNumRows.setOnPreferenceChangeListener(this);
 
+        // Custom shadow on header images
+        mHeaderShadow = (SeekBarPreference) findPreference(CUSTOM_HEADER_IMAGE_SHADOW);
+        final int headerShadow = Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_CUSTOM_HEADER_SHADOW, 0);
+        mHeaderShadow.setValue((int)((headerShadow / 255) * 100));
+        mHeaderShadow.setOnPreferenceChangeListener(this);
+
         setHasOptionsMenu(true);
         mCheckPreferences = true;
         return prefSet;
@@ -563,6 +572,12 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                     numRows, UserHandle.USER_CURRENT);
             updateNumRowsSummary(numRows);
             return true;
+        } else if (preference == mHeaderShadow) {
+           Integer headerShadow = (Integer) newValue;
+           int realHeaderValue = (int) (((double) headerShadow / 100) * 255);
+           Settings.System.putInt(resolver,
+                   Settings.System.STATUS_BAR_CUSTOM_HEADER_SHADOW, realHeaderValue);
+           return true;
         }
         return false;
     }
