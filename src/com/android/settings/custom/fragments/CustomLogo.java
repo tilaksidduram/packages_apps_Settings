@@ -32,7 +32,7 @@ import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 
 import com.android.settings.R;
-import com.android.internal.logging.MetricsLogger;
+import org.cyanogenmod.internal.logging.CMMetricsLogger;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
@@ -102,7 +102,7 @@ public class CustomLogo extends SettingsPreferenceFragment implements OnPreferen
 
     @Override
     protected int getMetricsCategory() {
-        return MetricsLogger.DONT_TRACK_ME_BRO;
+        return CMMetricsLogger.DONT_LOG;
     }
 
     @Override
