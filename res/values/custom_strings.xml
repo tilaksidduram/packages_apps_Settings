@@ -368,6 +368,7 @@
     <string name="custom_header_image_0">Default</string>
     <string name="custom_header_image_1">Modern</string>
     <string name="custom_header_image_2">Poly HD</string>
+    <string name="custom_header_image_3">Screw\'d HD</string>
 
     <!-- Network traffic -->
     <string name="network_traffic_title">Network traffic</string>
