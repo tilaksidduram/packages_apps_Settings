@@ -16,6 +16,11 @@
     android:title="@string/recents_settings_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <SwitchPreference
+        android:key="only_show_running_tasks"
+        android:title="@string/show_running_tasks_title"
+        android:defaultValue="false" />
+
     <PreferenceCategory
         android:key="aosp_recents_panel"
         android:title="@string/recents_panel_category" >
@@ -96,12 +101,6 @@
         <SwitchPreference
             android:key="use_slim_recents"
             android:title="@string/use_slim_recents_title"
-            android:defaultValue="false" />
-
-        <SwitchPreference
-            android:key="only_show_running_tasks"
-            android:title="@string/show_running_tasks_title"
-            android:dependency="use_slim_recents"
             android:defaultValue="false" />
 
         <SlimSeekBarPreference
