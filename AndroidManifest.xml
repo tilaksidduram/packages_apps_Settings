@@ -2218,6 +2218,9 @@
             </intent-filter>
         </receiver>
 
+        <!-- Hide Apps from Recents (HAFR) -->
+        <activity android:name=".custom.HAFRAppListActivity" />
+
         <!-- Custom activities End -->
 
         <!-- CyanogenMod activities Start -->

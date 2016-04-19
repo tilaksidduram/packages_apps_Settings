@@ -20,6 +20,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.os.Bundle;
@@ -65,6 +66,7 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
     private static final String SHOW_CLEAR_ALL_RECENTS = "show_clear_all_recents";
     private static final String RECENTS_DISMISS_ALL = "recents_clear_all_dismiss_all";
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
+    private static final String PREF_HIDDEN_RECENTS_APPS_START = "hide_app_from_recents";
 
     // Preferences
     private static final String USE_SLIM_RECENTS = "use_slim_recents";
@@ -85,6 +87,13 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
     private static final String RECENT_CARD_TEXT_COLOR =
             "recent_card_text_color";
 
+    // Package name of the hidden recetns apps activity
+    public static final String HIDDEN_RECENTS_PACKAGE_NAME = "com.android.settings";
+    // Intent for launching the hidden recents actvity
+    public static Intent INTENT_HIDDEN_RECENTS_SETTINGS = new Intent(Intent.ACTION_MAIN)
+            .setClassName(HIDDEN_RECENTS_PACKAGE_NAME,
+            HIDDEN_RECENTS_PACKAGE_NAME + ".custom.HAFRAppListActivity");
+
     private SwitchPreference mRecentsSearchBar;
     private SwitchPreference mRecentsMemBar;
     private ListPreference mImmersiveRecents;
@@ -101,6 +110,7 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
     private ColorPickerPreference mRecentPanelBgColor;
     private ColorPickerPreference mRecentCardBgColor;
     private ColorPickerPreference mRecentCardTextColor;
+    private Preference mHiddenRecentsApps;
 
     private static final int MENU_RESET = Menu.FIRST;
     private static final int DEFAULT_BACKGROUND_COLOR = 0x00ffffff;
@@ -141,6 +151,8 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
         mUseSlimRecents.setChecked(Settings.System.getInt(resolver,
                 Settings.System.USE_SLIM_RECENTS, 0) == 1);
         mUseSlimRecents.setOnPreferenceChangeListener(this);
+
+        mHiddenRecentsApps = (Preference) prefSet.findPreference(PREF_HIDDEN_RECENTS_APPS_START);
 
         updatePreference();
     }
@@ -260,6 +272,16 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(),
                 Settings.System.RECENTS_MAX_APPS, value);
             return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == mHiddenRecentsApps) {
+            getActivity().startActivity(INTENT_HIDDEN_RECENTS_SETTINGS);
+        } else {
+            return super.onPreferenceTreeClick(preferenceScreen, preference);
         }
         return false;
     }

@@ -92,6 +92,12 @@
 	    android:fragment="com.android.settings.custom.RecentsStyles"
 	    android:summary="@string/recent_styles_summary"/>
 
+        <!-- Hide Apps from Recents (HAFR) -->
+        <Preference
+            android:key="hide_app_from_recents"
+            android:title="@string/hide_apps_from_recents_title"
+            android:summary="@string/hide_apps_from_recents_summary" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
