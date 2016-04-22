@@ -114,6 +114,12 @@
             settings:unitsRight="%"
             android:persistent="false" />
 
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="lock_screen_show_current"
+            android:title="@string/lock_screen_show_current"
+            android:summary="@string/lock_screen_show_current_summary"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
