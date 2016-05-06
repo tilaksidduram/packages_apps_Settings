@@ -221,7 +221,7 @@ public class DashboardSummary extends InstrumentedFragment {
 
         if (tile.switchControl != null) {
             boolean isPrimary = UserHandle.getCallingUserId() == UserHandle.USER_OWNER;
-            int dashboardSwitches = isPrimary ? getDashboardSwitches(context) : 0;
+            int dashboardSwitches = isPrimary ? getDashboardSwitches(context) : 1;
 
             if (dashboardSwitches == 0) {
                 switchBar.setVisibility(View.GONE);
@@ -236,7 +236,7 @@ public class DashboardSummary extends InstrumentedFragment {
 
     private static int getDashboardSwitches(Context context) {
         return Settings.System.getInt(context.getContentResolver(),
-                Settings.System.DASHBOARD_SWITCHES, 0);
+                Settings.System.DASHBOARD_SWITCHES, 1);
     }
 
     private void sendRebuildUI() {
