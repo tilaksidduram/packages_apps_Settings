@@ -43,11 +43,14 @@
   <string-array name="screen_timeout_entries">
     <item>15 سېكۇنت</item>
     <item>30 سېكۇنت</item>
+    <item>45 سېكۇنت</item>
     <item>1 مىنۇت</item>
     <item>2 مىنۇت</item>
     <item>5 مىنۇت</item>
     <item>10 مىنۇت</item>
     <item>30 مىنۇت</item>
+    <item>60 مىنۇت</item>
+    <item>120 مىنۇت</item>
   </string-array>
   <!-- Do not translate. -->
   <!-- Display settings.  The delay in inactivity before the dream is shown. These are shown in a list dialog. -->

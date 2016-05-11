@@ -32,11 +32,14 @@
   <string-array name="screen_timeout_entries">
     <item msgid="3342301044271143016">"၁၅ စက္ကန့်"</item>
     <item msgid="8881760709354815449">"၃၀ စက္ကန့်"</item>
+    <item msgid="45SecondsScreenXXXX">"45 စက္ကန့်"</item>
     <item msgid="7589406073232279088">"၁ မိနစ်"</item>
     <item msgid="7001195990902244174">"၂ မိနစ်"</item>
     <item msgid="7489864775127957179">"၅မိနစ်"</item>
     <item msgid="2314124409517439288">"၁၀ မိနစ်"</item>
     <item msgid="6864027152847611413">"၃၀မိနစ်"</item>
+    <item msgid="60MinutesScreenXXXX">"60 မိနစ်"</item>
+    <item msgid="120MinutesScreenXXX">"120 မိနစ်"</item>
   </string-array>
   <string-array name="dream_timeout_entries">
     <item msgid="3149294732238283185">"မည်သည့်အခါမှ"</item>

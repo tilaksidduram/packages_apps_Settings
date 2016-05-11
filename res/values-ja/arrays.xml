@@ -32,11 +32,14 @@
   <string-array name="screen_timeout_entries">
     <item msgid="3342301044271143016">"15秒"</item>
     <item msgid="8881760709354815449">"30秒"</item>
+    <item msgid="45SecondsScreenXXXX">"45秒"</item>
     <item msgid="7589406073232279088">"1分"</item>
     <item msgid="7001195990902244174">"2分"</item>
     <item msgid="7489864775127957179">"5分"</item>
     <item msgid="2314124409517439288">"10分"</item>
     <item msgid="6864027152847611413">"30分"</item>
+    <item msgid="60MinutesScreenXXXX">"60分"</item>
+    <item msgid="120MinutesScreenXXX">"120分"</item>
   </string-array>
   <string-array name="dream_timeout_entries">
     <item msgid="3149294732238283185">"起動しない"</item>

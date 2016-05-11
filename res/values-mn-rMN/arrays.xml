@@ -32,11 +32,14 @@
   <string-array name="screen_timeout_entries">
     <item msgid="3342301044271143016">"15 секунд"</item>
     <item msgid="8881760709354815449">"30 секунд"</item>
+    <item msgid="45SecondsScreenXXXX">"45 секунд"</item>
     <item msgid="7589406073232279088">"1 минут"</item>
     <item msgid="7001195990902244174">"2 минут"</item>
     <item msgid="7489864775127957179">"5 минут"</item>
     <item msgid="2314124409517439288">"10 минут"</item>
     <item msgid="6864027152847611413">"30 минут"</item>
+    <item msgid="60MinutesScreenXXXX">"60 минут"</item>
+    <item msgid="120MinutesScreenXXX">"120 минут"</item>
   </string-array>
   <string-array name="dream_timeout_entries">
     <item msgid="3149294732238283185">"Хэзээ ч үгүй"</item>

@@ -42,11 +42,14 @@
     <item msgid="3149294732238283185">"사용 안함"</item>
     <item msgid="2194151041885903260">"15초"</item>
     <item msgid="5892295237131074341">"30초"</item>
+    <item msgid="45SecondsScreenXXXX">"45초"</item>
     <item msgid="3538441365970038213">"1분"</item>
     <item msgid="412343871668955639">"2분"</item>
     <item msgid="5076853889688991690">"5분"</item>
     <item msgid="1903860996174927898">"10분"</item>
     <item msgid="6415509612413178727">"30분"</item>
+    <item msgid="60MinutesScreenXXXX">"60분"</item>
+    <item msgid="120MinutesScreenXXX">"120분"</item>
   </string-array>
   <string-array name="lock_after_timeout_entries">
     <item msgid="8929270399652145290">"즉시"</item>
