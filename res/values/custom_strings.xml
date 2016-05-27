@@ -1435,4 +1435,8 @@
     <string name="dashboard_switches_summary">Change the position of the dashboard switches</string>
     <string name="dashboard_switches_dialog_title">Select switch state</string>
 
+    <!-- Battery fully charged notification -->
+    <string name="battery_fully_charged_notif_title">Battery fully charged notification</string>
+    <string name="battery_fully_charged_notif_summary">Show a notification when the battery is fully charged</string>
+
 </resources>
