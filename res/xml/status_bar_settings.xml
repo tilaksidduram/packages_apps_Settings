@@ -238,20 +238,6 @@
             android:persistent="false" />
 
         <ListPreference
-            android:key="qs_tile_animation_style"
-            android:title="@string/qs_tile_animation_style_title"
-            android:entries="@array/qs_tile_animation_style_entries"
-            android:entryValues="@array/qs_tile_animation_style_values"
-            android:persistent="false" />
-
-        <ListPreference
-            android:key="qs_tile_animation_duration"
-            android:title="@string/qs_tile_animation_duration_title"
-            android:entries="@array/qs_tile_animation_duration_entries"
-            android:entryValues="@array/qs_tile_animation_duration_values"
-            android:persistent="false" />
-
-        <ListPreference
             android:key="qs_quick_pulldown"
             android:title="@string/status_bar_quick_qs_pulldown_title"
             android:entries="@array/status_bar_quick_qs_pulldown_entries"
@@ -314,6 +300,33 @@
             settings:unitsRight=""
             android:persistent="false" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="quicksettings_tiles_category"
+        android:title="@string/quicksettings_tiles_category">
+ 
+     	<ListPreference
+            android:key="qs_tile_animation_style"
+            android:title="@string/qs_tile_animation_style_title"
+            android:entries="@array/qs_tile_animation_style_entries"
+            android:entryValues="@array/qs_tile_animation_style_values"
+            android:persistent="false" />
+ 
+     	<ListPreference
+            android:key="qs_tile_animation_duration"
+            android:title="@string/qs_tile_animation_duration_title"
+            android:entries="@array/qs_tile_animation_duration_entries"
+            android:entryValues="@array/qs_tile_animation_duration_values"
+            android:persistent="false" />
+ 
+     	<ListPreference
+            android:key="qs_tile_animation_interpolator"
+            android:title="@string/qs_tile_animation_interpolator_title"
+            android:entries="@array/qs_tile_animation_interpolator_entries"
+            android:entryValues="@array/qs_tile_animation_interpolator_values"
+            android:persistent="false" />
+ 
     </PreferenceCategory>
 
     <PreferenceCategory
