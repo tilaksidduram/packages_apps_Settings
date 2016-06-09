@@ -37,7 +37,7 @@
     <string name="doze_brightness_summary">Brightness level of doze pulse screen (% of max allowed brightness)</string>
 
     <string name="android_version_title">Marshmallow</string>
-    <string name="android_version_default">6.0.1 MOB30J Release 43</string>
+    <string name="android_version_default">6.0.1 MOB30M Release 46</string>
 
     <!-- Doze notification color invert -->
     <string name="doze_notification_color_invert_title">Color inversion</string>
