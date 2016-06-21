@@ -35,6 +35,7 @@ import android.util.Log;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.temasek.SeekBarPreference;
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 import com.android.internal.logging.MetricsLogger;
 
@@ -50,11 +51,20 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_CAMERA_SOUNDS = "camera_sounds";
     private static final String PROP_CAMERA_SOUND = "persist.sys.camera-sound";
     private static final String PREF_TRANSPARENT_VOLUME_DIALOG = "transparent_volume_dialog";
+    private static final String PREF_VOLUME_DIALOG_STROKE = "volume_dialog_stroke";
+    private static final String PREF_VOLUME_DIALOG_STROKE_COLOR = "volume_dialog_stroke_color";
+    private static final String PREF_VOLUME_DIALOG_STROKE_THICKNESS = "volume_dialog_stroke_thickness";
 
     private SwitchPreference mSafeHeadsetVolume;
     private ListPreference mAnnoyingNotifications;
     private SwitchPreference mCameraSounds;
     private SeekBarPreference mVolumeDialogAlpha;
+
+    private ListPreference mVolumeDialogStroke;
+    private ColorPickerPreference mVolumeDialogStrokeColor;
+    private SeekBarPreference mVolumeDialogStrokeThickness;
+
+    static final int DEFAULT_VOLUME_DIALOG_STROKE_COLOR = 0xFF80CBC4;
 
     @Override
     protected int getMetricsCategory() {
@@ -93,6 +103,36 @@ public class SoundSettings extends SettingsPreferenceFragment implements
                 Settings.System.TRANSPARENT_VOLUME_DIALOG, 255);
         mVolumeDialogAlpha.setValue(volumeDialogAlpha / 1);
         mVolumeDialogAlpha.setOnPreferenceChangeListener(this);
+
+        // Volume dialog stroke
+        mVolumeDialogStroke =
+                (ListPreference) findPreference(PREF_VOLUME_DIALOG_STROKE);
+        int volumeDialogStroke = Settings.System.getIntForUser(resolver,
+                Settings.System.VOLUME_DIALOG_STROKE, 1,
+                UserHandle.USER_CURRENT);
+	mVolumeDialogStroke.setValue(String.valueOf(volumeDialogStroke));
+	mVolumeDialogStroke.setSummary(mVolumeDialogStroke.getEntry());
+	mVolumeDialogStroke.setOnPreferenceChangeListener(this);
+
+        // Volume dialog stroke color
+        mVolumeDialogStrokeColor =
+                (ColorPickerPreference) findPreference(PREF_VOLUME_DIALOG_STROKE_COLOR);
+        mVolumeDialogStrokeColor.setOnPreferenceChangeListener(this);
+        int intColor = Settings.System.getInt(resolver,
+                Settings.System.VOLUME_DIALOG_STROKE_COLOR, DEFAULT_VOLUME_DIALOG_STROKE_COLOR);
+        String hexColor = String.format("#%08x", (0xFF80CBC4 & intColor));
+        mVolumeDialogStrokeColor.setSummary(hexColor);
+        mVolumeDialogStrokeColor.setNewPreviewColor(intColor);
+
+        // Volume dialog stroke thickness
+        mVolumeDialogStrokeThickness =
+                (SeekBarPreference) findPreference(PREF_VOLUME_DIALOG_STROKE_THICKNESS);
+        int volumeDialogStrokeThickness = Settings.System.getInt(resolver,
+                Settings.System.VOLUME_DIALOG_STROKE_THICKNESS, 4);
+        mVolumeDialogStrokeThickness.setValue(volumeDialogStrokeThickness / 1);
+        mVolumeDialogStrokeThickness.setOnPreferenceChangeListener(this);
+
+        VolumeDialogSettingsDisabler(volumeDialogStroke);
 
     }
 
@@ -134,8 +174,42 @@ public class SoundSettings extends SettingsPreferenceFragment implements
            Settings.System.putInt(getContentResolver(),
                    Settings.System.TRANSPARENT_VOLUME_DIALOG, alpha * 1);
            return true;
+        } else if (preference == mVolumeDialogStroke) {
+           int volumeDialogStroke = Integer.parseInt((String) objValue);
+           int index = mVolumeDialogStroke.findIndexOfValue((String) newValue);
+           Settings.System.putIntForUser(getContentResolver(), Settings.System.
+                   VOLUME_DIALOG_STROKE, volumeDialogStroke, UserHandle.USER_CURRENT);
+           mVolumeDialogStroke.setSummary(mVolumeDialogStroke.getEntries()[index]);
+           VolumeDialogSettingsDisabler(volumeDialogStroke);
+           return true;
+        } else if (preference == mVolumeDialogStrokeColor) {
+           String hex = ColorPickerPreference.convertToARGB(
+                   Integer.valueOf(String.valueOf(objValue)));
+           preference.setSummary(hex);
+           int intHex = ColorPickerPreference.convertToColorInt(hex);
+           Settings.System.putInt(getContentResolver(),
+                   Settings.System.VOLUME_DIALOG_STROKE_COLOR, intHex);
+           return true;
+        } else if (preference == mVolumeDialogStrokeThickness) {
+           int val = (Integer) objValue;
+           Settings.System.putInt(getContentResolver(),
+                   Settings.System.VOLUME_DIALOG_STROKE_THICKNESS, val * 1);
+           return true;
 	}
-        return true;
+        return false;
+    }
+
+    private void VolumeDialogSettingsDisabler(int volumeDialogStroke) {
+        if (volumeDialogStroke == 0) {
+            mVolumeDialogStrokeColor.setEnabled(false);
+            mVolumeDialogStrokeThickness.setEnabled(false);
+        } else if (volumeDialogStroke == 1) {
+            mVolumeDialogStrokeColor.setEnabled(false);
+            mVolumeDialogStrokeThickness.setEnabled(true);
+        } else {
+            mVolumeDialogStrokeColor.setEnabled(true);
+            mVolumeDialogStrokeThickness.setEnabled(true);
+        }
     }
 
     private void showDialogInner(int id) {
