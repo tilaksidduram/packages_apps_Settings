@@ -443,7 +443,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         // QS corner radius
         mQSCornerRadius = (SeekBarPreference) findPreference(PREF_QS_CORNER_RADIUS);
         int qSCornerRadius = Settings.System.getInt(resolver,
-                Settings.System.QS_CORNER_RADIUS, 0);
+                Settings.System.QS_CORNER_RADIUS, 5);
         mQSCornerRadius.setValue(qSCornerRadius / 1);
         mQSCornerRadius.setOnPreferenceChangeListener(this);
 
