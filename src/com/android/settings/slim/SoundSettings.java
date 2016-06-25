@@ -55,6 +55,8 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String PREF_VOLUME_DIALOG_STROKE_COLOR = "volume_dialog_stroke_color";
     private static final String PREF_VOLUME_DIALOG_STROKE_THICKNESS = "volume_dialog_stroke_thickness";
     private static final String PREF_VOLUME_DIALOG_CORNER_RADIUS = "volume_dialog_corner_radius";
+    private static final String PREF_VOLUME_DIALOG_STROKE_DASH_WIDTH = "volume_dialog_dash_width";
+    private static final String PREF_VOLUME_DIALOG_STROKE_DASH_GAP = "volume_dialog_dash_gap";
 
     private SwitchPreference mSafeHeadsetVolume;
     private ListPreference mAnnoyingNotifications;
@@ -65,6 +67,8 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private ColorPickerPreference mVolumeDialogStrokeColor;
     private SeekBarPreference mVolumeDialogStrokeThickness;
     private SeekBarPreference mVolumeDialogCornerRadius;
+    private SeekBarPreferenceCham mVolumeDialogDashWidth;
+    private SeekBarPreferenceCham mVolumeDialogDashGap;
 
     static final int DEFAULT_VOLUME_DIALOG_STROKE_COLOR = 0xFF80CBC4;
 
@@ -142,6 +146,26 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mVolumeDialogCornerRadius.setValue(volumeDialogCornerRadius / 1);
         mVolumeDialogCornerRadius.setOnPreferenceChangeListener(this);
 
+        // Volume dialog dash width
+        mVolumeDialogDashWidth =
+                (SeekBarPreference) findPreference(PREF_VOLUME_DIALOG_STROKE_DASH_WIDTH);
+        int volumeDialogDashWidth = Settings.System.getInt(resolver,
+                Settings.System.VOLUME_DIALOG_STROKE_DASH_WIDTH, 0);
+        if (volumeDialogDashWidth != 0) {
+            mVolumeDialogDashWidth.setValue(volumeDialogDashWidth / 1);
+        } else {
+            mVolumeDialogDashWidth.setValue(0);
+        }
+        mVolumeDialogDashWidth.setOnPreferenceChangeListener(this);
+
+        // Volume dialog dash gap
+        mVolumeDialogDashGap =
+                (SeekBarPreference) findPreference(PREF_VOLUME_DIALOG_STROKE_DASH_GAP);
+        int volumeDialogDashGap = Settings.System.getInt(resolver,
+                Settings.System.VOLUME_DIALOG_STROKE_DASH_GAP, 10);
+        mVolumeDialogDashGap.setValue(volumeDialogDashGap / 1);
+        mVolumeDialogDashGap.setOnPreferenceChangeListener(this);
+
         VolumeDialogSettingsDisabler(volumeDialogStroke);
 
     }
@@ -210,6 +234,16 @@ public class SoundSettings extends SettingsPreferenceFragment implements
            Settings.System.putInt(getContentResolver(),
                    Settings.System.VOLUME_DIALOG_CORNER_RADIUS, val * 1);
            return true;
+        } else if (preference == mVolumeDialogDashWidth) {
+           int val = (Integer) objValue;
+           Settings.System.putInt(getContentResolver(),
+                   Settings.System.VOLUME_DIALOG_STROKE_DASH_WIDTH, val * 1);
+           return true;
+        } else if (preference == mVolumeDialogDashGap) {
+           int val = (Integer) objValue;
+           Settings.System.putInt(getContentResolver(),
+                   Settings.System.VOLUME_DIALOG_STROKE_DASH_GAP, val * 1);
+           return true;
 	}
         return false;
     }
@@ -218,12 +252,18 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         if (volumeDialogStroke == 0) {
             mVolumeDialogStrokeColor.setEnabled(false);
             mVolumeDialogStrokeThickness.setEnabled(false);
+            mVolumeDialogDashWidth.setEnabled(false);
+            mVolumeDialogDashGap.setEnabled(false);
         } else if (volumeDialogStroke == 1) {
             mVolumeDialogStrokeColor.setEnabled(false);
             mVolumeDialogStrokeThickness.setEnabled(true);
+            mVolumeDialogDashWidth.setEnabled(true);
+            mVolumeDialogDashGap.setEnabled(true);
         } else {
             mVolumeDialogStrokeColor.setEnabled(true);
             mVolumeDialogStrokeThickness.setEnabled(true);
+            mVolumeDialogDashWidth.setEnabled(true);
+            mVolumeDialogDashGap.setEnabled(true);
         }
     }
 
