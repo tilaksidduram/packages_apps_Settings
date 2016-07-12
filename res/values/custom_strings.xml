@@ -1469,4 +1469,7 @@
     <string name="lid_controls_wake_title">Control wake</string>
     <string name="lid_controls_wake_summary">Turn screen on when lid opens</string>
 
+    <!-- Volume dialog transparency -->
+    <string name="volume_dialog_transparency">Volume dialog transparency</string>
+
 </resources>
