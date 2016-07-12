@@ -54,6 +54,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String PREF_VOLUME_DIALOG_STROKE = "volume_dialog_stroke";
     private static final String PREF_VOLUME_DIALOG_STROKE_COLOR = "volume_dialog_stroke_color";
     private static final String PREF_VOLUME_DIALOG_STROKE_THICKNESS = "volume_dialog_stroke_thickness";
+    private static final String PREF_VOLUME_DIALOG_CORNER_RADIUS = "volume_dialog_corner_radius";
 
     private SwitchPreference mSafeHeadsetVolume;
     private ListPreference mAnnoyingNotifications;
@@ -63,6 +64,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private ListPreference mVolumeDialogStroke;
     private ColorPickerPreference mVolumeDialogStrokeColor;
     private SeekBarPreference mVolumeDialogStrokeThickness;
+    private SeekBarPreference mVolumeDialogCornerRadius;
 
     static final int DEFAULT_VOLUME_DIALOG_STROKE_COLOR = 0xFF80CBC4;
 
@@ -132,6 +134,14 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mVolumeDialogStrokeThickness.setValue(volumeDialogStrokeThickness / 1);
         mVolumeDialogStrokeThickness.setOnPreferenceChangeListener(this);
 
+        // Volume dialog corner radius
+        mVolumeDialogCornerRadius =
+                (SeekBarPreference) findPreference(PREF_VOLUME_DIALOG_CORNER_RADIUS);
+        int volumeDialogCornerRadius = Settings.System.getInt(resolver,
+                Settings.System.VOLUME_DIALOG_CORNER_RADIUS, 2);
+        mVolumeDialogCornerRadius.setValue(volumeDialogCornerRadius / 1);
+        mVolumeDialogCornerRadius.setOnPreferenceChangeListener(this);
+
         VolumeDialogSettingsDisabler(volumeDialogStroke);
 
     }
@@ -194,6 +204,11 @@ public class SoundSettings extends SettingsPreferenceFragment implements
            int val = (Integer) objValue;
            Settings.System.putInt(getContentResolver(),
                    Settings.System.VOLUME_DIALOG_STROKE_THICKNESS, val * 1);
+           return true;
+        } else if (preference == mVolumeDialogCornerRadius) {
+           int val = (Integer) objValue;
+           Settings.System.putInt(getContentResolver(),
+                   Settings.System.VOLUME_DIALOG_CORNER_RADIUS, val * 1);
            return true;
 	}
         return false;
