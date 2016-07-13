@@ -114,7 +114,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mVolumeDialogStroke =
                 (ListPreference) findPreference(PREF_VOLUME_DIALOG_STROKE);
         int volumeDialogStroke = Settings.System.getIntForUser(resolver,
-                Settings.System.VOLUME_DIALOG_STROKE, 1,
+                Settings.System.VOLUME_DIALOG_STROKE, 0,
                 UserHandle.USER_CURRENT);
 	mVolumeDialogStroke.setValue(String.valueOf(volumeDialogStroke));
 	mVolumeDialogStroke.setSummary(mVolumeDialogStroke.getEntry());

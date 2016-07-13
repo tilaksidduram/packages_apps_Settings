@@ -62,7 +62,7 @@
         android:dialogTitle="@string/volume_dialog_stroke_title"
         android:entries="@array/volume_dialog_stroke_entries"
         android:entryValues="@array/volume_dialog_stroke_values"
-        android:defaultValue="1" />
+        android:defaultValue="0" />
  
     <net.margaritov.preference.colorpicker.ColorPickerPreference
         android:key="volume_dialog_stroke_color"

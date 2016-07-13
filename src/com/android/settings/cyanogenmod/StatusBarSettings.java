@@ -422,7 +422,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         // QS stroke
         mQSStroke = (ListPreference) findPreference(PREF_QS_STROKE);
         int qSStroke = Settings.System.getIntForUser(resolver,
-                        Settings.System.QS_STROKE, 1,
+                        Settings.System.QS_STROKE, 0,
                         UserHandle.USER_CURRENT);
         mQSStroke.setValue(String.valueOf(qSStroke));
         mQSStroke.setSummary(mQSStroke.getEntry());
