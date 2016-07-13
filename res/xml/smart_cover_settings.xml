@@ -28,14 +28,14 @@
             android:key="lid_controls_sleep"
             android:title="@string/lid_controls_sleep_title"
             android:summary="@string/lid_controls_sleep_summary"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
         <!-- Lid controls wake -->
         <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
             android:key="lid_controls_wake"
             android:title="@string/lid_controls_wake_title"
             android:summary="@string/lid_controls_wake_summary"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
     </PreferenceCategory>
 
