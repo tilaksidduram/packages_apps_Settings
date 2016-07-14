@@ -21,8 +21,10 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.ContentResolver
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.os.SystemProperties;
 
 import android.preference.ListPreference;
@@ -67,8 +69,8 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private ColorPickerPreference mVolumeDialogStrokeColor;
     private SeekBarPreference mVolumeDialogStrokeThickness;
     private SeekBarPreference mVolumeDialogCornerRadius;
-    private SeekBarPreferenceCham mVolumeDialogDashWidth;
-    private SeekBarPreferenceCham mVolumeDialogDashGap;
+    private SeekBarPreference mVolumeDialogDashWidth;
+    private SeekBarPreference mVolumeDialogDashGap;
 
     static final int DEFAULT_VOLUME_DIALOG_STROKE_COLOR = 0xFF80CBC4;
 
@@ -210,7 +212,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
            return true;
         } else if (preference == mVolumeDialogStroke) {
            int volumeDialogStroke = Integer.parseInt((String) objValue);
-           int index = mVolumeDialogStroke.findIndexOfValue((String) newValue);
+           int index = mVolumeDialogStroke.findIndexOfValue((String) objValue);
            Settings.System.putIntForUser(getContentResolver(), Settings.System.
                    VOLUME_DIALOG_STROKE, volumeDialogStroke, UserHandle.USER_CURRENT);
            mVolumeDialogStroke.setSummary(mVolumeDialogStroke.getEntries()[index]);
