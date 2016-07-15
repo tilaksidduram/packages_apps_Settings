@@ -316,7 +316,8 @@
 
     	<net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="qs_stroke_color"
-            android:title="@string/qs_stroke_color_title" />
+            android:title="@string/qs_stroke_color_title"
+	    android:defaultValue="0xff80cbc4"/>
 
         <com.android.settings.temasek.SeekBarPreference
             android:key="qs_stroke_thickness"
