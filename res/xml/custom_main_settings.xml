@@ -24,7 +24,12 @@
             android:fragment="com.android.settings.custom.RecentsSettings"
             android:title="@string/recents_settings_title"
             android:icon="@drawable/ic_xd_recents"
-            />       
+            />
+
+    <PreferenceScreen
+        android:key="boot_dialog_pimping"
+        android:fragment="com.android.settings.custom.BootDialog"
+        android:title="@string/boot_dialog_title" />     
                 
     </PreferenceCategory>
 
