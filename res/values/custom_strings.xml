@@ -1544,4 +1544,7 @@
     <string name="halo_floating_notifications_summary">Always launch activities from notifications in Float Mode.</string>
     <string name="halo_enable_float_summary">Enable floating mode first.</string>
 
+    <!-- Vendor version -->
+    <string name="vendor_version">Vendor version</string>
+    <string name="vendor_version_default">Unknown</string>
 </resources>
