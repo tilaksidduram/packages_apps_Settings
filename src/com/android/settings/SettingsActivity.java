@@ -130,6 +130,9 @@ import com.android.settings.search.DynamicIndexableContentMonitor;
 import com.android.settings.search.Index;
 import com.android.settings.privacyguard.PrivacyGuardPrefs;
 import com.android.settings.sim.SimSettings;
+import com.android.settings.slim.fragments.DozeSettingsFragment;
+import com.android.settings.slim.fragments.LockscreenShortcutFragment;
+import com.android.settings.slim.fragments.RecentAppSidebarFragment;
 import com.android.settings.tts.TextToSpeechSettings;
 import com.android.settings.users.UserSettings;
 import com.android.settings.custom.MainSettings;
@@ -386,7 +389,10 @@ public class SettingsActivity extends Activity
             NotificationManagerSettings.class.getName(),
             LiveLockScreenSettings.class.getName(),
             WeatherServiceSettings.class.getName(),
-            HeadsUpSettings.class.getName()
+            HeadsUpSettings.class.getName(),
+            DozeSettingsFragment.class.getName(),
+            com.android.settings.slim.fragments.LockscreenShortcutFragment.class.getName(),
+            com.android.settings.slim.fragments.RecentAppSidebarFragment.class.getName()
     };
 
 
