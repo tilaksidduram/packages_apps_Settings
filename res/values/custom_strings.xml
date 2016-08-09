@@ -1561,5 +1561,6 @@
     <string name="halo_color_summary">Defines what color the Halo bubble is</string>
     <string name="halo_floating_notifications_title">Use Floating Mode</string>
     <string name="halo_floating_notifications_summary">Always launch activities from notifications in Float Mode.</string>
+    <string name="halo_enable_float_summary">Enable floating mode first.</string>
 
 </resources>
