@@ -1518,6 +1518,8 @@
     <string name="boot_dialog_random_title">Package name with random color</string>
 
     <!-- Halo -->
+    <string name="halo_enable_title">Show Halo button</string>
+    <string name="halo_enable_summary">Enable Halo button in statusbar header</string>
     <string name="halo_settings_title">Halo</string>
     <string name="halo_behavior_title">Halo Behavior</string>
     <string name="halo_hide_title">Hide Halo after activity</string>
