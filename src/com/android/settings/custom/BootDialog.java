@@ -22,7 +22,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.os.Build;
 import android.os.UserHandle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -32,9 +31,6 @@ import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Spannable;
-import android.text.TextUtils;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -62,7 +58,6 @@ public class BootDialog extends AppCompatActivity {
         private static final String PREF_BOOT_DIALOG_STROKE_COLOR = "boot_dialog_stroke_color";
         private static final String PREF_BOOT_DIALOG_STROKE_THICKNESS = "boot_dialog_stroke_thickness";
         private static final String PREF_BOOT_DIALOG_CORNER_RADIUS = "boot_dialog_corner_radius";
-        private static final String PREF_BOOT_DIALOG_TITLE = "boot_dialog_title";
         private static final String PREF_BOOT_DIALOG_TEST = "boot_dialog_test";
 
         static final int DEFAULT_BOOT_DIALOG_BG_COLOR = 0xFF000000;
@@ -72,8 +67,6 @@ public class BootDialog extends AppCompatActivity {
         private ColorPickerPreference mBootDialogStrokeColor;
         private SeekBarPreferenceCham mBootDialogStrokeThickness;
         private SeekBarPreferenceCham mBootDialogCornerRadius;
-        private PreferenceScreen mBootDialogTitle;
-        private String mBootDialogTitleText;
         private PreferenceScreen mBootDialogTest;
 
         @Override
@@ -122,10 +115,7 @@ public class BootDialog extends AppCompatActivity {
             mBootDialogCornerRadius.setValue(dialogCornerRadius / 1);
             mBootDialogCornerRadius.setOnPreferenceChangeListener(this);
 
-            mBootDialogTitle = (PreferenceScreen) prefSet.findPreference(PREF_BOOT_DIALOG_TITLE);
             mBootDialogTest = (PreferenceScreen) prefSet.findPreference(PREF_BOOT_DIALOG_TEST);
-
-            updateCustomTitleTextSummary();
 
         }
 
@@ -206,15 +196,6 @@ public class BootDialog extends AppCompatActivity {
                     } else {
                         tvTitle.setTextColor(0xFF000000);
                     }
-                    String dialogTitle = Build.MODEL + " " + getContext().getResources().getString(
-                            R.string.boot_dialog_starting);
-                    String customDialogTitle = Settings.System.getString(getActivity().getContentResolver(),
-                            Settings.System.BOOT_DIALOG_TITLE);
-                    if (!TextUtils.isEmpty(customDialogTitle)) {
-                        tvTitle.setText(customDialogTitle);
-                    } else {
-                        tvTitle.setText(dialogTitle);
-                    }
                 }
                 int textViewMessage = dialog.getContext().getResources().getIdentifier("android:id/message", null, null);
                 if (textViewMessage != 0) {
@@ -235,39 +216,7 @@ public class BootDialog extends AppCompatActivity {
                     }
                 }
             }
-            if (preference.getKey().equals(PREF_BOOT_DIALOG_TITLE)) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-                alert.setTitle(R.string.boot_dialog_custom_title);
-                alert.setMessage(R.string.boot_dialog_custom_explain);
-
-                // Set an EditText view to get user input
-                final EditText input = new EditText(getActivity());
-                input.setText(TextUtils.isEmpty(mBootDialogTitleText) ? "" : mBootDialogTitleText);
-                input.setSelection(input.getText().length());
-                alert.setView(input);
-                alert.setPositiveButton(getString(android.R.string.ok),
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                String value = ((Spannable) input.getText()).toString().trim();
-                                Settings.System.putString(resolver, Settings.System.BOOT_DIALOG_TITLE, value);
-                                updateCustomTitleTextSummary();
-                            }
-                        });
-                alert.setNegativeButton(getString(android.R.string.cancel), null);
-                alert.show();
-            }
             return super.onPreferenceTreeClick(preferenceScreen, preference);
-        }
-
-        private void updateCustomTitleTextSummary() {
-            mBootDialogTitleText = Settings.System.getString(
-                    getActivity().getContentResolver(), Settings.System.BOOT_DIALOG_TITLE);
-
-            if (TextUtils.isEmpty(mBootDialogTitleText)) {
-                mBootDialogTitle.setSummary(R.string.boot_dialog_custom_title_notset);
-            } else {
-                mBootDialogTitle.setSummary(mBootDialogTitleText);
-            }
         }
     }
 }
