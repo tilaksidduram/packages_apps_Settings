@@ -31,6 +31,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -43,7 +44,17 @@ import com.android.settings.SettingsPreferenceFragment;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
-public class BootDialog extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
+public class BootDialog extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getFragmentManager().beginTransaction().replace(android.R.id.content,
+                new BootDialogFragment()).commit();
+    }
+
+    public static class BootDialogFragment extends PreferenceFragment
+            implements OnPreferenceChangeListener {
 
         private static final String TAG = "BootDialog";
 
@@ -64,8 +75,8 @@ public class BootDialog extends SettingsPreferenceFragment implements Preference
 
         private ColorPickerPreference mBootDialogBgColor;
         private ColorPickerPreference mBootDialogStrokeColor;
-        private SeekBarPreference mBootDialogStrokeThickness;
-        private SeekBarPreference mBootDialogCornerRadius;
+        private SeekBarPreferenceCham mBootDialogStrokeThickness;
+        private SeekBarPreferenceCham mBootDialogCornerRadius;
         private PreferenceScreen mBootDialogTitle;
         private String mBootDialogTitleText;
         private PreferenceScreen mBootDialogTest;
@@ -104,7 +115,7 @@ public class BootDialog extends SettingsPreferenceFragment implements Preference
 
             // Boot dialog stroke thickness
             mBootDialogStrokeThickness =
-                    (SeekBarPreference) findPreference(PREF_BOOT_DIALOG_STROKE_THICKNESS);
+                    (SeekBarPreferenceCham) findPreference(PREF_BOOT_DIALOG_STROKE_THICKNESS);
             int dialogStrokeThickness = Settings.System.getInt(resolver,
                     Settings.System.BOOT_DIALOG_STROKE_THICKNESS, 12);
             mBootDialogStrokeThickness.setValue(dialogStrokeThickness / 1);
@@ -112,7 +123,7 @@ public class BootDialog extends SettingsPreferenceFragment implements Preference
 
             // Boot dialog corner radius
             mBootDialogCornerRadius =
-                    (SeekBarPreference) findPreference(PREF_BOOT_DIALOG_CORNER_RADIUS);
+                    (SeekBarPreferenceCham) findPreference(PREF_BOOT_DIALOG_CORNER_RADIUS);
             int dialogCornerRadius = Settings.System.getInt(resolver,
                     Settings.System.BOOT_DIALOG_CORNER_RADIUS, 45);
             mBootDialogCornerRadius.setValue(dialogCornerRadius / 1);
@@ -307,4 +318,5 @@ public class BootDialog extends SettingsPreferenceFragment implements Preference
                 mBootDialogTitle.setSummary(mBootDialogTitleText);
             }
         }
+    }
 }

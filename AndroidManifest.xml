@@ -2820,6 +2820,12 @@
         <activity
              android:name=".custom.MainSettings" />
 
+        <activity
+            android:name=".custom.BootDialog"
+            android:label="@string/boot_dialog_title"
+            android:theme="@style/FragmentTheme">
+        </activity>
+
         <activity android:name=".sim.SimPreferenceDialog"
             android:theme="@style/Theme.SettingsDialog"
             android:excludeFromRecents="true">
