@@ -163,6 +163,12 @@
             	android:summary="@string/toast_icon_summary"
             	android:defaultValue="true" />
 
+    	<ListPreference
+        	android:entries="@array/screenshot_type_entries"
+        	android:entryValues="@array/screenshot_type_values"
+        	android:key="screenshot_type"
+        	android:title="@string/screenshot_type_title" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
