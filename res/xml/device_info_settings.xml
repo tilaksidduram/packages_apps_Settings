@@ -35,6 +35,7 @@
         </PreferenceScreen>
 
         <!-- CyanogenMod Updates -->
+<!--
         <cyanogenmod.preference.SelfRemovingPreference android:key="cm_updates"
                 android:title="@string/cmupdate_settings_title"
                 android:summary="@string/system_update_settings_list_item_summary"
@@ -44,6 +45,23 @@
                     android:targetPackage="com.cyanogenmod.updater"
                     android:targetClass="com.cyanogenmod.updater.UpdatesSettings" />
         </cyanogenmod.preference.SelfRemovingPreference>
+-->
+
+        <!-- OpenDelta Updates -->
+        <PreferenceScreen android:key="delta_updates"
+                android:title="@string/deltaupdate_settings_title"
+                android:summary="@string/system_update_settings_list_item_summary">
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="eu.chainfire.opendelta"
+                    android:targetClass="eu.chainfire.opendelta.MainActivity"
+                    />
+        </PreferenceScreen>
+
+        <!-- Change Log -->
+        <PreferenceScreen android:key="changelog"
+            android:title="@string/changelog_title"
+            android:fragment="com.android.settings.custom.CustomChangelog" >
+        </PreferenceScreen>
 
         <!-- Device status - launches activity -->
         <PreferenceScreen android:key="status_info"
