@@ -472,7 +472,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             int mScreenshotTypeValue = Integer.parseInt(((String) objValue).toString());
             mScreenshotType.setSummary(
                     mScreenshotType.getEntries()[mScreenshotTypeValue]);
-            Settings.System.putInt(resolver,
+            Settings.System.putInt(getContentResolver(),
                     Settings.System.SCREENSHOT_TYPE, mScreenshotTypeValue);
             mScreenshotType.setValue(String.valueOf(mScreenshotTypeValue));
         }
