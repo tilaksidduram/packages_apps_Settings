@@ -77,4 +77,7 @@
     <string name="doze_notification_color_invert_title">Notification inversion</string>
     <string name="doze_notification_color_invert_summary_off">Notifications will not be inverted. Use for dark themes.</string>
     <string name="doze_notification_color_invert_summary_on">Notifications will be inverted. Use for light/stock theme.</string>
+
+    <string name="magisk_title">Magisk Manager</string>
+    <string name="magisk_summary">Root management</string>
 </resources>
