@@ -130,7 +130,7 @@
   <string name="app_ops_summaries_toggle_bluetooth">블루투스 켜기/끄기</string>
   <string name="app_ops_summaries_start_at_boot">부팅할 때 시작</string>
   <string name="app_ops_summaries_toggle_nfc">NFC 켜기/끄기</string>
-  <string name="app_ops_summaries_toggle_mobile_data">셀룰러 데이터 켜기/끄기</string>
+  <string name="app_ops_summaries_toggle_mobile_data">이동 통신망 데이터 켜기/끄기</string>
   <string name="app_ops_summaries_superuser">루트 권한</string>
   <!-- User display names for app ops codes - extension of AOSP -->
   <string name="app_ops_labels_coarse_location">대략적인 위치</string>
@@ -201,7 +201,7 @@
   <string name="app_ops_labels_toggle_bluetooth">블루투스 켜기/끄기</string>
   <string name="app_ops_labels_start_at_boot">부팅시 시작</string>
   <string name="app_ops_labels_toggle_nfc">NFC 켜기/끄기</string>
-  <string name="app_ops_labels_toggle_mobile_data">셀룰러 데이터 켜기/끄기</string>
+  <string name="app_ops_labels_toggle_mobile_data">이동 통신망 데이터 켜기/끄기</string>
   <string name="app_ops_labels_superuser">루트 권한</string>
   <!-- App ops permissions -->
   <string name="app_ops_permissions_allowed">허가</string>
@@ -380,12 +380,12 @@
   <string name="hotstpot_inactivity_timeout_never_summary_text">휴대용 Wi\u2011Fi 핫스팟을 자동 종료하지 않음</string>
   <string name="hotstpot_inactivity_timeout_summary_text">휴대용 Wi\u2011Fi 핫스팟이 <xliff:g id="timeout">%1$s</xliff:g>간 활동이 없을 경우 끔</string>
   <!-- Per-app data restrictions -->
-  <string name="data_usage_app_restrict_data_category_title">이동 통신망 데이터 접속</string>
+  <string name="data_usage_app_restrict_data_category_title">이동통신망 데이터 접속</string>
   <string name="data_usage_app_restrict_wifi_category_title">Wi\u2011Fi 데이터 액세스</string>
   <!-- Title for switch to block app data usage [CHAR LIMIT=30] -->
-  <string name="data_usage_app_restrict_all_data_title">모든 이동 통신망 데이터 접속을 사용 안 함</string>
+  <string name="data_usage_app_restrict_all_data_title">모든 이동통신망 데이터 접속을 사용 안 함</string>
   <!-- Summary for switch to block app data usage [CHAR LIMIT=NONE] -->
-  <string name="data_usage_app_restrict_all_data_summary">이동 통신망을 통한 모든 데이터 접속을 차단</string>
+  <string name="data_usage_app_restrict_all_data_summary">이동통신망을 통한 모든 데이터 접속을 차단</string>
   <!-- Title for switch to block app data usage [CHAR LIMIT=30] -->
   <string name="data_usage_app_restrict_all_wifi_title">모든 Wi\u2011Fi 데이터 접속을 사용 안 함</string>
   <!-- Summary for switch to block app data usage [CHAR LIMIT=NONE] -->
